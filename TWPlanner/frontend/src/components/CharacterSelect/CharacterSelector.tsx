@@ -6,7 +6,7 @@ import api from '../../api/api';
 import { AppContext, AppContextActions } from '../../contexts/AppContext';
 import gameData from '../../data/gameData';
 import spellLoreIcons from '../../imgs/spellLoreIcons/spellLoreIcons';
-import { CompGroupsInterface } from '../../types/interfaces/GameInterface';
+import { CompGroupsInterface } from '../../@types/GameInterface';
 import { createEmptyCharacterBuild } from '../../utils/sharedFunctions';
 import CharacterCell from './CharacterCell';
 

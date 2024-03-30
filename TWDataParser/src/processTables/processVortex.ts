@@ -1,5 +1,5 @@
-import { GlobalDataInterface, TableRecord } from '../interfaces/GlobalDataInterface';
-import { VortexInterface } from '../interfaces/ProcessedTreeInterface';
+import { GlobalDataInterface, TableRecord } from '../@types/GlobalDataInterface';
+import { VortexInterface } from '../@types/CharacterInterface';
 import { parseBoolean, parseFloating, parseInteger } from '../utils/parseStringToTypes';
 import processPhase from './processPhase';
 

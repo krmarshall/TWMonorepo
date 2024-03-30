@@ -1,5 +1,5 @@
 import { exec } from 'child_process';
-import fse, { emptyDirSync } from 'fs-extra';
+import { emptyDirSync, ensureDirSync, ensureFile, outputJSONSync, readJSONSync } from 'fs-extra';
 import { statSync } from 'fs';
 import log from './utils/log';
 
@@ -7,20 +7,20 @@ const cwd = process.env.CWD + '/bins';
 
 const createExtractedTimestamp = (folder: string, dbPackName: string) => {
   const fileStats = statSync(`./game_source/${folder}/${dbPackName}.pack`);
-  fse.outputJSONSync(`./extracted_files/${folder}/${dbPackName}_timestamp.json`, { time: fileStats.mtime.toString() });
+  outputJSONSync(`./extracted_files/${folder}/${dbPackName}_timestamp.json`, { time: fileStats.mtime.toString() });
 };
 
 const extractData = (folder: string, dbPackName: string, tablesString: string, game: string, inputFolder = folder) => {
   const schema = game.includes('2') ? 'schema_wh2.ron' : 'schema_wh3.ron';
-  return new Promise<void>((resolveI, rejectI) => {
+  return new Promise<void>((resolve, reject) => {
     exec(
       `rpfm_cli.exe -g ${game} pack extract -p "../game_source/${inputFolder}/${dbPackName}.pack" -t "../rpfm-schemas/${schema}" -F ${tablesString}`,
       { cwd },
       (error) => {
         if (error) {
-          rejectI(error);
+          reject(error);
         } else {
-          resolveI();
+          resolve();
         }
       },
     );
@@ -29,15 +29,15 @@ const extractData = (folder: string, dbPackName: string, tablesString: string, g
 
 const extractLoc = (folder: string, locPackName: string, locsString: string, game: string, inputFolder = folder) => {
   const schema = game.includes('2') ? 'schema_wh2.ron' : 'schema_wh3.ron';
-  return new Promise<void>((resolveI, rejectI) => {
+  return new Promise<void>((resolve, reject) => {
     exec(
       `rpfm_cli.exe -g ${game} pack extract -p "../game_source/${inputFolder}/${locPackName}.pack" -t "../rpfm-schemas/${schema}" -f ${locsString}`,
       { cwd },
       (error) => {
         if (error) {
-          rejectI(error);
+          reject(error);
         } else {
-          resolveI();
+          resolve();
         }
       },
     );
@@ -84,9 +84,9 @@ const extractPackfileMass = (
   return new Promise<void>((resolve, reject) => {
     const tablesString = generateTablesString(dbList, folder);
 
-    const oldDbTimestamp = fse.readJSONSync(`./extracted_files/${folder}/${dbPackName}_timestamp.json`, { throws: false });
+    const oldDbTimestamp = readJSONSync(`./extracted_files/${folder}/${dbPackName}_timestamp.json`, { throws: false });
     const newFileStats = statSync(`./game_source/${folder}/${dbPackName}.pack`);
-    const oldTables = fse.readJSONSync(`./extracted_files/${folder}/tables.json`, { throws: false });
+    const oldTables = readJSONSync(`./extracted_files/${folder}/tables.json`, { throws: false });
     const newTables = dbList;
     if (
       oldDbTimestamp !== null &&
@@ -118,7 +118,7 @@ const extractPackfileMass = (
       Promise.all([dataPromise, locPromise])
         .then(() => {
           createExtractedTimestamp(folder, dbPackName);
-          fse.outputJSONSync(`./extracted_files/${folder}/tables.json`, dbList);
+          outputJSONSync(`./extracted_files/${folder}/tables.json`, dbList);
           resolve();
         })
         .catch((error) => {
@@ -139,13 +139,13 @@ const extractPackfileMulti = (
   return new Promise<void>((resolve, reject) => {
     let goodPreExtract = true;
     dbPackNames.forEach((dbPackName) => {
-      const oldDbTimestamp = fse.readJSONSync(`./extracted_files/${folder}/${dbPackName}_timestamp.json`, { throws: false });
+      const oldDbTimestamp = readJSONSync(`./extracted_files/${folder}/${dbPackName}_timestamp.json`, { throws: false });
       const newFileStats = statSync(`./game_source/${folder}/${dbPackName}.pack`);
       if (oldDbTimestamp === null || oldDbTimestamp.time !== newFileStats.mtime.toString()) {
         goodPreExtract = false;
       }
     });
-    const oldTables = fse.readJSONSync(`./extracted_files/${folder}/tables.json`, { throws: false });
+    const oldTables = readJSONSync(`./extracted_files/${folder}/tables.json`, { throws: false });
     const newTables = dbList;
     if (goodPreExtract && oldTables !== null && JSON.stringify(oldTables) === JSON.stringify(newTables)) {
       log(`Pre-extract ${folder}`, 'green');
@@ -159,9 +159,9 @@ const extractPackfileMulti = (
     let locPromises;
     if (locList === undefined && JSON.stringify(dbPackNames) === JSON.stringify(locPackNames)) {
       locPromises = locPackNames.map((locPackName, index) => {
-        fse.ensureDirSync(`./extracted_files/${folder}/subDB${index}`);
-        fse.ensureDirSync(`./extracted_files/${folder}/subLOC${index}`);
-        fse.ensureFile(`./extracted_files/${folder}/subDB${index}/${locPackName}`);
+        ensureDirSync(`./extracted_files/${folder}/subDB${index}`);
+        ensureDirSync(`./extracted_files/${folder}/subLOC${index}`);
+        ensureFile(`./extracted_files/${folder}/subDB${index}/${locPackName}`);
 
         const tablesString = generateTablesString(dbList, folder + `/subDB${index}`);
         return extractData(
@@ -174,15 +174,15 @@ const extractPackfileMulti = (
       });
     } else {
       dataPromises = dbPackNames.map((dbPackName, index) => {
-        fse.ensureDirSync(`./extracted_files/${folder}/subDB${index}`);
-        fse.ensureFile(`./extracted_files/${folder}/subDB${index}/${dbPackName}`);
+        ensureDirSync(`./extracted_files/${folder}/subDB${index}`);
+        ensureFile(`./extracted_files/${folder}/subDB${index}/${dbPackName}`);
 
         const tablesString = generateTablesString(dbList, folder + `/subDB${index}`);
         return extractData(folder + `/subDB${index}`, dbPackName, tablesString, game, folder);
       });
 
       locPromises = locPackNames.map((locPackName, index) => {
-        fse.ensureDirSync(`./extracted_files/${folder}/subLOC${index}`);
+        ensureDirSync(`./extracted_files/${folder}/subLOC${index}`);
         const locsString = generateLocsString(locList as Array<string>, folder + `/subLOC${index}`);
         return extractLoc(folder + `/subLOC${index}`, locPackName, locsString, game, folder);
       });
@@ -194,7 +194,7 @@ const extractPackfileMulti = (
     Promise.all(promiseArray)
       .then(() => {
         dbPackNames.forEach((dbPackName) => createExtractedTimestamp(folder, dbPackName));
-        fse.outputJSONSync(`./extracted_files/${folder}/tables.json`, dbList);
+        outputJSONSync(`./extracted_files/${folder}/tables.json`, dbList);
         resolve();
       })
       .catch((error) => {

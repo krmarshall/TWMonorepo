@@ -1,5 +1,5 @@
-import { GlobalDataInterface, RefKey, TableRecord } from './interfaces/GlobalDataInterface';
-import { SchemaInterface, TableInterface } from './interfaces/SchemaInterfaces';
+import { GlobalDataInterface, RefKey, TableRecord } from './@types/GlobalDataInterface';
+import { SchemaInterface, TableInterface } from './@types/SchemaInterfaces';
 import cleanList from './lists/cleanLists';
 import findHighestVersionDB from './utils/findHighestVersionDB';
 

@@ -1,4 +1,4 @@
-import { TableRecord } from '../interfaces/GlobalDataInterface';
+import { TableRecord } from '../@types/GlobalDataInterface';
 import log from './log';
 
 // Locs have tags that interpolate into various things, colored text, images, text replacement ect.

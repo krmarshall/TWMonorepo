@@ -1,6 +1,6 @@
 import { createRootRoute, Link, Outlet } from '@tanstack/react-router';
-import { AppProvider } from '../../TotalWarhammerPlanner/frontend/src/contexts/AppContext';
-import React, { Suspense } from 'react';
+import { AppProvider } from '../../../TWPlanner/frontend/src/contexts/AppContext';
+import * as React from 'react';
 import { ElectronProvider } from '../contexts/ElectronContext';
 const TanStackRouterDevtools =
   process.env.NODE_ENV === 'production'
@@ -32,9 +32,9 @@ export const Route = createRootRoute({
           </div>
           <hr />
           <Outlet />
-          <Suspense>
+          <React.Suspense>
             <TanStackRouterDevtools initialIsOpen={false} position="bottom-right" />
-          </Suspense>
+          </React.Suspense>
         </div>
       </ElectronProvider>
     </AppProvider>

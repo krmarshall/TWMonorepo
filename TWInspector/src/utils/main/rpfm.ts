@@ -2,9 +2,9 @@ import { exec } from 'child_process';
 import { IpcMainInvokeEvent } from 'electron';
 import { emptyDirSync, ensureDirSync, ensureFileSync, outputJSONSync, readJSONSync, statSync } from 'fs-extra';
 import path from 'path';
-import fg from 'fast-glob';
-import { GlobalDataInterface } from '../../../TotalWarhammerDataParser/src/interfaces/GlobalDataInterface';
-import { fillPortraitGlobalData } from '../../../TotalWarhammerDataParser/src/parseImages';
+import { sync, convertPathToPattern } from 'fast-glob';
+import { fillPortraitGlobalData } from '../../../../TWDataParser/src/parseImages';
+import { GlobalDataInterface } from '../../@types/GlobalDataInterfaceRef';
 
 let cwd = '';
 let rpfmPath = '';
@@ -127,12 +127,7 @@ export const extractPackfile = (
   });
 };
 
-export const extractPackfileMulti = (
-  folder: string,
-  dbPackPaths: Array<string>,
-  dbList: Array<string>,
-  forceExtract: boolean,
-) => {
+export const extractPackfileMulti = (folder: string, dbPackPaths: Array<string>, dbList: Array<string>, forceExtract: boolean) => {
   const dataPromises = dbPackPaths.map((packPath, index) => {
     const packName = path.basename(packPath, '.pack');
     ensureDirSync(`${cwd}/extracted_files/${folder}/subDB${index}`);
@@ -172,9 +167,8 @@ export const extractImages = (folder: string, packPaths: Array<string>, forceExt
 };
 
 const extractPortraits = (folder: string) => {
-  const pattern =
-    fg.convertPathToPattern(cwd) + `/extracted_files/${folder}/ui/portraits/portholes/portrait_settings*.bin`;
-  const portraitSettingsPaths = fg.sync(pattern);
+  const pattern = convertPathToPattern(cwd) + `/extracted_files/${folder}/ui/portraits/portholes/portrait_settings*.bin`;
+  const portraitSettingsPaths = sync(pattern);
   const portraitPromises = portraitSettingsPaths.map((portraitSettings) => {
     return new Promise<string | void>((resolve, reject) => {
       const portraitSettingsName = path.basename(portraitSettings, '.bin');

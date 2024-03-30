@@ -1,4 +1,4 @@
-import { SpellLores } from '../../types/interfaces/GameInterface';
+import { SpellLores } from '../../@types/GameInterface';
 import { vanilla3Characters } from './vanilla3Characters';
 
 const sfo3Characters = {

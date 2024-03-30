@@ -1,6 +1,6 @@
 import { toast } from 'react-hot-toast';
-import BuildInterface from '../types/interfaces/BuildInterface';
-import { CharacterInterface, SkillInterface } from '../types/interfaces/CharacterInterface';
+import BuildInterface from '../@types/BuildInterface';
+import { CharacterInterface, SkillInterface } from '../@types/CharacterInterfaceRef';
 
 const isRequiredLevel = (
   characterBuild: BuildInterface | null,

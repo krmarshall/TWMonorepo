@@ -52,9 +52,7 @@ function Index() {
   };
 
   const build = async () => {
-    setLog(
-      await window.API.build(rpfmPath, schemaPath, workspacePath, warhammer3Location, lastSelectedModPaths, false),
-    );
+    setLog(await window.API.build(rpfmPath, schemaPath, workspacePath, warhammer3Location, lastSelectedModPaths, false));
   };
 
   const buildForce = async () => {

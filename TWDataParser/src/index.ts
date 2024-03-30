@@ -3,12 +3,12 @@ dotenv.config();
 import { emptyDirSync } from 'fs-extra';
 import { v3DbList, v3LocList } from './lists/extractLists/vanilla3';
 import { workerVanilla } from './workers/workerExports';
-import { RefKey } from './interfaces/GlobalDataInterface';
+import { RefKey } from './@types/GlobalDataInterface';
 import { v2DbList, v2LocList } from './lists/extractLists/vanilla2';
 
 import schema3 from '../bins/jsonSchemas/schema_wh3.json';
 import schema2 from '../bins/jsonSchemas/schema_wh2.json';
-import { SchemaInterface } from './interfaces/SchemaInterfaces';
+import { SchemaInterface } from './@types/SchemaInterfaces';
 import modTimestamps from './utils/modTimestamps';
 
 emptyDirSync('./output');

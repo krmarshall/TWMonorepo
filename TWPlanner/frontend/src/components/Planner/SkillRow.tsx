@@ -1,5 +1,5 @@
 import { Fragment } from 'react';
-import { SkillInterface } from '../../types/interfaces/CharacterInterface';
+import { SkillInterface } from '../../@types/CharacterInterfaceRef';
 import SkillCell from './SkillCell';
 
 interface SkillRowPropsInterface {

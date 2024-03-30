@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import { AppContext } from '../../../contexts/AppContext';
-import { PhaseInterface } from '../../../types/interfaces/CharacterInterface';
+import { PhaseInterface } from '../../../@types/CharacterInterfaceRef';
 import SkillPhaseAttribute from './SkillPhaseAttribute';
 import SkillPhaseEffect from './SkillPhaseEffect';
 import randomPhase0 from '../../../imgs/other/random_phase_0.webp';

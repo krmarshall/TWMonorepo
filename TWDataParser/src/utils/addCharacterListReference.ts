@@ -1,5 +1,5 @@
-import { CharacterListInterface } from '../interfaces/CharacterListInterface';
-import { GlobalDataInterface, TableRecord } from '../interfaces/GlobalDataInterface';
+import { CharacterListInterface } from '../@types/CharacterListInterface';
+import { GlobalDataInterface, TableRecord } from '../@types/GlobalDataInterface';
 import cleanNodeSetKey from './cleanNodeSetKey';
 import subcultureMap from '../lists/subcultureMap';
 

@@ -1,5 +1,5 @@
-import { GlobalDataInterface, TableRecord } from '../interfaces/GlobalDataInterface';
-import { AttributeInterface, PhaseInterface, StatEffectInterface } from '../interfaces/ProcessedTreeInterface';
+import { GlobalDataInterface, TableRecord } from '../@types/GlobalDataInterface';
+import { AttributeInterface, PhaseInterface, StatEffectInterface } from '../@types/CharacterInterface';
 import findImage from '../utils/findImage';
 import numberPrepend from '../utils/numberPrepend';
 import { parseBoolean, parseFloating, parseInteger } from '../utils/parseStringToTypes';

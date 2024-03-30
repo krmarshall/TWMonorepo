@@ -1,6 +1,6 @@
 import { workerData } from 'worker_threads';
 import { ensureDirSync } from 'fs-extra';
-import { WorkerDataInterface } from '../interfaces/WorkerDataInterfaces';
+import { WorkerDataInterface } from '../@types/WorkerDataInterfaces';
 import parseImages from '../parseImages';
 import { extractPackfileMass } from '../extractTables';
 import initializeGlobalData from '../utils/initializeGlobalData';

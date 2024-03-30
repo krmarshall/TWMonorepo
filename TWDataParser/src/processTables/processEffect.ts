@@ -1,5 +1,5 @@
-import { GlobalDataInterface, TableRecord } from '../interfaces/GlobalDataInterface';
-import { AbilityInterface, AttributeInterface, EffectInterface, PhaseInterface } from '../interfaces/ProcessedTreeInterface';
+import { GlobalDataInterface, TableRecord } from '../@types/GlobalDataInterface';
+import { AbilityInterface, AttributeInterface, EffectInterface, PhaseInterface } from '../@types/CharacterInterface';
 import findImage from '../utils/findImage';
 import numberInsertion from '../utils/numberInsertion';
 import { parseInteger } from '../utils/parseStringToTypes';

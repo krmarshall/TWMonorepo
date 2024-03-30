@@ -1,8 +1,8 @@
 import { createFileRoute } from '@tanstack/react-router';
-import TopBar from '../../TotalWarhammerPlanner/frontend/src/components/Planner/TopBar';
-import StatsDrawer from '../../TotalWarhammerPlanner/frontend/src/components/Planner/StatsDrawer/StatsDrawer';
-import SkillTable from '../../TotalWarhammerPlanner/frontend/src/components/Planner/SkillTable';
-import ExtrasDrawer from '../../TotalWarhammerPlanner/frontend/src/components/Planner/ExtrasDrawer/ExtrasDrawer';
+import TopBar from '../../../TWPlanner/frontend/src/components/Planner/TopBar';
+import StatsDrawer from '../../../TWPlanner/frontend/src/components/Planner/StatsDrawer/StatsDrawer';
+import SkillTable from '../../../TWPlanner/frontend/src/components/Planner/SkillTable';
+import ExtrasDrawer from '../../../TWPlanner/frontend/src/components/Planner/ExtrasDrawer/ExtrasDrawer';
 
 export const Route = createFileRoute('/skillTree')({
   component: SkillTree,

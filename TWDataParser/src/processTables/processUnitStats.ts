@@ -1,5 +1,5 @@
-import { GlobalDataInterface, TableRecord } from '../interfaces/GlobalDataInterface';
-import { AbilityInterface, AttributeInterface, UnitStatsInterface } from '../interfaces/ProcessedTreeInterface';
+import { GlobalDataInterface, TableRecord } from '../@types/GlobalDataInterface';
+import { AbilityInterface, AttributeInterface, UnitStatsInterface } from '../@types/CharacterInterface';
 import { parseFloating, parseInteger } from '../utils/parseStringToTypes';
 import processAbility from './processAbility';
 import processAttribute from './processAttribute';

@@ -1,6 +1,6 @@
 import { toast } from 'react-hot-toast';
 import { ActionInterface, AppContextActions, ContextStateInterface } from '../contexts/AppContext';
-import StorageInterface from '../types/interfaces/StorageInterface';
+import StorageInterface from '../@types/StorageInterface';
 import { createCharacterBuildFromArray, createEmptyCharacterBuild } from './sharedFunctions';
 import { isValidSkillTree } from './skillVerification';
 

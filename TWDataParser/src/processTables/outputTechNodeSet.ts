@@ -1,8 +1,8 @@
-import { TechSetInterface } from '../interfaces/TechInterface';
-import fse from 'fs-extra';
+import { outputJSONSync } from 'fs-extra';
+import { TechSetInterface } from '../@types/TechInterface';
 
 const outputTechNodeSet = (techNodeSet: TechSetInterface, folder: string) => {
-  fse.outputJSONSync(`./output/techs/${folder}/${techNodeSet.key}.json`, techNodeSet, { spaces: 2 });
+  outputJSONSync(`./output/techs/${folder}/${techNodeSet.key}.json`, techNodeSet, { spaces: 2 });
 };
 
 export default outputTechNodeSet;

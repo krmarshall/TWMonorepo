@@ -1,4 +1,4 @@
-import { EffectInterface, ItemInterface } from './ProcessedTreeInterface';
+import { EffectInterface, ItemInterface } from './CharacterInterfaceRef';
 
 interface NodeLinkInterface {
   parent_key: string;

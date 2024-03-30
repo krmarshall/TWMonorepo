@@ -1,4 +1,4 @@
-import { GlobalDataInterface } from '../interfaces/GlobalDataInterface';
+import { GlobalDataInterface } from '../@types/GlobalDataInterface';
 
 const findImage = (folder: string, globalData: GlobalDataInterface, searchArray: Array<string>, icon: string) => {
   const vanillaGame = folder.includes('2') ? 'vanilla2' : 'vanilla3';

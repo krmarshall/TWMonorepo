@@ -1,6 +1,6 @@
 import { Table } from '../generateTables';
-import { CharacterListInterface } from '../interfaces/CharacterListInterface';
-import { GlobalDataInterface, RefKey, TableRecord } from '../interfaces/GlobalDataInterface';
+import { CharacterListInterface } from '../@types/CharacterListInterface';
+import { GlobalDataInterface, RefKey, TableRecord } from '../@types/GlobalDataInterface';
 import {
   addAgents,
   ignoreAgents,
@@ -15,8 +15,8 @@ import subcultureMap from '../lists/subcultureMap';
 import vanillaCharacters from '../lists/vanillaCharacters';
 import cleanNodeSetKey from '../utils/cleanNodeSetKey';
 import processAgent from './processAgent';
-import fse from 'fs-extra';
 import processTechNodeSet from './processTechNodeSet';
+import { outputJSONSync } from 'fs-extra';
 
 const processFactions = (
   folder: string,
@@ -159,7 +159,7 @@ const processFactions = (
     });
   });
 
-  fse.outputJSONSync(charListPath, characterList, { spaces: 2 });
+  outputJSONSync(charListPath, characterList, { spaces: 2 });
 };
 
 export default processFactions;

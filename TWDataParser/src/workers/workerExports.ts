@@ -1,5 +1,5 @@
 import { Worker } from 'worker_threads';
-import { WorkerDataInterface } from '../interfaces/WorkerDataInterfaces';
+import { WorkerDataInterface } from '../@types/WorkerDataInterfaces';
 import log from '../utils/log';
 import exportData from '../utils/exportData';
 

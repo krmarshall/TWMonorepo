@@ -42,7 +42,7 @@ interface PhaseInterface {
   cant_move?: boolean;
   unbreakable?: boolean;
   replenish_ammo?: number;
-  spread_radius?: number;
+  spread_radius?: number; // Linked through specialAbilityPhases spreading fk
   remove_magical?: boolean;
   execute_ratio?: number;
   stat_effects?: Array<StatEffectInterface>;
@@ -82,7 +82,7 @@ interface ProjectileInterface {
   damage: number;
   ap_damage: number;
   effective_range: number;
-  base_reload_time?: number;
+  base_reload_time: number;
   bonus_v_infantry?: number;
   bonus_v_large?: number;
   shockwave_radius: number;
@@ -119,6 +119,7 @@ interface AbilityInterface {
     key: string;
     icon_name: string;
     overpower_option: string;
+    requires_effect_enabling?: boolean;
     type: {
       key: string;
       icon_path: string;
@@ -155,14 +156,41 @@ interface AbilityInterface {
 
 interface EffectInterface {
   key: string;
+  description: string;
   icon: string;
   priority?: number;
-  description: string;
   value?: number;
   scope?: string;
   related_abilities?: Array<AbilityInterface>;
   related_phases?: Array<PhaseInterface>;
   related_attributes?: Array<AttributeInterface>;
+}
+
+interface FactionEffectsInterface {
+  effects: Array<EffectInterface>;
+  key: string;
+  localised_description: string;
+  localised_title: string;
+  ui_icon: string;
+}
+
+interface ItemSetInterface {
+  key: string;
+  name: string;
+  description: string;
+  contains?: Array<{ icon: string; name: string }>;
+  effects?: Array<EffectInterface>;
+}
+
+interface ItemInterface {
+  key: string;
+  character_skill?: string;
+  effects?: Array<EffectInterface>;
+  onscreen_name: string;
+  colour_text: string;
+  unlocked_at_rank?: number;
+  ui_icon: string;
+  item_set?: ItemSetInterface;
 }
 
 interface SkillLevelInterface {
@@ -181,7 +209,6 @@ interface SkillInterface {
   is_background_skill: boolean;
   localised_name: string;
   localised_description: string;
-  use_quest_for_prefix?: boolean;
   character_skill_key: string;
   tier: number;
   indent: number;
@@ -192,6 +219,7 @@ interface SkillInterface {
   visible_in_ui: boolean;
   right_arrow?: boolean;
   boxed?: boolean;
+  use_quest_for_prefix?: boolean;
   levels?: Array<SkillLevelInterface>;
 }
 
@@ -240,33 +268,6 @@ interface UnitStatsInterface {
   abilities?: Array<AbilityInterface>;
 }
 
-interface ItemSetInterface {
-  key: string;
-  name: string;
-  description: string;
-  contains?: Array<{ icon: string; name: string }>;
-  effects?: Array<EffectInterface>;
-}
-
-interface ItemInterface {
-  key: string;
-  character_skill?: string;
-  effects?: Array<EffectInterface>;
-  onscreen_name: string;
-  colour_text: string;
-  unlocked_at_rank?: number;
-  ui_icon: string;
-  item_set?: ItemSetInterface;
-}
-
-interface FactionEffectInterface {
-  key: string;
-  ui_icon: string;
-  localised_title: string;
-  localised_description: string;
-  effects: Array<EffectInterface>;
-}
-
 interface AltFactionNodeSetsInterface {
   [key: string]: { factionName: string; nodes: Array<SkillInterface> };
 }
@@ -279,30 +280,31 @@ interface CharacterInterface {
   key: string;
   skillTree: Array<Array<SkillInterface>>;
   unitStats: UnitStatsInterface;
+  factionEffects?: FactionEffectsInterface;
   items?: Array<ItemInterface>;
   backgroundSkills?: Array<SkillInterface>;
-  factionEffects?: FactionEffectInterface;
   altFactionNodeSets?: AltFactionNodeSetsInterface;
   startPosTraits?: StartPosTraitInterface;
 }
 
 export type {
-  CharacterInterface,
-  AltFactionNodeSetsInterface,
-  FactionEffectInterface,
-  ItemInterface,
-  SkillInterface,
-  SkillLevelInterface,
-  UnitStatsInterface,
   EffectInterface,
+  StatEffectInterface,
+  AttributeInterface,
+  PhaseInterface,
   VortexInterface,
+  ProjectileBombardmentInterface,
   ProjectileExplosionInterface,
   ProjectileInterface,
-  ProjectileBombardmentInterface,
+  UiEffectInterface,
   AbilityInterface,
-  PhaseInterface,
-  AttributeInterface,
-  StatEffectInterface,
+  FactionEffectsInterface,
+  ItemInterface,
+  SkillLevelInterface,
+  SkillInterface,
+  UnitStatsInterface,
+  AltFactionNodeSetsInterface,
+  CharacterInterface,
   StartPosTraitInterface,
   ItemSetInterface,
 };

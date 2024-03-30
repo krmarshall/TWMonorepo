@@ -1,4 +1,4 @@
-import { SpellLores } from '../../types/interfaces/GameInterface';
+import { SpellLores } from '../../@types/GameInterface';
 
 const cat3Characters = {
   dwf_dwarfs: {

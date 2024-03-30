@@ -1,8 +1,8 @@
-import fg from 'fast-glob';
+import { sync, convertPathToPattern } from 'fast-glob';
 import { readFileSync } from 'fs';
 import { parse } from 'csv-parse/sync';
 import path from 'path';
-import { GlobalDataInterface } from '../../../TotalWarhammerDataParser/src/interfaces/GlobalDataInterface';
+import { GlobalDataInterface } from '../../@types/GlobalDataInterfaceRef';
 
 const csvParseConfig = {
   delimiter: '\t',
@@ -22,19 +22,19 @@ const csvParse = (folder: string, mod: boolean, globalData: GlobalDataInterface,
     return dbName + iterator;
   };
 
-  const dbFilePaths = fg.sync(
+  const dbFilePaths = sync(
     [
-      `${fg.convertPathToPattern(cwd)}/extracted_files/${folder}/db/**/*.tsv`,
-      `${fg.convertPathToPattern(cwd)}/extracted_files/${folder}/subDB*/**/*.tsv`,
+      `${convertPathToPattern(cwd)}/extracted_files/${folder}/db/**/*.tsv`,
+      `${convertPathToPattern(cwd)}/extracted_files/${folder}/subDB*/**/*.tsv`,
     ],
     {
       onlyFiles: true,
     },
   );
-  const locFilePaths = fg.sync(
+  const locFilePaths = sync(
     [
-      `${fg.convertPathToPattern(cwd)}/extracted_files/${folder}/text/**/*.tsv`,
-      `${fg.convertPathToPattern(cwd)}/extracted_files/${folder}/subLOC*/**/*.tsv`,
+      `${convertPathToPattern(cwd)}/extracted_files/${folder}/text/**/*.tsv`,
+      `${convertPathToPattern(cwd)}/extracted_files/${folder}/subLOC*/**/*.tsv`,
     ],
     {
       onlyFiles: true,

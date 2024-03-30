@@ -1,5 +1,5 @@
 import { vanilla2Characters } from './vanilla2Characters';
-import { SpellLores } from '../../types/interfaces/GameInterface';
+import { SpellLores } from '../../@types/GameInterface';
 
 const vanilla3Characters = {
   ...vanilla2Characters,

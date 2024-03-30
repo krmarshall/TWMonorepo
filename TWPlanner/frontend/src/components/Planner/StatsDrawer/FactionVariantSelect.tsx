@@ -1,5 +1,5 @@
 import { useContext, useEffect } from 'react';
-import { AltFactionNodeSetsInterface, CharacterInterface } from '../../../types/interfaces/CharacterInterface';
+import { AltFactionNodeSetsInterface, CharacterInterface } from '../../../@types/CharacterInterfaceRef';
 import { AppContext, AppContextActions } from '../../../contexts/AppContext';
 import { useParams } from 'react-router-dom';
 import { addFactionVariantNodes, createEmptyCharacterBuild } from '../../../utils/sharedFunctions';

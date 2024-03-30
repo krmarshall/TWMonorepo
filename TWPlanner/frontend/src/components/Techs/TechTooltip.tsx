@@ -1,6 +1,6 @@
 import { useContext, useEffect } from 'react';
 import useBulkMediaQueries from '../../hooks/useBulkMediaQueries';
-import { TechNodeInterface } from '../../types/interfaces/TechInterface';
+import { TechNodeInterface } from '../../@types/TechInterface';
 import {
   getRelatedAbilities,
   getRelatedAttributes,

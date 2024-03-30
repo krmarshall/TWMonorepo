@@ -1,5 +1,5 @@
 import { useContext, useEffect, useRef, useState } from 'react';
-import { ItemInterface } from '../../../types/interfaces/CharacterInterface';
+import { ItemInterface } from '../../../@types/CharacterInterfaceRef';
 import BaseCell from '../BaseCell';
 import { AppContext } from '../../../contexts/AppContext';
 import TooltipWrapper from '../../TooltipWrapper';

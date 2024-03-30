@@ -1,5 +1,5 @@
 import DOMPurify from 'dompurify';
-import { StatEffectInterface } from '../../../types/interfaces/CharacterInterface';
+import { StatEffectInterface } from '../../../@types/CharacterInterfaceRef';
 import { replaceKeepCaps } from '../../../utils/sharedFunctions';
 import ReactImage from '../../ReactImage';
 import { useContext } from 'react';

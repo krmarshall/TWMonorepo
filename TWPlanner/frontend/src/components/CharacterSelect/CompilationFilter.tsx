@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import { AppContext, AppContextActions } from '../../contexts/AppContext';
-import { CompGroupsInterface } from '../../types/interfaces/GameInterface';
+import { CompGroupsInterface } from '../../@types/GameInterface';
 
 interface PropInterface {
   compGroups: CompGroupsInterface;

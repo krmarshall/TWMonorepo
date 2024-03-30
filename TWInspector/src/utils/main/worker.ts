@@ -1,14 +1,14 @@
 import { emptyDirSync, ensureDirSync, readJsonSync } from 'fs-extra';
-import { GlobalDataInterface, RefKey } from '../../../TotalWarhammerDataParser/src/interfaces/GlobalDataInterface';
-import { v3DbList, v3LocList } from '../../../TotalWarhammerDataParser/src/lists/extractLists/vanilla3';
+import { v3DbList, v3LocList } from '../../../../TWDataParser/src/lists/extractLists/vanilla3';
 import { IpcMainInvokeEvent } from 'electron';
 import { extractPackfile, extractPackfileMulti, parseImages, updateLocalVars } from './rpfm';
 import path from 'path';
 import csvParse from './csvParse';
-import { mergeLocsIntoVanilla, mergeTablesIntoVanilla } from '../../../TotalWarhammerDataParser/src/mergeTables';
-import { SchemaInterface } from '../../../TotalWarhammerDataParser/src/interfaces/SchemaInterfaces';
-import generateTables from '../../../TotalWarhammerDataParser/src/generateTables';
-import processFactions from '../../../TotalWarhammerDataParser/src/processTables/processFactions';
+import { mergeLocsIntoVanilla, mergeTablesIntoVanilla } from '../../../../TWDataParser/src/mergeTables';
+import generateTables from '../../../../TWDataParser/src/generateTables';
+import processFactions from '../../../../TWDataParser/src/processTables/processFactions';
+import { GlobalDataInterface, RefKey } from '../../@types/GlobalDataInterfaceRef';
+import { SchemaInterface } from '../../@types/SchemaInterfaceRef';
 
 const dbPackName = 'db';
 const locPackName = 'local_en';
@@ -53,16 +53,7 @@ export const handleBuild = async (
   let mod;
   if (modFilePaths.length === 1) {
     const modPackName = path.basename(modFilePaths[0], '.pack');
-    mod = extractPackfile(
-      modFolder,
-      modPackName,
-      modFilePaths[0],
-      modPackName,
-      modFilePaths[0],
-      dbList,
-      undefined,
-      true,
-    );
+    mod = extractPackfile(modFolder, modPackName, modFilePaths[0], modPackName, modFilePaths[0], dbList, undefined, true);
   } else {
     mod = extractPackfileMulti(modFolder, modFilePaths, dbList, true);
   }

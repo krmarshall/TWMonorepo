@@ -1,5 +1,5 @@
-import { GlobalDataInterface, TableRecord } from '../interfaces/GlobalDataInterface';
-import { ProjectileBombardmentInterface } from '../interfaces/ProcessedTreeInterface';
+import { GlobalDataInterface, TableRecord } from '../@types/GlobalDataInterface';
+import { ProjectileBombardmentInterface } from '../@types/CharacterInterface';
 import { parseFloating, parseInteger } from '../utils/parseStringToTypes';
 import processProjectile from './processProjectile';
 

@@ -1,5 +1,5 @@
 import { Fragment } from 'react';
-import { ProjectileInterface } from '../../../types/interfaces/CharacterInterface';
+import { ProjectileInterface } from '../../../@types/CharacterInterfaceRef';
 import SkillAbilityVortex from './SkillAbilityVortex';
 import ReactImage from '../../ReactImage';
 

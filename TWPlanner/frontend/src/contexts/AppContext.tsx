@@ -1,7 +1,7 @@
 import { createContext, ReactElement, useReducer } from 'react';
-import BuildInterface from '../types/interfaces/BuildInterface';
-import { CharacterInterface } from '../types/interfaces/CharacterInterface';
-import { TechSetInterface } from '../types/interfaces/TechInterface';
+import BuildInterface from '../@types/BuildInterface';
+import { CharacterInterface } from '../@types/CharacterInterfaceRef';
+import { TechSetInterface } from '../@types/TechInterface';
 import {
   loadExtrasDrawerOpenFromStorage,
   loadStatsDrawerOpenFromStorage,

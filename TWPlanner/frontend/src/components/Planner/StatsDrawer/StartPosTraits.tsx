@@ -1,6 +1,6 @@
 import { useContext, useEffect } from 'react';
 import { AppContext, AppContextActions } from '../../../contexts/AppContext';
-import { StartPosTraitInterface } from '../../../types/interfaces/CharacterInterface';
+import { StartPosTraitInterface } from '../../../@types/CharacterInterfaceRef';
 import { useParams } from 'react-router-dom';
 import { splitCharacterKey } from '../../../utils/urlFunctions';
 import TooltipWrapper from '../../TooltipWrapper';

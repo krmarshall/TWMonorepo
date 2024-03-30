@@ -1,4 +1,4 @@
-import { SpellLores } from '../../types/interfaces/GameInterface';
+import { SpellLores } from '../../@types/GameInterface';
 
 const ovn3Characters = {
   emp_empire: {

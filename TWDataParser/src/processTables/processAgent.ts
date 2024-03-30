@@ -1,12 +1,12 @@
-import { GlobalDataInterface, RefKey, TableRecord } from '../interfaces/GlobalDataInterface';
-import { ItemInterface, ProcessedAgentInterface } from '../interfaces/ProcessedTreeInterface';
+import { GlobalDataInterface, RefKey, TableRecord } from '../@types/GlobalDataInterface';
+import { ItemInterface, CharacterInterface } from '../@types/CharacterInterface';
 import cleanNodeSetKey from '../utils/cleanNodeSetKey';
 import findImage from '../utils/findImage';
 import outputAgent from './outputAgent';
 import processEffect from './processEffect';
 import processNodeSet from './processNodeSet';
 import subcultureMap from '../lists/subcultureMap';
-import { CharacterListInterface } from '../interfaces/CharacterListInterface';
+import { CharacterListInterface } from '../@types/CharacterListInterface';
 import processAncillary from './processAncillary';
 import processUnitStats from './processUnitStats';
 import addCharacterListReference from '../utils/addCharacterListReference';
@@ -22,7 +22,7 @@ const processAgent = (
   factionKeys: Set<string>,
   characterList: CharacterListInterface,
 ) => {
-  const returnAgent: ProcessedAgentInterface = {
+  const returnAgent: CharacterInterface = {
     key: '',
     skillTree: [],
     unitStats: processUnitStats(folder, globalData, agent.localRefs?.main_units as TableRecord),

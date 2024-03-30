@@ -1,6 +1,6 @@
 import { Table } from '../generateTables';
-import { GlobalDataInterface, RefKey, TableRecord } from '../interfaces/GlobalDataInterface';
-import { EffectInterface, StartPosTraitInterface } from '../interfaces/ProcessedTreeInterface';
+import { GlobalDataInterface, RefKey, TableRecord } from '../@types/GlobalDataInterface';
+import { EffectInterface, StartPosTraitInterface } from '../@types/CharacterInterface';
 import processEffect from './processEffect';
 
 const processStartPosTraits = (

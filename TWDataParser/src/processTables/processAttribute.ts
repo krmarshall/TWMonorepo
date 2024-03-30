@@ -1,5 +1,5 @@
-import { GlobalDataInterface, TableRecord } from '../interfaces/GlobalDataInterface';
-import { AttributeInterface } from '../interfaces/ProcessedTreeInterface';
+import { GlobalDataInterface, TableRecord } from '../@types/GlobalDataInterface';
+import { AttributeInterface } from '../@types/CharacterInterface';
 import findImage from '../utils/findImage';
 import stringInterpolator from '../utils/stringInterpolator';
 

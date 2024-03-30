@@ -1,6 +1,6 @@
-import fg from 'fast-glob';
 import { basename } from 'path';
-import { GlobalDataInterface } from '../interfaces/GlobalDataInterface';
+import { GlobalDataInterface } from '../@types/GlobalDataInterface';
+import { sync } from 'fast-glob';
 
 const initializeGlobalData = (folder: string) => {
   const game = folder.includes('2') ? '2' : '3';
@@ -10,7 +10,7 @@ const initializeGlobalData = (folder: string) => {
     imgPaths: {},
     portraitPaths: {},
   };
-  const modFolders = fg.sync(`./game_source/*${game}/`, { onlyDirectories: true });
+  const modFolders = sync(`./game_source/*${game}/`, { onlyDirectories: true });
   modFolders.forEach((folderPath) => {
     const folder = basename(folderPath);
     globalData.extractedData[folder] = {

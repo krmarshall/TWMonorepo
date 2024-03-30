@@ -1,4 +1,4 @@
-import { TechDataInterface } from '../types/interfaces/GameInterface';
+import { TechDataInterface } from '../@types/GameInterface';
 import gameData from './gameData';
 import vanilla2Techs from './techs/vanilla2Techs';
 import vanilla3Techs from './techs/vanilla3Techs';

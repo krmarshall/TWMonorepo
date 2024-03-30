@@ -3,14 +3,14 @@ import {
   AttributeInterface,
   CharacterInterface,
   EffectInterface,
-  FactionEffectInterface,
+  FactionEffectsInterface,
   ItemInterface,
   ItemSetInterface,
   PhaseInterface,
   SkillInterface,
   UnitStatsInterface,
-} from '../types/interfaces/CharacterInterface';
-import { TechNodeInterface, TechSetInterface } from '../types/interfaces/TechInterface';
+} from '../@types/CharacterInterfaceRef';
+import { TechNodeInterface, TechSetInterface } from '../@types/TechInterface';
 
 interface HighlightArrayInterface {
   skillTree: Array<Array<boolean>>;
@@ -149,7 +149,7 @@ const searchItemSetForKeyword = (itemSet: ItemSetInterface | undefined, searchSt
   return false;
 };
 
-const searchFactionEffectForKeyword = (factionEffect: FactionEffectInterface, searchString: string): boolean => {
+const searchFactionEffectForKeyword = (factionEffect: FactionEffectsInterface, searchString: string): boolean => {
   if (factionEffect.localised_title.toLowerCase().includes(searchString)) {
     return true;
   }

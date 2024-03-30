@@ -1,5 +1,5 @@
-import { GlobalDataInterface, TableRecord } from '../interfaces/GlobalDataInterface';
-import { AbilityInterface, PhaseInterface, UiEffectInterface } from '../interfaces/ProcessedTreeInterface';
+import { GlobalDataInterface, TableRecord } from '../@types/GlobalDataInterface';
+import { AbilityInterface, PhaseInterface, UiEffectInterface } from '../@types/CharacterInterface';
 import findImage from '../utils/findImage';
 import { parseBoolean, parseFloating, parseInteger } from '../utils/parseStringToTypes';
 import stringInterpolator from '../utils/stringInterpolator';

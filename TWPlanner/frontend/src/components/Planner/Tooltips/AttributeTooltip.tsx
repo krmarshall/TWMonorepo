@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { AttributeInterface } from '../../../types/interfaces/CharacterInterface';
+import { AttributeInterface } from '../../../@types/CharacterInterfaceRef';
 import { AppContext } from '../../../contexts/AppContext';
 import DOMPurify from 'dompurify';
 import { replaceKeepCaps } from '../../../utils/sharedFunctions';

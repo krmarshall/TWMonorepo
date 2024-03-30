@@ -1,14 +1,14 @@
 import { readJSONSync, writeJSON } from 'fs-extra';
 import modIdMap from '../lists/modIdMap';
 import log from './log';
-import steamworks from 'steamworks.js';
+import { init } from 'steamworks.js';
 
 interface TimeStampInterface {
   [modHeader: string]: { [subMod: string]: number };
 }
 
 const modTimestamps = () => {
-  const client = steamworks.init(1142710);
+  const client = init(1142710);
   const oldTimestamps = readJSONSync(`${process.env.TWP_DATA_PATH}/modTimestamps.json`);
   const timestampObj: TimeStampInterface = {};
   const promiseArray: Array<Promise<void | Response>> = [];
@@ -41,20 +41,24 @@ const modTimestamps = () => {
     });
   });
 
-  Promise.all(promiseArray).then(() => {
-    const sortedObj: TimeStampInterface = {};
-    Object.keys(timestampObj)
-      .sort()
-      .forEach((key) => {
-        sortedObj[key] = {};
-        Object.keys(timestampObj[key])
-          .sort()
-          .forEach((subKey) => {
-            sortedObj[key][subKey] = timestampObj[key][subKey];
-          });
-      });
-    writeJSON('./output/modTimestamps.json', sortedObj, { spaces: 2 });
-  });
+  Promise.all(promiseArray)
+    .then(() => {
+      const sortedObj: TimeStampInterface = {};
+      Object.keys(timestampObj)
+        .sort()
+        .forEach((key) => {
+          sortedObj[key] = {};
+          Object.keys(timestampObj[key])
+            .sort()
+            .forEach((subKey) => {
+              sortedObj[key][subKey] = timestampObj[key][subKey];
+            });
+        });
+      writeJSON('./output/modTimestamps.json', sortedObj, { spaces: 2 });
+    })
+    .catch((error) => {
+      throw error;
+    });
 };
 
 export default modTimestamps;

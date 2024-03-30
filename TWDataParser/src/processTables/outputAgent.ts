@@ -1,8 +1,8 @@
-import { ProcessedAgentInterface } from '../interfaces/ProcessedTreeInterface';
-import fse from 'fs-extra';
+import { CharacterInterface } from '../@types/CharacterInterface';
+import { outputJSONSync } from 'fs-extra';
 
-const outputAgent = (agent: ProcessedAgentInterface, folder: string, subculture: string) => {
-  fse.outputJSONSync(`./output/skills/${folder}/${subculture}/${agent.key}.json`, agent, {
+const outputAgent = (agent: CharacterInterface, folder: string, subculture: string) => {
+  outputJSONSync(`./output/skills/${folder}/${subculture}/${agent.key}.json`, agent, {
     spaces: 2,
   });
 };

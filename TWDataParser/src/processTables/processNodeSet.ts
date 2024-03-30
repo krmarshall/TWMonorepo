@@ -1,5 +1,5 @@
-import { GlobalDataInterface, TableRecord } from '../interfaces/GlobalDataInterface';
-import { ItemInterface, SkillInterface } from '../interfaces/ProcessedTreeInterface';
+import { GlobalDataInterface, TableRecord } from '../@types/GlobalDataInterface';
+import { ItemInterface, SkillInterface } from '../@types/CharacterInterface';
 import collateNodes from './collateNodes';
 import processSkillNode from './processSkillNode';
 

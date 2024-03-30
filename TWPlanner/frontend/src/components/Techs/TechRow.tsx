@@ -1,4 +1,4 @@
-import { TechNodeInterface } from '../../types/interfaces/TechInterface';
+import { TechNodeInterface } from '../../@types/TechInterface';
 import TechCell from './TechCell';
 
 interface PropInterface {

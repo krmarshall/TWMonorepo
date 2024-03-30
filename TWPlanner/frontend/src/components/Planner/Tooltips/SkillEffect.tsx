@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { EffectInterface } from '../../../types/interfaces/CharacterInterface';
+import { EffectInterface } from '../../../@types/CharacterInterfaceRef';
 import ReactImage from '../../ReactImage';
 import { AppContext } from '../../../contexts/AppContext';
 import { replaceKeepCaps } from '../../../utils/sharedFunctions';

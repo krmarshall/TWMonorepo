@@ -1,6 +1,6 @@
-import { GlobalDataInterface, TableRecord } from './interfaces/GlobalDataInterface';
+import { GlobalDataInterface, TableRecord } from './@types/GlobalDataInterface';
 import log from './utils/log';
-import { SchemaInterface } from './interfaces/SchemaInterfaces';
+import { SchemaInterface } from './@types/SchemaInterfaces';
 import findHighestVersionDB from './utils/findHighestVersionDB';
 
 const overwriteMerge = (vanillaTable: Array<TableRecord>, moddedTables: Array<Array<TableRecord>>, sameProps: Array<string>) => {

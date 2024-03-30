@@ -1,4 +1,4 @@
-import { AbilityInterface } from '../../../types/interfaces/CharacterInterface';
+import { AbilityInterface } from '../../../@types/CharacterInterfaceRef';
 import cooldownImg from '../../../imgs/other/icon_cooldown_26.webp';
 import windsImg from '../../../imgs/other/winds_ui_replenish_battle_ph.webp';
 import chargesImg from '../../../imgs/other/icon_uses.webp';

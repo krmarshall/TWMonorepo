@@ -4,7 +4,7 @@ import ReactImage from '../ReactImage';
 import TooltipWrapper from '../TooltipWrapper';
 import SkillPointSelector from './SkillPointSelector';
 import SkillTooltip from './Tooltips/SkillTooltip';
-import { FactionEffectInterface, ItemInterface, SkillInterface } from '../../types/interfaces/CharacterInterface';
+import { FactionEffectsInterface, ItemInterface, SkillInterface } from '../../@types/CharacterInterfaceRef';
 import blockedSkillOverlay from '../../imgs/other/skill_locked_rank.webp';
 import { AppContext } from '../../contexts/AppContext';
 import DOMPurify from 'dompurify';
@@ -12,7 +12,7 @@ import DOMPurify from 'dompurify';
 interface PropInterface {
   skill?: SkillInterface;
   item?: ItemInterface;
-  factionEffect?: FactionEffectInterface;
+  factionEffect?: FactionEffectsInterface;
   thisSkillsCurrentPoints?: number;
   selectable?: boolean;
   previewSkillPoints?: number;

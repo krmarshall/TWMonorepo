@@ -1,12 +1,6 @@
 import { app, BrowserWindow, ipcMain } from 'electron';
 import path from 'path';
-import {
-  handleGetFilePaths,
-  handleGetFilePath,
-  handleGetFolderPath,
-  handleGetSkillTree,
-  handleGetCharList,
-} from './utils/main/files';
+import { handleGetFilePaths, handleGetFilePath, handleGetFolderPath, handleGetSkillTree, handleGetCharList } from './utils/main/files';
 import { handleConvertSchemas, handleRefreshSchemas } from './utils/main/rpfm';
 import { handleBuild } from './utils/main/worker';
 

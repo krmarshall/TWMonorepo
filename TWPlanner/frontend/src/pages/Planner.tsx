@@ -17,7 +17,7 @@ import SkillTable from '../components/Planner/SkillTable';
 import useBulkMediaQueries from '../hooks/useBulkMediaQueries';
 import gameData from '../data/gameData';
 import StatsDrawer from '../components/Planner/StatsDrawer/StatsDrawer';
-import { CharacterInterface } from '../types/interfaces/CharacterInterface';
+import { CharacterInterface } from '../@types/CharacterInterfaceRef';
 
 const Planner = () => {
   const { state, dispatch } = useContext(AppContext);

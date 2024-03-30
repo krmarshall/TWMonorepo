@@ -1,10 +1,10 @@
 import { useContext } from 'react';
-import { FactionEffectInterface } from '../../../types/interfaces/CharacterInterface';
+import { FactionEffectsInterface } from '../../../@types/CharacterInterfaceRef';
 import BaseCell from '../BaseCell';
 import { AppContext } from '../../../contexts/AppContext';
 
 interface PropInterface {
-  factionEffect: FactionEffectInterface;
+  factionEffect: FactionEffectsInterface;
 }
 
 const FactionEffects = ({ factionEffect }: PropInterface) => {

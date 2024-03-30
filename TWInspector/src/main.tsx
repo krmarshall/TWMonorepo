@@ -1,6 +1,6 @@
-import React, { StrictMode } from 'react';
+import * as React from 'react';
 import { createRoot } from 'react-dom/client';
-import '../TotalWarhammerPlanner/frontend/src/tailwind.css';
+import '../../TWPlanner/frontend/src/tailwind.css';
 import 'animate.css';
 import DOMPurify from 'dompurify';
 import { RouterProvider, createRouter } from '@tanstack/react-router';
@@ -20,7 +20,7 @@ DOMPurify.setConfig({ ALLOWED_TAGS: ['p', 'span', 'b'], ALLOWED_ATTR: ['class'] 
 const container = document.getElementById('root') as HTMLDivElement;
 const root = createRoot(container);
 root.render(
-  <StrictMode>
+  <React.StrictMode>
     <RouterProvider router={router} />
-  </StrictMode>,
+  </React.StrictMode>,
 );

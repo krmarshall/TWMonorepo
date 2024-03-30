@@ -1,7 +1,7 @@
 import { useContext, useEffect, useRef, useState } from 'react';
 import { useXarrow } from 'react-xarrows';
 import { AppContext } from '../../contexts/AppContext';
-import { TechNodeInterface } from '../../types/interfaces/TechInterface';
+import { TechNodeInterface } from '../../@types/TechInterface';
 import { setFontSize, trimString } from '../../utils/sharedFunctions';
 import TooltipWrapper from '../TooltipWrapper';
 import ReactImage from '../ReactImage';

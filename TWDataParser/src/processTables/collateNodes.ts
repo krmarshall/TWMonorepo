@@ -1,6 +1,5 @@
-import { GlobalDataInterface } from '../interfaces/GlobalDataInterface';
-import { AltFactionNodeSetsInterface, ItemInterface, SkillInterface } from '../interfaces/ProcessedTreeInterface';
-import log from '../utils/log';
+import { GlobalDataInterface } from '../@types/GlobalDataInterface';
+import { AltFactionNodeSetsInterface, ItemInterface, SkillInterface } from '../@types/CharacterInterface';
 
 const collateNodes = (
   folder: string,

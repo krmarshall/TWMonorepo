@@ -1,5 +1,5 @@
 import { XMLParser } from 'fast-xml-parser';
-import { GlobalDataInterface, TableRecord } from './interfaces/GlobalDataInterface';
+import { GlobalDataInterface, TableRecord } from './@types/GlobalDataInterface';
 import { readFileSync } from 'fs-extra';
 
 const akData = (folder: string, globalData: GlobalDataInterface) => {

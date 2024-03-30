@@ -7,7 +7,7 @@ import { AppContext, AppContextActions } from '../contexts/AppContext';
 import { useMediaQuery } from 'react-responsive';
 import gameData from '../data/gameData';
 import CompilationFilter from '../components/CharacterSelect/CompilationFilter';
-import { CompGroupsInterface } from '../types/interfaces/GameInterface';
+import { CompGroupsInterface } from '../@types/GameInterface';
 
 const Home = () => {
   const { state, dispatch } = useContext(AppContext);

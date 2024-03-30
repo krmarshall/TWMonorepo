@@ -1,5 +1,5 @@
 import { findSkill } from '../../../utils/skillVerification';
-import { FactionEffectInterface, ItemInterface, SkillInterface } from '../../../types/interfaces/CharacterInterface';
+import { FactionEffectsInterface, ItemInterface, SkillInterface } from '../../../@types/CharacterInterfaceRef';
 import SkillEffect from './SkillEffect';
 import { useContext, useEffect } from 'react';
 import { AppContext } from '../../../contexts/AppContext';
@@ -17,7 +17,7 @@ import DOMPurify from 'dompurify';
 interface SkillTooltipPropInterface {
   skill?: SkillInterface;
   item?: ItemInterface;
-  factionEffect?: FactionEffectInterface;
+  factionEffect?: FactionEffectsInterface;
   skillPoints: number;
   blocked: boolean;
   ctrCounter: number;

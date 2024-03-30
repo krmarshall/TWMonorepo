@@ -1,8 +1,8 @@
-import fg from 'fast-glob';
+import { sync } from 'fast-glob';
 import { readFileSync } from 'fs';
 import { parse } from 'csv-parse/sync';
 import path from 'path';
-import { GlobalDataInterface } from './interfaces/GlobalDataInterface';
+import { GlobalDataInterface } from './@types/GlobalDataInterface';
 
 const csvParseConfig = {
   delimiter: '\t',
@@ -22,10 +22,10 @@ const csvParse = (folder: string, mod: boolean, globalData: GlobalDataInterface)
     return dbName + iterator;
   };
 
-  const dbFilePaths = fg.sync([`./extracted_files/${folder}/db/**/*.tsv`, `./extracted_files/${folder}/subDB*/**/*.tsv`], {
+  const dbFilePaths = sync([`./extracted_files/${folder}/db/**/*.tsv`, `./extracted_files/${folder}/subDB*/**/*.tsv`], {
     onlyFiles: true,
   });
-  const locFilePaths = fg.sync([`./extracted_files/${folder}/text/**/*.tsv`, `./extracted_files/${folder}/subLOC*/**/*.tsv`], {
+  const locFilePaths = sync([`./extracted_files/${folder}/text/**/*.tsv`, `./extracted_files/${folder}/subLOC*/**/*.tsv`], {
     onlyFiles: true,
   });
   const locObject: { [key: string]: string } = {};

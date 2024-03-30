@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { SkillInterface } from '../../types/interfaces/CharacterInterface';
+import { SkillInterface } from '../../@types/CharacterInterfaceRef';
 import SkillTooltip from './Tooltips/SkillTooltip';
 import TooltipWrapper from '../TooltipWrapper';
 

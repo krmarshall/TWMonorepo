@@ -1,6 +1,6 @@
 import { Table } from '../generateTables';
-import { GlobalDataInterface, RefKey, TableRecord } from '../interfaces/GlobalDataInterface';
-import { NodeLinkInterface, TechNodeInterface, TechSetInterface } from '../interfaces/TechInterface';
+import { GlobalDataInterface, RefKey, TableRecord } from '../@types/GlobalDataInterface';
+import { NodeLinkInterface, TechNodeInterface, TechSetInterface } from '../@types/TechInterface';
 import log from '../utils/log';
 import { parseBoolean, parseInteger } from '../utils/parseStringToTypes';
 import collateTechNodes from './collateTechNodes';

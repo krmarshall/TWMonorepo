@@ -1,6 +1,6 @@
-import { GlobalDataInterface, TableRecord } from '../interfaces/GlobalDataInterface';
-import { EffectInterface } from '../interfaces/ProcessedTreeInterface';
-import { TechNodeInterface } from '../interfaces/TechInterface';
+import { GlobalDataInterface, TableRecord } from '../@types/GlobalDataInterface';
+import { EffectInterface } from '../@types/CharacterInterface';
+import { TechNodeInterface } from '../@types/TechInterface';
 import findImage from '../utils/findImage';
 import { parseInteger } from '../utils/parseStringToTypes';
 import stringInterpolator from '../utils/stringInterpolator';

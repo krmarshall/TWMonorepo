@@ -1,7 +1,7 @@
-import BuildInterface from '../types/interfaces/BuildInterface';
+import BuildInterface from '../@types/BuildInterface';
 import lzbase62 from 'lzbase62';
 import { createEmptyCharacterBuild } from './sharedFunctions';
-import { CharacterInterface } from '../types/interfaces/CharacterInterface';
+import { CharacterInterface } from '../@types/CharacterInterfaceRef';
 
 const baseURL = import.meta.env.DEV ? 'http://localhost:5173/planner/' : 'https://totalwarhammerplanner.com/planner/';
 

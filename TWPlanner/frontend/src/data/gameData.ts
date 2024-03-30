@@ -1,5 +1,5 @@
 import factions from '../data/factionData';
-import { GameDataInterface } from '../types/interfaces/GameInterface';
+import { GameDataInterface } from '../@types/GameInterface';
 import gameImages from '../imgs/games/gameImages';
 
 import { vanilla2CharactersMemes } from './characters/vanilla2Characters';

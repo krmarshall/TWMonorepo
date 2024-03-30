@@ -1,7 +1,7 @@
-import fg from 'fast-glob';
+import { sync } from 'fast-glob';
 import { exec } from 'child_process';
-import fse, { emptyDirSync } from 'fs-extra';
-import { GlobalDataInterface } from './interfaces/GlobalDataInterface';
+import { emptyDirSync, outputFileSync, outputJSONSync, readJSONSync } from 'fs-extra';
+import { GlobalDataInterface } from './@types/GlobalDataInterface';
 import { statSync } from 'fs';
 import { basename } from 'path';
 import { promisify } from 'util';
@@ -12,7 +12,7 @@ const cwd = process.env.CWD + '/bins';
 
 const createExtractedTimestampImg = (folder: string, dbPackName: string) => {
   const fileStats = statSync(`./game_source/${folder}/${dbPackName}.pack`);
-  fse.outputJSONSync(`./extracted_files/${folder}/${dbPackName}_timestamp_img.json`, { time: fileStats.mtime.toString() });
+  outputJSONSync(`./extracted_files/${folder}/${dbPackName}_timestamp_img.json`, { time: fileStats.mtime.toString() });
 };
 
 const extractImages = (folder: string, packNames: Array<string>, game: string, tech: boolean) => {
@@ -20,7 +20,7 @@ const extractImages = (folder: string, packNames: Array<string>, game: string, t
   return new Promise<void>((resolve, reject) => {
     let goodPreExtract = true;
     packNames.forEach((packName) => {
-      const oldDbTimestamp = fse.readJSONSync(`./extracted_files/${folder}/${packName}_timestamp_img.json`, { throws: false });
+      const oldDbTimestamp = readJSONSync(`./extracted_files/${folder}/${packName}_timestamp_img.json`, { throws: false });
       const newFileStats = statSync(`./game_source/${folder}/${packName}.pack`);
       if (oldDbTimestamp === null || oldDbTimestamp.time !== newFileStats.mtime.toString()) {
         goodPreExtract = false;
@@ -56,14 +56,14 @@ const extractImages = (folder: string, packNames: Array<string>, game: string, t
 };
 
 const convertImages = (folder: string, globalData: GlobalDataInterface) => {
-  const imageDirs = fg.sync(`./extracted_files/${folder}/ui/**/`, {
+  const imageDirs = sync(`./extracted_files/${folder}/ui/**/`, {
     markDirectories: true,
     onlyDirectories: true,
     ignore: [`./extracted_files/${folder}/ui/portraits/**/`],
   });
   const promises = imageDirs.map((imageDir, index) => {
     return new Promise<void>((resolve, reject) => {
-      const imagePaths = fg.sync(`${imageDir}*.png`);
+      const imagePaths = sync(`${imageDir}*.png`);
       if (imagePaths.length === 0) {
         resolve();
       } else {
@@ -78,7 +78,7 @@ const convertImages = (folder: string, globalData: GlobalDataInterface) => {
           globalData.imgPaths[folder][filePath] = filePath;
           return `${prev}\n.${cur}`;
         }, script);
-        fse.outputFileSync(`./bins/nScripts/${folder}${index}.txt`, finalScript);
+        outputFileSync(`./bins/nScripts/${folder}${index}.txt`, finalScript);
         execPromise(`nconvert.exe ./nScripts/${folder}${index}.txt`, { cwd, maxBuffer: 5 * 1024 * 1024 })
           .then(() => resolve())
           .catch((error) => reject(error));
@@ -111,7 +111,7 @@ const parsePortraits = (folder: string, game: string, globalData: GlobalDataInte
 
 const convertPortraitBins = (folder: string, game: string, globalData: GlobalDataInterface) => {
   return new Promise<void>((resolve, reject) => {
-    const portraitSettingsPaths = fg.sync(`./extracted_files/${folder}/ui/portraits/portholes/portrait_settings__*.bin`);
+    const portraitSettingsPaths = sync(`./extracted_files/${folder}/ui/portraits/portholes/portrait_settings__*.bin`);
     const promises = portraitSettingsPaths.map((portraitSetting) => {
       return new Promise<void>((resolveI, rejectI) => {
         const portraitSettingName = basename(portraitSetting, '.bin');
@@ -134,7 +134,7 @@ const convertPortraitBins = (folder: string, game: string, globalData: GlobalDat
 };
 
 const fillPortraitGlobalData = (folder: string, globalData: GlobalDataInterface, jsonPath: string) => {
-  const portraitSettings = fse.readJSONSync(jsonPath);
+  const portraitSettings = readJSONSync(jsonPath);
   portraitSettings.entries.forEach((entry: { id: string; variants: Array<{ file_diffuse: string }> }) => {
     // art set id's typically end with 01-99 for variants, only want first variant
     if (entry.id.match(/0[2-9]$|[1-9][1-9]$/)) {
@@ -157,7 +157,7 @@ const convertPortraits = (folder: string, globalData: GlobalDataInterface) => {
         return `${prev}\n../extracted_files/${folder}/${portraitPath}`;
       }
     }, script);
-    fse.outputFileSync(`./bins/nScripts/${folder}portraits.txt`, finalScript);
+    outputFileSync(`./bins/nScripts/${folder}portraits.txt`, finalScript);
     exec(`nconvert.exe ./nScripts/${folder}portraits.txt`, { cwd, maxBuffer: 5 * 1024 * 1024 }, (error) => {
       if (error) {
         reject(error);

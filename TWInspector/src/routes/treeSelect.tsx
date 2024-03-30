@@ -1,9 +1,9 @@
 import { createFileRoute, useNavigate } from '@tanstack/react-router';
 import { Fragment, useContext, useEffect, useState } from 'react';
 import { ElectronContext } from '../contexts/ElectronContext';
-import { CharacterListInterface } from '../@types/charListInterface';
-import { AppContext, AppContextActions } from '../../TotalWarhammerPlanner/frontend/src/contexts/AppContext';
-import { createEmptyCharacterBuild } from '../../TotalWarhammerPlanner/frontend/src/utils/sharedFunctions';
+import { CharacterListInterface } from '../@types/CharacterListInterfaceRef';
+import { AppContext, AppContextActions } from '../../../TWPlanner/frontend/src/contexts/AppContext';
+import { createEmptyCharacterBuild } from '../../../TWPlanner/frontend/src/utils/sharedFunctions';
 
 export const Route = createFileRoute('/treeSelect')({
   component: TreeSelect,
@@ -34,16 +34,12 @@ function TreeSelect() {
                   {Object.entries(factionData.lords).map((lord) => {
                     const lordKey = lord[0];
                     const lordData = lord[1];
-                    return (
-                      <AgentCell key={lordKey} agentKey={lordKey} agentName={lordData.name} factionKey={factionKey} />
-                    );
+                    return <AgentCell key={lordKey} agentKey={lordKey} agentName={lordData.name} factionKey={factionKey} />;
                   })}
                   {Object.entries(factionData.heroes).map((hero) => {
                     const heroKey = hero[0];
                     const heroData = hero[1];
-                    return (
-                      <AgentCell key={heroKey} agentKey={heroKey} agentName={heroData.name} factionKey={factionKey} />
-                    );
+                    return <AgentCell key={heroKey} agentKey={heroKey} agentName={heroData.name} factionKey={factionKey} />;
                   })}
                 </div>
               </div>
@@ -54,15 +50,7 @@ function TreeSelect() {
   );
 }
 
-const AgentCell = ({
-  agentKey,
-  agentName,
-  factionKey,
-}: {
-  agentKey: string;
-  agentName: string;
-  factionKey: string;
-}) => {
+const AgentCell = ({ agentKey, agentName, factionKey }: { agentKey: string; agentName: string; factionKey: string }) => {
   const { state } = useContext(ElectronContext);
   const plannerContext = useContext(AppContext);
 
