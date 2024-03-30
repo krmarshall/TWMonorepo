@@ -1,0 +1,162 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  @font-face {
+    font-family: "CaslonAntique";
+    src: url('/fonts/CaslonAntique.woff2') format('woff2');
+    font-display: swap;
+  }
+}
+
+@layer utilities {
+  input:checked ~ .dot {
+    transform: translateX(100%);
+    background-color: #48bb78;
+  }
+
+  .fade-in-slow {
+    animation: fadeInSlow 3.5s linear;
+    -webkit-animation: fadeInSlow 3.5s linear;
+    -moz-animation: fadeInSlow 3.5s linear;
+    -o-animation: fadeInSlow 3.5s linear;
+    -ms-animation: fadeInSlow 3.5s linear;
+  }
+  @keyframes fadeInSlow {
+    0% {opacity:0.1; filter: grayscale(100%);}
+    99% {opacity:0.6; filter: grayscale(100%);}
+    100% {opacity:1; filter: grayscale(0%);}
+  }
+  
+  @-moz-keyframes fadeInSlow {
+    0% {opacity:0.1; filter: grayscale(100%);}
+    99% {opacity:0.6; filter: grayscale(100%);}
+    100% {opacity:1; filter: grayscale(0%);}
+  }
+  
+  @-webkit-keyframes fadeInSlow {
+    0% {opacity:0.1; filter: grayscale(100%);}
+    99% {opacity:0.6; filter: grayscale(100%);}
+    100% {opacity:1; filter: grayscale(0%);}
+  }
+  
+  @-o-keyframes fadeInSlow {
+    0% {opacity:0.1; filter: grayscale(100%);}
+    99% {opacity:0.6; filter: grayscale(100%);}
+    100% {opacity:1; filter: grayscale(0%);}
+  }
+  
+  @-ms-keyframes fadeInSlow {
+    0% {opacity:0.1; filter: grayscale(100%);}
+    99% {opacity:0.6; filter: grayscale(100%);}
+    100% {opacity:1; filter: grayscale(0%);}
+  }
+
+  .fade-in {
+    animation: fadeIn 0.35s;
+    -webkit-animation: fadeIn 0.35s;
+    -moz-animation: fadeIn 0.35s;
+    -o-animation: fadeIn 0.35s;
+    -ms-animation: fadeIn 0.35s;
+  }
+  @keyframes fadeIn {
+    0% {opacity:0.1;}
+    100% {opacity:1;}
+  }
+  
+  @-moz-keyframes fadeIn {
+    0% {opacity:0.1;}
+    100% {opacity:1;}
+  }
+  
+  @-webkit-keyframes fadeIn {
+    0% {opacity:0.1;}
+    100% {opacity:1;}
+  }
+  
+  @-o-keyframes fadeIn {
+    0% {opacity:0.1;}
+    100% {opacity:1;}
+  }
+  
+  @-ms-keyframes fadeIn {
+    0% {opacity:0.1;}
+    100% {opacity:1;}
+  }
+
+  .loading-spinner {
+    animation: loading-spinner 1.2s linear infinite;
+  }
+  @keyframes loading-spinner {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(-360deg);
+    }
+  }
+
+  .slide-out-vert {
+    opacity: 0;
+    transition: max-height .33s, opacity .33s, min-height .33s;
+    overflow: hidden;
+  }
+
+  .slide-out-vert.show {
+    opacity: 1;
+  }
+
+  .slide-out-hor {
+    opacity: 0;
+    transition: max-width .33s, opacity .33s;
+  }
+
+  .slide-out-hor.show {
+    opacity: 1;
+  }
+
+  .hover-scale { 
+    transition: all .05s ease-in-out; 
+  }
+  .hover-scale:hover { 
+    transform: scale(1.05); 
+  }
+
+  .hover-scale-large { 
+    transition: all .05s ease-in-out; 
+  }
+  .hover-scale-large:hover { 
+    transform: scale(1.25); 
+  }
+
+  .text-shadow {
+    text-shadow: 2px 2px 12px rgba(0, 0, 0, 0.7);
+  }
+  .text-shadow-md {
+    text-shadow: 8px 8px 16px black;
+  }
+  .text-shadow-lg {
+    text-shadow: 15px 15px 30px black;
+  }
+  .text-shadow-none {
+    text-shadow: none;
+  }
+  .text-shadow-border {
+    text-shadow: -1px 1px 0 black,
+                  1px 1px 0 black,
+                  1px -1px 0 black,
+                  -1px -1px 0 black,
+                  8px 8px 16px black;
+  }
+
+  .searchHighlight {
+    background-color: yellow;
+    color: black;
+  }
+  .searchOutline {
+    outline-style: solid;
+    outline-color: #facc15;
+    outline-offset: -5px;
+  }
+}
