@@ -7,9 +7,8 @@
     "lintFix": "eslint ./src --fix",
     "updateSchemas": "git submodule update --remote",
     "convertSchemas": "cd ./bins && convertSchemas.bat",
-    "copySource": "cd ./bins && copySource.bat",
-    "start": "set NODE_OPTIONS='--max-old-space-size=8192' && set NODE_ENV=twdp&& ts-node ./src/index.ts",
-    "fullBuild": "run-s updateSchemas convertSchemas copySource start",
+    "start": "set NODE_OPTIONS='--max-old-space-size=8192' && ts-node ./src/index.ts",
+    "fullBuild": "run-s updateSchemas convertSchemas start",
     "profile": "set NODE_OPTIONS='--max-old-space-size=8192' && node -r ts-node/register --prof ./src/index.ts"
   },
   "author": "krmarshall",

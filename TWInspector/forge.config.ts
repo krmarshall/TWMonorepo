@@ -6,6 +6,18 @@ import { FuseV1Options, FuseVersion } from '@electron/fuses';
 
 const config: ForgeConfig = {
   packagerConfig: {
+    // Available at
+    // https://www.electronjs.org/docs/latest/api/process#processresourcespath-readonly
+    extraResource: [
+      './public/fonts/CaslonAntique.ttf',
+      './public/fonts/CaslonAntique.woff',
+      './public/fonts/CaslonAntique.woff2',
+      './public/fonts/CaslonAntique-Bold.ttf',
+      './public/fonts/CaslonAntique-BoldItalic.ttf',
+      './public/fonts/CaslonAntique-Italic.ttf',
+      './public/nconvert.exe',
+      './public/plugins/libwebp.dll',
+    ],
     asar: true,
   },
   rebuildConfig: {},

@@ -9,25 +9,15 @@ import akData from '../akData';
 import generateTables from '../generateTables';
 import processFactions from '../processTables/processFactions';
 import { workerMod, workerModMulti } from './workerExports';
-import {
-  radious3PackNames,
-  mixu3PackNames,
-  mixu3PackNamesEnum,
-  scm3PackNames,
-  scm3PackNamesEnum,
-  cat3PackNames,
-  cat3PackNamesEnum,
-  ovn3PackNames,
-  ovn3PackNamesEnum,
-} from '../lists/extractLists/modPackNames';
+import { modPackInfo, vanillaPackInfo } from '../lists/packInfo';
 
 const { folder, dbPackName, locPackName, dbList, locList, game, schema, tech, pruneVanilla }: WorkerDataInterface = workerData;
 
-const imagePacknames = ['data', 'data_1', 'data_2', 'data_3', 'data_bl', 'data_bm', 'data_tk', 'data_we', 'data_wp_'];
+const imagePacknames = vanillaPackInfo.vanilla3.imgs;
 
 console.time(folder);
 
-const globalData = initializeGlobalData(folder);
+const globalData = initializeGlobalData([...Object.keys(vanillaPackInfo), ...Object.keys(modPackInfo)]);
 
 ensureDirSync(`./extracted_files/${folder}/`);
 extractPackfileMass(folder, dbPackName as string, locPackName as string, dbList, locList, game)
@@ -64,8 +54,8 @@ extractPackfileMass(folder, dbPackName as string, locPackName as string, dbList,
 const radiousWorkerData = {
   globalData: globalData,
   folder: 'radious3',
-  dbPackNames: radious3PackNames,
-  locPackNames: radious3PackNames,
+  dbPackNames: modPackInfo.getMultiPacks('radious3'),
+  locPackNames: modPackInfo.getMultiPacks('radious3'),
   dbList: dbList,
   locList: undefined,
   game: 'warhammer_3',
@@ -78,8 +68,8 @@ const radiousWorkerData = {
 const sfoWorkerData = {
   globalData: globalData,
   folder: 'sfo3',
-  dbPackName: 'sfo_grimhammer_3_main',
-  locPackName: 'sfo_grimhammer_3_main',
+  dbPackName: modPackInfo.getSinglePack('sfo3'),
+  locPackName: modPackInfo.getSinglePack('sfo3'),
   dbList: dbList,
   locList: undefined,
   game: 'warhammer_3',
@@ -92,8 +82,8 @@ const sfoWorkerData = {
 const crysWorkerData = {
   globalData: globalData,
   folder: 'crys3',
-  dbPackName: 'crys_leaders',
-  locPackName: 'crys_leaders',
+  dbPackName: modPackInfo.getSinglePack('crys3'),
+  locPackName: modPackInfo.getSinglePack('crys3'),
   dbList: dbList,
   locList: undefined,
   game: 'warhammer_3',
@@ -107,22 +97,22 @@ const crysWorkerData = {
 const mixuWorkerData = {
   globalData: globalData,
   folder: 'mixu3',
-  dbPackNames: mixu3PackNames,
-  locPackNames: mixu3PackNames,
+  dbPackNames: modPackInfo.getMultiPacks('mixu3'),
+  locPackNames: modPackInfo.getMultiPacks('mixu3'),
   dbList: dbList,
   locList: undefined,
   game: 'warhammer_3',
   schema: schema,
   pruneVanilla: true,
   tech: false,
-  packNameEnum: mixu3PackNamesEnum,
+  packNameEnum: modPackInfo['mixu3'],
 };
 
 const legeWorkerData = {
   globalData: globalData,
   folder: 'lege3',
-  dbPackName: '!str_legendary',
-  locPackName: '!str_legendary',
+  dbPackName: modPackInfo.getSinglePack('lege3'),
+  locPackName: modPackInfo.getSinglePack('lege3'),
   dbList: dbList,
   locList: undefined,
   game: 'warhammer_3',
@@ -135,50 +125,50 @@ const legeWorkerData = {
 const scmWorkerData = {
   globalData: globalData,
   folder: 'scm3',
-  dbPackNames: scm3PackNames,
-  locPackNames: scm3PackNames,
+  dbPackNames: modPackInfo.getMultiPacks('scm3'),
+  locPackNames: modPackInfo.getMultiPacks('scm3'),
   dbList: dbList,
   locList: undefined,
   game: 'warhammer_3',
   schema: schema,
   pruneVanilla: true,
   tech: false,
-  packNameEnum: scm3PackNamesEnum,
+  packNameEnum: modPackInfo['scm3'],
 };
 
 const cat3WorkerData = {
   globalData: globalData,
   folder: 'cat3',
-  dbPackNames: cat3PackNames,
-  locPackNames: cat3PackNames,
+  dbPackNames: modPackInfo.getMultiPacks('cat3'),
+  locPackNames: modPackInfo.getMultiPacks('cat3'),
   dbList: dbList,
   locList: undefined,
   game: 'warhammer_3',
   schema: schema,
   pruneVanilla: true,
   tech: false,
-  packNameEnum: cat3PackNamesEnum,
+  packNameEnum: modPackInfo['cat3'],
 };
 
 const ovn3WorkerData = {
   globalData: globalData,
   folder: 'ovn3',
-  dbPackNames: ovn3PackNames,
-  locPackNames: ovn3PackNames,
+  dbPackNames: modPackInfo.getMultiPacks('ovn3'),
+  locPackNames: modPackInfo.getMultiPacks('ovn3'),
   dbList: dbList,
   locList: undefined,
   game: 'warhammer_3',
   schema: schema,
   pruneVanilla: true,
   tech: false,
-  packNameEnum: ovn3PackNamesEnum,
+  packNameEnum: modPackInfo['ovn3'],
 };
 
 const hol3WorkerData = {
   globalData: globalData,
   folder: 'hol3',
-  dbPackNames: ['!ak_teb3', 'inq_lol_hero'],
-  locPackNames: ['!ak_teb3', 'inq_lol_hero'],
+  dbPackNames: modPackInfo.getMultiPacks('hol3'),
+  locPackNames: modPackInfo.getMultiPacks('hol3'),
   dbList: dbList,
   locList: undefined,
   game: 'warhammer_3',

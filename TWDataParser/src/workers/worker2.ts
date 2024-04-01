@@ -7,8 +7,11 @@ import initializeGlobalData from '../utils/initializeGlobalData';
 import csvParse from '../csvParse';
 import generateTables from '../generateTables';
 import processFactions from '../processTables/processFactions';
+import { vanillaPackInfo } from '../lists/packInfo';
 
 const { folder, dbPackName, locPackName, dbList, locList, game, schema, tech, pruneVanilla }: WorkerDataInterface = workerData;
+
+const imagePacknames = vanillaPackInfo.vanilla2.imgs;
 
 console.time(folder);
 
@@ -16,7 +19,7 @@ const globalData = initializeGlobalData(folder);
 
 ensureDirSync(`./extracted_files/${folder}/`);
 extractPackfileMass(folder, dbPackName as string, locPackName as string, dbList, locList, game)
-  .then(() => parseImages(folder, [dbPackName as string], game, tech, globalData))
+  .then(() => parseImages(folder, imagePacknames, game, tech, globalData))
   .then(() => {
     csvParse(folder, false, globalData);
     const tables = generateTables(folder, globalData, dbList, schema);

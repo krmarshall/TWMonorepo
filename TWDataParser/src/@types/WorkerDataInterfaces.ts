@@ -1,3 +1,4 @@
+import { ModInfoInterface } from '../lists/packInfo';
 import { GlobalDataInterface, RefKey } from './GlobalDataInterface';
 import { SchemaInterface } from './SchemaInterfaces';
 
@@ -14,7 +15,7 @@ interface WorkerDataInterface {
   tech: boolean;
   schema: SchemaInterface;
   pruneVanilla: boolean;
-  packNameEnum?: { [key: string]: string };
+  packNameData?: Array<ModInfoInterface>;
 }
 
 export { WorkerDataInterface };

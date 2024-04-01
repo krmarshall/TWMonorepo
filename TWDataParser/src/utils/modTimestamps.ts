@@ -1,5 +1,5 @@
 import { readJSONSync, writeJSON } from 'fs-extra';
-import modIdMap from '../lists/modIdMap';
+import { modPackInfo } from '../lists/packInfo';
 import log from './log';
 import { init } from 'steamworks.js';
 
@@ -12,31 +12,25 @@ const modTimestamps = () => {
   const oldTimestamps = readJSONSync(`${process.env.TWP_DATA_PATH}/modTimestamps.json`);
   const timestampObj: TimeStampInterface = {};
   const promiseArray: Array<Promise<void | Response>> = [];
-  Object.entries(modIdMap).forEach((entry) => {
+  Object.entries(modPackInfo).forEach((entry) => {
     const modHeader = entry[0];
     const subMods = entry[1];
-
     timestampObj[modHeader] = {};
-    Object.entries(subMods).forEach((subEntry) => {
-      const subHeader = subEntry[0];
-      const subId = subEntry[1];
-
+    subMods.forEach((subMod) => {
       promiseArray.push(
         client.workshop
-          .getItem(BigInt(subId))
+          .getItem(BigInt(subMod.id))
           .then((workshopItem) => {
             if (workshopItem !== null) {
               if (workshopItem.timeUpdated === undefined) {
-                log(`Workshop item missing timestamp: ${subHeader}`, 'yellow');
-                timestampObj[modHeader][subHeader] = oldTimestamps[modHeader][subHeader];
+                log(`Workshop item missing timestamp: ${subMod.pack}`, 'yellow');
+                timestampObj[modHeader][subMod.pack] = oldTimestamps[modHeader][subMod.pack];
               } else {
-                timestampObj[modHeader][subHeader] = workshopItem.timeUpdated;
+                timestampObj[modHeader][subMod.pack] = workshopItem.timeUpdated;
               }
             }
           })
-          .catch((error) => {
-            log(`Workshop item error ${subHeader}: ${error}`, 'yellow');
-          }),
+          .catch((error) => log(`Workshop item error ${subMod.pack}: ${error}`, 'yellow')),
       );
     });
   });
