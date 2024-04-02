@@ -1,0 +1,6 @@
+[submodule "TWDataParser/rpfm-schemas"]
+	path = TWDataParser/rpfm-schemas
+	url = https://github.com/Frodo45127/rpfm-schemas
+[submodule "TWPlanner/TWPData"]
+	path = TWPlanner/TWPData
+	url = https://github.com/krmarshall/TWPData
