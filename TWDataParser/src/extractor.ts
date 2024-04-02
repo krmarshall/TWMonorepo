@@ -208,7 +208,7 @@ export default class Extractor {
       const imagePaths = sync(`${imageDir}*.png`);
       if (imagePaths.length !== 0) {
         const splitPath = imageDir.split(`${this.#folder}/ui/`);
-        let outPath = `../output_img/${this.#folder}/${splitPath[splitPath.length - 1]}`;
+        let outPath = `./output_img/${this.#folder}/${splitPath[splitPath.length - 1]}`;
         outPath = outPath.replaceAll(' ', '_');
         // ensureDirSync(outPath);
         const script = `### -out webp -q 90 -rmeta -quiet -lower -o ${outPath}%`;
@@ -216,7 +216,7 @@ export default class Extractor {
           const fileSplitPath = cur.split(`${this.#folder}/ui/`);
           const filePath = fileSplitPath[fileSplitPath.length - 1].replaceAll(' ', '_').replace('.png', '').toLowerCase();
           this.#globalData.imgPaths[this.#folder][filePath] = filePath;
-          return `${prev}\n.${cur}`;
+          return `${prev}\n${cur}`;
         }, script);
         outputFileSync(`./bins/nScripts/${this.#folder}${index}.txt`, finalScript);
         return new Promise<void>((resolve, reject) => {
