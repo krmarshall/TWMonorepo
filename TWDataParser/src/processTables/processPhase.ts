@@ -99,7 +99,7 @@ const processPhase = (folder: string, globalData: GlobalDataInterface, phaseJunc
         parseFloating(phaseStat.value),
         phaseStat.how,
       ),
-      icon: 'vanilla3/' + uiUnitStat.icon.replace(/^ui\//, '').replace('.png', '').replace(' ', '_').toLowerCase(),
+      icon: 'vanilla3/' + uiUnitStat.icon.replace(/^ui\//, '').replace('.png', '').replaceAll(' ', '_').toLowerCase(),
       sort_order: parseInteger(uiUnitStat.sort_order as string),
     });
   });
@@ -124,7 +124,7 @@ export default processPhase;
 
 const findPhaseImage = (folder: string, globalData: GlobalDataInterface, icon_path: string) => {
   const icon = icon_path.replace('.png', '').trim();
-  const searchArray = [`battle_ui/ability_icons/${icon}`, `battle_ui/ability_icons/${icon.toLowerCase()}`];
+  const searchArray = [`battle_ui/ability_icons/${icon.toLowerCase()}`];
 
   return findImage(folder, globalData, searchArray, icon);
 };

@@ -32,7 +32,7 @@ module.exports = {
     'promise/always-return': 'off',
     'no-console': 'off',
     "@typescript-eslint/no-explicit-any": "warn",
-    "promise/param-names": "warn",
+    "promise/param-names": "off",
     "prettier/prettier": [
       "warn",
       {

@@ -1,16 +1,13 @@
-import * as dotenv from 'dotenv';
-dotenv.config();
+import 'dotenv/config';
 import { emptyDirSync } from 'fs-extra';
 import { v3DbList, v3LocList } from './lists/extractLists/vanilla3';
 import { workerVanilla } from './workers/workerExports';
 import { RefKey } from './@types/GlobalDataInterface';
 import { v2DbList, v2LocList } from './lists/extractLists/vanilla2';
-import { SchemaInterface } from './@types/SchemaInterfaces';
 import modTimestamps from './utils/modTimestamps';
 import { vanillaPackInfo } from './lists/packInfo';
 
-import schema3 from '../bins/jsonSchemas/schema_wh3.json';
-import schema2 from '../bins/jsonSchemas/schema_wh2.json';
+process.chdir(process.env.CWD as string);
 
 emptyDirSync('./output');
 emptyDirSync('./output_img');
@@ -27,9 +24,6 @@ workerVanilla({
   dbList: v2DbList as unknown as Array<RefKey>,
   locList: v2LocList,
   game: 'warhammer_2',
-  tech: true,
-  schema: schema2 as SchemaInterface,
-  pruneVanilla: false,
 });
 
 workerVanilla({
@@ -39,7 +33,4 @@ workerVanilla({
   dbList: v3DbList as unknown as Array<RefKey>,
   locList: v3LocList,
   game: 'warhammer_3',
-  tech: true,
-  schema: schema3 as SchemaInterface,
-  pruneVanilla: false,
 });

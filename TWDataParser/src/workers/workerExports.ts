@@ -1,9 +1,9 @@
 import { Worker } from 'worker_threads';
-import { WorkerDataInterface } from '../@types/WorkerDataInterfaces';
+import { ModWorkerDataInterface, MultiModWorkerDataInterface, VanillaWorkerDataInterface } from '../@types/WorkerDataInterfaces';
 import log from '../utils/log';
 import exportData from '../utils/exportData';
 
-const workerVanilla = (workerData: WorkerDataInterface) => {
+const workerVanilla = (workerData: VanillaWorkerDataInterface) => {
   const { game, folder } = workerData;
   console.time(`${game} total`);
   const workerScript = game === 'warhammer_2' ? './src/workers/worker2.ts' : './src/workers/worker3.ts';
@@ -27,7 +27,7 @@ const workerVanilla = (workerData: WorkerDataInterface) => {
   return workerVanilla;
 };
 
-const workerMod = (workerData: WorkerDataInterface) => {
+const workerMod = (workerData: ModWorkerDataInterface) => {
   const { folder } = workerData;
   console.time(folder);
   const workerMod = new Worker('./src/workers/workerMod.ts', { workerData, execArgv: ['--require', 'ts-node/register'], name: folder });
@@ -40,7 +40,7 @@ const workerMod = (workerData: WorkerDataInterface) => {
   });
 };
 
-const workerModMulti = (workerData: WorkerDataInterface) => {
+const workerModMulti = (workerData: MultiModWorkerDataInterface) => {
   const { folder } = workerData;
   console.time(folder);
   const workerModMulti = new Worker('./src/workers/workerModMulti.ts', {

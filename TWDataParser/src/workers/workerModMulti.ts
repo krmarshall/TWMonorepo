@@ -1,39 +1,37 @@
 import { workerData } from 'worker_threads';
 import { ensureDirSync } from 'fs-extra';
-import { WorkerDataInterface } from '../@types/WorkerDataInterfaces';
-import parseImages from '../parseImages';
-import { extractPackfileMulti } from '../extractTables';
+import { MultiModWorkerDataInterface } from '../@types/WorkerDataInterfaces';
 import csvParse from '../csvParse';
 import generateTables from '../generateTables';
 import processFactions from '../processTables/processFactions';
 import { mergeLocsIntoVanilla, mergeTablesIntoVanilla } from '../mergeTables';
 import outputCompilationGroups from '../processTables/outputCompilationGroups';
+import Extractor from '../extractor';
 
-const {
-  folder,
-  globalData,
-  dbPackNames,
-  locPackNames,
-  dbList,
-  locList,
-  game,
-  schema,
-  tech,
-  pruneVanilla,
-  packNameEnum,
-}: WorkerDataInterface = workerData;
+const { folder, globalData, modInfoArray, dbList, locList, game, schemaPath, schema, tech, pruneVanilla }: MultiModWorkerDataInterface =
+  workerData;
 
 if (globalData === undefined) {
   throw `${folder} missing globalData`;
 }
 
+const packPaths = modInfoArray.map((modInfo) => `${process.env.WH3_WORKSHOP_PATH}/${modInfo.id}/${modInfo.pack}`);
+
 ensureDirSync(`./extracted_files/${folder}/`);
-extractPackfileMulti(folder, dbPackNames as Array<string>, locPackNames as Array<string>, dbList, locList, game)
-  .then(() => parseImages(folder, dbPackNames as Array<string>, game, tech, globalData))
+const extractor = new Extractor({
+  folder,
+  game,
+  rpfmPath: process.env.RPFM_PATH as string,
+  schemaPath,
+  nconvertPath: process.env.NCONVERT_PATH as string,
+  globalData,
+});
+extractor
+  .extractPackfileMulti(packPaths, packPaths, dbList, locList, false)
+  .then(() => extractor.parseImages(packPaths, tech))
   .then(() => {
-    if (packNameEnum !== undefined) {
-      outputCompilationGroups(folder, packNameEnum);
-    }
+    outputCompilationGroups(folder, modInfoArray);
+
     csvParse(folder, true, globalData);
     mergeTablesIntoVanilla(folder, globalData, schema);
     mergeLocsIntoVanilla(folder, globalData);

@@ -3,8 +3,9 @@ import { GlobalDataInterface, TableRecord } from './@types/GlobalDataInterface';
 import { readFileSync } from 'fs-extra';
 
 const akData = (folder: string, globalData: GlobalDataInterface) => {
-  const charactersFile = readFileSync(`./game_source/${folder}/start_pos_characters.xml`);
-  const characterTraitsFile = readFileSync(`./game_source/${folder}/start_pos_character_traits.xml`);
+  const assemblyKitPath = process.env.WH3_DATA_PATH?.replace(/data$/, 'assembly_kit/raw_data/db');
+  const charactersFile = readFileSync(`${assemblyKitPath}/start_pos_characters.xml`);
+  const characterTraitsFile = readFileSync(`${assemblyKitPath}/start_pos_character_traits.xml`);
   const parser = new XMLParser();
   const characters = parser.parse(charactersFile);
   const characterTraits = parser.parse(characterTraitsFile);

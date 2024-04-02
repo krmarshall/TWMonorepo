@@ -17,24 +17,11 @@ export interface ModInfoInterface {
   name?: string;
 }
 
-interface ModPackInfoKeysInterface {
+interface ModPackInfoInterface {
   [modKey: string]: Array<ModInfoInterface>;
 }
-interface ModPackInfoFuncs {
-  getMultiPacks: (packHeader: string) => Array<string>;
-  getSinglePack: (packHeader: string) => string;
-}
 
-export type ModPackInfo = ModPackInfoKeysInterface & ModPackInfoFuncs;
-
-// @ts-expect-error ts(2322)
-export const modPackInfo: ModPackInfo = {
-  getMultiPacks: (packHeader: string) => {
-    return modPackInfo[packHeader].map((packInfo) => packInfo.pack);
-  },
-  getSinglePack: (packHeader: string) => {
-    return modPackInfo[packHeader][0].pack;
-  },
+export const modPackInfo: ModPackInfoInterface = {
   mixu3: [
     { pack: 'ab_mixu_legendary_lords', id: 2802810577, name: "Mixu's Legendary Lords" },
     { pack: 'ab_mixu_mousillon', id: 2985441419, name: "Mixu's Mousillon" },
@@ -54,7 +41,7 @@ export const modPackInfo: ModPackInfo = {
   scm3: [
     { pack: 'scm_lccp', id: 3113531421, name: 'LCCP' },
     { pack: 'str_skaven_clans', id: 2986543735, name: 'Skaven Clans' },
-    { pack: '!scm_marienburg', id: 3030996759, name: '!scm_marienburg' },
+    { pack: '!scm_marienburg', id: 3030996759, name: 'Marienburg' },
     { pack: '!!!!!!Champions_of_undeath_merged_fun_tyme', id: 3022054734, name: 'Champions of Undeath' },
     { pack: 'jade_vamp_pol', id: 2880515805, name: 'JBV: Curse of Nongchang' },
     { pack: 'jade_vamp_pol_IotM', id: 3032432016, name: 'JBV: Islanders of the Moon' },

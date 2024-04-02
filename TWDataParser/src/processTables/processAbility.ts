@@ -186,7 +186,7 @@ const findAbilityImage = (folder: string, globalData: GlobalDataInterface, icon_
 
 const findAbilityTypeImage = (folder: string, globalData: GlobalDataInterface, icon_path: string) => {
   const vanillaGame = folder.includes('2') ? 'vanilla2' : 'vanilla3';
-  const icon = icon_path.replace('.png', '').trim().replace(' ', '_').replace(/^ui\//, '');
+  const icon = icon_path.replace('.png', '').trim().replaceAll(' ', '_').replace(/^ui\//, '');
 
   const modIcon = globalData.imgPaths[folder][icon];
   if (modIcon !== undefined) {

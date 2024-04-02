@@ -58,7 +58,7 @@ const processAncillary = (
 
 const ancillaryImage = (ancillary: TableRecord | undefined) => {
   return (ancillary?.localRefs?.ancillary_types?.ui_icon ?? '')
-    .replace(' ', '_')
+    .replaceAll(' ', '_')
     .replace('.png', '')
     .replace(/^ui\/|^UI\/|^Ui\//, '');
 };
