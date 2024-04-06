@@ -1,7 +1,7 @@
-import { CharacterListInterface } from '../@types/CharacterListInterface';
+import { CharacterInterface, CharacterListInterface } from '../@types/CharacterListInterface';
 import { GlobalDataInterface, TableRecord } from '../@types/GlobalDataInterface';
-import cleanNodeSetKey from './cleanNodeSetKey';
 import subcultureMap from '../lists/subcultureMap';
+import stringInterpolator from './stringInterpolator';
 
 const addCharacterListReference = (
   folder: string,
@@ -11,9 +11,12 @@ const addCharacterListReference = (
   subcultureKey: string,
   characterList: CharacterListInterface,
 ) => {
-  const characterListEntry = { name: '', portrait: '' };
+  const characterListEntry: CharacterInterface = { name: '', portrait: '' };
 
-  characterListEntry.name = agent.localRefs?.main_units?.localRefs?.land_units?.onscreen_name ?? agent.onscreen_name_override;
+  characterListEntry.name = stringInterpolator(
+    agent.localRefs?.main_units?.localRefs?.land_units?.onscreen_name ?? agent.onscreen_name_override,
+    globalData.parsedData[folder].text,
+  );
 
   const artSetKeys = agent.foreignRefs?.campaign_character_art_sets;
   if (artSetKeys !== undefined) {
@@ -34,12 +37,14 @@ const addCharacterListReference = (
     }
   }
 
-  const nodeSetKey = cleanNodeSetKey(nodeSet.key);
+  if (agent.recruitment_category === 'legendary_lords' || agent.contributes_to_agent_cap === 'false') {
+    characterListEntry.priority = true;
+  }
   if (characterList[subcultureMap[subcultureKey]] !== undefined) {
     if (nodeSet.agent_key === 'general') {
-      characterList[subcultureMap[subcultureKey]].lords[nodeSetKey] = characterListEntry;
+      characterList[subcultureMap[subcultureKey]].lords[nodeSet.key] = characterListEntry;
     } else {
-      characterList[subcultureMap[subcultureKey]].heroes[nodeSetKey] = characterListEntry;
+      characterList[subcultureMap[subcultureKey]].heroes[nodeSet.key] = characterListEntry;
     }
   }
 };

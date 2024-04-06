@@ -13,10 +13,11 @@ import {
 import { techNodeSetsPrune2, techNodeSetsPrune3, vanilla3TechNodeSets } from '../lists/processFactionsTechLists';
 import subcultureMap from '../lists/subcultureMap';
 import vanillaCharacters from '../lists/vanillaCharacters';
-import cleanNodeSetKey from '../utils/cleanNodeSetKey';
 import processAgent from './processAgent';
 import processTechNodeSet from './processTechNodeSet';
 import { outputJSONSync } from 'fs-extra';
+import { sortCharacterList } from '../utils/sortCharacterList';
+import { hardcodeNames, hardcodePortraits, hardcodeSpellLores } from '../utils/hardcodeCharList';
 
 const processFactions = (
   folder: string,
@@ -29,7 +30,7 @@ const processFactions = (
   const game = folder.includes('2') ? '2' : '3';
 
   const completedTechNodeSets: { [key: string]: boolean } = {};
-  const agentMap: { [key: string /* Agent Key */]: { [key: string /* Subculture Key */]: Set<string /* Faction Key */> } } = {};
+  const agentMap: { [agentKey: string]: { [subcultureKey: string]: Set<string /* Faction Key */> } } = {};
   const characterList: CharacterListInterface = {};
   Object.values(subcultureMap).forEach((subculture) => (characterList[subculture] = { lords: {}, heroes: {} }));
 
@@ -56,8 +57,7 @@ const processFactions = (
     ) {
       return;
     }
-    const cleanKey = cleanNodeSetKey(nodeSetKey as string, true);
-    if (pruneVanilla && vanillaCharacters[cleanKey] !== undefined) {
+    if (pruneVanilla && vanillaCharacters[nodeSetKey] !== undefined) {
       return;
     }
 
@@ -125,14 +125,13 @@ const processFactions = (
             return;
           }
 
-          const cleanKey = cleanNodeSetKey(nodeSetKey as string, true);
           if (
-            skipVanillaAgentPrune[cleanKey] !== undefined &&
-            skipVanillaAgentPrune[cleanKey].mod === folder &&
-            skipVanillaAgentPrune[cleanKey].subculture === subculture.subculture
+            skipVanillaAgentPrune[nodeSetKey] !== undefined &&
+            skipVanillaAgentPrune[nodeSetKey].mod === folder &&
+            skipVanillaAgentPrune[nodeSetKey].subculture === subculture.subculture
           ) {
             // Pass
-          } else if (pruneVanilla && vanillaCharacters[cleanKey] !== undefined) {
+          } else if (pruneVanilla && vanillaCharacters[nodeSetKey] !== undefined) {
             return;
           }
 
@@ -159,7 +158,12 @@ const processFactions = (
     });
   });
 
-  outputJSONSync(charListPath, characterList, { spaces: 2 });
+  hardcodeNames(characterList);
+  hardcodePortraits(characterList);
+  hardcodeSpellLores(characterList);
+  const sortedCharList = sortCharacterList(characterList, folder);
+
+  outputJSONSync(charListPath, sortedCharList, { spaces: 2 });
 };
 
 export default processFactions;

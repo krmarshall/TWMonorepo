@@ -6,6 +6,7 @@ import { basename } from 'path';
 import { promisify } from 'util';
 import { GlobalDataInterface } from './@types/GlobalDataInterface';
 import { sync } from 'fast-glob';
+import { hardcodePortraitData } from './utils/hardcodeCharList';
 
 const execPromise = promisify(exec);
 
@@ -260,6 +261,16 @@ export default class Extractor {
       }
       const imgPath = entry.variants[0].file_diffuse.toLowerCase();
       this.#globalData.portraitPaths[this.#folder][entry.id] = imgPath;
+    });
+
+    Object.entries(hardcodePortraitData).forEach((entry) => {
+      const nodeSetKey = entry[0];
+      const portraitFile = entry[1];
+      const portraitPaths = sync(`./extracted_files/${this.#folder}/ui/portraits/portholes/**/${portraitFile}.png`);
+      if (portraitPaths.length !== 0) {
+        const path = portraitPaths[0].replace(`./extracted_files/${this.#folder}/`, '');
+        this.#globalData.portraitPaths[this.#folder][nodeSetKey] = path;
+      }
     });
   };
   #convertPortraits = () => {

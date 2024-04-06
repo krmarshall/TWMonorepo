@@ -71,7 +71,7 @@ const spellLoreIcons = {
     shadow: 'drop-shadow(0.1rem 0.1rem 0.4rem #434673) drop-shadow(0.1rem 0.1rem 0.25rem #434673)',
   },
   life: { image: life, shadow: 'drop-shadow(0.1rem 0.1rem 0.4rem #4c571c) drop-shadow(0.1rem 0.1rem 0.25rem #4c571c)' },
-  skvPlague: {
+  plague: {
     image: skvPlague,
     shadow: 'drop-shadow(0.1rem 0.1rem 0.4rem #827921) drop-shadow(0.1rem 0.1rem 0.25rem #827921)',
   },
@@ -91,7 +91,7 @@ const spellLoreIcons = {
     image: nehekhara,
     shadow: 'drop-shadow(0.1rem 0.1rem 0.4rem #379583) drop-shadow(0.1rem 0.1rem 0.25rem #379583)',
   },
-  deeps: {
+  deep: {
     image: deeps,
     shadow: 'drop-shadow(0.1rem 0.1rem 0.4rem #1c6350) drop-shadow(0.1rem 0.1rem 0.25rem #1c6350)',
   },
@@ -127,7 +127,7 @@ const spellLoreIcons = {
     image: slaanesh,
     shadow: 'drop-shadow(0.1rem 0.1rem 0.4rem #8c2776) drop-shadow(0.1rem 0.1rem 0.25rem #8c2776)',
   },
-  greatMaw: {
+  'great maw': {
     image: greatMaw,
     shadow: 'drop-shadow(0.1rem 0.1rem 0.4rem #684717) drop-shadow(0.1rem 0.1rem 0.25rem #684717)',
   },

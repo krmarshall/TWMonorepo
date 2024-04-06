@@ -369,18 +369,38 @@ const addAgents = [
 ];
 
 const skipVanillaAgentPrune: { [agentKey: string]: { subculture: string; mod: string; packname: string } } = {
-  tmb_arkhan: { subculture: 'wh2_dlc09_sc_tmb_tomb_kings', mod: 'scm3', packname: '!xou_age_TKExtended' },
-  tmb_khalida: { subculture: 'wh2_dlc09_sc_tmb_tomb_kings', mod: 'scm3', packname: '!xou_age_TKExtended' },
-  tmb_khatep: { subculture: 'wh2_dlc09_sc_tmb_tomb_kings', mod: 'scm3', packname: '!xou_age_TKExtended' },
-  tmb_necrotect: { subculture: 'wh2_dlc09_sc_tmb_tomb_kings', mod: 'scm3', packname: '!xou_age_TKExtended' },
-  tmb_settra: { subculture: 'wh2_dlc09_sc_tmb_tomb_kings', mod: 'scm3', packname: '!xou_age_TKExtended' },
-  tmb_tomb_king: { subculture: 'wh2_dlc09_sc_tmb_tomb_kings', mod: 'scm3', packname: '!xou_age_TKExtended' },
-  tmb_tomb_king_alkhazzar_ii: { subculture: 'wh2_dlc09_sc_tmb_tomb_kings', mod: 'scm3', packname: '!xou_age_TKExtended' },
-  tmb_tomb_king_lahmizzash: { subculture: 'wh2_dlc09_sc_tmb_tomb_kings', mod: 'scm3', packname: '!xou_age_TKExtended' },
-  tmb_tomb_king_rakhash: { subculture: 'wh2_dlc09_sc_tmb_tomb_kings', mod: 'scm3', packname: '!xou_age_TKExtended' },
-  tmb_tomb_king_setep: { subculture: 'wh2_dlc09_sc_tmb_tomb_kings', mod: 'scm3', packname: '!xou_age_TKExtended' },
-  tmb_tomb_king_thutep: { subculture: 'wh2_dlc09_sc_tmb_tomb_kings', mod: 'scm3', packname: '!xou_age_TKExtended' },
-  tmb_tomb_king_wakhaf: { subculture: 'wh2_dlc09_sc_tmb_tomb_kings', mod: 'scm3', packname: '!xou_age_TKExtended' },
+  wh2_dlc09_skill_node_set_tmb_arkhan: { subculture: 'wh2_dlc09_sc_tmb_tomb_kings', mod: 'scm3', packname: '!xou_age_TKExtended' },
+  wh2_dlc09_skill_node_set_tmb_khalida: { subculture: 'wh2_dlc09_sc_tmb_tomb_kings', mod: 'scm3', packname: '!xou_age_TKExtended' },
+  wh2_dlc09_skill_node_set_tmb_khatep: { subculture: 'wh2_dlc09_sc_tmb_tomb_kings', mod: 'scm3', packname: '!xou_age_TKExtended' },
+  wh2_dlc09_skill_node_set_tmb_necrotect: { subculture: 'wh2_dlc09_sc_tmb_tomb_kings', mod: 'scm3', packname: '!xou_age_TKExtended' },
+  wh2_dlc09_skill_node_set_tmb_settra: { subculture: 'wh2_dlc09_sc_tmb_tomb_kings', mod: 'scm3', packname: '!xou_age_TKExtended' },
+  wh2_dlc09_skill_node_set_tmb_tomb_king: { subculture: 'wh2_dlc09_sc_tmb_tomb_kings', mod: 'scm3', packname: '!xou_age_TKExtended' },
+  wh2_dlc09_skill_node_set_tmb_tomb_king_alkhazzar_ii: {
+    subculture: 'wh2_dlc09_sc_tmb_tomb_kings',
+    mod: 'scm3',
+    packname: '!xou_age_TKExtended',
+  },
+  wh2_dlc09_skill_node_set_tmb_tomb_king_lahmizzash: {
+    subculture: 'wh2_dlc09_sc_tmb_tomb_kings',
+    mod: 'scm3',
+    packname: '!xou_age_TKExtended',
+  },
+  wh2_dlc09_skill_node_set_tmb_tomb_king_rakhash: {
+    subculture: 'wh2_dlc09_sc_tmb_tomb_kings',
+    mod: 'scm3',
+    packname: '!xou_age_TKExtended',
+  },
+  wh2_dlc09_skill_node_set_tmb_tomb_king_setep: { subculture: 'wh2_dlc09_sc_tmb_tomb_kings', mod: 'scm3', packname: '!xou_age_TKExtended' },
+  wh2_dlc09_skill_node_set_tmb_tomb_king_thutep: {
+    subculture: 'wh2_dlc09_sc_tmb_tomb_kings',
+    mod: 'scm3',
+    packname: '!xou_age_TKExtended',
+  },
+  tmb_tomb_king_wh2_dlc09_skill_node_set_tmb_tomb_king_wakhafwakhaf: {
+    subculture: 'wh2_dlc09_sc_tmb_tomb_kings',
+    mod: 'scm3',
+    packname: '!xou_age_TKExtended',
+  },
 };
 
 export { ignoreCultures, ignoreSubcultures, ignoreFactions, ignoreAgents, addAgents, remapFactions, skipVanillaAgentPrune };

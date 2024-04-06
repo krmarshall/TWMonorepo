@@ -3,8 +3,11 @@ import { skillData, techData } from './initializeData';
 import { usageData } from './usageLog';
 // import { readFile } from 'fs/promises';
 
-const skillListener = (req: Request, res: Response) => {
-  const selectedCharacter = skillData[req.params.gameKey]?.[req.params.factionKey]?.[req.params.characterKey];
+const skillListener = (req: Request, res: Response, nodeSetMap: { [key: string]: string }) => {
+  let selectedCharacter = skillData[req.params.gameKey]?.[req.params.factionKey]?.[req.params.characterKey];
+  if (selectedCharacter === undefined && nodeSetMap[req.params.characterKey] !== undefined) {
+    selectedCharacter = skillData[req.params.gameKey]?.[req.params.factionKey]?.[nodeSetMap[req.params.characterKey]];
+  }
   if (selectedCharacter === undefined) {
     usageData.misses++;
     usageData.missList.push(req.originalUrl);

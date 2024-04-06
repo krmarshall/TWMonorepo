@@ -1,6 +1,5 @@
 import { GlobalDataInterface, RefKey, TableRecord } from '../@types/GlobalDataInterface';
 import { ItemInterface, CharacterInterface } from '../@types/CharacterInterface';
-import cleanNodeSetKey from '../utils/cleanNodeSetKey';
 import findImage from '../utils/findImage';
 import outputAgent from './outputAgent';
 import processEffect from './processEffect';
@@ -103,8 +102,7 @@ const processAgent = (
       factionKeys,
     );
     const tempAgent = JSON.parse(JSON.stringify(returnAgent));
-    const nodeSetKey = cleanNodeSetKey(nodeSet.key);
-    tempAgent.key = nodeSetKey;
+    tempAgent.key = nodeSet.key;
     tempAgent.skillTree = skillTree;
     unfilteredItems.push(...items);
     if (unfilteredItems.length > 0) {

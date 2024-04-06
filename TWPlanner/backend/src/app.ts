@@ -3,10 +3,13 @@ import cors from 'cors';
 import path from 'path';
 import helmet from 'helmet';
 import compression from 'compression';
+import { readJSONSync } from 'fs-extra';
 
 import { skillListener, techListener } from './api';
 import setCustomCacheControl from './setCustomCacheControl';
 import { initializeData } from './initializeData';
+
+const nodeSetMap = readJSONSync('./src/nodeSetMap.json');
 
 const app = express();
 
@@ -28,7 +31,7 @@ app.use(helmet());
 app.use(compression());
 
 // Serve rest api
-app.get('/api/skills/:gameKey.:factionKey.:characterKey.:hasBuild', skillListener);
+app.get('/api/skills/:gameKey.:factionKey.:characterKey.:hasBuild', (req, res) => skillListener(req, res, nodeSetMap));
 app.get('/api/techs/:gameKey.:techTreeKey', techListener);
 
 // Serve static front end HTML/JS/Images

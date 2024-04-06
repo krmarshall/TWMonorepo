@@ -1,7 +1,6 @@
 import { sync } from 'fast-glob';
 import { dirname } from 'path';
 import { parse } from 'csv-parse/sync';
-import cleanNodeSetKey from '../utils/cleanNodeSetKey';
 import { TableRecord } from '../@types/GlobalDataInterface';
 import { skipVanillaAgentPrune } from '../lists/processFactionsLists';
 import { ensureDirSync, readFileSync, writeJSONSync } from 'fs-extra';
@@ -16,26 +15,26 @@ const csvParseConfig = {
   quote: '`',
 };
 
-interface CompGroupsInterface {
-  [key: string]: { [key: string]: boolean };
+export interface CompGroupsInterface {
+  mods: Array<string>;
+  nodeSets: { [nodeSetKey: string]: string /*Mod Name*/ };
 }
 
 const outputCompilationGroups = (folder: string, modInfoArray: Array<ModInfoInterface>) => {
-  const compGroups: CompGroupsInterface = {};
+  const compGroups: CompGroupsInterface = { mods: [], nodeSets: {} };
 
   modInfoArray.forEach((modInfo) => {
     if (modInfo.name === undefined) {
       return;
     }
+    compGroups.mods.push(modInfo.name);
     const subDb = sync(`./extracted_files/${folder}/subDB*/${modInfo.pack}`)[0];
     const subDbPath = dirname(subDb);
-    compGroups[modInfo.name] = {};
     const skillNodeSetTSVs = sync(`${subDbPath}/db/character_skill_node_sets_tables/*.tsv`);
     skillNodeSetTSVs.forEach((tsv) => {
       const parsedArray = parse(readFileSync(tsv, 'utf-8'), csvParseConfig);
       parsedArray.forEach((nodeSet: TableRecord) => {
-        const key = cleanNodeSetKey(nodeSet.key);
-        compGroups[modInfo.name as string][key] = true;
+        compGroups.nodeSets[nodeSet.key] = modInfo.name as string;
       });
     });
   });
@@ -48,13 +47,13 @@ const outputCompilationGroups = (folder: string, modInfoArray: Array<ModInfoInte
       if (packName === undefined) {
         throw `Cant find packname for ${folder} ${value.packname}`;
       }
-      compGroups[packName][key] = true;
+      compGroups.nodeSets[key] = packName;
     }
   });
 
   if (Object.keys(compGroups).length !== 0) {
-    ensureDirSync(`./output/compGroups`);
-    writeJSONSync(`./output/compGroups/${folder}.json`, compGroups, { spaces: 2 });
+    ensureDirSync(`./debug/compGroups`);
+    writeJSONSync(`./debug/compGroups/${folder}.json`, compGroups, { spaces: 2 });
   }
 };
 
