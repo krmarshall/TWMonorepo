@@ -14,6 +14,7 @@ import leftMouse from '../../imgs/other/help_page_left_mouse.webp';
 import rightMouse from '../../imgs/other/help_page_right_mouse.webp';
 import scrollWheel from '../../imgs/other/help_page_middle_mouse.webp';
 import shift from '../../imgs/other/help_page_camera_speed_controls.webp';
+import nodeSetMap from '../../data/characters/nodeSetMap.json';
 
 interface PropInterface {
   isMobile: boolean;
@@ -63,8 +64,12 @@ const TopBar = ({ isMobile }: PropInterface) => {
   };
 
   const { cleanCharacter } = splitCharacterKey(character as string);
-  const lordName = gameData[mod as string].characters[faction as string]?.lords?.[cleanCharacter as string]?.name;
-  const heroName = gameData[mod as string].characters[faction as string]?.heroes?.[cleanCharacter as string]?.name;
+  const mappedCharacterKey =
+    nodeSetMap[cleanCharacter as keyof typeof nodeSetMap] !== undefined
+      ? nodeSetMap[cleanCharacter as keyof typeof nodeSetMap]
+      : cleanCharacter;
+  const lordName = gameData[mod as string].characters[faction as string]?.lords?.[mappedCharacterKey]?.name;
+  const heroName = gameData[mod as string].characters[faction as string]?.heroes?.[mappedCharacterKey]?.name;
   const characterName = lordName === undefined ? heroName : lordName;
 
   const rankLimit = mod?.includes('2') ? 40 : 50;

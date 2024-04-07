@@ -14,6 +14,7 @@ import useBulkMediaQueries from '../hooks/useBulkMediaQueries';
 import gameData from '../data/gameData';
 import StatsDrawer from '../components/Planner/StatsDrawer/StatsDrawer';
 import { CharacterInterface } from '../@types/CharacterInterfaceRef';
+import nodeSetMap from '../data/characters/nodeSetMap.json';
 
 const Planner = () => {
   const { state, dispatch } = useContext(AppContext);
@@ -30,9 +31,12 @@ const Planner = () => {
   const navigate = useNavigate();
 
   const { cleanCharacter, cleanFaction } = splitCharacterKey(character as string);
-
-  const lordName = gameData[mod as string].characters[faction as string]?.lords?.[cleanCharacter]?.name;
-  const heroName = gameData[mod as string].characters[faction as string]?.heroes?.[cleanCharacter]?.name;
+  const mappedCharacterKey =
+    nodeSetMap[cleanCharacter as keyof typeof nodeSetMap] !== undefined
+      ? nodeSetMap[cleanCharacter as keyof typeof nodeSetMap]
+      : cleanCharacter;
+  const lordName = gameData[mod as string].characters[faction as string]?.lords?.[mappedCharacterKey]?.name;
+  const heroName = gameData[mod as string].characters[faction as string]?.heroes?.[mappedCharacterKey]?.name;
   const characterName = lordName === undefined ? heroName : lordName;
 
   // Fetch character data from api if null
@@ -45,7 +49,7 @@ const Planner = () => {
 
       const hasBuild = code !== undefined ? true : false;
       api
-        .getCharacterSkillTree(mod as string, faction as string, cleanCharacter, hasBuild)
+        .getCharacterSkillTree(mod as string, faction as string, mappedCharacterKey, hasBuild)
         .then((response) => {
           if (code) {
             dispatch({ type: AppContextActions.changeCharacterData, payload: { characterData: response } });
@@ -64,7 +68,7 @@ const Planner = () => {
                 localCharacterData as CharacterInterface,
                 mod as string,
                 faction as string,
-                `${cleanCharacter}${cleanFaction !== '' ? `$${cleanFaction}` : ''}`,
+                `${mappedCharacterKey}${cleanFaction !== '' ? `$${cleanFaction}` : ''}`,
               );
               dispatch({
                 type: AppContextActions.changeSelectedAltFactionNodeSet,
