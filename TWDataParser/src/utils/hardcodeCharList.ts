@@ -414,4 +414,5 @@ const hardcodeSpellLoreData: { [nodeSetKey: string]: SpellLores } = {
   str_rotblood_lifeleech_hero: SpellLores.nurgle,
   bannaga_skill_node: SpellLores.beasts,
   vile_prince_skill_node: SpellLores.nurgle,
+  ovn_caladris_node_set: SpellLores.mixed,
 };
