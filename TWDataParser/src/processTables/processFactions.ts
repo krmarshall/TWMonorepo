@@ -17,7 +17,7 @@ import processAgent from './processAgent';
 import processTechNodeSet from './processTechNodeSet';
 import { outputJSONSync } from 'fs-extra';
 import { sortCharacterList } from '../utils/sortCharacterList';
-import { hardcodeNames, hardcodePortraits, hardcodeSpellLores } from '../utils/hardcodeCharList';
+import { hardcodeCharListData } from '../utils/hardcodeCharList';
 
 const processFactions = (
   folder: string,
@@ -25,7 +25,6 @@ const processFactions = (
   tables: { [key in RefKey]?: Table },
   pruneVanilla: boolean,
   tech: boolean,
-  charListPath = `debug/${folder}characterList.json`,
 ) => {
   const game = folder.includes('2') ? '2' : '3';
 
@@ -158,12 +157,10 @@ const processFactions = (
     });
   });
 
-  hardcodeNames(characterList);
-  hardcodePortraits(characterList);
-  hardcodeSpellLores(characterList);
+  hardcodeCharListData(characterList);
   const sortedCharList = sortCharacterList(characterList, folder);
 
-  outputJSONSync(charListPath, sortedCharList, { spaces: 2 });
+  outputJSONSync(`./output/charLists/${folder}.json`, sortedCharList, { spaces: 2 });
 };
 
 export default processFactions;

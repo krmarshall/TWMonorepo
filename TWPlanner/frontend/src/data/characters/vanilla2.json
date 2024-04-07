@@ -1,0 +1,1477 @@
+{
+  "bst_beastmen": {
+    "lords": {
+      "wh_dlc03_skill_node_set_bst_khazrak": {
+        "name": "Khazrak the One-Eye",
+        "portrait": "vanilla2/bst_ch_khazrak_0.webp",
+        "priority": true
+      },
+      "wh_dlc03_skill_node_set_bst_malagor": {
+        "name": "Malagor the Dark Omen",
+        "portrait": "vanilla2/bst_ch_malagor_0.webp",
+        "priority": true,
+        "spellLore": "mixed"
+      },
+      "wh_dlc03_skill_node_set_bst_morghur": {
+        "name": "Morghur the Shadowgave",
+        "portrait": "vanilla2/bst_ch_morghur_0.webp",
+        "priority": true
+      },
+      "wh2_dlc17_skill_node_set_bst_taurox": {
+        "name": "Taurox the Brass Bull",
+        "portrait": "vanilla2/bst_taurox_0.webp",
+        "priority": true
+      },
+      "wh_dlc03_skill_node_set_bst_beastlord": {
+        "name": "Beastlord",
+        "portrait": "vanilla2/bst_beastlords_campaign_01_0.webp"
+      },
+      "wh2_dlc17_skill_node_set_bst_doombull": {
+        "name": "Doombull",
+        "portrait": "vanilla2/bst_doombull_campaign_01_0.webp"
+      },
+      "wh2_dlc17_skill_node_set_bst_great_bray_shaman_beast": {
+        "name": "Great Bray-Shaman (Beasts)",
+        "portrait": "vanilla2/bst_great_bray_shaman_campaign_01_0.webp",
+        "spellLore": "beasts"
+      },
+      "wh2_dlc17_skill_node_set_bst_great_bray_shaman_death": {
+        "name": "Great Bray-Shaman (Death)",
+        "portrait": "vanilla2/bst_great_bray_shaman_campaign_01_0.webp",
+        "spellLore": "death"
+      },
+      "wh2_dlc17_skill_node_set_bst_great_bray_shaman_shadows": {
+        "name": "Great Bray-Shaman (Shadows)",
+        "portrait": "vanilla2/bst_great_bray_shaman_campaign_01_0.webp",
+        "spellLore": "shadows"
+      },
+      "wh2_dlc17_skill_node_set_bst_great_bray_shaman_wild": {
+        "name": "Great Bray-Shaman (Wild)",
+        "portrait": "vanilla2/bst_great_bray_shaman_campaign_01_0.webp",
+        "spellLore": "wild"
+      }
+    },
+    "heroes": {
+      "wh_dlc03_skill_node_set_bst_bray_shaman_beast": {
+        "name": "Bray-Shaman (Beasts)",
+        "portrait": "vanilla2/bst_bray_shaman_campaign_01_0.webp",
+        "spellLore": "beasts"
+      },
+      "wh_dlc03_skill_node_set_bst_bray_shaman_death": {
+        "name": "Bray-Shaman (Death)",
+        "portrait": "vanilla2/bst_bray_shaman_campaign_01_0.webp",
+        "spellLore": "death"
+      },
+      "wh_dlc03_skill_node_set_bst_bray_shaman_shadows": {
+        "name": "Bray-Shaman (Shadows)",
+        "portrait": "vanilla2/bst_bray_shaman_campaign_01_0.webp",
+        "spellLore": "shadows"
+      },
+      "wh_dlc03_skill_node_set_bst_bray_shaman_wild": {
+        "name": "Bray-Shaman (Wild)",
+        "portrait": "vanilla2/bst_bray_shaman_campaign_01_0.webp",
+        "spellLore": "wild"
+      },
+      "wh_dlc03_skill_node_set_bst_gorebull": {
+        "name": "Gorebull",
+        "portrait": "vanilla2/bst_gorebulls_campaign_01_0.webp"
+      },
+      "wh2_dlc17_skill_node_set_bst_wargor": {
+        "name": "Wargor",
+        "portrait": "vanilla2/bst_wargor_campaign_01_0.webp"
+      }
+    }
+  },
+  "brt_bretonnia": {
+    "lords": {
+      "wh_dlc07_skill_node_set_brt_alberic": {
+        "name": "Alberic de Bordeleaux",
+        "portrait": "vanilla2/brt_alberic_bordeleaux_0.webp",
+        "priority": true
+      },
+      "wh_dlc07_skill_node_set_brt_fay_enchantress": {
+        "name": "Fay Enchantress",
+        "portrait": "vanilla2/brt_ch_fay_enchantress_0.webp",
+        "priority": true,
+        "spellLore": "life"
+      },
+      "wh_main_skill_node_set_brt_louen": {
+        "name": "King Louen Leoncoeur",
+        "portrait": "vanilla2/brt_ch_king_louen_leoncoeur_0.webp",
+        "priority": true
+      },
+      "wh2_dlc14_skill_node_set_brt_repanse": {
+        "name": "Repanse de Lyonesse",
+        "portrait": "vanilla2/brt_repanse_de_lyonesse_0.webp",
+        "priority": true
+      },
+      "wh_main_skill_node_set_brt_lord": {
+        "name": "Lord",
+        "portrait": "vanilla2/brt_lords_campaign_01_0.webp"
+      },
+      "wh_dlc07_skill_node_set_brt_prophetess_beast": {
+        "name": "Prophetess (Beasts)",
+        "portrait": "vanilla2/brt_prophetess_campaign_01_0.webp",
+        "spellLore": "beasts"
+      },
+      "wh_dlc07_skill_node_set_brt_prophetess_heavens": {
+        "name": "Prophetess (Heavens)",
+        "portrait": "vanilla2/brt_prophetess_campaign_01_0.webp",
+        "spellLore": "heavens"
+      },
+      "wh_dlc07_skill_node_set_brt_prophetess_life": {
+        "name": "Prophetess (Life)",
+        "portrait": "vanilla2/brt_prophetess_campaign_01_0.webp",
+        "spellLore": "life"
+      }
+    },
+    "heroes": {
+      "wh2_dlc14_skill_node_set_brt_henri_le_massif": {
+        "name": "Henri le Massif",
+        "portrait": "vanilla2/brt_henri_le_massif_0.webp",
+        "priority": true
+      },
+      "wh_dlc07_skill_node_set_brt_damsel_beasts": {
+        "name": "Damsel (Beasts)",
+        "portrait": "vanilla2/brt_damsel_campaign_01_0.webp",
+        "spellLore": "beasts"
+      },
+      "wh_main_skill_node_set_brt_damsel": {
+        "name": "Damsel (Heavens)",
+        "portrait": "vanilla2/brt_damsel_campaign_01_0.webp",
+        "spellLore": "heavens"
+      },
+      "wh_dlc07_skill_node_set_brt_damsel_life": {
+        "name": "Damsel (Life)",
+        "portrait": "vanilla2/brt_damsel_campaign_01_0.webp",
+        "spellLore": "life"
+      },
+      "wh_dlc07_skill_node_set_brt_paladin": {
+        "name": "Paladin",
+        "portrait": "vanilla2/brt_paladin_campaign_01_0.webp"
+      },
+      "wh_dlc07_skill_node_set_brt_green_knight": {
+        "name": "The Green Knight",
+        "portrait": "vanilla2/brt_ch_green_knight_0.webp",
+        "priority": true
+      }
+    }
+  },
+  "def_dark_elves": {
+    "lords": {
+      "wh2_dlc10_skill_node_set_def_crone": {
+        "name": "Crone Hellebron",
+        "portrait": "vanilla2/def_crone_0.webp",
+        "priority": true
+      },
+      "wh2_dlc11_skill_node_set_def_lokhir": {
+        "name": "Lokhir Fellheart",
+        "portrait": "vanilla2/def_cha_lokhir_0.webp",
+        "priority": true
+      },
+      "wh2_main_skill_node_set_def_malekith": {
+        "name": "Malekith",
+        "portrait": "vanilla2/def_malekith_0.webp",
+        "priority": true,
+        "spellLore": "dark"
+      },
+      "wh2_dlc14_skill_node_set_def_malus": {
+        "name": "Malus Darkblade",
+        "portrait": "vanilla2/def_malus_0.webp",
+        "priority": true
+      },
+      "wh2_main_skill_node_set_def_morathi": {
+        "name": "Morathi",
+        "portrait": "vanilla2/def_morathi_0.webp",
+        "priority": true,
+        "spellLore": "mixed"
+      },
+      "wh2_twa03_skill_node_set_def_rakarth": {
+        "name": "Rakarth",
+        "portrait": "vanilla2/def_rakarth_0.webp",
+        "priority": true
+      },
+      "wh2_main_skill_node_set_def_dreadlord": {
+        "name": "Dreadlord (Sword & Crossbow)",
+        "portrait": "vanilla2/def_dreadlord_campaign_01_0.webp"
+      },
+      "wh2_main_skill_node_set_def_black_ark": {
+        "name": "Dreadlord (Sword & Crossbow)",
+        "portrait": "vanilla2/def_dreadlord_campaign_01_0.webp"
+      },
+      "wh2_main_skill_node_set_def_black_ark_blessed_dread": {
+        "name": "Dreadlord (Sword & Crossbow)",
+        "portrait": "vanilla2/def_dreadlord_campaign_01_0.webp"
+      },
+      "wh2_main_skill_node_set_def_dreadlord_fem": {
+        "name": "Dreadlord (Sword & Shield)",
+        "portrait": "vanilla2/def_dreadlord_female_campaign_01_0.webp"
+      },
+      "wh2_dlc14_skill_node_set_def_high_beastmaster": {
+        "name": "High Beastmaster",
+        "portrait": "vanilla2/def_beastmaster_campaign_01_0.webp"
+      },
+      "wh2_dlc10_skill_node_set_def_supreme_sorceress_beasts": {
+        "name": "Supreme Sorceress (Beasts)",
+        "portrait": "vanilla2/def_supreme_sorceress_campaign_01_0.webp",
+        "spellLore": "beasts"
+      },
+      "wh2_dlc10_skill_node_set_def_supreme_sorceress_dark": {
+        "name": "Supreme Sorceress (Dark)",
+        "portrait": "vanilla2/def_supreme_sorceress_campaign_01_0.webp",
+        "spellLore": "dark"
+      },
+      "wh2_dlc10_skill_node_set_def_supreme_sorceress_death": {
+        "name": "Supreme Sorceress (Death)",
+        "portrait": "vanilla2/def_supreme_sorceress_campaign_01_0.webp",
+        "spellLore": "death"
+      },
+      "wh2_dlc10_skill_node_set_def_supreme_sorceress_fire": {
+        "name": "Supreme Sorceress (Fire)",
+        "portrait": "vanilla2/def_supreme_sorceress_campaign_01_0.webp",
+        "spellLore": "fire"
+      },
+      "wh2_dlc10_skill_node_set_def_supreme_sorceress_shadow": {
+        "name": "Supreme Sorceress (Shadows)",
+        "portrait": "vanilla2/def_supreme_sorceress_campaign_01_0.webp",
+        "spellLore": "shadows"
+      }
+    },
+    "heroes": {
+      "wh2_main_skill_node_set_def_death_hag": {
+        "name": "Death Hag",
+        "portrait": "vanilla2/def_death_hag_campaign_01_0.webp"
+      },
+      "wh2_main_skill_node_set_def_khainite_assassin": {
+        "name": "Khainite Assassin",
+        "portrait": "vanilla2/def_assassin_campaign_01_0.webp"
+      },
+      "wh2_dlc14_skill_node_set_def_master": {
+        "name": "Master",
+        "portrait": "vanilla2/def_master_campaign_01_0.webp"
+      },
+      "wh2_dlc10_skill_node_set_def_sorceress_beasts": {
+        "name": "Sorceress (Beasts)",
+        "portrait": "vanilla2/def_sorceress_campaign_01_0.webp",
+        "spellLore": "beasts"
+      },
+      "wh2_main_skill_node_set_def_sorceress_dark": {
+        "name": "Sorceress (Dark)",
+        "portrait": "vanilla2/def_sorceress_campaign_01_0.webp",
+        "spellLore": "dark"
+      },
+      "wh2_dlc10_skill_node_set_def_sorceress_death": {
+        "name": "Sorceress (Death)",
+        "portrait": "vanilla2/def_sorceress_campaign_01_0.webp",
+        "spellLore": "death"
+      },
+      "wh2_main_skill_node_set_def_sorceress_fire": {
+        "name": "Sorceress (Fire)",
+        "portrait": "vanilla2/def_sorceress_campaign_01_0.webp",
+        "spellLore": "fire"
+      },
+      "wh2_main_skill_node_set_def_sorceress_shadow": {
+        "name": "Sorceress (Shadows)",
+        "portrait": "vanilla2/def_sorceress_campaign_01_0.webp",
+        "spellLore": "shadows"
+      }
+    }
+  },
+  "dwf_dwarfs": {
+    "lords": {
+      "wh_dlc06_skill_node_set_dwf_belegar": {
+        "name": "Belegar Ironhammer",
+        "portrait": "vanilla2/dwf_ch_belegar_ironhammer_0.webp",
+        "priority": true
+      },
+      "wh_pro01_skill_node_set_dwf_grombrindal": {
+        "name": "Grombrindal - The White Dwarf",
+        "portrait": "vanilla2/dwf_ch_grombrindal_0.webp",
+        "priority": true
+      },
+      "wh_dlc17_skill_node_set_dwf_thorek": {
+        "name": "Thorek Ironbrow",
+        "portrait": "vanilla2/dwf_thorek_0.webp",
+        "priority": true,
+        "spellLore": "runic"
+      },
+      "wh_main_skill_node_set_dwf_thorgrim": {
+        "name": "Thorgrim Grudgebearer",
+        "portrait": "vanilla2/dwf_throne_of_power_0.webp",
+        "priority": true
+      },
+      "wh_main_skill_node_set_dwf_ungrim": {
+        "name": "Ungrim Ironfist",
+        "portrait": "vanilla2/dwf_ch_ungrim_0.webp",
+        "priority": true
+      },
+      "wh_main_skill_node_set_dwf_lord": {
+        "name": "Lord",
+        "portrait": "vanilla2/dwf_lord_campaign_01_0.webp"
+      },
+      "wh_dlc06_skill_node_set_dwf_runelord": {
+        "name": "Runelord",
+        "portrait": "vanilla2/dwf_ch_runelord_campaign_01_0.webp",
+        "spellLore": "runic"
+      }
+    },
+    "heroes": {
+      "wh_dlc06_skill_node_set_dwf_master_engineer_ghost": {
+        "name": "Dramar Hammerfist",
+        "portrait": "vanilla2/dwf_master_engineer_ghost_01_0.webp"
+      },
+      "wh_dlc06_skill_node_set_dwf_thane_ghost_2": {
+        "name": "Halkenhaf Stonebeard",
+        "portrait": "vanilla2/dwf_thane_ghost_02_0.webp"
+      },
+      "wh2_dlc17_skill_node_set_dwf_thane_ghost_artifact": {
+        "name": "Hans Valhirsson",
+        "portrait": "vanilla2/dwf_thane_ghost_03_0.webp"
+      },
+      "wh_dlc06_skill_node_set_dwf_thane_ghost_1": {
+        "name": "King Lunn Ironhammer ",
+        "portrait": "vanilla2/dwf_thane_ghost_01_0.webp"
+      },
+      "wh_main_skill_node_set_all_engineer": {
+        "name": "Master Engineer",
+        "portrait": "vanilla2/dwf_master_engineer_campaign_01_0.webp"
+      },
+      "wh_main_skill_node_set_all_runesmith": {
+        "name": "Runesmith",
+        "portrait": "vanilla2/dwf_runesmith_campaign_01_0.webp",
+        "spellLore": "runic"
+      },
+      "wh2_main_skill_node_set_dwf_thane": {
+        "name": "Thane",
+        "portrait": "vanilla2/dwf_thane_campaign_01_0.webp"
+      },
+      "wh_dlc06_skill_node_set_dwf_runesmith_ghost": {
+        "name": "Throni Ironbrow ",
+        "portrait": "vanilla2/dwf_runesmith_ghost_01_0.webp",
+        "spellLore": "runic"
+      }
+    }
+  },
+  "emp_empire": {
+    "lords": {
+      "wh_main_skill_node_set_emp_balthasar": {
+        "name": "Balthasar Gelt",
+        "portrait": "vanilla2/emp_ch_balthasar_0.webp",
+        "priority": true,
+        "spellLore": "metal"
+      },
+      "wh_dlc03_skill_node_set_emp_boris_todbringer": {
+        "name": "Boris Todbringer",
+        "portrait": "vanilla2/emp_ch_boris_todbringer_0.webp",
+        "priority": true
+      },
+      "wh_main_skill_node_set_emp_karl_franz": {
+        "name": "Karl Franz",
+        "portrait": "vanilla2/emp_ch_karl_2h_hammer_0.webp",
+        "priority": true
+      },
+      "wh2_dlc13_skill_node_set_markus_wulfhart": {
+        "name": "Markus Wulfhart",
+        "portrait": "vanilla2/emp_markus_0.webp",
+        "priority": true
+      },
+      "wh_dlc04_skill_node_set_emp_volkmar": {
+        "name": "Volkmar the Grim",
+        "portrait": "vanilla2/emp_ch_volkmar_0.webp",
+        "priority": true
+      },
+      "wh_dlc04_skill_node_set_emp_arch_lector": {
+        "name": "Arch Lector",
+        "portrait": "vanilla2/emp_arch_lector_campaign_01_0.webp"
+      },
+      "wh_main_skill_node_set_emp_general": {
+        "name": "General of the Empire",
+        "portrait": "vanilla2/emp_generals_campaign_01_0.webp"
+      },
+      "wh2_dlc13_skill_node_set_huntsmarshal": {
+        "name": "Huntsman General",
+        "portrait": "vanilla2/emp_huntsmarshal_campaign_01_0.webp"
+      }
+    },
+    "heroes": {
+      "wh2_dlc13_skill_node_set_emp_hunter_doctor_hertwig_van_hal": {
+        "name": "Hertwig van Hal",
+        "portrait": "vanilla2/emp_witch_hunter_hertwig_ror_0.webp",
+        "priority": true
+      },
+      "wh2_dlc13_skill_node_set_emp_hunter_jorek_grimm_0": {
+        "name": "Jorek Grimm",
+        "portrait": "vanilla2/dwf_master_engineer_jorek_ror_0.webp",
+        "priority": true
+      },
+      "wh2_dlc13_skill_node_set_emp_hunter_kalara_of_wydrioth_0": {
+        "name": "Kalara",
+        "portrait": "vanilla2/wef_glade_female_lord_kalara_sword_bow_ror_01_0.webp",
+        "priority": true
+      },
+      "wh2_dlc13_skill_node_set_emp_hunter_rodrik_l_anguille_0": {
+        "name": "Rodrik L'Anguille",
+        "portrait": "vanilla2/emp_paladin_rodrik_0.webp",
+        "priority": true
+      },
+      "wh_dlc03_skill_node_set_emp_amber_wizard": {
+        "name": "Amber Wizard",
+        "portrait": "vanilla2/emp_wizard_beasts_campaign_01_0.webp",
+        "spellLore": "beasts"
+      },
+      "wh2_pro07_skill_node_set_emp_amethyst_wizard": {
+        "name": "Amethyst Wizard",
+        "portrait": "vanilla2/emp_wizard_amethyst_campaign_01_0.webp",
+        "spellLore": "death"
+      },
+      "wh_main_skill_node_set_emp_bright_wizard": {
+        "name": "Bright Wizard",
+        "portrait": "vanilla2/emp_wizard_fire_campaign_01_0.webp",
+        "spellLore": "fire"
+      },
+      "wh_main_skill_node_set_emp_celestial_wizard": {
+        "name": "Celestial Wizard",
+        "portrait": "vanilla2/emp_wizard_heavens_0.webp",
+        "spellLore": "heavens"
+      },
+      "wh2_main_skill_node_set_emp_captain": {
+        "name": "Empire Captain",
+        "portrait": "vanilla2/emp_captains_campaign_01_0.webp"
+      },
+      "wh_dlc05_skill_node_set_grey_wizard": {
+        "name": "Grey Wizard",
+        "portrait": "vanilla2/emp_shadow_wizard_campaign_01_0.webp",
+        "spellLore": "shadows"
+      },
+      "wh_dlc05_skill_node_set_jade_wizard": {
+        "name": "Jade Wizard",
+        "portrait": "vanilla2/emp_wizard_life_campaign_01_0.webp",
+        "spellLore": "life"
+      },
+      "wh_main_skill_node_set_emp_light_wizard": {
+        "name": "Light Wizard",
+        "portrait": "vanilla2/emp_wizard_light_campaign_01_0.webp",
+        "spellLore": "light"
+      },
+      "wh2_main_skill_node_set_emp_warrior_priest": {
+        "name": "Warrior Priest",
+        "portrait": "vanilla2/emp_warrior_priest_campaign_01_0.webp"
+      },
+      "wh2_main_skill_node_set_emp_witch_hunter": {
+        "name": "Witch Hunter",
+        "portrait": "vanilla2/emp_witch_hunter_campaign_01_0.webp"
+      }
+    }
+  },
+  "grn_greenskins": {
+    "lords": {
+      "wh_main_skill_node_set_grn_azhag": {
+        "name": "Azhag the Slaughterer",
+        "portrait": "vanilla2/grn_ch_azhag_0.webp",
+        "priority": true,
+        "spellLore": "death"
+      },
+      "wh_main_skill_node_set_grn_grimgor": {
+        "name": "Grimgor Ironhide",
+        "portrait": "vanilla2/grn_ch_grimgor_0.webp",
+        "priority": true
+      },
+      "wh2_dlc15_skill_node_set_grn_grom_the_paunch": {
+        "name": "Grom the Paunch",
+        "portrait": "vanilla2/grn_grom_the_paunch_0.webp",
+        "priority": true
+      },
+      "wh_dlc06_skill_node_set_grn_skarsnik": {
+        "name": "Skarsnik",
+        "portrait": "vanilla2/grn_ch_skarsnik_0.webp",
+        "priority": true
+      },
+      "wh_dlc06_skill_node_set_grn_wurrzag_da_great_prophet": {
+        "name": "Wurrzag",
+        "portrait": "vanilla2/grn_ch_wurrzag_0.webp",
+        "priority": true,
+        "spellLore": "bigWagh"
+      },
+      "wh_main_skill_node_set_grn_goblin_great_shaman": {
+        "name": "Goblin Great Shaman",
+        "portrait": "vanilla2/grn_goblin_great_shaman_campaign_01_0.webp",
+        "spellLore": "lilWagh"
+      },
+      "wh_dlc06_skill_node_set_grn_night_goblin_warboss": {
+        "name": "Night Goblin Warboss",
+        "portrait": "vanilla2/grn_night_goblin_warboss_campaign_01_0.webp"
+      },
+      "wh_main_skill_node_set_grn_orc_warboss": {
+        "name": "Orc Warboss",
+        "portrait": "vanilla2/grn_orc_warbosses_campaign_01_0.webp"
+      },
+	  "wh_main_skill_node_set_oglok": {
+        "name": "Oglok the 'Orrible",
+        "portrait": "vanilla2/grn_orc_warbosses_campaign_05_0.webp",
+        "depriority": true
+      },
+      "wh_main_skill_node_set_raknik": {
+        "name": "Raknik Spiderclaw",
+        "portrait": "vanilla2/grn_goblin_great_shaman_campaign_05_0.webp",
+        "depriority": true,
+        "spellLore": "lilWagh"
+      }
+    },
+    "heroes": {
+      "wh2_pro09_skill_node_set_grn_black_orc_big_boss": {
+        "name": "Black Orc Big Boss",
+        "portrait": "vanilla2/grn_black_orc_big_boss_campaign_01_0.webp"
+      },
+      "wh2_dlc15_skill_node_set_grn_river_troll_hag": {
+        "name": "Giant River Troll Hag",
+        "portrait": "vanilla2/grn_troll_hag_campaign_01_0.webp",
+        "spellLore": "death"
+      },
+      "wh2_main_skill_node_set_grn_goblin_big_boss": {
+        "name": "Goblin Big Boss",
+        "portrait": "vanilla2/grn_goblin_bigboss_campaign_01_0.webp"
+      },
+      "wh_main_skill_node_set_grn_night_goblin_shaman": {
+        "name": "Night Goblin Shaman",
+        "portrait": "vanilla2/grn_night_goblin_shaman_campaign_01_0.webp",
+        "spellLore": "lilWagh"
+      },
+      "wh_main_skill_node_set_grn_orc_shaman": {
+        "name": "Orc Shaman",
+        "portrait": "vanilla2/grn_orc_shaman_campaign_01_0.webp",
+        "spellLore": "bigWagh"
+      }
+    }
+  },
+  "hef_high_elves": {
+    "lords": {
+      "wh2_dlc10_skill_node_set_hef_alarielle": {
+        "name": "Alarielle the Radiant",
+        "portrait": "vanilla2/hef_alarielle_campaign_0.webp",
+        "priority": true
+      },
+      "wh2_main_skill_node_set_hef_prince_alastar": {
+        "name": "Alastar the White Lion",
+        "portrait": "vanilla2/hef_alastair_0.webp",
+        "priority": true
+      },
+      "wh2_dlc10_skill_node_set_hef_alith_anar": {
+        "name": "Alith Anar",
+        "portrait": "vanilla2/hef_alith_anar_0.webp",
+        "priority": true
+      },
+      "wh2_dlc15_skill_node_set_hef_eltharion": {
+        "name": "Eltharion the Grim",
+        "portrait": "vanilla2/hef_eltharion_0.webp",
+        "priority": true,
+        "spellLore": "high"
+      },
+      "wh2_dlc15_skill_node_set_hef_imrik": {
+        "name": "Imrik",
+        "portrait": "vanilla2/hef_imrik_unmounted_0.webp",
+        "priority": true
+      },
+      "wh2_main_skill_node_set_hef_teclis": {
+        "name": "Teclis",
+        "portrait": "vanilla2/hef_teclis_0.webp",
+        "priority": true,
+        "spellLore": "mixed"
+      },
+      "wh2_main_skill_node_set_hef_tyrion": {
+        "name": "Tyrion",
+        "portrait": "vanilla2/hef_tyrion_0.webp",
+        "priority": true
+      },
+      "wh2_dlc15_skill_node_set_hef_archmage_beasts": {
+        "name": "Archmage (Beasts)",
+        "portrait": "vanilla2/hef_archmage_campaign_01_0.webp",
+        "spellLore": "beasts"
+      },
+      "wh2_dlc15_skill_node_set_hef_archmage_death": {
+        "name": "Archmage (Death)",
+        "portrait": "vanilla2/hef_archmage_campaign_01_0.webp",
+        "spellLore": "death"
+      },
+      "wh2_dlc15_skill_node_set_hef_archmage_fire": {
+        "name": "Archmage (Fire)",
+        "portrait": "vanilla2/hef_archmage_campaign_01_0.webp",
+        "spellLore": "fire"
+      },
+      "wh2_dlc15_skill_node_set_hef_archmage_heavens": {
+        "name": "Archmage (Heavens)",
+        "portrait": "vanilla2/hef_archmage_campaign_01_0.webp",
+        "spellLore": "heavens"
+      },
+      "wh2_dlc15_skill_node_set_hef_archmage_high": {
+        "name": "Archmage (High)",
+        "portrait": "vanilla2/hef_archmage_campaign_01_0.webp",
+        "spellLore": "high"
+      },
+      "wh2_dlc15_skill_node_set_hef_archmage_life": {
+        "name": "Archmage (Life)",
+        "portrait": "vanilla2/hef_archmage_campaign_01_0.webp",
+        "spellLore": "life"
+      },
+      "wh2_dlc15_skill_node_set_hef_archmage_light": {
+        "name": "Archmage (Light)",
+        "portrait": "vanilla2/hef_archmage_campaign_01_0.webp",
+        "spellLore": "light"
+      },
+      "wh2_dlc15_skill_node_set_hef_archmage_metal": {
+        "name": "Archmage (Metal)",
+        "portrait": "vanilla2/hef_archmage_campaign_01_0.webp",
+        "spellLore": "metal"
+      },
+      "wh2_dlc15_skill_node_set_hef_archmage_shadows": {
+        "name": "Archmage (Shadows)",
+        "portrait": "vanilla2/hef_archmage_campaign_01_0.webp",
+        "spellLore": "shadows"
+      },
+      "wh2_main_skill_node_set_hef_prince": {
+        "name": "Prince",
+        "portrait": "vanilla2/hef_prince_campaign_01_0.webp"
+      },
+      "wh2_main_skill_node_set_hef_princess": {
+        "name": "Princess",
+        "portrait": "vanilla2/hef_princess_campaign_01_0.webp"
+      }
+    },
+    "heroes": {
+      "wh2_dlc10_skill_node_set_hef_handmaiden": {
+        "name": "Handmaiden of the Everqueen",
+        "portrait": "vanilla2/hef_handmaiden_campaign_01_0.webp"
+      },
+      "wh2_main_skill_node_set_hef_loremaster_of_hoeth": {
+        "name": "Loremaster of Hoeth",
+        "portrait": "vanilla2/hef_loremaster_campaign_01_0.webp",
+        "spellLore": "mixed"
+      },
+      "wh2_dlc15_skill_node_set_hef_mage_beasts": {
+        "name": "Mage (Beasts)",
+        "portrait": "vanilla2/hef_mage_campaign_01_0.webp",
+        "spellLore": "beasts"
+      },
+      "wh2_dlc15_skill_node_set_hef_mage_death": {
+        "name": "Mage (Death)",
+        "portrait": "vanilla2/hef_mage_campaign_01_0.webp",
+        "spellLore": "death"
+      },
+      "wh2_dlc15_skill_node_set_hef_mage_fire": {
+        "name": "Mage (Fire)",
+        "portrait": "vanilla2/hef_mage_campaign_01_0.webp",
+        "spellLore": "fire"
+      },
+      "wh2_dlc10_skill_node_set_hef_mage_heavens": {
+        "name": "Mage (Heavens)",
+        "portrait": "vanilla2/hef_mage_campaign_01_0.webp",
+        "spellLore": "heavens"
+      },
+      "wh2_main_skill_node_set_hef_mage_high": {
+        "name": "Mage (High)",
+        "portrait": "vanilla2/hef_mage_campaign_01_0.webp",
+        "spellLore": "high"
+      },
+      "wh2_main_skill_node_set_hef_mage_life": {
+        "name": "Mage (Life)",
+        "portrait": "vanilla2/hef_mage_campaign_01_0.webp",
+        "spellLore": "life"
+      },
+      "wh2_main_skill_node_set_hef_mage_light": {
+        "name": "Mage (Light)",
+        "portrait": "vanilla2/hef_mage_campaign_01_0.webp",
+        "spellLore": "light"
+      },
+      "wh2_dlc15_skill_node_set_hef_mage_metal": {
+        "name": "Mage (Metal)",
+        "portrait": "vanilla2/hef_mage_campaign_01_0.webp",
+        "spellLore": "metal"
+      },
+      "wh2_dlc10_skill_node_set_hef_mage_shadows": {
+        "name": "Mage (Shadows)",
+        "portrait": "vanilla2/hef_mage_campaign_01_0.webp",
+        "spellLore": "shadows"
+      },
+      "wh2_main_skill_node_set_hef_noble": {
+        "name": "Noble",
+        "portrait": "vanilla2/hef_noble_campaign_01_0.webp"
+      }
+    }
+  },
+  "lzd_lizardmen": {
+    "lords": {
+      "wh2_dlc13_skill_node_set_gor_rok": {
+        "name": "Gor-Rok",
+        "portrait": "vanilla2/lzd_lord_gor_rok_0.webp",
+        "priority": true
+      },
+      "wh2_main_skill_node_set_lzd_kroq_gar": {
+        "name": "Kroq-Gar",
+        "portrait": "vanilla2/lzd_lord_kroq_gar_0.webp",
+        "priority": true
+      },
+      "wh2_main_skill_node_set_lzd_lord_mazdamundi": {
+        "name": "Lord Mazdamundi",
+        "portrait": "vanilla2/lzd_lord_mazdamundi_0.webp",
+        "priority": true,
+        "spellLore": "mixed"
+      },
+      "wh2_dlc13_skill_node_set_nakai": {
+        "name": "Nakai the Wanderer",
+        "portrait": "vanilla2/lzd_nakai_0.webp",
+        "priority": true
+      },
+      "wh2_dlc17_skill_node_set_lzd_oxyotl": {
+        "name": "Oxyotl",
+        "portrait": "vanilla2/lzd_oxyotl_0.webp",
+        "priority": true
+      },
+      "wh2_dlc12_skill_node_set_lzd_tehenhauin": {
+        "name": "Tehenhauin",
+        "portrait": "vanilla2/lzd_tehenhauin_0.webp",
+        "priority": true,
+        "spellLore": "beasts"
+      },
+      "wh2_dlc12_skill_node_set_lzd_tiktaqto": {
+        "name": "Tiktaq'to",
+        "portrait": "vanilla2/lzd_tiktaqto_0.webp",
+        "priority": true
+      },
+      "wh2_dlc13_skill_node_set_ancient_kroxigor": {
+        "name": "Kroxigor Ancient",
+        "portrait": "vanilla2/lzd_kroxigor_ancient_campaign_01_0.webp"
+      },
+      "wh2_dlc12_skill_node_set_lzd_red_crested_skink_chief": {
+        "name": "Red Crested Skink Chief",
+        "portrait": "vanilla2/lzd_skink_chief_red_crested_campaign_01_0.webp"
+      },
+      "wh2_main_skill_node_set_lzd_saurus_old_blood": {
+        "name": "Saurus Oldblood",
+        "portrait": "vanilla2/lzd_lord_saurus_old_blood_campaign_01_0.webp"
+      },
+      "wh2_main_skill_node_set_lzd_slann_mage_priest_fire": {
+        "name": "Slann Mage-Priest (Fire)",
+        "portrait": "vanilla2/lzd_slann_campaign_01_0.webp",
+        "spellLore": "fire"
+      },
+      "wh2_main_skill_node_set_lzd_slann_mage_priest_high": {
+        "name": "Slann Mage-Priest (High)",
+        "portrait": "vanilla2/lzd_slann_campaign_01_0.webp",
+        "spellLore": "high"
+      },
+      "wh2_main_skill_node_set_lzd_slann_mage_priest_life": {
+        "name": "Slann Mage-Priest (Life)",
+        "portrait": "vanilla2/lzd_slann_campaign_01_0.webp",
+        "spellLore": "life"
+      },
+      "wh2_main_skill_node_set_lzd_slann_mage_priest": {
+        "name": "Slann Mage-Priest (Light)",
+        "portrait": "vanilla2/lzd_slann_campaign_01_0.webp",
+        "spellLore": "light"
+      }
+    },
+    "heroes": {
+      "wh2_dlc12_skill_node_set_lzd_lord_kroak": {
+        "name": "Lord Kroak",
+        "portrait": "vanilla2/lzd_lord_kroak_platform_0.webp",
+        "priority": true,
+        "spellLore": "mixed"
+      },
+      "wh2_main_skill_node_set_lzd_saurus_scar_veteran": {
+        "name": "Saurus Scar-Veteran",
+        "portrait": "vanilla2/lzd_hero_saurus_scar_veteran_campaign_01_0.webp"
+      },
+      "wh2_main_skill_node_set_lzd_skink_chief": {
+        "name": "Skink Chief",
+        "portrait": "vanilla2/lzd_skink_chief_campaign_01_0.webp"
+      },
+      "wh2_dlc17_skill_node_set_lzd_skink_oracle": {
+        "name": "Skink Oracle",
+        "portrait": "vanilla2/lzd_skink_oracle_campaign_01_0.webp",
+        "spellLore": "mixed"
+      },
+      "wh2_main_skill_node_set_lzd_skink_priest_beasts": {
+        "name": "Skink Priest (Beasts)",
+        "portrait": "vanilla2/lzd_skink_priest_campaign_01_0.webp",
+        "spellLore": "beasts"
+      },
+      "wh2_main_skill_node_set_lzd_skink_priest_heavens": {
+        "name": "Skink Priest (Heavens)",
+        "portrait": "vanilla2/lzd_skink_priest_campaign_01_0.webp",
+        "spellLore": "heavens"
+      }
+    }
+  },
+  "nor_norsca": {
+    "lords": {
+      "wh_dlc08_skill_node_set_nor_throgg": {
+        "name": "Throgg",
+        "portrait": "vanilla2/nor_cha_throgg_0.webp",
+        "priority": true
+      },
+      "wh_dlc08_skill_node_set_nor_wulfrik": {
+        "name": "Wulfrik the Wanderer",
+        "portrait": "vanilla2/nor_cha_wulfrik_0.webp",
+        "priority": true
+      },
+      "wh_dlc08_skill_node_set_nor_arzik": {
+        "name": "Azrik the Maze Keeper",
+        "portrait": "vanilla2/chs_ch_arzik_0.webp",
+        "spellLore": "tzeentch"
+      },
+      "wh_dlc08_skill_node_set_nor_marauder_chieftan": {
+        "name": "Marauder Chieftain",
+        "portrait": "vanilla2/nor_marauder_chieftain_campaign_01_0.webp"
+      }
+    },
+    "heroes": {
+      "wh_dlc08_skill_node_set_nor_fimir_balefiend_fire": {
+        "name": "Fimir Balefiend (Fire)",
+        "portrait": "vanilla2/nor_cha_fimir_balefiend_campaign_01_0.webp",
+        "spellLore": "fire"
+      },
+      "wh_dlc08_skill_node_set_nor_fimir_balefiend_shadow": {
+        "name": "Fimir Balefiend (Shadows)",
+        "portrait": "vanilla2/nor_cha_fimir_balefiend_campaign_01_0.webp",
+        "spellLore": "shadows"
+      },
+      "wh_dlc08_skill_node_set_nor_kihar": {
+        "name": "Kihar the Tormentor",
+        "portrait": "vanilla2/chs_ch_kihar_ie_0.webp",
+        "spellLore": "slaanesh"
+      },
+      "wh_dlc08_skill_node_set_nor_shaman_sorcerer_death": {
+        "name": "Shaman-Sorcerer (Death)",
+        "portrait": "vanilla2/nor_cha_shaman_sorcerer_campaign_01_0.webp",
+        "spellLore": "death"
+      },
+      "wh_dlc08_skill_node_set_nor_shaman_sorcerer_fire": {
+        "name": "Shaman-Sorcerer (Fire)",
+        "portrait": "vanilla2/nor_cha_shaman_sorcerer_campaign_01_0.webp",
+        "spellLore": "fire"
+      },
+      "wh_dlc08_skill_node_set_nor_shaman_sorcerer_metal": {
+        "name": "Shaman-Sorcerer (Metal)",
+        "portrait": "vanilla2/nor_cha_shaman_sorcerer_campaign_01_0.webp",
+        "spellLore": "metal"
+      },
+      "wh_dlc08_skill_node_set_nor_skin_wolf_werekin": {
+        "name": "Skin Wolf Werekin",
+        "portrait": "vanilla2/nor_cha_skin_wolf_werekin_campaign_01_0.webp"
+      }
+    }
+  },
+  "skv_skaven": {
+    "lords": {
+      "wh2_dlc14_skill_node_set_skv_deathmaster_snikch": {
+        "name": "Deathmaster Snikch",
+        "portrait": "vanilla2/skv_snikch_0.webp",
+        "priority": true
+      },
+      "wh2_dlc12_skill_node_set_ikit_claw": {
+        "name": "Ikit Claw",
+        "portrait": "vanilla2/skv_ikit_claw_campaign_0.webp",
+        "priority": true,
+        "spellLore": "ruin"
+      },
+      "wh2_main_skill_node_set_skv_lord_skrolk": {
+        "name": "Lord Skrolk",
+        "portrait": "vanilla2/skv_lord_skrolk_0.webp",
+        "priority": true,
+        "spellLore": "plague"
+      },
+      "wh2_main_skill_node_set_skv_queek_headtaker": {
+        "name": "Queek Headtaker",
+        "portrait": "vanilla2/skv_queek_0.webp",
+        "priority": true
+      },
+      "wh2_dlc16_skill_node_set_skv_throt_the_unclean": {
+        "name": "Throt the Unclean",
+        "portrait": "vanilla2/skv_throt_campaign_0.webp",
+        "priority": true
+      },
+      "wh2_dlc09_skill_node_set_skv_tretch_craventail": {
+        "name": "Tretch Craventail",
+        "portrait": "vanilla2/skv_tretch_craventail_0.webp",
+        "priority": true
+      },
+      "wh2_main_skill_node_set_skv_grey_seer_plague": {
+        "name": "Grey Seer (Plague)",
+        "portrait": "vanilla2/skv_grey_seer_campaign_01_0.webp",
+        "spellLore": "plague"
+      },
+      "wh2_main_skill_node_set_skv_grey_seer_ruin": {
+        "name": "Grey Seer (Ruin)",
+        "portrait": "vanilla2/skv_grey_seer_campaign_01_0.webp",
+        "spellLore": "ruin"
+      },
+      "wh2_dlc14_skill_node_set_skv_master_assassin": {
+        "name": "Master Assassin",
+        "portrait": "vanilla2/skv_assassin_master_campaign_01_0.webp"
+      },
+      "wh2_dlc12_skill_node_set_skv_warlock_master": {
+        "name": "Warlock Master",
+        "portrait": "vanilla2/skv_warlock_master_campaign_01_0.webp",
+        "spellLore": "ruin"
+      },
+      "wh2_main_skill_node_set_skv_warlord": {
+        "name": "Warlord",
+        "portrait": "vanilla2/skv_warlord_campaign_01_0.webp"
+      }
+    },
+    "heroes": {
+      "wh2_dlc16_skill_node_set_skv_ghoritch": {
+        "name": "Ghoritch",
+        "portrait": "vanilla2/skv_ghoritch_0.webp",
+        "priority": true
+      },
+      "wh2_main_skill_node_set_skv_assassin": {
+        "name": "Assassin",
+        "portrait": "vanilla2/skv_assassin_campaign_01_0.webp"
+      },
+      "wh2_dlc16_skill_node_set_skv_chieftain": {
+        "name": "Chieftain",
+        "portrait": "vanilla2/skv_chieftain_campaign_01_0.webp"
+      },
+      "wh2_dlc14_skill_node_set_skv_eshin_sorcerer": {
+        "name": "Eshin Sorcerer",
+        "portrait": "vanilla2/skv_sorcerer_campaign_01_0.webp",
+        "spellLore": "stealth"
+      },
+      "wh2_dlc16_skill_node_set_skv_packmaster": {
+        "name": "Packmaster",
+        "portrait": "vanilla2/skv_packmaster_campaign_01_0.webp"
+      },
+      "wh2_main_skill_node_set_skv_plague_priest": {
+        "name": "Plague Priest",
+        "portrait": "vanilla2/skv_plague_priest_campaign_01_0.webp",
+        "spellLore": "plague"
+      },
+      "wh2_main_skill_node_set_skv_warlock_engineer": {
+        "name": "Warlock Engineer",
+        "portrait": "vanilla2/skv_warlock_engineer_campaign_01_0.webp",
+        "spellLore": "ruin"
+      }
+    }
+  },
+  "tmb_tomb_kings": {
+    "lords": {
+      "wh2_dlc09_skill_node_set_tmb_arkhan": {
+        "name": "Arkhan the Black",
+        "portrait": "vanilla2/tmb_ch_arkhan_0.webp",
+        "priority": true,
+        "spellLore": "death"
+      },
+      "wh2_dlc09_skill_node_set_tmb_khatep": {
+        "name": "Grand Hierophant Khatep",
+        "portrait": "vanilla2/tmb_ch_khatep_0.webp",
+        "priority": true,
+        "spellLore": "nehekhara"
+      },
+      "wh2_dlc09_skill_node_set_tmb_khalida": {
+        "name": "High Queen Khalida",
+        "portrait": "vanilla2/tmb_ch_khalida_campaign_0.webp",
+        "priority": true
+      },
+      "wh2_dlc09_skill_node_set_tmb_settra": {
+        "name": "Settra the Imperishable",
+        "portrait": "vanilla2/tmb_ch_settra_0.webp",
+        "priority": true,
+        "spellLore": "nehekhara"
+      },
+      "wh2_dlc09_skill_node_set_tmb_tomb_king": {
+        "name": "Tomb King",
+        "portrait": "vanilla2/tmb_ch_tomb_king_campaign_01_0.webp"
+      },
+      "wh2_dlc09_skill_node_set_tmb_tomb_king_alkhazzar_ii": {
+        "name": "Alkhazzar II of the Sixth Dynasty",
+        "portrait": "vanilla2/tmb_ch_tomb_king_campaign_01_0.webp",
+        "depriority": true
+      },
+      "wh2_dlc09_skill_node_set_tmb_tomb_king_lahmizzash": {
+        "name": "Lahmizzash of the Fourth Dynasty",
+        "portrait": "vanilla2/tmb_ch_tomb_king_campaign_02_0.webp",
+        "depriority": true
+      },
+      "wh2_dlc09_skill_node_set_tmb_tomb_king_rakhash": {
+        "name": "Rakhash of the Second Dynasty",
+        "portrait": "vanilla2/tmb_ch_tomb_king_campaign_01_0.webp",
+        "depriority": true
+      },
+      "wh2_dlc09_skill_node_set_tmb_tomb_king_setep": {
+        "name": "Setep of the Fifth Dynasty",
+        "portrait": "vanilla2/tmb_ch_tomb_king_campaign_03_0.webp",
+        "depriority": true
+      },
+      "wh2_dlc09_skill_node_set_tmb_tomb_king_thutep": {
+        "name": "Thutep of the Third Dynasty",
+        "portrait": "vanilla2/tmb_ch_tomb_king_campaign_04_0.webp",
+        "depriority": true
+      },
+      "wh2_dlc09_skill_node_set_tmb_tomb_king_wakhaf": {
+        "name": "Wakhaf of the First Dynasty",
+        "portrait": "vanilla2/tmb_ch_tomb_king_campaign_05_0.webp",
+        "depriority": true
+      }
+    },
+    "heroes": {
+      "wh2_dlc09_skill_node_set_tmb_liche_priest_death": {
+        "name": "Liche Priest (Death)",
+        "portrait": "vanilla2/tmb_liche_priest_campaign_01_0.webp",
+        "spellLore": "death"
+      },
+      "wh2_dlc09_skill_node_set_tmb_liche_priest_light": {
+        "name": "Liche Priest (Light)",
+        "portrait": "vanilla2/tmb_liche_priest_campaign_01_0.webp",
+        "spellLore": "light"
+      },
+      "wh2_dlc09_skill_node_set_tmb_liche_priest_nehekhara": {
+        "name": "Liche Priest (Nehekhara)",
+        "portrait": "vanilla2/tmb_liche_priest_campaign_01_0.webp",
+        "spellLore": "nehekhara"
+      },
+      "wh2_dlc09_skill_node_set_tmb_liche_priest_shadow": {
+        "name": "Liche Priest (Shadows)",
+        "portrait": "vanilla2/tmb_liche_priest_campaign_01_0.webp",
+        "spellLore": "shadows"
+      },
+      "wh2_dlc09_skill_node_set_tmb_necrotect": {
+        "name": "Necrotect",
+        "portrait": "vanilla2/tmb_necrotect_campaign_01_0.webp"
+      },
+      "wh2_dlc09_skill_node_set_tmb_tomb_prince": {
+        "name": "Tomb Prince",
+        "portrait": "vanilla2/tmb_ch_tomb_prince_campaign_01_0.webp"
+      }
+    }
+  },
+  "cst_vampire_coast": {
+    "lords": {
+      "wh2_dlc11_skill_node_set_cst_aranessa": {
+        "name": "Aranessa Saltspite",
+        "portrait": "vanilla2/cst_cha_aranessa_saltspite_0.webp",
+        "priority": true
+      },
+      "wh2_dlc11_skill_node_set_cst_noctilus": {
+        "name": "Count Noctilus",
+        "portrait": "vanilla2/cst_cha_count_noctilus_0.webp",
+        "priority": true,
+        "spellLore": "mixed"
+      },
+      "wh2_dlc11_skill_node_set_cst_cylostra": {
+        "name": "Cylostra Direfin",
+        "portrait": "vanilla2/cst_cylostra_0.webp",
+        "priority": true,
+        "spellLore": "deep"
+      },
+      "wh2_dlc11_skill_node_set_cst_harkon": {
+        "name": "Luthor Harkon",
+        "portrait": "vanilla2/cst_cha_luthor_harkon_0.webp",
+        "priority": true
+      },
+      "wh2_dlc11_skill_node_set_cst_admiral_fem_death": {
+        "name": "Vampire Fleet Admiral (Pistol - Death)",
+        "portrait": "vanilla2/cst_cha_vampire_fleet_admiral_female_campaign_01_0.webp",
+        "spellLore": "death"
+      },
+      "wh2_dlc11_skill_node_set_cst_admiral_fem_deep": {
+        "name": "Vampire Fleet Admiral (Pistol - Deep)",
+        "portrait": "vanilla2/cst_cha_vampire_fleet_admiral_female_campaign_01_0.webp",
+        "spellLore": "deep"
+      },
+      "wh2_dlc11_skill_node_set_cst_admiral_fem": {
+        "name": "Vampire Fleet Admiral (Pistol - Vampires)",
+        "portrait": "vanilla2/cst_cha_vampire_fleet_admiral_female_campaign_01_0.webp",
+        "spellLore": "vampires"
+      },
+      "wh2_dlc11_skill_node_set_cst_admiral_death": {
+        "name": "Vampire Fleet Admiral (Polearm - Death)",
+        "portrait": "vanilla2/cst_vampire_fleet_admiral_male_campaign_01_0.webp",
+        "spellLore": "death"
+      },
+      "wh2_dlc11_skill_node_set_cst_admiral_deep": {
+        "name": "Vampire Fleet Admiral (Polearm - Deep)",
+        "portrait": "vanilla2/cst_vampire_fleet_admiral_male_campaign_01_0.webp",
+        "spellLore": "deep"
+      },
+      "wh2_dlc11_skill_node_set_cst_admiral": {
+        "name": "Vampire Fleet Admiral (Polearm - Vampires)",
+        "portrait": "vanilla2/cst_vampire_fleet_admiral_male_campaign_01_0.webp",
+        "spellLore": "vampires"
+      },
+      "wh2_dlc_11_skill_node_set_cst_admiral_tech_03": {
+        "name": "Burke Black (Polearm - Death)",
+        "portrait": "vanilla2/cst_vampire_fleet_admiral_male_campaign_01_0.webp",
+        "depriority": true,
+        "spellLore": "death"
+      },
+      "wh2_dlc_11_skill_node_set_cst_admiral_tech_02": {
+        "name": "O'Bones Macdonald (Polearm - Deep)",
+        "portrait": "vanilla2/cst_vampire_fleet_admiral_male_campaign_01_0.webp",
+        "depriority": true,
+        "spellLore": "deep"
+      },
+      "wh2_dlc_11_skill_node_set_cst_admiral_tech_01": {
+        "name": "Trusty Montford (Polearm - Vampires)",
+        "portrait": "vanilla2/cst_vampire_fleet_admiral_male_campaign_01_0.webp",
+        "depriority": true,
+        "spellLore": "vampires"
+      },
+      "wh2_dlc_11_skill_node_set_cst_admiral_tech_04": {
+        "name": "Two Toes Adley (Pistol - Deep)",
+        "portrait": "vanilla2/cst_cha_vampire_fleet_admiral_female_campaign_04_0.webp",
+        "depriority": true,
+        "spellLore": "deep"
+      }
+    },
+    "heroes": {
+      "wh2_dlc11_skill_node_set_cst_ghost_paladin": {
+        "name": "Damned Paladin",
+        "portrait": "vanilla2/cst_damned_paladin_0.webp"
+      },
+      "wh2_dlc11_skill_node_set_cst_gunnery_wight": {
+        "name": "Gunnery Wight",
+        "portrait": "vanilla2/cst_gunnery_wight_campaign_01_0.webp"
+      },
+      "wh2_dlc11_skill_node_set_cst_mourngul": {
+        "name": "Mourngul Haunter",
+        "portrait": "vanilla2/cst_mourngul_haunter_campaign_01_0.webp"
+      },
+      "wh2_dlc11_skill_node_set_cst_fleet_captain_death": {
+        "name": "Vampire Fleet Captain (Death)",
+        "portrait": "vanilla2/cst_fleet_captain_campaign_01_0.webp",
+        "spellLore": "death"
+      },
+      "wh2_dlc11_skill_node_set_cst_fleet_captain_deep": {
+        "name": "Vampire Fleet Captain (Deep)",
+        "portrait": "vanilla2/cst_fleet_captain_campaign_01_0.webp",
+        "spellLore": "deep"
+      },
+      "wh2_dlc11_skill_node_set_cst_fleet_captain": {
+        "name": "Vampire Fleet Captain (Vampires)",
+        "portrait": "vanilla2/cst_fleet_captain_campaign_01_0.webp",
+        "spellLore": "vampires"
+      }
+    }
+  },
+  "vmp_vampire_counts": {
+    "lords": {
+      "wh_main_skill_node_set_vmp_heinrich": {
+        "name": "Heinrich Kemmler",
+        "portrait": "vanilla2/vmp_ch_heinrich_0.webp",
+        "priority": true,
+        "spellLore": "vampires"
+      },
+      "wh_dlc04_skill_node_set_vmp_helman_ghorst": {
+        "name": "Helman Ghorst",
+        "portrait": "vanilla2/vmp_ch_master_necromancer_helman_0.webp",
+        "priority": true,
+        "spellLore": "vampires"
+      },
+      "wh_pro02_skill_node_set_vmp_isabella_von_carstein": {
+        "name": "Isabella von Carstein",
+        "portrait": "vanilla2/vmp_ch_isabella_0.webp",
+        "priority": true,
+        "spellLore": "vampires"
+      },
+      "wh_main_skill_node_set_vmp_mannfred": {
+        "name": "Mannfred von Carstein",
+        "portrait": "vanilla2/vmp_ch_mannfred_0.webp",
+        "priority": true,
+        "spellLore": "vampires"
+      },
+      "wh_dlc05_skill_node_set_vmp_red_duke": {
+        "name": "The Red Duke",
+        "portrait": "vanilla2/vmp_the_red_duke_0.webp",
+        "priority": true,
+        "spellLore": "vampires"
+      },
+      "wh_dlc04_skill_node_set_vmp_vlad_von_carstein": {
+        "name": "Vlad von Carstein",
+        "portrait": "vanilla2/vmp_ch_vlad_0.webp",
+        "priority": true,
+        "spellLore": "vampires"
+      },
+      "wh2_dlc11_skill_node_set_vmp_bloodline_blood_dragon_lord": {
+        "name": "Blood Dragon Vampire Lord",
+        "portrait": "vanilla2/vmp_bloodline_blood_dragon_lord_campaign_01_0.webp",
+        "spellLore": "vampires"
+      },
+      "wh2_dlc11_skill_node_set_vmp_bloodline_lahmian_lord": {
+        "name": "Lahmian Vampire Lord",
+        "portrait": "vanilla2/vmp_bloodline_lahmian_lord_campaign_01_0.webp",
+        "spellLore": "mixed"
+      },
+      "wh_main_skill_node_set_vmp_master_necromancer": {
+        "name": "Master Necromancer",
+        "portrait": "vanilla2/vmp_master_necromancer_campaign_01_0.webp",
+        "spellLore": "vampires"
+      },
+      "wh2_dlc11_skill_node_set_vmp_bloodline_necrarch_lord": {
+        "name": "Necrarch Vampire Lord",
+        "portrait": "vanilla2/vmp_bloodline_necrarch_lord_campaign_01_0.webp",
+        "spellLore": "mixed"
+      },
+      "wh_dlc04_skill_node_set_vmp_strigoi_ghoul_king": {
+        "name": "Strigoi Ghoul King",
+        "portrait": "vanilla2/vmp_strigoi_campaign_01_0.webp",
+        "spellLore": "mixed"
+      },
+      "wh2_dlc11_skill_node_set_vmp_bloodline_strigoi_lord": {
+        "name": "Strigoi Vampire Lord",
+        "portrait": "vanilla2/vmp_bloodline_strigoi_lord_campaign_01_0.webp",
+        "spellLore": "mixed"
+      },
+      "wh_main_skill_node_set_vmp_lord": {
+        "name": "Vampire Lord",
+        "portrait": "vanilla2/vmp_vampire_lords_sword_campaign_01_0.webp",
+        "spellLore": "vampires"
+      },
+      "wh2_dlc11_skill_node_set_vmp_bloodline_von_carstein_lord": {
+        "name": "Von Carstein Vampire Lord",
+        "portrait": "vanilla2/vmp_bloodline_von_carstein_lord_campaign_01_0.webp",
+        "spellLore": "mixed"
+      }
+    },
+    "heroes": {
+      "wh2_dlc17_node_set_vmp_kevon_lloydstein": {
+        "name": "Kevin von Lloydstein",
+        "portrait": "vanilla2/vmp_wight_king_sword_campaign_03_0.webp",
+        "priority": true
+      },
+      "wh2_main_skill_node_set_vmp_banshee": {
+        "name": "Banshee",
+        "portrait": "vanilla2/vmp_banshees_campaign_01_0.webp"
+      },
+      "wh_main_skill_node_set_vmp_necromancer": {
+        "name": "Necromancer",
+        "portrait": "vanilla2/vmp_necromancer_campaign_01_0.webp",
+        "spellLore": "vampires"
+      },
+      "wh_main_skill_node_set_vmp_vampire": {
+        "name": "Vampire (Death)",
+        "portrait": "vanilla2/vmp_vampire_female_campaign_01_0.webp",
+        "spellLore": "death"
+      },
+      "wh_dlc05_skill_node_set_vmp_vampire_shadow": {
+        "name": "Vampire (Shadows)",
+        "portrait": "vanilla2/vmp_vampire_female_campaign_01_0.webp",
+        "spellLore": "shadows"
+      },
+      "wh2_main_skill_node_set_vmp_wight_king": {
+        "name": "Wight King",
+        "portrait": "vanilla2/vmp_wight_king_sword_campaign_01_0.webp"
+      }
+    }
+  },
+  "chs_chaos": {
+    "lords": {
+      "wh_main_skill_node_set_chs_archaon": {
+        "name": "Archaon the Everchosen",
+        "portrait": "vanilla2/chs_ch_archaon_0.webp",
+        "priority": true,
+        "spellLore": "mixed"
+      },
+      "wh_main_skill_node_set_chs_kholek": {
+        "name": "Kholek Suneater",
+        "portrait": "vanilla2/chs_kholek_suneater_0.webp",
+        "priority": true
+      },
+      "wh_main_skill_node_set_chs_sigvald": {
+        "name": "Prince Sigvald the Magnificent",
+        "portrait": "vanilla2/chs_ch_sigvald_0.webp",
+        "priority": true
+      },
+      "wh_main_skill_node_set_chs_lord": {
+        "name": "Chaos Lord",
+        "portrait": "vanilla2/chs_chaos_lord_campaign_01_0.webp"
+      },
+      "wh_main_skill_node_set_chs_sorcerer_lord_death": {
+        "name": "Chaos Sorcerer Lord (Death)",
+        "portrait": "vanilla2/chs_sorcerer_lord_campaign_01_0.webp",
+        "spellLore": "death"
+      },
+      "wh_main_skill_node_set_chs_sorcerer_lord_fire": {
+        "name": "Chaos Sorcerer Lord (Fire)",
+        "portrait": "vanilla2/chs_sorcerer_lord_campaign_01_0.webp",
+        "spellLore": "fire"
+      },
+      "wh_main_skill_node_set_chs_sorcerer_lord_metal": {
+        "name": "Chaos Sorcerer Lord (Metal)",
+        "portrait": "vanilla2/chs_sorcerer_lord_campaign_01_0.webp",
+        "spellLore": "metal"
+      },
+      "wh_dlc07_skill_node_set_chs_sorcerer_lord_shadow": {
+        "name": "Chaos Sorcerer Lord (Shadows)",
+        "portrait": "vanilla2/chs_sorcerer_lord_campaign_01_0.webp",
+        "spellLore": "shadows"
+      },
+      "wh_main_skill_node_set_chs_lord_of_change": {
+        "name": "Sarthorael the Everwatcher",
+        "portrait": "vanilla3/dae_exalted_lord_of_change_campaign_01_0.webp",
+		"spellLore": "metal"
+      }
+    },
+    "heroes": {
+      "wh_main_skill_node_set_chs_chaos_sorcerer_death": {
+        "name": "Chaos Sorcerer (Death)",
+        "portrait": "vanilla2/chs_sorcerer_campaign_01_0.webp",
+        "spellLore": "death"
+      },
+      "wh_main_skill_node_set_chs_chaos_sorcerer_fire": {
+        "name": "Chaos Sorcerer (Fire)",
+        "portrait": "vanilla2/chs_sorcerer_campaign_01_0.webp",
+        "spellLore": "fire"
+      },
+      "wh_main_skill_node_set_chs_chaos_sorcerer_metal": {
+        "name": "Chaos Sorcerer (Metal)",
+        "portrait": "vanilla2/chs_sorcerer_campaign_01_0.webp",
+        "spellLore": "metal"
+      },
+      "wh_dlc07_skill_node_set_chs_sorcerer_shadow": {
+        "name": "Chaos Sorcerer (Shadows)",
+        "portrait": "vanilla2/chs_sorcerer_campaign_01_0.webp",
+        "spellLore": "shadows"
+      },
+      "wh2_main_skill_node_set_chs_exalted_hero": {
+        "name": "Exalted Hero",
+        "portrait": "vanilla2/chs_exalted_hero_campaign_01_0.webp"
+      }
+    }
+  },
+  "wef_wood_elves": {
+    "lords": {
+      "wh_dlc16_skill_node_set_wef_drycha": {
+        "name": "Drycha",
+        "portrait": "vanilla2/wef_drycha_0.webp",
+        "priority": true,
+        "spellLore": "shadows"
+      },
+      "wh_dlc05_skill_node_set_wef_durthu": {
+        "name": "Durthu",
+        "portrait": "vanilla2/wef_durthu_0.webp",
+        "priority": true,
+        "spellLore": "beasts"
+      },
+      "wh_dlc05_skill_node_set_wef_orion": {
+        "name": "Orion",
+        "portrait": "vanilla2/wef_orion_0.webp",
+        "priority": true
+      },
+      "wh2_dlc16_skill_node_set_wef_sisters_of_twilight": {
+        "name": "Sisters of Twilight",
+        "portrait": "vanilla2/wef_sisters_of_twilight_campaign_0.webp",
+        "priority": true
+      },
+      "wh_dlc05_skill_node_set_wef_ancient_treeman": {
+        "name": "Ancient Treeman",
+        "portrait": "vanilla2/wef_ancient_treeman_0.webp",
+        "spellLore": "life"
+      },
+      "wh_dlc05_skill_node_set_wef_glade_lord": {
+        "name": "Glade Lord",
+        "portrait": "vanilla2/wef_glade_lord_sword_bow_campaign_01_0.webp"
+      },
+      "wh_dlc05_skill_node_set_wef_glade_lord_fem": {
+        "name": "Glade Lord",
+        "portrait": "vanilla2/wef_glade_female_lord_sword_bow_campaign_01_0.webp"
+      },
+      "wh2_dlc16_skill_node_set_wef_malicious_ancient_treeman_beasts": {
+        "name": "Malevolent Ancient Treeman (Beasts)",
+        "portrait": "vanilla2/wef_ancient_treeman_malicious_0.webp",
+        "spellLore": "beasts"
+      },
+      "wh2_dlc16_skill_node_set_wef_malicious_ancient_treeman_life": {
+        "name": "Malevolent Ancient Treeman (Life)",
+        "portrait": "vanilla2/wef_ancient_treeman_malicious_0.webp",
+        "spellLore": "life"
+      },
+      "wh2_dlc16_skill_node_set_wef_malicious_ancient_treeman_shadows": {
+        "name": "Malevolent Ancient Treeman (Shadows)",
+        "portrait": "vanilla2/wef_ancient_treeman_malicious_0.webp",
+        "spellLore": "shadows"
+      },
+      "wh2_dlc16_skill_node_set_wef_spellweaver_beasts": {
+        "name": "Spellweaver (Beasts)",
+        "portrait": "vanilla2/wef_spellweaver_campaign_01_0.webp",
+        "spellLore": "beasts"
+      },
+      "wh2_dlc16_skill_node_set_wef_spellweaver_dark": {
+        "name": "Spellweaver (Dark)",
+        "portrait": "vanilla2/wef_spellweaver_campaign_01_0.webp",
+        "spellLore": "dark"
+      },
+      "wh2_dlc16_skill_node_set_wef_spellweaver_high": {
+        "name": "Spellweaver (High)",
+        "portrait": "vanilla2/wef_spellweaver_campaign_01_0.webp",
+        "spellLore": "high"
+      },
+      "wh2_dlc16_skill_node_set_wef_spellweaver_life": {
+        "name": "Spellweaver (Life)",
+        "portrait": "vanilla2/wef_spellweaver_campaign_01_0.webp",
+        "spellLore": "life"
+      },
+      "wh2_dlc16_skill_node_set_wef_spellweaver_shadows": {
+        "name": "Spellweaver (Shadows)",
+        "portrait": "vanilla2/wef_spellweaver_campaign_01_0.webp",
+        "spellLore": "shadows"
+      }
+    },
+    "heroes": {
+      "wh_dlc16_skill_node_set_wef_ariel": {
+        "name": "Ariel",
+        "portrait": "vanilla2/wef_ariel_0.webp",
+        "priority": true,
+        "spellLore": "mixed"
+      },
+      "wh_dlc16_skill_node_set_wef_coeddil": {
+        "name": "Coeddil",
+        "portrait": "vanilla2/wef_ancient_treeman_coeddil_0.webp",
+        "priority": true,
+        "spellLore": "mixed"
+      },
+      "wh_dlc05_skill_node_set_wef_branchwraith": {
+        "name": "Branchwraith",
+        "portrait": "vanilla2/wef_branchwraith_0.webp",
+        "spellLore": "mixed"
+      },
+      "wh2_twa02_skill_node_set_wef_glade_captain": {
+        "name": "Glade Captain",
+        "portrait": "vanilla2/wef_glade_captain_campaign_01_0.webp"
+      },
+      "wh2_dlc16_skill_node_set_wef_malicious_branchwraith_beasts": {
+        "name": "Malevolent Branchwraith (Beasts)",
+        "portrait": "vanilla2/wef_branchwraith_malicious_0.webp",
+        "spellLore": "beasts"
+      },
+      "wh2_dlc16_skill_node_set_wef_malicious_branchwraith_life": {
+        "name": "Malevolent Branchwraith (Life)",
+        "portrait": "vanilla2/wef_branchwraith_malicious_0.webp",
+        "spellLore": "life"
+      },
+      "wh2_dlc16_skill_node_set_wef_malicious_branchwraith_shadows": {
+        "name": "Malevolent Branchwraith (Shadows)",
+        "portrait": "vanilla2/wef_branchwraith_malicious_0.webp",
+        "spellLore": "shadows"
+      },
+      "wh_dlc05_skill_node_set_wef_spellsinger_beasts": {
+        "name": "Spellsinger (Beasts)",
+        "portrait": "vanilla2/wef_spellsinger_campaign_01_0.webp",
+        "spellLore": "beasts"
+      },
+      "wh_dlc05_skill_node_set_wef_spellsinger_life": {
+        "name": "Spellsinger (Life)",
+        "portrait": "vanilla2/wef_spellsinger_campaign_01_0.webp",
+        "spellLore": "life"
+      },
+      "wh_dlc05_skill_node_set_wef_spellsinger_shadow": {
+        "name": "Spellsinger (Shadows)",
+        "portrait": "vanilla2/wef_spellsinger_campaign_01_0.webp",
+        "spellLore": "shadows"
+      },
+      "wh_dlc05_skill_node_set_wef_waystalker": {
+        "name": "Waystalker",
+        "portrait": "vanilla2/wef_waystalkers_campaign_01_0.webp"
+      }
+    }
+  }
+}

@@ -1,11 +1,11 @@
 import { readJSONSync } from 'fs-extra';
 import { CharacterInterface, CharacterListInterface } from '../@types/CharacterListInterface';
-import { CompGroupsInterface } from '../processTables/outputCompilationGroups';
 import subcultureMap from '../lists/subcultureMap';
 import vanillaCharacters from '../lists/vanillaCharacters';
+import { CompilationGroupsInterface } from '../@types/CompilationGroupsInterface';
 
 export const sortCharacterList = (characterList: CharacterListInterface, folder: string) => {
-  const compilationGroups: CompGroupsInterface = readJSONSync(`./debug/compGroups/${folder}.json`, { throws: false });
+  const compilationGroups: CompilationGroupsInterface = readJSONSync(`./output/compGroups/${folder}.json`, { throws: false });
 
   const massCharList: {
     [modName: string]: {
@@ -45,7 +45,7 @@ export const sortCharacterList = (characterList: CharacterListInterface, folder:
       }
       if (lordData.priority) {
         massCharList[subMod][subcultureKey].lords.prio[lordKey] = lordData;
-      } else if (lordData.priority === false) {
+      } else if (lordData.depriority) {
         massCharList[subMod][subcultureKey].lords.deprio[lordKey] = lordData;
       } else {
         massCharList[subMod][subcultureKey].lords.reg[lordKey] = lordData;
@@ -60,7 +60,7 @@ export const sortCharacterList = (characterList: CharacterListInterface, folder:
       }
       if (heroData.priority) {
         massCharList[subMod][subcultureKey].heroes.prio[heroKey] = heroData;
-      } else if (heroData.priority === false) {
+      } else if (heroData.depriority) {
         massCharList[subMod][subcultureKey].heroes.deprio[heroKey] = heroData;
       } else {
         massCharList[subMod][subcultureKey].heroes.reg[heroKey] = heroData;
@@ -98,10 +98,16 @@ export const sortCharacterList = (characterList: CharacterListInterface, folder:
     });
   });
 
+  Object.keys(sortedCharList).forEach((subcultureKey) => {
+    if (JSON.stringify(sortedCharList[subcultureKey]) === '{"lords":{},"heroes":{}}') {
+      delete sortedCharList[subcultureKey];
+    }
+  });
+
   return sortedCharList;
 };
 
-const getSubMod = (compilationGroups: CompGroupsInterface, agentKey: string) => {
+const getSubMod = (compilationGroups: CompilationGroupsInterface, agentKey: string) => {
   let subMod;
   if (compilationGroups?.nodeSets?.[agentKey] !== undefined) {
     subMod = compilationGroups?.nodeSets?.[agentKey];

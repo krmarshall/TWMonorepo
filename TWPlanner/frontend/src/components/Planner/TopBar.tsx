@@ -21,14 +21,7 @@ interface PropInterface {
 
 const TopBar = ({ isMobile }: PropInterface) => {
   const { state, dispatch } = useContext(AppContext);
-  const {
-    characterBuild,
-    characterData,
-    extrasDrawerOpen,
-    statsDrawerOpen,
-    selectedAltFactionNodeSet,
-    selectedStartPosTrait,
-  } = state;
+  const { characterBuild, characterData, extrasDrawerOpen, statsDrawerOpen, selectedAltFactionNodeSet, selectedStartPosTrait } = state;
   const { mod, faction, character } = useParams();
 
   const [effectiveRank, setEffectiveRank] = useState(1);
@@ -41,9 +34,7 @@ const TopBar = ({ isMobile }: PropInterface) => {
       typeof characterBuild?.startingSkillPoints === 'number' &&
       typeof characterBuild?.autoUnlockSkillPoints === 'number'
     ) {
-      setEffectiveRank(
-        characterBuild?.rank - characterBuild?.startingSkillPoints - characterBuild?.autoUnlockSkillPoints,
-      );
+      setEffectiveRank(characterBuild?.rank - characterBuild?.startingSkillPoints - characterBuild?.autoUnlockSkillPoints);
     }
   }, [characterBuild?.rank, characterBuild?.startingSkillPoints, characterBuild?.autoUnlockSkillPoints]);
 
@@ -51,12 +42,7 @@ const TopBar = ({ isMobile }: PropInterface) => {
     if (!characterData) {
       return;
     }
-    const emptyCharacterBuild = createEmptyCharacterBuild(
-      characterData,
-      mod as string,
-      faction as string,
-      character as string,
-    );
+    const emptyCharacterBuild = createEmptyCharacterBuild(characterData, mod as string, faction as string, character as string);
     dispatch({ type: AppContextActions.changeCharacterBuild, payload: { characterBuild: emptyCharacterBuild } });
   };
 
@@ -65,12 +51,7 @@ const TopBar = ({ isMobile }: PropInterface) => {
       return;
     }
 
-    const buildLink = convertBuildToCode(
-      characterBuild,
-      characterData,
-      selectedAltFactionNodeSet,
-      selectedStartPosTrait,
-    );
+    const buildLink = convertBuildToCode(characterBuild, characterData, selectedAltFactionNodeSet, selectedStartPosTrait);
     navigator.clipboard
       .writeText(buildLink)
       .then(() => {

@@ -1,22 +1,30 @@
 import { useContext } from 'react';
 import { AppContext } from '../../contexts/AppContext';
 import gameData from '../../data/gameData';
+import placeholderImg from '../../imgs/other/0placeholderInvis.webp';
+import ReactImage from '../ReactImage';
 
 // import portholeFrame from '../imgs/other/porthole_frame_battle_load.webp';
 
 const CharacterPortrait = () => {
   const { state } = useContext(AppContext);
-  const { selectedMod, characterData } = state;
+  const { selectedMod, selectedFaction, characterData } = state;
 
-  const imgSrc = gameData[selectedMod].characterImages[characterData?.key as string];
+  const srcList = [
+    `/portraits/${gameData[selectedMod].characters[selectedFaction].lords?.[characterData?.key as string]?.portrait}`,
+    `/portraits/${gameData[selectedMod].characters[selectedFaction].lords?.[characterData?.key as string]?.portrait.replace(selectedMod, 'vanilla3')}`,
+    `/portraits/${gameData[selectedMod].characters[selectedFaction].heroes?.[characterData?.key as string]?.portrait}`,
+    `/portraits/${gameData[selectedMod].characters[selectedFaction].heroes?.[characterData?.key as string]?.portrait.replace(selectedMod, 'vanilla3')}`,
+    placeholderImg,
+  ];
+
   return (
     <div className="absolute place-self-center top-2 bg-gray-700 rounded-full border border-gray-500 drop-shadow-[0.1rem_0.1rem_0.5rem_rgba(0,0,0,0.7)]">
-      <img
-        src={imgSrc}
+      <ReactImage
+        srcList={srcList}
         className="w-[9.5rem] h-[9.5rem] rounded-full drop-shadow-[0.1rem_0.1rem_0.5rem_rgba(0,0,0,0.7)]"
-        draggable={false}
-        width="164"
-        height="164"
+        w="164"
+        h="164"
         alt="Character Portrait"
       />
     </div>

@@ -32,7 +32,7 @@ const CharacterCell = ({ charKey, char, charImage, spellLore, charMod, handleCha
         <h2 className="w-36 text-center text-2xl text-shadow text-gray-200 mb-2">{char?.name}</h2>
         <div className="flex flex-row justify-center relative">
           <ReactImage
-            srcList={[charImage as string, placeholderImg]}
+            srcList={[charImage as string, charImage?.replace(selectedMod, 'vanilla3') as string, placeholderImg]}
             className="w-32 mb-1 rounded-full drop-shadow-[0.1rem_0.1rem_0.5rem_rgba(0,0,0,0.7)]"
             alt={`${char?.name} icon`}
             w="96"
@@ -48,9 +48,7 @@ const CharacterCell = ({ charKey, char, charImage, spellLore, charMod, handleCha
             />
           )}
         </div>
-        {charMod !== undefined && (
-          <h3 className="w-32 mx-auto text-base text-center text-shadow text-gray-200">{charMod}</h3>
-        )}
+        {charMod !== undefined && <h3 className="w-32 mx-auto text-base text-center text-shadow text-gray-200">{charMod}</h3>}
       </a>
     </li>
   );

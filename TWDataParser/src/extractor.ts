@@ -265,7 +265,7 @@ export default class Extractor {
 
     Object.entries(hardcodePortraitData).forEach((entry) => {
       const nodeSetKey = entry[0];
-      const portraitFile = entry[1];
+      const portraitFile = basename(entry[1], '.webp');
       const portraitPaths = sync(`./extracted_files/${this.#folder}/ui/portraits/portholes/**/${portraitFile}.png`);
       if (portraitPaths.length !== 0) {
         const path = portraitPaths[0].replace(`./extracted_files/${this.#folder}/`, '');

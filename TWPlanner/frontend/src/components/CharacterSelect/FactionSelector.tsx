@@ -28,25 +28,18 @@ const FactionSelector = () => {
 
   const filterCurrentModFactions = () => {
     const gameCompGroups = gameData[selectedMod].compilationGroups;
-    if (gameCompGroups !== undefined) {
+    if (gameCompGroups === undefined) {
+      return gameData[selectedMod].factions;
+    } else {
       const validFactions: { [key: string]: string } = {};
       const currentModCharacters = gameData[selectedMod].characters;
 
-      // O(n^3) Lawd He Comin
-      Object.keys(gameCompGroups).forEach((compGroup) => {
-        if (selectedCompGroups.includes(compGroup)) {
-          // Could short circuit the for loop when charKey is found in a faction once, but chars can be in multiple factions so dont
-          Object.keys(gameCompGroups[compGroup]).forEach((charKey) => {
-            Object.keys(currentModCharacters).forEach((factionKey) => {
-              if (
-                currentModCharacters[factionKey].lords[charKey] !== undefined ||
-                currentModCharacters[factionKey].heroes[charKey] !== undefined
-              ) {
-                validFactions[factionKey] = factionKey;
-              }
-            });
-          });
-        }
+      Object.keys(currentModCharacters).forEach((subcultureKey) => {
+        Object.values(currentModCharacters[subcultureKey].lords).forEach((lord) => {
+          if (lord.folder !== undefined && selectedCompGroups.includes(lord.folder)) {
+            validFactions[subcultureKey] = subcultureKey;
+          }
+        });
       });
       // Remove invalid factions while preserving manual ordering
       const cloneFaction = JSON.parse(JSON.stringify(gameData[selectedMod].factions));
@@ -56,8 +49,6 @@ const FactionSelector = () => {
         }
       });
       return cloneFaction;
-    } else {
-      return gameData[selectedMod].factions;
     }
   };
 
@@ -88,13 +79,7 @@ const FactionSelector = () => {
             </span>
           }
         >
-          <img
-            src={shareIcon}
-            className="w-6 h-6 m-auto cursor-pointer"
-            width="24"
-            height="24"
-            onClick={shareHandler}
-          />
+          <img src={shareIcon} className="w-6 h-6 m-auto cursor-pointer" width="24" height="24" onClick={shareHandler} />
         </TooltipWrapper>
         <hr className="grow mt-[1.25rem] opacity-50" />
       </div>
@@ -118,8 +103,7 @@ const FactionSelector = () => {
             }
 
             const factionName = gameData[selectedMod]?.factions[factionKey];
-            let liClassName =
-              'flex-col m-1 p-1.5 border border-gray-500 shadow-lg shadow-gray-800/60 rounded-lg hover-scale';
+            let liClassName = 'flex-col m-1 p-1.5 border border-gray-500 shadow-lg shadow-gray-800/60 rounded-lg hover-scale';
 
             if (factionKey === state.selectedFaction) {
               liClassName += ' bg-gray-600 hover:bg-gray-500/80 scale-105';

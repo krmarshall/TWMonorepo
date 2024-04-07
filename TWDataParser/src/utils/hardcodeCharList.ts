@@ -1,9 +1,11 @@
 import { CharacterListInterface } from '../@types/CharacterListInterface';
 import { SpellLores } from '../@types/SpellLoresRef';
 
-export const hardcodeNames = (characterList: CharacterListInterface) => {
+const regexp = /\((?<loreName>[a-zA-Z]*)\)/;
+export const hardcodeCharListData = (characterList: CharacterListInterface) => {
   Object.keys(characterList).forEach((subcultureKey) => {
     Object.keys(characterList[subcultureKey].lords).forEach((lordKey) => {
+      // Name
       if (hardCodeNameData[lordKey] !== undefined) {
         characterList[subcultureKey].lords[lordKey].name = hardCodeNameData[lordKey].name;
         if (hardCodeNameData[lordKey].priority) {
@@ -12,39 +14,11 @@ export const hardcodeNames = (characterList: CharacterListInterface) => {
           characterList[subcultureKey].lords[lordKey].depriority = true;
         }
       }
-    });
-    Object.keys(characterList[subcultureKey].heroes).forEach((heroKey) => {
-      if (hardCodeNameData[heroKey] !== undefined) {
-        characterList[subcultureKey].heroes[heroKey].name = hardCodeNameData[heroKey].name;
-        if (hardCodeNameData[heroKey].priority) {
-          characterList[subcultureKey].heroes[heroKey].priority = true;
-        } else if (hardCodeNameData[heroKey].priority === false) {
-          characterList[subcultureKey].heroes[heroKey].depriority = true;
-        }
-      }
-    });
-  });
-};
-
-export const hardcodePortraits = (characterList: CharacterListInterface) => {
-  Object.keys(characterList).forEach((subcultureKey) => {
-    Object.keys(characterList[subcultureKey].lords).forEach((lordKey) => {
+      // Portrait
       if (hardcodePortraitData[lordKey] !== undefined) {
         characterList[subcultureKey].lords[lordKey].portrait = hardcodePortraitData[lordKey];
       }
-    });
-    Object.keys(characterList[subcultureKey].heroes).forEach((heroKey) => {
-      if (hardcodePortraitData[heroKey] !== undefined) {
-        characterList[subcultureKey].heroes[heroKey].portrait = hardcodePortraitData[heroKey];
-      }
-    });
-  });
-};
-
-const regexp = /\((?<loreName>[a-zA-Z]*)\)/;
-export const hardcodeSpellLores = (characterList: CharacterListInterface) => {
-  Object.keys(characterList).forEach((subcultureKey) => {
-    Object.keys(characterList[subcultureKey].lords).forEach((lordKey) => {
+      // SpellLore
       if (hardcodeSpellLoreData[lordKey] !== undefined) {
         characterList[subcultureKey].lords[lordKey].spellLore = hardcodeSpellLoreData[lordKey];
       } else {
@@ -54,6 +28,20 @@ export const hardcodeSpellLores = (characterList: CharacterListInterface) => {
       }
     });
     Object.keys(characterList[subcultureKey].heroes).forEach((heroKey) => {
+      // Name
+      if (hardCodeNameData[heroKey] !== undefined) {
+        characterList[subcultureKey].heroes[heroKey].name = hardCodeNameData[heroKey].name;
+        if (hardCodeNameData[heroKey].priority) {
+          characterList[subcultureKey].heroes[heroKey].priority = true;
+        } else if (hardCodeNameData[heroKey].priority === false) {
+          characterList[subcultureKey].heroes[heroKey].depriority = true;
+        }
+      }
+      // Portrait
+      if (hardcodePortraitData[heroKey] !== undefined) {
+        characterList[subcultureKey].heroes[heroKey].portrait = hardcodePortraitData[heroKey];
+      }
+      // SpellLore
       if (hardcodeSpellLoreData[heroKey] !== undefined) {
         characterList[subcultureKey].heroes[heroKey].spellLore = hardcodeSpellLoreData[heroKey];
       } else {
@@ -78,7 +66,13 @@ const hardCodeNameData: { [nodeSetKey: string]: { name: string; priority?: boole
   wh2_dlc_11_skill_node_set_cst_admiral_tech_02: { name: "O'Bones Macdonald (Polearm - Deep)", priority: false },
   wh2_dlc_11_skill_node_set_cst_admiral_tech_03: { name: 'Burke Black (Polearm - Death)', priority: false },
   wh2_dlc_11_skill_node_set_cst_admiral_tech_04: { name: 'Two Toes Adley (Pistol - Deep)', priority: false },
-  wh2_dlc17_node_set_vmp_kevon_lloydstein: { name: 'Kevin von Lloydstein', priority: true },
+  wh2_dlc17_node_set_vmp_kevon_lloydstein: { name: 'Kevin von Lloydstein' },
+  wh3_dlc24_skill_node_set_cth_celestial_general_yang: { name: 'Celestial General (Yang)' },
+  wh3_dlc24_skill_node_set_cth_celestial_general_yin: { name: 'Celestial General (Yin)' },
+  wh3_main_skill_node_set_cth_lord_magistrate_yang: { name: 'Lord Magistrate (Yang)' },
+  wh3_main_skill_node_set_cth_lord_magistrate_yin: { name: 'Lord Magistrate (Yin)' },
+  wh3_main_skill_node_set_cth_lord_caravan_master: { name: 'Caravan Master', priority: false },
+  wh3_main_skill_node_set_ksl_ataman: { name: 'Ataman' },
 
   dread_traitor_tomb_king_nebwaneph: { name: 'Traitor King Nebwaneph' },
   dread_traitor_tomb_king_omanhan_iii: { name: 'Traitor King Omanhan III' },
@@ -87,72 +81,86 @@ const hardCodeNameData: { [nodeSetKey: string]: { name: string; priority?: boole
   bc_kreegrix: { name: 'The Ravener Lord Kreegrix', priority: false },
   bc_blistrox: { name: 'Spreader of the Word Lord Blistrox', priority: false },
   bc_grilok: { name: 'Pontifex of Plagues Lord Grilok', priority: false },
+  rhox_torinubar_skill_node_set_hef_convoy: { name: 'Prince (Convoy)' },
 };
 
 export const hardcodePortraitData: { [nodeSetKey: string]: string } = {
-  wh_dlc06_skill_node_set_dwf_thane_ghost_2: 'dwf_thane_ghost_02_0',
-  wh2_dlc15_skill_node_set_hef_archmage_beasts: 'hef_archmage_campaign_01_0',
-  wh2_dlc15_skill_node_set_hef_archmage_death: 'hef_archmage_campaign_01_0',
-  wh2_dlc15_skill_node_set_hef_archmage_fire: 'hef_archmage_campaign_01_0',
-  wh2_dlc15_skill_node_set_hef_archmage_heavens: 'hef_archmage_campaign_01_0',
-  wh2_dlc15_skill_node_set_hef_archmage_life: 'hef_archmage_campaign_01_0',
-  wh2_dlc15_skill_node_set_hef_archmage_light: 'hef_archmage_campaign_01_0',
-  wh2_dlc15_skill_node_set_hef_archmage_metal: 'hef_archmage_campaign_01_0',
-  wh2_dlc15_skill_node_set_hef_archmage_shadows: 'hef_archmage_campaign_01_0',
-  wh2_dlc15_skill_node_set_hef_mage_beasts: 'hef_mage_campaign_01_0',
-  wh2_dlc15_skill_node_set_hef_mage_death: 'hef_mage_campaign_01_0',
-  wh2_dlc15_skill_node_set_hef_mage_fire: 'hef_mage_campaign_01_0',
-  wh2_dlc10_skill_node_set_hef_mage_heavens: 'hef_mage_campaign_01_0',
-  wh2_main_skill_node_set_hef_mage_life: 'hef_mage_campaign_01_0',
-  wh2_main_skill_node_set_hef_mage_light: 'hef_mage_campaign_01_0',
-  wh2_dlc15_skill_node_set_hef_mage_metal: 'hef_mage_campaign_01_0',
-  wh2_dlc10_skill_node_set_hef_mage_shadows: 'hef_mage_campaign_01_0',
-  wh3_main_skill_node_set_ksl_ice_witch_tempest: 'ksl_ice_witch_campaign_01_0',
-  wh2_main_skill_node_set_lzd_slann_mage_priest_beasts: 'lzd_slann_campaign_01_0',
-  wh2_main_skill_node_set_lzd_slann_mage_priest_death: 'lzd_slann_campaign_01_0',
-  wh2_main_skill_node_set_lzd_slann_mage_priest_metal: 'lzd_slann_campaign_01_0',
-  wh2_main_skill_node_set_lzd_slann_mage_priest_shadows: 'lzd_slann_campaign_01_0',
-  wh2_main_skill_node_set_lzd_slann_mage_priest_fire: 'lzd_slann_campaign_01_0',
-  wh2_main_skill_node_set_lzd_slann_mage_priest_heavens: 'lzd_slann_campaign_01_0',
-  wh2_main_skill_node_set_lzd_slann_mage_priest_high: 'lzd_slann_campaign_01_0',
-  wh2_main_skill_node_set_lzd_slann_mage_priest_life: 'lzd_slann_campaign_01_0',
-  wh_dlc08_skill_node_set_nor_shaman_sorcerer_fire: 'nor_cha_shaman_sorcerer_campaign_01_0',
-  wh_dlc08_skill_node_set_nor_shaman_sorcerer_metal: 'nor_cha_shaman_sorcerer_campaign_01_0',
-  wh2_dlc_11_skill_node_set_cst_admiral_tech_03: 'cst_vampire_fleet_admiral_male_campaign_01_0',
-  wh2_dlc_11_skill_node_set_cst_admiral_tech_02: 'cst_vampire_fleet_admiral_male_campaign_01_0',
-  wh2_dlc16_skill_node_set_wef_spellweaver_dark: 'wef_spellweaver_campaign_01_0',
-  wh2_dlc16_skill_node_set_wef_spellweaver_high: 'wef_spellweaver_campaign_01_0',
-  wh2_dlc16_skill_node_set_wef_spellweaver_life: 'wef_spellweaver_campaign_01_0',
-  wh2_dlc16_skill_node_set_wef_spellweaver_shadows: 'wef_spellweaver_campaign_01_0',
-  wh_dlc05_skill_node_set_wef_spellsinger_life: 'wef_spellsinger_campaign_01_0',
-  wh_dlc05_skill_node_set_wef_spellsinger_shadow: 'wef_spellsinger_campaign_01_0',
+  wh_dlc06_skill_node_set_dwf_thane_ghost_2: 'vanilla3/dwf_thane_ghost_02_0.webp',
+  wh2_dlc15_skill_node_set_hef_archmage_beasts: 'vanilla3/hef_archmage_campaign_01_0.webp',
+  wh2_dlc15_skill_node_set_hef_archmage_death: 'vanilla3/hef_archmage_campaign_01_0.webp',
+  wh2_dlc15_skill_node_set_hef_archmage_fire: 'vanilla3/hef_archmage_campaign_01_0.webp',
+  wh2_dlc15_skill_node_set_hef_archmage_heavens: 'vanilla3/hef_archmage_campaign_01_0.webp',
+  wh2_dlc15_skill_node_set_hef_archmage_life: 'vanilla3/hef_archmage_campaign_01_0.webp',
+  wh2_dlc15_skill_node_set_hef_archmage_light: 'vanilla3/hef_archmage_campaign_01_0.webp',
+  wh2_dlc15_skill_node_set_hef_archmage_metal: 'vanilla3/hef_archmage_campaign_01_0.webp',
+  wh2_dlc15_skill_node_set_hef_archmage_shadows: 'vanilla3/hef_archmage_campaign_01_0.webp',
+  wh2_dlc15_skill_node_set_hef_mage_beasts: 'vanilla3/hef_mage_campaign_01_0.webp',
+  wh2_dlc15_skill_node_set_hef_mage_death: 'vanilla3/hef_mage_campaign_01_0.webp',
+  wh2_dlc15_skill_node_set_hef_mage_fire: 'vanilla3/hef_mage_campaign_01_0.webp',
+  wh2_dlc10_skill_node_set_hef_mage_heavens: 'vanilla3/hef_mage_campaign_01_0.webp',
+  wh2_main_skill_node_set_hef_mage_life: 'vanilla3/hef_mage_campaign_01_0.webp',
+  wh2_main_skill_node_set_hef_mage_light: 'vanilla3/hef_mage_campaign_01_0.webp',
+  wh2_dlc15_skill_node_set_hef_mage_metal: 'vanilla3/hef_mage_campaign_01_0.webp',
+  wh2_dlc10_skill_node_set_hef_mage_shadows: 'vanilla3/hef_mage_campaign_01_0.webp',
+  wh3_main_skill_node_set_ksl_ice_witch_tempest: 'vanilla3/ksl_ice_witch_campaign_01_0.webp',
+  wh2_main_skill_node_set_lzd_slann_mage_priest_beasts: 'vanilla3/lzd_slann_campaign_01_0.webp',
+  wh2_main_skill_node_set_lzd_slann_mage_priest_death: 'vanilla3/lzd_slann_campaign_01_0.webp',
+  wh2_main_skill_node_set_lzd_slann_mage_priest_metal: 'vanilla3/lzd_slann_campaign_01_0.webp',
+  wh2_main_skill_node_set_lzd_slann_mage_priest_shadows: 'vanilla3/lzd_slann_campaign_01_0.webp',
+  wh2_main_skill_node_set_lzd_slann_mage_priest_fire: 'vanilla3/lzd_slann_campaign_01_0.webp',
+  wh2_main_skill_node_set_lzd_slann_mage_priest_heavens: 'vanilla3/lzd_slann_campaign_01_0.webp',
+  wh2_main_skill_node_set_lzd_slann_mage_priest_high: 'vanilla3/lzd_slann_campaign_01_0.webp',
+  wh2_main_skill_node_set_lzd_slann_mage_priest_life: 'vanilla3/lzd_slann_campaign_01_0.webp',
+  wh_dlc08_skill_node_set_nor_shaman_sorcerer_fire: 'vanilla3/nor_cha_shaman_sorcerer_campaign_01_0.webp',
+  wh_dlc08_skill_node_set_nor_shaman_sorcerer_metal: 'vanilla3/nor_cha_shaman_sorcerer_campaign_01_0.webp',
+  wh2_dlc_11_skill_node_set_cst_admiral_tech_03: 'vanilla3/cst_vampire_fleet_admiral_male_campaign_01_0.webp',
+  wh2_dlc_11_skill_node_set_cst_admiral_tech_02: 'vanilla3/cst_vampire_fleet_admiral_male_campaign_01_0.webp',
+  wh2_dlc16_skill_node_set_wef_spellweaver_dark: 'vanilla3/wef_spellweaver_campaign_01_0.webp',
+  wh2_dlc16_skill_node_set_wef_spellweaver_high: 'vanilla3/wef_spellweaver_campaign_01_0.webp',
+  wh2_dlc16_skill_node_set_wef_spellweaver_life: 'vanilla3/wef_spellweaver_campaign_01_0.webp',
+  wh2_dlc16_skill_node_set_wef_spellweaver_shadows: 'vanilla3/wef_spellweaver_campaign_01_0.webp',
+  wh_dlc05_skill_node_set_wef_spellsinger_life: 'vanilla3/wef_spellsinger_campaign_01_0.webp',
+  wh_dlc05_skill_node_set_wef_spellsinger_shadow: 'vanilla3/wef_spellsinger_campaign_01_0.webp',
+  wh3_main_skill_node_set_dae_daemon_prince: 'vanilla3/dae_prince_0.webp',
 
-  Helgar_longplaits: 'helgar_longplaits',
-  skill_node_set_hkrul_erkstein: 'hkrul_erkstein',
-  skill_node_set_hkrul_gunter: 'hkrul_gunter',
-  skill_node_set_hkrul_aldred: 'hkrul_aldred',
-  dread_possessed_hero_02: 'dread_possessed_hero_02',
-  skill_node_set_hkrul_guzunda: 'hkrul_guzunda',
-  skill_node_set_hkrul_egmond: 'hkrul_mar_egmond',
-  skill_node_set_hkrul_jk: 'hkrul_jk',
-  skill_node_set_hkrul_mack: 'hkrul_mack',
-  skill_node_set_hkrul_hendrik: 'hkrul_hendrik',
-  skill_node_set_hkrul_lector_manann: 'hkrul_lector_manann_1',
-  skill_node_set_mar_caravan_master: 'hrul_mar_caravan_commander_06',
-  bm_db_witch_hunter_general_Set: 'bm_db_witch_hunter_general_campaign_01',
-  skill_node_set_hkrul_cross: 'hkrul_cross',
-  skill_node_set_hkrul_crispijn: 'hkrul_crispijn',
-  skill_node_set_hkrul_lisette: 'hkrul_lisette',
-  skill_node_set_hkrul_harb: 'hkrul_harb',
-  skill_node_set_hkrul_pg: 'hkrul_pg',
-  skill_node_set_hkrul_solkan: 'hkrul_solkan_1',
-  cth_yinyin_nodeset: 'cth_yinyin_campaign',
-  skill_node_set_hkrul_slaver: 'hkrul_slaver_1',
-  skill_node_set_hkrul_alicia: 'hkrul_alicia',
-  shaggoth_wight_set: 'shaggoth_wight_hero_01_0',
-  vlad_simp_agent_set: 'vlad_simps_rejoice_01_0',
-  jbv_hei_lianhua_nodeset: 'jbv_hei_lianhua',
-  jbv_nugui_node_set: 'jbv_nugui_01',
+  Helgar_longplaits: 'lege3/helgar_longplaits.webp',
+  skill_node_set_hkrul_erkstein: 'lege3/hkrul_erkstein.webp',
+  skill_node_set_hkrul_gunter: 'lege3/hkrul_gunter.webp',
+  skill_node_set_hkrul_aldred: 'lege3/hkrul_aldred.webp',
+  hun_cha_huntsmarshal_0: 'vanilla3/emp_huntsmarshal_campaign_01_0.webp',
+  emp_huntsmaster: 'vanilla3/emp_huntsmarshal_campaign_01_0.webp',
+  rhox_torinubar_skill_node_set_hef_convoy: 'vanilla3/hef_prince_campaign_01_0.webp',
+  dread_possessed_hero_02: 'ovn3/dread_possessed_hero_02.webp',
+  wh_dlc08_nor_cha_fimir_balefiend_beast: 'vanilla3/nor_cha_fimir_balefiend_campaign_01_0.webp',
+  wh_dlc08_nor_cha_fimir_balefiend_death: 'vanilla3/nor_cha_fimir_balefiend_campaign_01_0.webp',
+  skill_node_set_hkrul_guzunda: 'scm3/hkrul_guzunda.webp',
+  skill_node_set_hkrul_egmond: 'scm3/hkrul_mar_egmond.webp',
+  skill_node_set_hkrul_jk: 'scm3/hkrul_jk.webp',
+  skill_node_set_hkrul_mack: 'scm3/hkrul_mack.webp',
+  skill_node_set_hkrul_hendrik: 'scm3/hkrul_hendrik.webp',
+  skill_node_set_hkrul_lector_manann: 'scm3/hkrul_lector_manann_1.webp',
+  skill_node_set_mar_caravan_master: 'scm3/hrul_mar_caravan_commander_06.webp',
+  skill_node_set_hkrul_fooger_dwarf_lord: 'scm3/hkrul_fooger_caravan_master_02.webp',
+  bm_db_witch_hunter_general_Set: 'scm3/bm_db_witch_hunter_general_campaign_01.webp',
+  skill_node_set_hkrul_cross: 'scm3/hkrul_cross.webp',
+  skill_node_set_hkrul_crispijn: 'scm3/hkrul_crispijn.webp',
+  skill_node_set_hkrul_lisette: 'scm3/hkrul_lisette.webp',
+  skill_node_set_hkrul_harb: 'scm3/hkrul_harb.webp',
+  skill_node_set_hkrul_pg: 'scm3/hkrul_pg.webp',
+  skill_node_set_hkrul_solkan: 'scm3/hkrul_solkan_1.webp',
+  cth_yinyin_nodeset: 'scm3/cth_yinyin_campaign.webp',
+  skill_node_set_hkrul_slaver: 'scm3/hkrul_slaver_1.webp',
+  skill_node_set_hkrul_alicia: 'scm3/hkrul_alicia.webp',
+  shaggoth_wight_set: 'scm3/shaggoth_wight_hero_01_0.webp',
+  vlad_simp_agent_set: 'scm3/vlad_simps_rejoice_01_0.webp',
+  jbv_hei_lianhua_nodeset: 'scm3/jbv_hei_lianhua.webp',
+  jbv_nugui_node_set: 'scm3/jbv_nugui_01.webp',
+  skill_node_set_hkrul_mundvard: 'scm3/hkrul_mar_munvard.webp',
+  rhox_volrik_chs_sorcerer_lord_tzeentch_mtze: 'vanilla3/dae_tze_chaos_sorcerer_lord_campaign_01_0.webp',
+  rhox_valbrand_nor_marauder_chieftain_horde: 'vanilla3/nor_marauder_chieftain_campaign_01_0.webp',
+  dotd_wight_king: 'vanilla3/vmp_wight_king_sword_campaign_01_0.webp',
+  rhox_lccp_sceolan_wef_spellweaver_ice: 'vanilla3/wef_spellweaver_campaign_05_0.webp',
+  rhox_lccp_sceolan_wef_spellsinger_ice: 'vanilla3/wef_spellsinger_campaign_05_0.webp',
 };
 
 const hardcodeSpellLoreData: { [nodeSetKey: string]: SpellLores } = {
@@ -259,6 +267,10 @@ const hardcodeSpellLoreData: { [nodeSetKey: string]: SpellLores } = {
   wh_dlc16_skill_node_set_wef_ariel: SpellLores.mixed,
   wh_dlc16_skill_node_set_wef_coeddil: SpellLores.mixed,
   wh_dlc05_skill_node_set_wef_branchwraith: SpellLores.mixed,
+  wh3_dlc24_skill_node_set_cth_celestial_general_yang: SpellLores.yang,
+  wh3_dlc24_skill_node_set_cth_celestial_general_yin: SpellLores.yin,
+  wh3_main_skill_node_set_cth_lord_magistrate_yang: SpellLores.yang,
+  wh3_main_skill_node_set_cth_lord_magistrate_yin: SpellLores.yin,
 
   skill_node_set_brt_cha_lost: SpellLores.mixed,
   skill_node_set_grn_cha_savageboss: SpellLores.bigWagh,

@@ -5,6 +5,7 @@ import { TableRecord } from '../@types/GlobalDataInterface';
 import { skipVanillaAgentPrune } from '../lists/processFactionsLists';
 import { ensureDirSync, readFileSync, writeJSONSync } from 'fs-extra';
 import { ModInfoInterface } from '../lists/packInfo';
+import { CompilationGroupsInterface } from '../@types/CompilationGroupsInterface';
 
 const csvParseConfig = {
   delimiter: '\t',
@@ -15,13 +16,8 @@ const csvParseConfig = {
   quote: '`',
 };
 
-export interface CompGroupsInterface {
-  mods: Array<string>;
-  nodeSets: { [nodeSetKey: string]: string /*Mod Name*/ };
-}
-
 const outputCompilationGroups = (folder: string, modInfoArray: Array<ModInfoInterface>) => {
-  const compGroups: CompGroupsInterface = { mods: [], nodeSets: {} };
+  const compGroups: CompilationGroupsInterface = { mods: [], nodeSets: {} };
 
   modInfoArray.forEach((modInfo) => {
     if (modInfo.name === undefined) {
@@ -52,8 +48,8 @@ const outputCompilationGroups = (folder: string, modInfoArray: Array<ModInfoInte
   });
 
   if (Object.keys(compGroups).length !== 0) {
-    ensureDirSync(`./debug/compGroups`);
-    writeJSONSync(`./debug/compGroups/${folder}.json`, compGroups, { spaces: 2 });
+    ensureDirSync(`./output/compGroups`);
+    writeJSONSync(`./output/compGroups/${folder}.json`, compGroups, { spaces: 2 });
   }
 };
 

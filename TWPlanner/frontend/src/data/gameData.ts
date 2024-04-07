@@ -4,27 +4,15 @@ import gameImages from '../imgs/games/gameImages';
 
 import { vanilla2CharactersMemes } from './characters/vanilla2Characters';
 import { vanilla3CharactersMemes } from './characters/vanilla3Characters';
-import radious3Characters from './characters/radious3Characters';
-import mixu3Characters from './characters/mixu3Characters';
-import lege3Characters from './characters/lege3Characters';
-import crys3Characters from './characters/crys3Characters';
-import scm3Characters from './characters/scm3Characters';
-import sfo3Characters from './characters/sfo3Characters';
-import cat3Characters from './characters/cat3Characters';
-import ovn3Characters from './characters/ovn3Characters';
-import hol3Characters from './characters/hol3Characters';
-
-import vanilla2CharacterImgs from '../imgs/characters/vanilla2/vanilla2CharacterImgs';
-import vanilla3CharacterImgs from '../imgs/characters/vanilla3/vanilla3CharacterImgs';
-import radious3CharacterImgs from '../imgs/characters/radious3/radious3CharacterImgs';
-import mixu3CharacterImgs from '../imgs/characters/mixu3/mixu3CharacterImgs';
-import lege3CharacterImgs from '../imgs/characters/lege3/lege3CharacterImgs';
-import crys3CharacterImgs from '../imgs/characters/crys3/crys3CharacterImgs';
-import scm3CharacterImgs from '../imgs/characters/scm3/scm3CharacterImgs';
-import sfo3CharacterImgs from '../imgs/characters/sfo3/sfo3CharacterImgs';
-import cat3CharacterImgs from '../imgs/characters/cat3/cat3CharacterImgs';
-import ovn3CharacterImgs from '../imgs/characters/ovn3/ovn3CharacterImgs';
-import hol3CharacterImgs from '../imgs/characters/hol3/hol3CharacterImgs';
+import sfo3Characters from '../../../TWPData/charLists/sfo3.json';
+import radious3Characters from '../../../TWPData/charLists/radious3.json';
+import mixu3Characters from '../../../TWPData/charLists/mixu3.json';
+import lege3Characters from '../../../TWPData/charLists/lege3.json';
+import scm3Characters from '../../../TWPData/charLists/scm3.json';
+import crys3Characters from '../../../TWPData/charLists/crys3.json';
+import cat3Characters from '../../../TWPData/charLists/cat3.json';
+import ovn3Characters from '../../../TWPData/charLists/ovn3.json';
+import hol3Characters from '../../../TWPData/charLists/hol3.json';
 
 import mixu3CompGroups from '../../../TWPData/compGroups/mixu3.json';
 import scm3CompGroups from '../../../TWPData/compGroups/scm3.json';
@@ -33,6 +21,7 @@ import ovn3CompGroups from '../../../TWPData/compGroups/ovn3.json';
 
 import modTimestamps from '../../../TWPData/modTimestamps.json';
 import { mostRecentDateString, toParsedDateString } from '../utils/dateFunctions';
+import { CharacterListInterface } from '../@types/CharacterListInterfaceRef';
 
 const gameData: { [key: string]: GameDataInterface } = {
   vanilla2: {
@@ -40,7 +29,6 @@ const gameData: { [key: string]: GameDataInterface } = {
     image: gameImages['vanilla2'],
     factions: factions,
     characters: vanilla2CharactersMemes,
-    characterImages: vanilla2CharacterImgs,
     updated: 'Aug 4 2022 (1.12.1)',
     category: 'Base',
   },
@@ -49,7 +37,6 @@ const gameData: { [key: string]: GameDataInterface } = {
     image: gameImages['vanilla3'],
     factions: factions,
     characters: vanilla3CharactersMemes,
-    characterImages: vanilla3CharacterImgs,
     updated: 'Mar 19 2024 (4.2.2)',
     category: 'Base',
   },
@@ -57,8 +44,7 @@ const gameData: { [key: string]: GameDataInterface } = {
     text: 'SFO 3',
     image: gameImages['sfo3'],
     factions: factions,
-    characters: sfo3Characters,
-    characterImages: sfo3CharacterImgs,
+    characters: sfo3Characters as CharacterListInterface,
     updated: toParsedDateString(modTimestamps.sfo3.sfo_grimhammer_3_main),
     category: 'Overhaul',
     workshopLink: 'https://steamcommunity.com/sharedfiles/filedetails/?id=2792731173',
@@ -67,8 +53,7 @@ const gameData: { [key: string]: GameDataInterface } = {
     text: 'Radious 3',
     image: gameImages['radious3'],
     factions: factions,
-    characters: radious3Characters,
-    characterImages: radious3CharacterImgs,
+    characters: radious3Characters as CharacterListInterface,
     updated: mostRecentDateString(Object.values(modTimestamps.radious3)),
     category: 'Overhaul',
     workshopLink: 'https://steamcommunity.com/workshop/filedetails/?id=2791750313',
@@ -77,8 +62,7 @@ const gameData: { [key: string]: GameDataInterface } = {
     text: `Mixu's Compilation 3`,
     image: gameImages['mixu3'],
     factions: factions,
-    characters: mixu3Characters,
-    characterImages: mixu3CharacterImgs,
+    characters: mixu3Characters as CharacterListInterface,
     compilationGroups: mixu3CompGroups,
     updated: mostRecentDateString(Object.values(modTimestamps.mixu3)),
     category: 'Character Mod Compilation',
@@ -95,8 +79,7 @@ const gameData: { [key: string]: GameDataInterface } = {
     text: 'Legendary Characters 3',
     image: gameImages['lege3'],
     factions: factions,
-    characters: lege3Characters,
-    characterImages: lege3CharacterImgs,
+    characters: lege3Characters as CharacterListInterface,
     updated: toParsedDateString(modTimestamps.lege3['!str_legendary']),
     category: 'Character Mod',
     workshopLink: 'https://steamcommunity.com/sharedfiles/filedetails/?id=2826930183',
@@ -105,8 +88,7 @@ const gameData: { [key: string]: GameDataInterface } = {
     text: `Cataph's Compilation 3`,
     image: gameImages['cat3'],
     factions: factions,
-    characters: cat3Characters,
-    characterImages: cat3CharacterImgs,
+    characters: cat3Characters as CharacterListInterface,
     compilationGroups: cat3CompGroups,
     updated: mostRecentDateString(Object.values(modTimestamps.cat3)),
     category: 'Character Mod Compilation',
@@ -121,8 +103,7 @@ const gameData: { [key: string]: GameDataInterface } = {
     text: 'OvN Lost Factions 3',
     image: gameImages['ovn3'],
     factions: factions,
-    characters: ovn3Characters,
-    characterImages: ovn3CharacterImgs,
+    characters: ovn3Characters as CharacterListInterface,
     compilationGroups: ovn3CompGroups,
     updated: mostRecentDateString(Object.values(modTimestamps.ovn3)),
     category: 'Character Mod Compilation',
@@ -140,8 +121,7 @@ const gameData: { [key: string]: GameDataInterface } = {
     text: 'Skeleton Crew Compilation 3',
     image: gameImages['scm3'],
     factions: factions,
-    characters: scm3Characters,
-    characterImages: scm3CharacterImgs,
+    characters: scm3Characters as CharacterListInterface,
     compilationGroups: scm3CompGroups,
     updated: mostRecentDateString(Object.values(modTimestamps.scm3)),
     category: 'Character Mod Compilation',
@@ -169,8 +149,7 @@ const gameData: { [key: string]: GameDataInterface } = {
     text: 'Heroes of Legend 3',
     image: gameImages['hol3'],
     factions: factions,
-    characters: hol3Characters,
-    characterImages: hol3CharacterImgs,
+    characters: hol3Characters as CharacterListInterface,
     updated: toParsedDateString(modTimestamps.hol3.inq_lol_hero),
     category: 'Character Mod',
     workshopLink: 'https://steamcommunity.com/sharedfiles/filedetails/?id=2931087074',
@@ -179,8 +158,7 @@ const gameData: { [key: string]: GameDataInterface } = {
     text: 'Leaders of Legend 3',
     image: gameImages['crys3'],
     factions: factions,
-    characters: crys3Characters,
-    characterImages: crys3CharacterImgs,
+    characters: crys3Characters as CharacterListInterface,
     updated: toParsedDateString(modTimestamps.crys3.crys_leaders),
     category: 'Overhaul',
     workshopLink: 'https://steamcommunity.com/sharedfiles/filedetails/?id=2880244265',

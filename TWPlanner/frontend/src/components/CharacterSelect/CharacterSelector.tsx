@@ -6,7 +6,6 @@ import api from '../../api/api';
 import { AppContext, AppContextActions } from '../../contexts/AppContext';
 import gameData from '../../data/gameData';
 import spellLoreIcons from '../../imgs/spellLoreIcons/spellLoreIcons';
-import { CompGroupsInterface } from '../../@types/GameInterface';
 import { createEmptyCharacterBuild } from '../../utils/sharedFunctions';
 import CharacterCell from './CharacterCell';
 
@@ -47,14 +46,12 @@ const CharacterSelector = () => {
     if (event.button === 0 && !event.ctrlKey && !event.shiftKey) {
       event.preventDefault();
 
-      const apiPromise = api
-        .getCharacterSkillTree(selectedMod, selectedFaction, characterKey, false)
-        .then((response) => {
-          dispatch({ type: AppContextActions.changeCharacterData, payload: { characterData: response } });
-          const emptyCharacterBuild = createEmptyCharacterBuild(response, selectedMod, selectedFaction, characterKey);
-          dispatch({ type: AppContextActions.changeCharacterBuild, payload: { characterBuild: emptyCharacterBuild } });
-          navigate(`/planner/${selectedMod}/${selectedFaction}/${characterKey}`);
-        });
+      const apiPromise = api.getCharacterSkillTree(selectedMod, selectedFaction, characterKey, false).then((response) => {
+        dispatch({ type: AppContextActions.changeCharacterData, payload: { characterData: response } });
+        const emptyCharacterBuild = createEmptyCharacterBuild(response, selectedMod, selectedFaction, characterKey);
+        dispatch({ type: AppContextActions.changeCharacterBuild, payload: { characterBuild: emptyCharacterBuild } });
+        navigate(`/planner/${selectedMod}/${selectedFaction}/${characterKey}`);
+      });
       toast.promise(
         apiPromise,
         {
@@ -66,24 +63,6 @@ const CharacterSelector = () => {
       );
     }
   };
-
-  const invertCompGroups = (compGroups: CompGroupsInterface | undefined) => {
-    if (compGroups !== undefined) {
-      const invertedMap: { [key: string]: string } = {};
-      Object.keys(compGroups).forEach((groupKey) => {
-        Object.keys(compGroups[groupKey]).forEach((charKey) => {
-          if (invertedMap[charKey] === undefined) {
-            invertedMap[charKey] = groupKey;
-          }
-        });
-      });
-      return invertedMap;
-    } else {
-      return undefined;
-    }
-  };
-
-  const compGroupsCharMap = invertCompGroups(gameData[selectedMod].compilationGroups);
 
   const filterCharLists = () => {
     const filteredLords: {
@@ -100,13 +79,13 @@ const CharacterSelector = () => {
     } = {};
 
     Object.keys(gameCharacters[selectedFaction].lords).forEach((lordKey) => {
-      const lordMod = compGroupsCharMap?.[lordKey];
+      const lordMod = gameData[selectedMod].compilationGroups?.nodeSets[lordKey];
       if (lordMod !== undefined && selectedCompGroups.includes(lordMod)) {
         filteredLords[lordKey] = gameCharacters[selectedFaction].lords[lordKey];
       }
     });
     Object.keys(gameCharacters[selectedFaction].heroes).forEach((heroKey) => {
-      const heroMod = compGroupsCharMap?.[heroKey];
+      const heroMod = gameData[selectedMod].compilationGroups?.nodeSets[heroKey];
       if (heroMod !== undefined && selectedCompGroups.includes(heroMod)) {
         filteredHeroes[heroKey] = gameCharacters[selectedFaction].heroes[heroKey];
       }
@@ -131,8 +110,8 @@ const CharacterSelector = () => {
                   return;
                 }
                 const lord = gameCharacters[selectedFaction].lords[lordKey];
-                const lordImage = gameData[selectedMod]?.characterImages[lordKey];
-                const lordMod = compGroupsCharMap?.[lordKey];
+                const lordImage = `/portraits/${lord?.portrait}`;
+                const lordMod = gameData[selectedMod].compilationGroups?.nodeSets[lordKey];
 
                 let spellLore = undefined;
                 if (lord?.spellLore !== undefined) {
@@ -177,8 +156,8 @@ const CharacterSelector = () => {
                   return;
                 }
                 const hero = gameCharacters[selectedFaction].heroes[heroKey];
-                const heroImage = gameData[selectedMod]?.characterImages[heroKey];
-                const heroMod = compGroupsCharMap?.[heroKey];
+                const heroImage = `/portraits/${hero?.portrait}`;
+                const heroMod = gameData[selectedMod].compilationGroups?.nodeSets[heroKey];
 
                 let spellLore = undefined;
                 if (hero?.spellLore !== undefined) {

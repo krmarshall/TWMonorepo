@@ -7,7 +7,7 @@ import { AppContext, AppContextActions } from '../contexts/AppContext';
 import { useMediaQuery } from 'react-responsive';
 import gameData from '../data/gameData';
 import CompilationFilter from '../components/CharacterSelect/CompilationFilter';
-import { CompGroupsInterface } from '../@types/GameInterface';
+import { CompilationGroupsInterface } from '../@types/CompilationGroupsInterfaceRef';
 
 const Home = () => {
   const { state, dispatch } = useContext(AppContext);
@@ -88,7 +88,7 @@ const Home = () => {
           }
         >
           {gameData[selectedMod].compilationGroups !== undefined && (
-            <CompilationFilter compGroups={gameData[selectedMod].compilationGroups as CompGroupsInterface} />
+            <CompilationFilter compGroups={gameData[selectedMod].compilationGroups as CompilationGroupsInterface} />
           )}
           <FactionSelector />
         </div>
