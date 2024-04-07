@@ -17,4 +17,4 @@ interface CharacterListInterface {
   };
 }
 
-export { CharacterListInterface, CharacterInterface };
+export type { CharacterListInterface, CharacterInterface };
