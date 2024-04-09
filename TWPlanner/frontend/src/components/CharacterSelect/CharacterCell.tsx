@@ -34,7 +34,7 @@ const CharacterCell = ({ charKey, char, charImage, spellLore, charMod, handleCha
           <ReactImage
             srcList={[charImage as string, charImage?.replace(selectedMod, 'vanilla3') as string, placeholderImg]}
             className="w-32 mb-1 rounded-full drop-shadow-[0.1rem_0.1rem_0.5rem_rgba(0,0,0,0.7)]"
-            alt={`${char?.name} icon`}
+            alt={``}
             w="96"
             h="96"
           />

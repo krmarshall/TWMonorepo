@@ -25,7 +25,7 @@ const CharacterPortrait = () => {
         className="w-[9.5rem] h-[9.5rem] rounded-full drop-shadow-[0.1rem_0.1rem_0.5rem_rgba(0,0,0,0.7)]"
         w="164"
         h="164"
-        alt="Character Portrait"
+        alt=""
       />
     </div>
   );
