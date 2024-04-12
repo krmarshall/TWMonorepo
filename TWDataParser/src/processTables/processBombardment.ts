@@ -11,7 +11,8 @@ const processBombardment = (folder: string, globalData: GlobalDataInterface, bom
     start_time: parseFloating(bombardment.start_time),
     projectile_type: processProjectile(folder, globalData, bombardment.localRefs?.projectiles as TableRecord),
   };
-  if (parseInteger(bombardment.num_projectiles) > 1) returnBombardment.num_projectiles = parseInteger(bombardment.num_projectiles);
+  if (parseInteger(bombardment.num_projectiles) > 1)
+    returnBombardment.num_projectiles = parseInteger(bombardment.num_projectiles);
 
   return returnBombardment;
 };

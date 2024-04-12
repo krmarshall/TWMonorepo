@@ -26,7 +26,14 @@ const v3DbList = [
 ] as const;
 
 // If adding new loc table delete old extracted_files to force a re-extract
-const v3LocList = [...v2LocList, 'character_trait_levels__', 'names__', 'campaigns__', 'units_custom_battle_mounts__', 'ancillary_sets__'];
+const v3LocList = [
+  ...v2LocList,
+  'character_trait_levels__',
+  'names__',
+  'campaigns__',
+  'units_custom_battle_mounts__',
+  'ancillary_sets__',
+];
 
 const v3AssKitList = ['start_pos_characters', 'start_pos_character_traits'];
 

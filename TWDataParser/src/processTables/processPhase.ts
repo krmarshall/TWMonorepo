@@ -65,7 +65,8 @@ const processPhase = (folder: string, globalData: GlobalDataInterface, phaseJunc
   });
 
   const max_damaged_entities = parseInteger(phase.max_damaged_entities);
-  if (max_damaged_entities !== -1 && max_damaged_entities !== 0) returnPhase.max_damaged_entities = max_damaged_entities;
+  if (max_damaged_entities !== -1 && max_damaged_entities !== 0)
+    returnPhase.max_damaged_entities = max_damaged_entities;
 
   // imbue_contact
   if (phase.localRefs?.special_ability_phases !== undefined) {
@@ -104,7 +105,9 @@ const processPhase = (folder: string, globalData: GlobalDataInterface, phaseJunc
     });
   });
   if (statEffects.length > 0) {
-    statEffects.sort((a, b) => (a.sort_order as number) - (b.sort_order as number)).forEach((statEffect) => delete statEffect.sort_order);
+    statEffects
+      .sort((a, b) => (a.sort_order as number) - (b.sort_order as number))
+      .forEach((statEffect) => delete statEffect.sort_order);
     returnPhase.stat_effects = statEffects;
   }
   // attributes

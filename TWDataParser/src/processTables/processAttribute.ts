@@ -3,7 +3,12 @@ import { AttributeInterface } from '../@types/CharacterInterface';
 import findImage from '../utils/findImage';
 import stringInterpolator from '../utils/stringInterpolator';
 
-const processAttribute = (folder: string, globalData: GlobalDataInterface, attribute: TableRecord, attributeType?: string) => {
+const processAttribute = (
+  folder: string,
+  globalData: GlobalDataInterface,
+  attribute: TableRecord,
+  attributeType?: string,
+) => {
   // Attribute imued_effect_text is generally just the attribute name, but sometimes has below bullet text format
   const description = stringInterpolator(attribute.imued_effect_text ?? '', globalData.parsedData[folder].text);
   const splitDescription = description.split('||');

@@ -3,7 +3,12 @@ import { SchemaInterface, TableInterface } from './@types/SchemaInterfaces';
 import cleanList from './lists/cleanLists';
 import findHighestVersionDB from './utils/findHighestVersionDB';
 
-const generateTables = (folder: string, globalData: GlobalDataInterface, dbList: Array<RefKey>, schema: SchemaInterface) => {
+const generateTables = (
+  folder: string,
+  globalData: GlobalDataInterface,
+  dbList: Array<RefKey>,
+  schema: SchemaInterface,
+) => {
   const tables: { [key in RefKey]?: Table } = {};
   dbList.forEach((db) => {
     tables[db] = new Table(
@@ -83,7 +88,11 @@ export class Table {
     const referenceFields: Array<{ fieldName: string; refTable: RefKey; refKey: string }> = [];
     this.tableSchema.fields.forEach((field) => {
       if (field.is_reference !== null) {
-        referenceFields.push({ fieldName: field.name, refTable: field.is_reference[0] as RefKey, refKey: field.is_reference[1] });
+        referenceFields.push({
+          fieldName: field.name,
+          refTable: field.is_reference[0] as RefKey,
+          refKey: field.is_reference[1],
+        });
       }
     });
 
@@ -106,7 +115,8 @@ export class Table {
 
             // Foreign Reference
             if (refRecord.foreignRefs === undefined) refRecord.foreignRefs = {};
-            if (refRecord.foreignRefs[this.tableName as RefKey] === undefined) refRecord.foreignRefs[this.tableName as RefKey] = [];
+            if (refRecord.foreignRefs[this.tableName as RefKey] === undefined)
+              refRecord.foreignRefs[this.tableName as RefKey] = [];
             refRecord.foreignRefs[this.tableName as RefKey]?.push(record);
           }
         }

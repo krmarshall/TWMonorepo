@@ -18,7 +18,10 @@ const processSkillNode = (
   requiredMap: { [key: string]: Array<SkillInterface> },
 ) => {
   const skill = skillNode.localRefs?.character_skills as TableRecord;
-  if (skill.key === 'wh3_main_skill_agent_action_success_scaling' || skill.key === 'wh3_dlc20_skill_path_to_glory_cost_modifier') {
+  if (
+    skill.key === 'wh3_main_skill_agent_action_success_scaling' ||
+    skill.key === 'wh3_dlc20_skill_path_to_glory_cost_modifier'
+  ) {
     return;
   }
   const returnSkill: SkillInterface = {
@@ -44,7 +47,8 @@ const processSkillNode = (
     if (
       (effectJunc.effect_key === 'wh_main_effect_agent_action_success_chance_enemy_skill' &&
         effectJunc.localRefs?.effects?.priority === '0') ||
-      (effectJunc.effect_key === 'wh_main_effect_agent_action_success_chance_skill' && effectJunc.localRefs?.effects?.priority === '0')
+      (effectJunc.effect_key === 'wh_main_effect_agent_action_success_chance_skill' &&
+        effectJunc.localRefs?.effects?.priority === '0')
     ) {
       return;
     }
@@ -54,7 +58,8 @@ const processSkillNode = (
   });
   // character_skill_level_to_ancillaries_junctions
   skill.foreignRefs?.character_skill_level_to_ancillaries_junctions?.forEach((ancillaryJunc) => {
-    const ancillaryEffects = ancillaryJunc.localRefs?.ancillaries?.localRefs?.ancillary_info?.foreignRefs?.ancillary_to_effects;
+    const ancillaryEffects =
+      ancillaryJunc.localRefs?.ancillaries?.localRefs?.ancillary_info?.foreignRefs?.ancillary_to_effects;
     const skillLevel = parseInteger(ancillaryJunc.level) - 1;
     if (ancillaryEffects !== undefined) {
       ancillaryEffects.forEach((effectJunc) => {
@@ -112,7 +117,8 @@ const processSkillNode = (
     if (returnSkill.levels?.[skillLevel] === undefined) {
       log(`Skill node lock missing its skill level: ${returnSkill.key}`, 'red');
     } else if (skillNodeKeys[lock.character_skill_node] === true) {
-      if (returnSkill.levels[skillLevel].blocks_skill_node_keys === undefined) returnSkill.levels[skillLevel].blocks_skill_node_keys = [];
+      if (returnSkill.levels[skillLevel].blocks_skill_node_keys === undefined)
+        returnSkill.levels[skillLevel].blocks_skill_node_keys = [];
       if (!returnSkill.levels[skillLevel].blocks_skill_node_keys?.includes(lock.character_skill_node)) {
         returnSkill.levels[skillLevel].blocks_skill_node_keys?.push(lock.character_skill_node);
       }
@@ -151,7 +157,9 @@ const processSkillNode = (
 
   // sort effects by priority and delete them after
   returnSkill.levels?.forEach((level) => {
-    level.effects?.sort((a, b) => (a.priority as number) - (b.priority as number)).forEach((effect) => delete effect.priority);
+    level.effects
+      ?.sort((a, b) => (a.priority as number) - (b.priority as number))
+      .forEach((effect) => delete effect.priority);
   });
   // remove duplicate abilities on the same level
   returnSkill.levels?.forEach((level) => {

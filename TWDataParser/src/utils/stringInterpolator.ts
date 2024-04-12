@@ -58,7 +58,9 @@ const stringInterpolator = (string: string, loc: TableRecord): string => {
 
   if (string.includes('[[')) {
     // Grab element within first tag and last tag of the same tagName
-    const regex = new RegExp(/\[\[(?<tagName>[a-zA-Z_]*)[:=]?(?<tagAttribute>[a-zA-Z0-9_./ ]*)\]\](?<innerText>.*)\[\[\/\k<tagName>\]\]/);
+    const regex = new RegExp(
+      /\[\[(?<tagName>[a-zA-Z_]*)[:=]?(?<tagAttribute>[a-zA-Z0-9_./ ]*)\]\](?<innerText>.*)\[\[\/\k<tagName>\]\]/,
+    );
     let element = string.match(regex);
     // If its an img we want the first instance of its closing tagName not the last.
     if (element?.groups?.tagName === 'img') {

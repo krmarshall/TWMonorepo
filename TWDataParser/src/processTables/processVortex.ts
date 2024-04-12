@@ -29,7 +29,12 @@ const processVortex = (folder: string, globalData: GlobalDataInterface, vortex: 
     returnVortex.contact_effect = processPhase(
       folder,
       globalData,
-      { order: '1', target_enemies: 'true', target_self: 'false', target_friends: returnVortex.affects_allies.toString() },
+      {
+        order: '1',
+        target_enemies: 'true',
+        target_self: 'false',
+        target_friends: returnVortex.affects_allies.toString(),
+      },
       vortex.localRefs?.special_ability_phases,
     );
   }

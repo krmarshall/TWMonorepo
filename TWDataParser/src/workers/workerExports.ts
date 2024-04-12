@@ -1,5 +1,9 @@
 import { Worker } from 'worker_threads';
-import { ModWorkerDataInterface, MultiModWorkerDataInterface, VanillaWorkerDataInterface } from '../@types/WorkerDataInterfaces';
+import {
+  ModWorkerDataInterface,
+  MultiModWorkerDataInterface,
+  VanillaWorkerDataInterface,
+} from '../@types/WorkerDataInterfaces';
 import log from '../utils/log';
 import exportData from '../utils/exportData';
 
@@ -30,7 +34,11 @@ const workerVanilla = (workerData: VanillaWorkerDataInterface) => {
 const workerMod = (workerData: ModWorkerDataInterface) => {
   const { folder } = workerData;
   console.time(folder);
-  const workerMod = new Worker('./src/workers/workerMod.ts', { workerData, execArgv: ['--require', 'ts-node/register'], name: folder });
+  const workerMod = new Worker('./src/workers/workerMod.ts', {
+    workerData,
+    execArgv: ['--require', 'ts-node/register'],
+    name: folder,
+  });
   workerMod.on('error', (error) => {
     log(`${folder} failed`, 'red');
     throw error;

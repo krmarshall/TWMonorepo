@@ -27,7 +27,10 @@ const processStartPosTraits = (
 
       traitLevel.foreignRefs?.trait_level_effects?.forEach((traitEffect) => {
         // Bunch of LL have hidden traits that just give titles, skip these
-        if (traitEffect.localRefs?.effects?.description.includes('[HIDDEN]') && traitEffect.effect !== 'wh2_dlc11_enable_immortal_hidden') {
+        if (
+          traitEffect.localRefs?.effects?.description.includes('[HIDDEN]') &&
+          traitEffect.effect !== 'wh2_dlc11_enable_immortal_hidden'
+        ) {
           return;
         }
         effects.push(processEffect(folder, globalData, traitEffect));

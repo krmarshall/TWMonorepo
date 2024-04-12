@@ -5,7 +5,9 @@ import vanillaCharacters from '../lists/vanillaCharacters';
 import { CompilationGroupsInterface } from '../@types/CompilationGroupsInterface';
 
 export const sortCharacterList = (characterList: CharacterListInterface, folder: string) => {
-  const compilationGroups: CompilationGroupsInterface = readJSONSync(`./output/compGroups/${folder}.json`, { throws: false });
+  const compilationGroups: CompilationGroupsInterface = readJSONSync(`./output/compGroups/${folder}.json`, {
+    throws: false,
+  });
 
   const massCharList: {
     [modName: string]: {
@@ -24,12 +26,16 @@ export const sortCharacterList = (characterList: CharacterListInterface, folder:
     };
   } = {};
 
-  const modArray = compilationGroups?.mods !== undefined ? ['vanilla', 'else', ...compilationGroups.mods] : ['vanilla', 'else'];
+  const modArray =
+    compilationGroups?.mods !== undefined ? ['vanilla', 'else', ...compilationGroups.mods] : ['vanilla', 'else'];
   modArray.forEach((mod) => {
     massCharList[mod] = {};
     Object.values(subcultureMap).forEach(
       (subcultureKey) =>
-        (massCharList[mod][subcultureKey] = { lords: { prio: {}, reg: {}, deprio: {} }, heroes: { prio: {}, reg: {}, deprio: {} } }),
+        (massCharList[mod][subcultureKey] = {
+          lords: { prio: {}, reg: {}, deprio: {} },
+          heroes: { prio: {}, reg: {}, deprio: {} },
+        }),
     );
   });
   Object.entries(characterList).forEach((subculture) => {

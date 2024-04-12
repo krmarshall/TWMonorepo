@@ -2,8 +2,8 @@ import { XMLParser } from 'fast-xml-parser';
 import { GlobalDataInterface, TableRecord } from './@types/GlobalDataInterface';
 import { readFileSync } from 'fs-extra';
 
-const akData = (folder: string, globalData: GlobalDataInterface) => {
-  const assemblyKitPath = process.env.WH3_DATA_PATH?.replace(/data$/, 'assembly_kit/raw_data/db');
+const akData = (folder: string, globalData: GlobalDataInterface, wh3Path: string) => {
+  const assemblyKitPath = wh3Path?.replace(/data$/, 'assembly_kit/raw_data/db');
   const charactersFile = readFileSync(`${assemblyKitPath}/start_pos_characters.xml`);
   const characterTraitsFile = readFileSync(`${assemblyKitPath}/start_pos_character_traits.xml`);
   const parser = new XMLParser();
@@ -16,11 +16,13 @@ const akData = (folder: string, globalData: GlobalDataInterface) => {
     Object.keys(character).forEach((field) => (returnChar[field] = character[field].toString()));
     return returnChar;
   });
-  const startPosCharacterTraits = (characterTraits.dataroot.start_pos_character_traits as Array<TableRecord>).map((characterTrait) => {
-    const returnCharTrait: TableRecord = {};
-    Object.keys(characterTrait).forEach((field) => (returnCharTrait[field] = characterTrait[field].toString()));
-    return returnCharTrait;
-  });
+  const startPosCharacterTraits = (characterTraits.dataroot.start_pos_character_traits as Array<TableRecord>).map(
+    (characterTrait) => {
+      const returnCharTrait: TableRecord = {};
+      Object.keys(characterTrait).forEach((field) => (returnCharTrait[field] = characterTrait[field].toString()));
+      return returnCharTrait;
+    },
+  );
 
   globalData.parsedData[folder].db['start_pos_characters_tables'] = startPosCharacters;
   globalData.parsedData[folder].db['start_pos_character_traits_tables'] = startPosCharacterTraits;

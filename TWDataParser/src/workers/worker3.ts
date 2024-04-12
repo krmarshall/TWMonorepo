@@ -17,7 +17,9 @@ const { folder, dbPackName, locPackName, dbList, locList, game }: VanillaWorkerD
 
 const dbPackPath = `${process.env.WH3_DATA_PATH}/${dbPackName}`;
 const locPackPath = `${process.env.WH3_DATA_PATH}/${locPackName}`;
-const imagePackPaths = vanillaPackInfo.vanilla3.imgs.map((imgPackName) => `${process.env.WH3_DATA_PATH}/${imgPackName}`);
+const imagePackPaths = vanillaPackInfo.vanilla3.imgs.map(
+  (imgPackName) => `${process.env.WH3_DATA_PATH}/${imgPackName}`,
+);
 const schemaPath = `${process.env.SCHEMAS_PATH as string}/schema_wh3`;
 const schema: SchemaInterface = readJSONSync(`${schemaPath}.json`);
 
@@ -39,7 +41,7 @@ extractor
   .then(() => extractor.parseImages(imagePackPaths, true))
   .then(() => {
     csvParse(folder, false, globalData);
-    akData(folder, globalData);
+    akData(folder, globalData, process.env.WH3_DATA_PATH as string);
 
     // Unpruned Mods
     workerModMulti(radiousWorkerData);

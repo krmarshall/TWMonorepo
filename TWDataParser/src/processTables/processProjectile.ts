@@ -14,13 +14,17 @@ const processProjectile = (folder: string, globalData: GlobalDataInterface, proj
     base_reload_time: parseFloating(projectile.base_reload_time),
   };
 
-  if (parseInteger(projectile.bonus_v_infantry) > 0) returnProjectile.bonus_v_infantry = parseInteger(projectile.bonus_v_infantry);
-  if (parseInteger(projectile.bonus_v_large) > 0) returnProjectile.bonus_v_large = parseInteger(projectile.bonus_v_large);
-  if (parseInteger(projectile.projectile_number) > 1) returnProjectile.projectile_number = parseInteger(projectile.projectile_number);
+  if (parseInteger(projectile.bonus_v_infantry) > 0)
+    returnProjectile.bonus_v_infantry = parseInteger(projectile.bonus_v_infantry);
+  if (parseInteger(projectile.bonus_v_large) > 0)
+    returnProjectile.bonus_v_large = parseInteger(projectile.bonus_v_large);
+  if (parseInteger(projectile.projectile_number) > 1)
+    returnProjectile.projectile_number = parseInteger(projectile.projectile_number);
   if (parseInteger(projectile.burst_size) > 1) returnProjectile.burst_size = parseInteger(projectile.burst_size);
   if (projectile.is_magical === 'true') returnProjectile.is_magical = true;
   if (parseInteger(projectile.ignition_amount) >= 1) returnProjectile.is_flaming = true;
-  if (parseInteger(projectile.shots_per_volley) > 1) returnProjectile.shots_per_volley = parseInteger(projectile.shots_per_volley);
+  if (parseInteger(projectile.shots_per_volley) > 1)
+    returnProjectile.shots_per_volley = parseInteger(projectile.shots_per_volley);
   if (projectile.can_damage_allies === 'true') returnProjectile.can_damage_allies = true;
 
   // explosion_type

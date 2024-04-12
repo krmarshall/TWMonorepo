@@ -83,7 +83,9 @@ const processFactions = (
 
       if (
         ignoreSubcultures.some(
-          (ignoreCult) => ignoreCult.subculture === subculture.subculture && (folder === ignoreCult.game || ignoreCult.game === 'ALL'),
+          (ignoreCult) =>
+            ignoreCult.subculture === subculture.subculture &&
+            (folder === ignoreCult.game || ignoreCult.game === 'ALL'),
         )
       ) {
         return;

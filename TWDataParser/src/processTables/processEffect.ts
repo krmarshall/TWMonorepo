@@ -43,7 +43,9 @@ const processEffect = (folder: string, globalData: GlobalDataInterface, effectJu
   // unit_ability
   effect.foreignRefs?.effect_bonus_value_unit_ability_junctions?.forEach((abilityJunc, index) => {
     if (
-      (abilityJunc.bonus_value_id === 'recharge_mod' && index < 4 && abilityJunc.localRefs?.unit_abilities?.overpower_option === '') ||
+      (abilityJunc.bonus_value_id === 'recharge_mod' &&
+        index < 4 &&
+        abilityJunc.localRefs?.unit_abilities?.overpower_option === '') ||
       wantedBonusValueIdList.includes(abilityJunc.bonus_value_id)
     ) {
       related_abilities.push(processAbility(folder, globalData, abilityJunc));
@@ -99,7 +101,12 @@ const processEffect = (folder: string, globalData: GlobalDataInterface, effectJu
     const phase = phaseJunc?.localRefs?.special_ability_phases;
     if (phase !== undefined) {
       related_phases.push(
-        processPhase(folder, globalData, { order: '0', target_enemies: 'true', target_self: 'false', target_friends: 'false' }, phase),
+        processPhase(
+          folder,
+          globalData,
+          { order: '0', target_enemies: 'true', target_self: 'false', target_friends: 'false' },
+          phase,
+        ),
       );
     }
   });
@@ -107,7 +114,12 @@ const processEffect = (folder: string, globalData: GlobalDataInterface, effectJu
     const phase = phaseJunc?.localRefs?.unit_set_special_ability_phase_junctions?.localRefs?.special_ability_phases;
     if (phase !== undefined) {
       related_phases.push(
-        processPhase(folder, globalData, { order: '0', target_enemies: 'true', target_self: 'false', target_friends: 'false' }, phase),
+        processPhase(
+          folder,
+          globalData,
+          { order: '0', target_enemies: 'true', target_self: 'false', target_friends: 'false' },
+          phase,
+        ),
       );
     }
   });

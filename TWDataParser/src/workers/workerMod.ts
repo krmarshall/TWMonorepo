@@ -7,7 +7,18 @@ import processFactions from '../processTables/processFactions';
 import { mergeLocsIntoVanilla, mergeTablesIntoVanilla } from '../mergeTables';
 import Extractor from '../extractor';
 
-const { folder, globalData, modInfo, dbList, locList, game, schemaPath, schema, tech, pruneVanilla }: ModWorkerDataInterface = workerData;
+const {
+  folder,
+  globalData,
+  modInfo,
+  dbList,
+  locList,
+  game,
+  schemaPath,
+  schema,
+  tech,
+  pruneVanilla,
+}: ModWorkerDataInterface = workerData;
 
 if (globalData === undefined) {
   throw `${folder} missing globalData`;

@@ -17,7 +17,8 @@ const processAbility = (
   const unitAbility =
     (abilityJunc.localRefs?.unit_abilities as TableRecord) ??
     (abilityJunc.localRefs?.unit_set_unit_ability_junctions?.localRefs?.unit_abilities as TableRecord) ??
-    (abilityJunc.localRefs?.army_special_abilities?.localRefs?.unit_special_abilities?.localRefs?.unit_abilities as TableRecord) ??
+    (abilityJunc.localRefs?.army_special_abilities?.localRefs?.unit_special_abilities?.localRefs
+      ?.unit_abilities as TableRecord) ??
     (abilityJunc.localRefs?.battle_context_unit_ability_junctions?.localRefs?.unit_abilities as TableRecord);
   const unitAbilityType = unitAbility.localRefs?.unit_ability_types as TableRecord;
   const unitSpecialAbility = unitAbility.foreignRefs?.unit_special_abilities?.[0] as TableRecord;
@@ -54,7 +55,8 @@ const processAbility = (
       wind_up_time: parseFloating(unitSpecialAbility.wind_up_time),
     },
   };
-  if (effectEnabling) returnAbility.unit_ability.requires_effect_enabling = parseBoolean(unitAbility.requires_effect_enabling);
+  if (effectEnabling)
+    returnAbility.unit_ability.requires_effect_enabling = parseBoolean(unitAbility.requires_effect_enabling);
 
   [
     'active_time',
@@ -119,25 +121,37 @@ const processAbility = (
     ui_effects.push(returnUiEffect);
   });
   if (ui_effects.length > 0) {
-    ui_effects.sort((a, b) => (a.sort_order as number) - (b.sort_order as number)).forEach((effect) => delete effect.sort_order);
+    ui_effects
+      .sort((a, b) => (a.sort_order as number) - (b.sort_order as number))
+      .forEach((effect) => delete effect.sort_order);
     returnAbility.unit_ability.ui_effects = ui_effects;
   }
 
   // phases
   const phases: Array<PhaseInterface> = [];
   unitSpecialAbility.foreignRefs?.special_ability_to_special_ability_phase_junctions?.forEach((phaseJunc) => {
-    phases.push(processPhase(folder, globalData, phaseJunc, phaseJunc.localRefs?.special_ability_phases as TableRecord));
+    phases.push(
+      processPhase(folder, globalData, phaseJunc, phaseJunc.localRefs?.special_ability_phases as TableRecord),
+    );
   });
   if (phases.length > 0) returnAbility.unit_ability.phases = phases.sort((a, b) => a.order - b.order);
 
   // activated_projectile
   if (unitSpecialAbility.localRefs?.projectiles !== undefined) {
-    returnAbility.unit_ability.activated_projectile = processProjectile(folder, globalData, unitSpecialAbility.localRefs?.projectiles);
+    returnAbility.unit_ability.activated_projectile = processProjectile(
+      folder,
+      globalData,
+      unitSpecialAbility.localRefs?.projectiles,
+    );
   }
 
   // bombardment
   if (unitSpecialAbility.localRefs?.projectile_bombardments !== undefined) {
-    returnAbility.unit_ability.bombardment = processBombardment(folder, globalData, unitSpecialAbility.localRefs?.projectile_bombardments);
+    returnAbility.unit_ability.bombardment = processBombardment(
+      folder,
+      globalData,
+      unitSpecialAbility.localRefs?.projectile_bombardments,
+    );
   }
 
   // vortex

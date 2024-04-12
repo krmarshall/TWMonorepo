@@ -46,12 +46,16 @@ export default class Extractor {
 
   #createExtractedTimestamp = (dbPackName: string, dbPackPath: string, appendString = '') => {
     const fileStats = statSync(`${dbPackPath}.pack`);
-    outputJSONSync(`./extracted_files/${this.#folder}/${dbPackName}_timestamp${appendString}.json`, { time: fileStats.mtime.toString() });
+    outputJSONSync(`./extracted_files/${this.#folder}/${dbPackName}_timestamp${appendString}.json`, {
+      time: fileStats.mtime.toString(),
+    });
   };
 
   #checkCachedExtractGood = (packPath: string, newTables: Array<string>, forceExtract: boolean) => {
     const dbPackName = basename(packPath);
-    const oldDbTimestamp = readJSONSync(`./extracted_files/${this.#folder}/${dbPackName}_timestamp.json`, { throws: false });
+    const oldDbTimestamp = readJSONSync(`./extracted_files/${this.#folder}/${dbPackName}_timestamp.json`, {
+      throws: false,
+    });
     const newFileStats = statSync(`${packPath}.pack`);
     const oldTables = readJSONSync(`./extracted_files/${this.#folder}/tables.json`, { throws: false });
     if (
@@ -69,7 +73,9 @@ export default class Extractor {
 
   #extractData = (packPath: string, tablesString: string) => {
     return new Promise<void>((resolve, reject) => {
-      execPromise(`${this.#rpfmPath} -g ${this.#game} pack extract -p "${packPath}.pack" -t "${this.#schemaPath}.ron" -F ${tablesString}`)
+      execPromise(
+        `${this.#rpfmPath} -g ${this.#game} pack extract -p "${packPath}.pack" -t "${this.#schemaPath}.ron" -F ${tablesString}`,
+      )
         .then(() => resolve())
         .catch((error) => reject(error));
     });
@@ -95,7 +101,8 @@ export default class Extractor {
       }
 
       const tablesString = this.#generateTablesString(dbList);
-      const locString = locList !== undefined ? this.#generateLocsString(locList) : `"/text;./extracted_files/${this.#folder}"`;
+      const locString =
+        locList !== undefined ? this.#generateLocsString(locList) : `"/text;./extracted_files/${this.#folder}"`;
       const dataPromise = this.#extractData(dbPackPath, tablesString);
       const locPromise = this.#extractData(locPackPath, locString);
 
@@ -167,7 +174,9 @@ export default class Extractor {
       let goodCachedExtract = true;
       packPaths.forEach((packPath) => {
         const packName = basename(packPath);
-        const oldTimestamp = readJSONSync(`./extracted_files/${this.#folder}/${packName}_timestamp_img.json`, { throws: false });
+        const oldTimestamp = readJSONSync(`./extracted_files/${this.#folder}/${packName}_timestamp_img.json`, {
+          throws: false,
+        });
         const newFileStats = statSync(`${packPath}.pack`);
         if (oldTimestamp === null || oldTimestamp.time !== newFileStats.mtime.toString()) {
           goodCachedExtract = false;
@@ -215,13 +224,18 @@ export default class Extractor {
         const script = `### -out webp -q 90 -rmeta -quiet -lower -o ${outPath}%`;
         const finalScript = imagePaths.reduce((prev, cur) => {
           const fileSplitPath = cur.split(`${this.#folder}/ui/`);
-          const filePath = fileSplitPath[fileSplitPath.length - 1].replaceAll(' ', '_').replace('.png', '').toLowerCase();
+          const filePath = fileSplitPath[fileSplitPath.length - 1]
+            .replaceAll(' ', '_')
+            .replace('.png', '')
+            .toLowerCase();
           this.#globalData.imgPaths[this.#folder][filePath] = filePath;
           return `${prev}\n${cur}`;
         }, script);
         outputFileSync(`./bins/nScripts/${this.#folder}${index}.txt`, finalScript);
         return new Promise<void>((resolve, reject) => {
-          execPromise(`${this.#nconvertPath} ./bins/nScripts/${this.#folder}${index}.txt`, { maxBuffer: 5 * 1024 * 1024 })
+          execPromise(`${this.#nconvertPath} ./bins/nScripts/${this.#folder}${index}.txt`, {
+            maxBuffer: 5 * 1024 * 1024,
+          })
             .then(() => resolve())
             .catch((error) => reject(error));
         });

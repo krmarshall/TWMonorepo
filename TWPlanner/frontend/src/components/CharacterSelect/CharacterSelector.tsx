@@ -46,12 +46,14 @@ const CharacterSelector = () => {
     if (event.button === 0 && !event.ctrlKey && !event.shiftKey) {
       event.preventDefault();
 
-      const apiPromise = api.getCharacterSkillTree(selectedMod, selectedFaction, characterKey, false).then((response) => {
-        dispatch({ type: AppContextActions.changeCharacterData, payload: { characterData: response } });
-        const emptyCharacterBuild = createEmptyCharacterBuild(response, selectedMod, selectedFaction, characterKey);
-        dispatch({ type: AppContextActions.changeCharacterBuild, payload: { characterBuild: emptyCharacterBuild } });
-        navigate(`/planner/${selectedMod}/${selectedFaction}/${characterKey}`);
-      });
+      const apiPromise = api
+        .getCharacterSkillTree(selectedMod, selectedFaction, characterKey, false)
+        .then((response) => {
+          dispatch({ type: AppContextActions.changeCharacterData, payload: { characterData: response } });
+          const emptyCharacterBuild = createEmptyCharacterBuild(response, selectedMod, selectedFaction, characterKey);
+          dispatch({ type: AppContextActions.changeCharacterBuild, payload: { characterBuild: emptyCharacterBuild } });
+          navigate(`/planner/${selectedMod}/${selectedFaction}/${characterKey}`);
+        });
       toast.promise(
         apiPromise,
         {

@@ -39,7 +39,8 @@ const CompilationFilter = ({ compGroups }: PropInterface) => {
       payload: { selectedCompGroups: groupKeys },
     });
   };
-  const buttonClass = 'text-center text-xl text-gray-200 text-shadow rounded mx-1.5 py-1 px-2 my-0.5 shadow-md shadow-gray-800 hover-scale';
+  const buttonClass =
+    'text-center text-xl text-gray-200 text-shadow rounded mx-1.5 py-1 px-2 my-0.5 shadow-md shadow-gray-800 hover-scale';
 
   return (
     <div className="justify-self-center px-2 w-full">

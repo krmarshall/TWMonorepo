@@ -19,7 +19,11 @@ const App = () => {
   const xPadding = isMobileWidth ? ' px-2' : ' px-8';
   return (
     <AppProvider>
-      <div className={'bg-gray-800 w-screen h-screen flex flex-col flex-nowrap pb-2 font-CaslonAntique select-none' + xPadding}>
+      <div
+        className={
+          'bg-gray-800 w-screen h-screen flex flex-col flex-nowrap pb-2 font-CaslonAntique select-none' + xPadding
+        }
+      >
         <Toaster
           position="bottom-center"
           toastOptions={{

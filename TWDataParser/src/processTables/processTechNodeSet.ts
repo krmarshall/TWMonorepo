@@ -25,7 +25,10 @@ const processTechNodeSet = (
   tables.technology_required_technology_junctions?.records?.forEach((techJunc) => {
     if (techNodeRequiredJuncMap[techJunc.technology] === undefined) techNodeRequiredJuncMap[techJunc.technology] = [];
     const reqTech = tables.technologies?.findRecordByKey('key', techJunc.required_technology) as TableRecord;
-    techNodeRequiredJuncMap[techJunc.technology].push({ key: techJunc.required_technology, name: reqTech.onscreen_name });
+    techNodeRequiredJuncMap[techJunc.technology].push({
+      key: techJunc.required_technology,
+      name: reqTech.onscreen_name,
+    });
   });
 
   const nodeLinksMap: { [key: string]: Array<TableRecord> } = {};
@@ -77,7 +80,8 @@ const processTechNodeSet = (
 
     for (let y = topBound; y <= bottomBound; y++) {
       for (let x = leftBound; x <= rightBound; x++) {
-        if (returnTechNodeSet.tree[y] === null || returnTechNodeSet.tree[y] === undefined) returnTechNodeSet.tree[y] = [];
+        if (returnTechNodeSet.tree[y] === null || returnTechNodeSet.tree[y] === undefined)
+          returnTechNodeSet.tree[y] = [];
         if (returnTechNodeSet.tree[y][x] === null || returnTechNodeSet.tree[y][x] === undefined)
           returnTechNodeSet.tree[y][x] = { bgFiller: true };
         returnTechNodeSet.tree[y][x].ui_group = uiGroupKey;

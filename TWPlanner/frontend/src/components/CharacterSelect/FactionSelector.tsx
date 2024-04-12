@@ -79,7 +79,13 @@ const FactionSelector = () => {
             </span>
           }
         >
-          <img src={shareIcon} className="w-6 h-6 m-auto cursor-pointer" width="24" height="24" onClick={shareHandler} />
+          <img
+            src={shareIcon}
+            className="w-6 h-6 m-auto cursor-pointer"
+            width="24"
+            height="24"
+            onClick={shareHandler}
+          />
         </TooltipWrapper>
         <hr className="grow mt-[1.25rem] opacity-50" />
       </div>
@@ -103,7 +109,8 @@ const FactionSelector = () => {
             }
 
             const factionName = gameData[selectedMod]?.factions[factionKey];
-            let liClassName = 'flex-col m-1 p-1.5 border border-gray-500 shadow-lg shadow-gray-800/60 rounded-lg hover-scale';
+            let liClassName =
+              'flex-col m-1 p-1.5 border border-gray-500 shadow-lg shadow-gray-800/60 rounded-lg hover-scale';
 
             if (factionKey === state.selectedFaction) {
               liClassName += ' bg-gray-600 hover:bg-gray-500/80 scale-105';

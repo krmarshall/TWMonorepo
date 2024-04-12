@@ -3,7 +3,11 @@ import { toast } from 'react-hot-toast';
 import { useNavigate, useParams } from 'react-router-dom';
 import api from '../api/api';
 import { AppContext, AppContextActions } from '../contexts/AppContext';
-import { addFactionVariantNodes, createCharacterBuildFromArray, createEmptyCharacterBuild } from '../utils/sharedFunctions';
+import {
+  addFactionVariantNodes,
+  createCharacterBuildFromArray,
+  createEmptyCharacterBuild,
+} from '../utils/sharedFunctions';
 import { convertCodeToBuild, splitCharacterKey } from '../utils/urlFunctions';
 import LoadingSpinner from '../components/LoadingSpinner';
 import ExtrasDrawer from '../components/Planner/ExtrasDrawer/ExtrasDrawer';
@@ -79,7 +83,12 @@ const Planner = () => {
                 },
               });
             } else {
-              const emptyCharacterBuild = createEmptyCharacterBuild(response, mod as string, faction as string, character as string);
+              const emptyCharacterBuild = createEmptyCharacterBuild(
+                response,
+                mod as string,
+                faction as string,
+                character as string,
+              );
 
               dispatch({ type: AppContextActions.changeCharacterData, payload: { characterData: response } });
               dispatch({
@@ -132,7 +141,8 @@ const Planner = () => {
     document.title = `TWP - ${characterName}`;
   }, []);
 
-  const mobileTabButtonClass = 'rounded-lg rounded-b-none py-1 px-3 my-auto text-slate-50 text-xl shadow-md shadow-gray-900 hover-scale';
+  const mobileTabButtonClass =
+    'rounded-lg rounded-b-none py-1 px-3 my-auto text-slate-50 text-xl shadow-md shadow-gray-900 hover-scale';
   const mobileTabButtonColorsSelected = ' bg-gray-500 hover:bg-gray-400';
   const mobileTabButtonColorsDeselected = ' bg-gray-600 hover:bg-gray-500';
   return (
@@ -157,7 +167,8 @@ const Planner = () => {
               <div className="">
                 <button
                   className={
-                    mobileTabButtonClass + (mobileTab === 'skills' ? mobileTabButtonColorsSelected : mobileTabButtonColorsDeselected)
+                    mobileTabButtonClass +
+                    (mobileTab === 'skills' ? mobileTabButtonColorsSelected : mobileTabButtonColorsDeselected)
                   }
                   onClick={() => setMobileTab('skills')}
                 >
@@ -165,7 +176,8 @@ const Planner = () => {
                 </button>
                 <button
                   className={
-                    mobileTabButtonClass + (mobileTab === 'stats' ? mobileTabButtonColorsSelected : mobileTabButtonColorsDeselected)
+                    mobileTabButtonClass +
+                    (mobileTab === 'stats' ? mobileTabButtonColorsSelected : mobileTabButtonColorsDeselected)
                   }
                   onClick={() => {
                     setMobileTab('stats');
@@ -176,7 +188,8 @@ const Planner = () => {
                 </button>
                 <button
                   className={
-                    mobileTabButtonClass + (mobileTab === 'extras' ? mobileTabButtonColorsSelected : mobileTabButtonColorsDeselected)
+                    mobileTabButtonClass +
+                    (mobileTab === 'extras' ? mobileTabButtonColorsSelected : mobileTabButtonColorsDeselected)
                   }
                   onClick={() => {
                     setMobileTab('extras');

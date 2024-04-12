@@ -25,9 +25,12 @@ const csvParse = (folder: string, mod: boolean, globalData: GlobalDataInterface)
   const dbFilePaths = sync([`./extracted_files/${folder}/db/**/*.tsv`, `./extracted_files/${folder}/subDB*/**/*.tsv`], {
     onlyFiles: true,
   });
-  const locFilePaths = sync([`./extracted_files/${folder}/text/**/*.tsv`, `./extracted_files/${folder}/subLOC*/**/*.tsv`], {
-    onlyFiles: true,
-  });
+  const locFilePaths = sync(
+    [`./extracted_files/${folder}/text/**/*.tsv`, `./extracted_files/${folder}/subLOC*/**/*.tsv`],
+    {
+      onlyFiles: true,
+    },
+  );
   const locObject: { [key: string]: string } = {};
 
   dbFilePaths.forEach((filePath) => {

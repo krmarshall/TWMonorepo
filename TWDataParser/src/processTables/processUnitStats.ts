@@ -40,7 +40,8 @@ const processUnitStats = (folder: string, globalData: GlobalDataInterface, mainU
     melee_attack_interval: parseFloating(meleeWeapon.melee_attack_interval),
   };
 
-  if (mainUnit.barrier_health !== undefined && mainUnit.barrier_health !== '0') returnStats.barrier = parseInteger(mainUnit.barrier_health);
+  if (mainUnit.barrier_health !== undefined && mainUnit.barrier_health !== '0')
+    returnStats.barrier = parseInteger(mainUnit.barrier_health);
   if (mainUnit.can_siege === 'true') returnStats.can_siege = true;
   if (landUnit.can_skirmish === 'true') returnStats.can_skirmish = true;
   if (battleEntity.fly_speed !== '0') returnStats.fly_speed = parseFloating(battleEntity.fly_speed);
@@ -76,7 +77,10 @@ const processUnitStats = (folder: string, globalData: GlobalDataInterface, mainU
   const abilities: Array<AbilityInterface> = [];
   landUnit.foreignRefs?.land_units_to_unit_abilites_junctions?.forEach((abilityJunc) => {
     const tempAbility = processAbility(folder, globalData, abilityJunc, true);
-    if (tempAbility.unit_ability.requires_effect_enabling !== undefined && !tempAbility.unit_ability.requires_effect_enabling) {
+    if (
+      tempAbility.unit_ability.requires_effect_enabling !== undefined &&
+      !tempAbility.unit_ability.requires_effect_enabling
+    ) {
       delete tempAbility.unit_ability.requires_effect_enabling;
       abilities.push(tempAbility);
     }

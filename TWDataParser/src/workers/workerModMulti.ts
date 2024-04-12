@@ -8,8 +8,18 @@ import { mergeLocsIntoVanilla, mergeTablesIntoVanilla } from '../mergeTables';
 import outputCompilationGroups from '../processTables/outputCompilationGroups';
 import Extractor from '../extractor';
 
-const { folder, globalData, modInfoArray, dbList, locList, game, schemaPath, schema, tech, pruneVanilla }: MultiModWorkerDataInterface =
-  workerData;
+const {
+  folder,
+  globalData,
+  modInfoArray,
+  dbList,
+  locList,
+  game,
+  schemaPath,
+  schema,
+  tech,
+  pruneVanilla,
+}: MultiModWorkerDataInterface = workerData;
 
 if (globalData === undefined) {
   throw `${folder} missing globalData`;

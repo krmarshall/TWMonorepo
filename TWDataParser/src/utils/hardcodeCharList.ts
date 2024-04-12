@@ -45,7 +45,9 @@ export const hardcodeCharListData = (characterList: CharacterListInterface) => {
       if (hardcodeSpellLoreData[heroKey] !== undefined) {
         characterList[subcultureKey].heroes[heroKey].spellLore = hardcodeSpellLoreData[heroKey];
       } else {
-        const loreName = characterList[subcultureKey].heroes[heroKey].name.match(regexp)?.groups?.loreName.toLowerCase();
+        const loreName = characterList[subcultureKey].heroes[heroKey].name
+          .match(regexp)
+          ?.groups?.loreName.toLowerCase();
         if (loreName !== undefined && SpellLores[loreName as keyof typeof SpellLores] !== undefined)
           characterList[subcultureKey].heroes[heroKey].spellLore = SpellLores[loreName as keyof typeof SpellLores];
       }

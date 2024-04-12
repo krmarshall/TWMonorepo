@@ -19,12 +19,17 @@ const vanillaCharacters: { [key: string]: string } = {
   wh3_dlc20_skill_node_set_chs_daemon_prince_slaanesh: 'wh3_dlc20_skill_node_set_chs_daemon_prince_slaanesh',
   wh3_dlc20_skill_node_set_chs_daemon_prince_tzeentch: 'wh3_dlc20_skill_node_set_chs_daemon_prince_tzeentch',
   wh3_main_skill_node_set_kho_exalted_bloodthirster: 'wh3_main_skill_node_set_kho_exalted_bloodthirster',
-  wh3_main_skill_node_set_nur_exalted_great_unclean_one_death: 'wh3_main_skill_node_set_nur_exalted_great_unclean_one_death',
-  wh3_main_skill_node_set_nur_exalted_great_unclean_one_nurgle: 'wh3_main_skill_node_set_nur_exalted_great_unclean_one_nurgle',
-  wh3_main_skill_node_set_sla_exalted_keeper_of_secrets_shadow: 'wh3_main_skill_node_set_sla_exalted_keeper_of_secrets_shadow',
-  wh3_main_skill_node_set_sla_exalted_keeper_of_secrets_slaanesh: 'wh3_main_skill_node_set_sla_exalted_keeper_of_secrets_slaanesh',
+  wh3_main_skill_node_set_nur_exalted_great_unclean_one_death:
+    'wh3_main_skill_node_set_nur_exalted_great_unclean_one_death',
+  wh3_main_skill_node_set_nur_exalted_great_unclean_one_nurgle:
+    'wh3_main_skill_node_set_nur_exalted_great_unclean_one_nurgle',
+  wh3_main_skill_node_set_sla_exalted_keeper_of_secrets_shadow:
+    'wh3_main_skill_node_set_sla_exalted_keeper_of_secrets_shadow',
+  wh3_main_skill_node_set_sla_exalted_keeper_of_secrets_slaanesh:
+    'wh3_main_skill_node_set_sla_exalted_keeper_of_secrets_slaanesh',
   wh3_main_skill_node_set_tze_exalted_lord_of_change_metal: 'wh3_main_skill_node_set_tze_exalted_lord_of_change_metal',
-  wh3_main_skill_node_set_tze_exalted_lord_of_change_tzeentch: 'wh3_main_skill_node_set_tze_exalted_lord_of_change_tzeentch',
+  wh3_main_skill_node_set_tze_exalted_lord_of_change_tzeentch:
+    'wh3_main_skill_node_set_tze_exalted_lord_of_change_tzeentch',
   wh3_dlc23_skill_node_set_chd_astragoth: 'wh3_dlc23_skill_node_set_chd_astragoth',
   wh3_dlc23_skill_node_set_chd_drazhoath: 'wh3_dlc23_skill_node_set_chd_drazhoath',
   wh3_dlc23_skill_node_set_chd_zhatan: 'wh3_dlc23_skill_node_set_chd_zhatan',
@@ -183,7 +188,8 @@ const vanillaCharacters: { [key: string]: string } = {
   wh3_dlc24_skill_node_set_cth_celestial_general_yang: 'wh3_dlc24_skill_node_set_cth_celestial_general_yang',
   wh3_dlc24_skill_node_set_cth_celestial_general_yin: 'wh3_dlc24_skill_node_set_cth_celestial_general_yin',
   wh3_dlc24_skill_node_set_cth_yuan_bo: 'wh3_dlc24_skill_node_set_cth_yuan_bo',
-  wh3_main_skill_node_set_cth_dragon_blooded_shugengan_yang: 'wh3_main_skill_node_set_cth_dragon_blooded_shugengan_yang',
+  wh3_main_skill_node_set_cth_dragon_blooded_shugengan_yang:
+    'wh3_main_skill_node_set_cth_dragon_blooded_shugengan_yang',
   wh3_main_skill_node_set_cth_dragon_blooded_shugengan_yin: 'wh3_main_skill_node_set_cth_dragon_blooded_shugengan_yin',
   wh3_main_skill_node_set_cth_lord_caravan_master: 'wh3_main_skill_node_set_cth_lord_caravan_master',
   wh3_main_skill_node_set_cth_lord_magistrate_yang: 'wh3_main_skill_node_set_cth_lord_magistrate_yang',
@@ -276,13 +282,18 @@ const vanillaCharacters: { [key: string]: string } = {
   wh_dlc05_skill_node_set_wef_spellsinger_life: 'wh_dlc05_skill_node_set_wef_spellsinger_life',
   wh_dlc05_skill_node_set_wef_spellsinger_shadow: 'wh_dlc05_skill_node_set_wef_spellsinger_shadow',
   wh_dlc16_skill_node_set_wef_coeddil: 'wh_dlc16_skill_node_set_wef_coeddil',
-  wh2_dlc16_skill_node_set_wef_malicious_branchwraith_beasts: 'wh2_dlc16_skill_node_set_wef_malicious_branchwraith_beasts',
+  wh2_dlc16_skill_node_set_wef_malicious_branchwraith_beasts:
+    'wh2_dlc16_skill_node_set_wef_malicious_branchwraith_beasts',
   wh2_dlc16_skill_node_set_wef_malicious_branchwraith_life: 'wh2_dlc16_skill_node_set_wef_malicious_branchwraith_life',
-  wh2_dlc16_skill_node_set_wef_malicious_branchwraith_shadows: 'wh2_dlc16_skill_node_set_wef_malicious_branchwraith_shadows',
+  wh2_dlc16_skill_node_set_wef_malicious_branchwraith_shadows:
+    'wh2_dlc16_skill_node_set_wef_malicious_branchwraith_shadows',
   wh_dlc16_skill_node_set_wef_drycha: 'wh_dlc16_skill_node_set_wef_drycha',
-  wh2_dlc16_skill_node_set_wef_malicious_ancient_treeman_beasts: 'wh2_dlc16_skill_node_set_wef_malicious_ancient_treeman_beasts',
-  wh2_dlc16_skill_node_set_wef_malicious_ancient_treeman_life: 'wh2_dlc16_skill_node_set_wef_malicious_ancient_treeman_life',
-  wh2_dlc16_skill_node_set_wef_malicious_ancient_treeman_shadows: 'wh2_dlc16_skill_node_set_wef_malicious_ancient_treeman_shadows',
+  wh2_dlc16_skill_node_set_wef_malicious_ancient_treeman_beasts:
+    'wh2_dlc16_skill_node_set_wef_malicious_ancient_treeman_beasts',
+  wh2_dlc16_skill_node_set_wef_malicious_ancient_treeman_life:
+    'wh2_dlc16_skill_node_set_wef_malicious_ancient_treeman_life',
+  wh2_dlc16_skill_node_set_wef_malicious_ancient_treeman_shadows:
+    'wh2_dlc16_skill_node_set_wef_malicious_ancient_treeman_shadows',
   wh_dlc05_skill_node_set_wef_durthu: 'wh_dlc05_skill_node_set_wef_durthu',
   wh2_dlc16_skill_node_set_wef_sisters_of_twilight: 'wh2_dlc16_skill_node_set_wef_sisters_of_twilight',
   wh_dlc05_skill_node_set_wef_orion: 'wh_dlc05_skill_node_set_wef_orion',
@@ -364,7 +375,8 @@ const vanillaCharacters: { [key: string]: string } = {
   wh2_dlc13_skill_node_set_emp_hunter_rodrik_l_anguille_0: 'wh2_dlc13_skill_node_set_emp_hunter_rodrik_l_anguille_0',
   wh2_dlc13_skill_node_set_emp_hunter_jorek_grimm_0: 'wh2_dlc13_skill_node_set_emp_hunter_jorek_grimm_0',
   wh2_dlc13_skill_node_set_markus_wulfhart: 'wh2_dlc13_skill_node_set_markus_wulfhart',
-  wh2_dlc13_skill_node_set_emp_hunter_doctor_hertwig_van_hal: 'wh2_dlc13_skill_node_set_emp_hunter_doctor_hertwig_van_hal',
+  wh2_dlc13_skill_node_set_emp_hunter_doctor_hertwig_van_hal:
+    'wh2_dlc13_skill_node_set_emp_hunter_doctor_hertwig_van_hal',
   wh2_dlc13_skill_node_set_emp_hunter_kalara_of_wydrioth_0: 'wh2_dlc13_skill_node_set_emp_hunter_kalara_of_wydrioth_0',
   wh_dlc04_skill_node_set_emp_volkmar: 'wh_dlc04_skill_node_set_emp_volkmar',
   wh_main_skill_node_set_emp_karl_franz: 'wh_main_skill_node_set_emp_karl_franz',

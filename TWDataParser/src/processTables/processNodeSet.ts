@@ -29,7 +29,15 @@ const processNodeSet = (
 
   if (folder.includes('2')) {
     nodeSet.foreignRefs?.character_skill_nodes?.forEach((skillNode) => {
-      const tempNode = processSkillNode(folder, globalData, skillNode, skillNodeKeys, items, subsetRequiredMap, requiredMap);
+      const tempNode = processSkillNode(
+        folder,
+        globalData,
+        skillNode,
+        skillNodeKeys,
+        items,
+        subsetRequiredMap,
+        requiredMap,
+      );
       if (tempNode !== undefined) {
         completeNodes.push(tempNode);
       }
@@ -38,7 +46,15 @@ const processNodeSet = (
     nodeSet.foreignRefs?.character_skill_node_set_items?.forEach((nodeSetItem) => {
       const skillNode = nodeSetItem.localRefs?.character_skill_nodes;
       if (nodeSetItem.mod_disabled === 'false' && skillNode !== undefined) {
-        const tempNode = processSkillNode(folder, globalData, skillNode, skillNodeKeys, items, subsetRequiredMap, requiredMap);
+        const tempNode = processSkillNode(
+          folder,
+          globalData,
+          skillNode,
+          skillNodeKeys,
+          items,
+          subsetRequiredMap,
+          requiredMap,
+        );
         if (tempNode !== undefined) {
           completeNodes.push(tempNode);
         }

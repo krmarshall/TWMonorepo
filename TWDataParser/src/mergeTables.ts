@@ -3,7 +3,11 @@ import log from './utils/log';
 import { SchemaInterface } from './@types/SchemaInterfaces';
 import findHighestVersionDB from './utils/findHighestVersionDB';
 
-const overwriteMerge = (vanillaTable: Array<TableRecord>, moddedTables: Array<Array<TableRecord>>, sameProps: Array<string>) => {
+const overwriteMerge = (
+  vanillaTable: Array<TableRecord>,
+  moddedTables: Array<Array<TableRecord>>,
+  sameProps: Array<string>,
+) => {
   const mergedMap: { [key: string]: TableRecord } = {};
   vanillaTable.forEach((record) => {
     const recordKey = sameProps.reduce((prev, next) => prev + record[next], '');

@@ -48,7 +48,9 @@ const CharacterCell = ({ charKey, char, charImage, spellLore, charMod, handleCha
             />
           )}
         </div>
-        {charMod !== undefined && <h3 className="w-32 mx-auto text-base text-center text-shadow text-gray-200">{charMod}</h3>}
+        {charMod !== undefined && (
+          <h3 className="w-32 mx-auto text-base text-center text-shadow text-gray-200">{charMod}</h3>
+        )}
       </a>
     </li>
   );

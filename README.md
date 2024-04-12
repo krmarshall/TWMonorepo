@@ -1,7 +1,5 @@
 # TWMonorepo
 
-Check OvN High Elves Caladris
-
 ## Sorting Order
 (Subsort each alphabetically)
 Folder (Vanilla First)

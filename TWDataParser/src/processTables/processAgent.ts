@@ -80,7 +80,10 @@ const processAgent = (
     }
 
     if (folder.includes('2')) {
-      if (nodeSet.foreignRefs?.character_skill_nodes === undefined || nodeSet.foreignRefs?.character_skill_nodes.length === 0) {
+      if (
+        nodeSet.foreignRefs?.character_skill_nodes === undefined ||
+        nodeSet.foreignRefs?.character_skill_nodes.length === 0
+      ) {
         return;
       }
     } else {
@@ -114,7 +117,9 @@ const processAgent = (
           itemKeys.add(item.key);
         }
       });
-      tempAgent.items.sort((a: ItemInterface, b: ItemInterface) => (a.unlocked_at_rank ?? 99) - (b.unlocked_at_rank ?? 99));
+      tempAgent.items.sort(
+        (a: ItemInterface, b: ItemInterface) => (a.unlocked_at_rank ?? 99) - (b.unlocked_at_rank ?? 99),
+      );
     }
     tempAgent.backgroundSkills = backgroundSkills;
     if (altFactionNodeSets !== undefined) {
