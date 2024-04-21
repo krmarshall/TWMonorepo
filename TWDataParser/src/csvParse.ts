@@ -59,7 +59,11 @@ const csvParse = (folder: string, mod: boolean, globalData: GlobalDataInterface)
     const parsedArray = parse(fileData, csvParseConfig);
 
     parsedArray.forEach((loc: { key: string; text: string }) => {
-      locObject[loc.key] = loc.text;
+      if (loc.text.length === 0 && locObject[loc.key]?.length > 0) {
+        // Dont overwrite good locs with empty ones
+      } else {
+        locObject[loc.key] = loc.text;
+      }
     });
   });
 

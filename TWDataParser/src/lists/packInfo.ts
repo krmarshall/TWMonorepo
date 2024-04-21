@@ -40,6 +40,7 @@ export const modPackInfo: ModPackInfoInterface = {
   crys3: [{ pack: 'crys_leaders', id: 2880244265 }],
   scm3: [
     { pack: 'scm_lccp', id: 3113531421, name: 'LCCP' },
+    { pack: '!scm_norsca', id: 3227790113, name: 'Tribes of the North' },
     { pack: 'str_skaven_clans', id: 2986543735, name: 'Skaven Clans' },
     { pack: '!scm_marienburg', id: 3030996759, name: 'Marienburg' },
     { pack: '!!!!!!Champions_of_undeath_merged_fun_tyme', id: 3022054734, name: 'Champions of Undeath' },

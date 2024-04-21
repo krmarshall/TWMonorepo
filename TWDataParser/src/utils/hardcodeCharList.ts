@@ -426,4 +426,7 @@ const hardcodeSpellLoreData: { [nodeSetKey: string]: SpellLores } = {
   str_lurklox: SpellLores.stealth,
   str_navrre_skills: SpellLores.deep,
   str_vorag_skills: SpellLores.mixed,
+  skill_node_set_hkrul_adella: SpellLores.mixed,
+  skill_node_set_hkrul_sayl: SpellLores.mixed,
+  skill_node_set_hkrul_soren: SpellLores.mixed,
 };

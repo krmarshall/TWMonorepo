@@ -334,6 +334,11 @@ const addAgents = [
   { agent: 'hkrul_karitamen', subculture: 'wh2_dlc09_sc_tmb_tomb_kings', game: '3' },
   { agent: 'hkrul_duriath', subculture: 'wh2_main_sc_def_dark_elves', game: '3' },
 
+  // Tribes of the North
+  { agent: 'scm_norsca_huern', subculture: 'wh_dlc08_sc_nor_norsca', game: '3' },
+  { agent: 'hkrul_swyrd', subculture: 'wh_dlc08_sc_nor_norsca', game: '3' },
+  { agent: 'hkrul_kolsveinn', subculture: 'wh_dlc08_sc_nor_norsca', game: '3' },
+
   // Skaven Clans
   // { agent: 'str_flem_plague_lord', subculture: 'wh2_main_sc_skv_skaven', game: '3' },
   // { agent: 'str_flem_plague_lord_sling', subculture: 'wh2_main_sc_skv_skaven', game: '3' },
