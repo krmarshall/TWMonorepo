@@ -1,6 +1,6 @@
 import { Fragment, useContext, useEffect, useState } from 'react';
 import { toast } from 'react-hot-toast';
-import { useNavigate } from 'react-router';
+import { useNavigate } from 'react-router-dom';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import api from '../../api/api';
 import { AppContext, AppContextActions } from '../../contexts/AppContext';

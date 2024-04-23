@@ -1,7 +1,5 @@
 {
-  "name": "totalwarhammerdataparser",
-  "version": "0.1.0",
-  "description": "Tool for extracting and parsing character skill trees into usable json.",
+  "name": "twdataparser",
   "scripts": {
     "lint": "eslint ./src",
     "lintFix": "eslint ./src --fix",
@@ -11,8 +9,6 @@
     "fullBuild": "run-s updateSchemas convertSchemas start",
     "profile": "set NODE_OPTIONS='--max-old-space-size=8192' && node -r ts-node/register --prof ./src/index.ts"
   },
-  "author": "krmarshall",
-  "license": "ISC",
   "dependencies": {
     "csv-parse": "^5.5.4",
     "dotenv": "^16.4.5",

@@ -1,6 +1,0 @@
-[submodule "TotalWarhammerPlanner"]
-	path = TotalWarhammerPlanner
-	url = https://github.com/krmarshall/TotalWarhammerPlanner
-[submodule "TotalWarhammerDataParser"]
-	path = TotalWarhammerDataParser
-	url = https://github.com/krmarshall/TotalWarhammerDataParser

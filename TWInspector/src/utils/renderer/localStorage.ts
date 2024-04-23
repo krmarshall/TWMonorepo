@@ -11,11 +11,14 @@ export const loadSchemaPath = () => {
 };
 
 export const saveSchemaPath = (path: string) => {
+  window.API.setWorkspacePath(path);
   localStorage.setItem('schemaPath', path);
 };
 
 export const loadWorkspacePath = () => {
-  return localStorage.getItem('workspacePath') ?? '';
+  const path = localStorage.getItem('workspacePath') ?? '';
+  window.API.setWorkspacePath(path);
+  return path;
 };
 
 export const saveWorkspacePath = (path: string) => {

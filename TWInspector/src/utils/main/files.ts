@@ -43,9 +43,14 @@ export const handleGetFolderPath = async () => {
 };
 
 export const handleGetCharList = async (_event: IpcMainInvokeEvent, workspacePath: string) => {
-  return readJson(`${workspacePath}/characterList.json`);
+  return readJson(`${workspacePath}/output/charLists/mod.json`);
 };
 
-export const handleGetSkillTree = async (_event: IpcMainInvokeEvent, workspacePath: string, faction: string, agentKey: string) => {
+export const handleGetSkillTree = async (
+  _event: IpcMainInvokeEvent,
+  workspacePath: string,
+  faction: string,
+  agentKey: string,
+) => {
   return readJson(`${workspacePath}/output/skills/mod/${faction}/${agentKey}.json`);
 };

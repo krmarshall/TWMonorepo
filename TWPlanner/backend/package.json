@@ -1,7 +1,5 @@
 {
   "name": "backend",
-  "version": "0.1.0",
-  "description": "",
   "main": "./src/start.ts",
   "scripts": {
     "prod": "tsc && SET NODE_ENV=production&&node ./dist/start.js",
@@ -12,8 +10,6 @@
     "lintFix": "eslint ./src/ --fix",
     "test": "jest"
   },
-  "author": "krmarshall",
-  "license": "ISC",
   "dependencies": {
     "compression": "^1.7.4",
     "cors": "^2.8.5",
@@ -25,6 +21,7 @@
     "mime": "^3.0.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.24.4",
     "@babel/plugin-transform-runtime": "^7.23.9",
     "@babel/preset-env": "^7.23.9",
     "@types/compression": "^1.7.5",

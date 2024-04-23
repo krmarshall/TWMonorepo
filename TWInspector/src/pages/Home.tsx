@@ -1,12 +1,7 @@
-import { createFileRoute } from '@tanstack/react-router';
 import { useContext, useState } from 'react';
 import { ElectronContext, ElectronContextActions } from '../contexts/ElectronContext';
 
-export const Route = createFileRoute('/')({
-  component: Index,
-});
-
-function Index() {
+const Home = () => {
   const { state, dispatch } = useContext(ElectronContext);
   const { warhammer3Location, lastSelectedModPaths, rpfmPath, schemaPath, workspacePath } = state;
 
@@ -52,59 +47,64 @@ function Index() {
   };
 
   const build = async () => {
-    setLog(await window.API.build(rpfmPath, schemaPath, workspacePath, warhammer3Location, lastSelectedModPaths, false));
+    setLog(
+      await window.API.build(rpfmPath, schemaPath, workspacePath, warhammer3Location, lastSelectedModPaths, false),
+    );
   };
 
   const buildForce = async () => {
     setLog(await window.API.build(rpfmPath, schemaPath, workspacePath, warhammer3Location, lastSelectedModPaths, true));
   };
-
   return (
-    <div className="p-2">
-      <p>rpfm_cli Location: {rpfmPath}</p>
-      <button className="border p-1" onClick={setRpfmPath}>
-        Set rpfm_cli location
-      </button>
+    <div className="grow mt-1 bg-gray-700 w-full border border-gray-500 rounded-md px-3 pb-2 overflow-y-auto overflow-x-hidden scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-600">
+      <div className="text-xl">
+        <p>rpfm_cli Location: {rpfmPath}</p>
+        <button className="border p-1" onClick={setRpfmPath}>
+          Set rpfm_cli location
+        </button>
 
-      <p>schemas Location: {schemaPath}</p>
-      <button className="border p-1" onClick={setSchemaPath}>
-        Set schemas location
-      </button>
+        <p>schemas Location: {schemaPath}</p>
+        <button className="border p-1" onClick={setSchemaPath}>
+          Set schemas location
+        </button>
 
-      <p>Workspace Location: {workspacePath}</p>
-      <button className="border p-1" onClick={setWorkspacePath}>
-        Set workspace location
-      </button>
+        <p>Workspace Location: {workspacePath}</p>
+        <button className="border p-1" onClick={setWorkspacePath}>
+          Set workspace location
+        </button>
 
-      <p>Warhammer 3 Data Location: {warhammer3Location}</p>
-      <button className="border p-1" onClick={setWH3Path}>
-        Set WH3 Location
-      </button>
+        <p>Warhammer 3 Data Location: {warhammer3Location}</p>
+        <button className="border p-1" onClick={setWH3Path}>
+          Set WH3 Location
+        </button>
 
-      <p>Mod File Paths: {lastSelectedModPaths}</p>
-      <button className="border p-1" onClick={setModFilePaths}>
-        Select Mods
-      </button>
+        <p>Mod File Paths: {lastSelectedModPaths}</p>
+        <button className="border p-1" onClick={setModFilePaths}>
+          Select Mods
+        </button>
 
-      <hr />
-      <button className="border p-1" onClick={refreshSchemas}>
-        Refresh Schemas
-      </button>
-      <button className="border p-1" onClick={convertSchemas}>
-        Convert Schemas
-      </button>
-      <button className="border p-1" onClick={build}>
-        Build
-      </button>
-      <button className="border p-1" onClick={buildForce}>
-        Force Build
-      </button>
+        <hr />
+        <button className="border p-1" onClick={refreshSchemas}>
+          Refresh Schemas
+        </button>
+        <button className="border p-1" onClick={convertSchemas}>
+          Convert Schemas
+        </button>
+        <button className="border p-1" onClick={build}>
+          Build
+        </button>
+        <button className="border p-1" onClick={buildForce}>
+          Force Build
+        </button>
 
-      <hr />
-      <button className="border p-1" onClick={clearLog}>
-        Clear Log
-      </button>
-      <p>{log}</p>
+        <hr />
+        <button className="border p-1" onClick={clearLog}>
+          Clear Log
+        </button>
+        <p>{log}</p>
+      </div>
     </div>
   );
-}
+};
+
+export default Home;

@@ -90,6 +90,20 @@ Skill nodes are able to only be added to trees when they are part of specific fa
 
 For Sigmar knows what reason tech indents start at -2, I realigned them to start at 0 for easier array usage. So all indents in output data will be 2 higher than in packs.
 
+
+## Character List Sorting Order
+
+(Subsort each alphabetically)
+Folder (Vanilla First)
+Priority (agent_subtypes recruitment_type="legendary_lord" or contributes_to_agent_cap=true)
+Normal
+Depriority (Manually set for researched lords primarily)
+
+
+## Missing Portrait:
+Most often a portrait_settings.bin that rpfm cant parse, or the art set is numbered past 01 and is filtered out.
+
+
 ## Potential Automation
 
 If enough monthly donations can look at upgrading the droplet to something that could handle running the data parser builds (4-32GB mem, ~100GB storage). Use steamcmd to grab workshop files every x interval, if they changed trigger a rebuild. Would probably want to properly automate portrait extraction/linking.

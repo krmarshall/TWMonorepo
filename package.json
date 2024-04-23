@@ -1,10 +1,30 @@
 {
+  "name": "twmonorepo",
   "scripts": {
-  "submodule": "git submodule update --remote --recursive"
+    "git:submodule": "git submodule update --remote --recursive",
+    "frontendDev": "yarn workspace frontend dev",
+    "backendDev": "yarn workspace backend dev",
+    "planner:dev": "concurrently -m 2 -k -n front,server -c #124dc4,#c45f12 yarn:frontendDev yarn:backendDev",
+    "planner:test": "yarn workspace backend test",
+    "planner:build": "yarn workspace frontend build && yarn workspace backend build",
+    "parser:dev": "yarn workspace twdataparser start",
+    "parser:build": "yarn workspace twdataparser fullBuild",
+    "inspector:dev": "yarn workspace twinspector start",
+    "inspector:build": "yarn workspace twinspector make",
+    "lint": "yarn workspaces foreach lint",
+    "lintFix": "yarn workspaces foreach lintFix"
+  },
+  "workspaces": [
+    "./",
+    "TWDataParser",
+    "TWPlanner/frontend",
+    "TWPlanner/backend",
+    "TWInspector"
+  ],
+  "dependencies": {
+    "concurrently": "^8.2.2"
   },
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^7.4.0",
-    "@typescript-eslint/parser": "^7.4.0",
     "eslint": "^8.57.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-import-resolver-typescript": "^3.6.1",
@@ -14,6 +34,8 @@
     "eslint-plugin-promise": "^6.1.1",
     "eslint-plugin-react": "^7.34.1",
     "eslint-plugin-react-hooks": "^4.6.0",
-    "prettier": "^3.2.5"
-  }
+    "prettier": "^3.2.5",
+    "typescript": "^5.3.3"
+  },
+  "packageManager": "yarn@4.1.1"
 }

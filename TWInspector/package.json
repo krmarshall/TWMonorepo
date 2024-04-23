@@ -9,8 +9,20 @@
     "package": "electron-forge package",
     "make": "electron-forge make",
     "publish": "electron-forge publish",
-    "submodule": "git submodule update --remote --recursive",
     "lint": "eslint --ext .ts,.tsx ."
+  },
+  "installConfig": {
+    "hoistingLimits": "workspaces"
+  },
+  "dependencies": {
+    "@types/node": "^20.12.7",
+    "csv-parse": "^5.5.5",
+    "electron-squirrel-startup": "^1.0.0",
+    "fast-glob": "^3.3.2",
+    "fs-extra": "^11.2.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.22.1"
   },
   "devDependencies": {
     "@electron-forge/cli": "^7.3.1",
@@ -39,15 +51,5 @@
     "name": "krmarshall",
     "email": "59742056+krmarshall@users.noreply.github.com"
   },
-  "license": "MIT",
-  "dependencies": {
-    "@tanstack/react-router": "^1.22.9",
-    "csv-parse": "^5.5.5",
-    "electron-squirrel-startup": "^1.0.0",
-    "fast-glob": "^3.3.2",
-    "frontend": "file:TotalWarhammerPlanner/frontend",
-    "fs-extra": "^11.2.0",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
-  }
+  "license": "MIT"
 }

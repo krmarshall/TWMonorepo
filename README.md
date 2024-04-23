@@ -1,12 +1,19 @@
 # TWMonorepo
 
-## Sorting Order
-(Subsort each alphabetically)
-Folder (Vanilla First)
-Priority (agent_subtypes recruitment_type="legendary_lord" or contributes_to_agent_cap=true)
-Normal
-Depriority (Manually set for researched lords primarily)
+## TW Data Parser
 
+Requires steam to be running for the steamworks api
+yarn parser:dev
+yarn parser:build
 
-## Missing Portrait:
-Most often a portrait_settings.bin that rpfm cant parse, or the art set is numbered past 01 and is filtered out.
+## TW Planner
+
+yarn planner:dev
+yarn planner:build
+yarn planner:test
+
+## TW Inspector
+
+Electron Forge does not support npm workspaces, so does not share dependencies like the rest 🙃
+yarn inspector:def
+yarn inspector:build
