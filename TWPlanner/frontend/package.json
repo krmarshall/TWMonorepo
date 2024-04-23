@@ -9,7 +9,6 @@
   },
   "dependencies": {
     "@floating-ui/react": "^0.26.9",
-    "@types/dompurify": "^3.0.5",
     "animate.css": "^4.1.1",
     "dompurify": "^3.0.9",
     "lzbase62": "^2.0.0",
@@ -23,6 +22,7 @@
     "react-xarrows": "^2.0.2"
   },
   "devDependencies": {
+    "@types/dompurify": "^3.0.5",
     "@types/lzbase62": "^2.0.3",
     "@types/react": "^18.2.60",
     "@types/react-dom": "^18.2.19",
