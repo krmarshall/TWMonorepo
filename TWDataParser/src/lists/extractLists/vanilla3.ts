@@ -33,6 +33,7 @@ const v3LocList = [
   'campaigns__',
   'units_custom_battle_mounts__',
   'ancillary_sets__',
+  'pooled_resources__'
 ];
 
 const v3AssKitList = ['start_pos_characters', 'start_pos_character_traits'];

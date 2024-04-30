@@ -77,6 +77,7 @@ const hardCodeNameData: { [nodeSetKey: string]: { name: string; priority?: boole
   wh3_main_skill_node_set_ksl_ataman: { name: 'Ataman' },
   wh2_main_skill_node_set_def_black_ark: { name: 'Dreadlord (Black Ark)' },
   wh2_main_skill_node_set_def_black_ark_blessed_dread: { name: 'Dreadlord (The Blessed Dread)' },
+  wh3_dlc25_dwf_lord_mikael_leadstrong: { name: 'Mikael Leadstrong (???)' },
 
   dread_traitor_tomb_king_nebwaneph: { name: 'Traitor King Nebwaneph' },
   dread_traitor_tomb_king_omanhan_iii: { name: 'Traitor King Omanhan III' },
@@ -126,6 +127,8 @@ export const hardcodePortraitData: { [nodeSetKey: string]: string } = {
   wh_dlc05_skill_node_set_wef_spellsinger_life: 'vanilla3/wef_spellsinger_campaign_01_0.webp',
   wh_dlc05_skill_node_set_wef_spellsinger_shadow: 'vanilla3/wef_spellsinger_campaign_01_0.webp',
   wh3_main_skill_node_set_dae_daemon_prince: 'vanilla3/dae_prince_0.webp',
+  wh3_main_skill_node_set_sla_alluress_shadow: 'vanilla3/dae_daemonette_alluress_campaign_01_0.webp',
+  wh3_main_skill_node_set_sla_alluress_slaanesh: 'vanilla3/dae_daemonette_alluress_campaign_01_0.webp',
 
   Helgar_longplaits: 'lege3/helgar_longplaits.webp',
   skill_node_set_hkrul_erkstein: 'lege3/hkrul_erkstein.webp',
@@ -277,6 +280,10 @@ const hardcodeSpellLoreData: { [nodeSetKey: string]: SpellLores } = {
   wh3_main_skill_node_set_cth_lord_magistrate_yang: SpellLores.yang,
   wh3_main_skill_node_set_cth_lord_magistrate_yin: SpellLores.yin,
   wh3_dlc20_skill_node_set_chs_daemon_prince_undivided: SpellLores.fire,
+  wh3_dlc25_skill_node_set_emp_elspeth_von_draken: SpellLores.death,
+  wh3_dlc25_skill_node_set_emp_gold_wizard: SpellLores.metal,
+  wh3_dlc25_skill_node_set_nur_bray_shaman_wild_chieftain: SpellLores.wild,
+  wh3_dlc25_skill_node_set_nur_fimir_balefiend_shadow_chieftain: SpellLores.shadows,
 
   skill_node_set_brt_cha_lost: SpellLores.mixed,
   skill_node_set_grn_cha_savageboss: SpellLores.bigWagh,

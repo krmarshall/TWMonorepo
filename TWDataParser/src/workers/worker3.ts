@@ -49,10 +49,10 @@ extractor
     workerMod(crysWorkerData);
     // Pruned Mods
     workerModMulti(mixuWorkerData);
-    workerMod(legeWorkerData);
+    // workerMod(legeWorkerData);
     workerModMulti(scmWorkerData);
     workerModMulti(cat3WorkerData);
-    workerModMulti(ovn3WorkerData);
+    // workerModMulti(ovn3WorkerData);
     workerModMulti(hol3WorkerData);
 
     dbList.push(...(v3AssKitList as Array<RefKey>));

@@ -41,6 +41,7 @@ Required image folders (M) need to be manually checked, rest should be in ./outp
 
 WH3 also needs
 - (M) ui/skins/default/modifier_icon_*
+- (M) ui/skins/default/dlc25_tamurkhans_chieftains/equipment_items_chieftain_talisman
 - (M) ui/battle ui/ability_icons/resistance_* (put with the skins/default)
 - (M) ui/campaign ui/skills/item_arcane_item (from WH2, missing from 3)
 
