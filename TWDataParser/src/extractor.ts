@@ -258,7 +258,7 @@ export default class Extractor {
             resolve();
           })
           .catch(() => {
-            log(`Bad portrait bin:${portraitSettingsPath}`, 'yellow');
+            // log(`Bad portrait bin:${portraitSettingsPath}`, 'yellow');
             resolve();
           });
       });

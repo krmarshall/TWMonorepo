@@ -165,6 +165,7 @@ export const hardcodePortraitData: { [nodeSetKey: string]: string } = {
   dotd_wight_king: 'vanilla3/vmp_wight_king_sword_campaign_01_0.webp',
   rhox_lccp_sceolan_wef_spellweaver_ice: 'vanilla3/wef_spellweaver_campaign_05_0.webp',
   rhox_lccp_sceolan_wef_spellsinger_ice: 'vanilla3/wef_spellsinger_campaign_05_0.webp',
+  skill_node_set_hkrul_artur: 'scm3/hkrul_artur.webp',
 };
 
 const hardcodeSpellLoreData: { [nodeSetKey: string]: SpellLores } = {
@@ -429,4 +430,19 @@ const hardcodeSpellLoreData: { [nodeSetKey: string]: SpellLores } = {
   skill_node_set_hkrul_adella: SpellLores.mixed,
   skill_node_set_hkrul_sayl: SpellLores.mixed,
   skill_node_set_hkrul_soren: SpellLores.mixed,
+  hkrul_raphael_skills: SpellLores.heavens,
+  hkrul_starke_skills: SpellLores.shadows,
+  hkrul_setanta_skills: SpellLores.beasts,
+  xou_thyrus_skills: SpellLores.fire,
+  hkrul_tochter_skills: SpellLores.life,
+  hkrul_kant_skills: SpellLores.light,
+  hkrul_viggo_skills: SpellLores.dark,
+  emp_wizard_lord_metal_skills: SpellLores.metal,
+  emp_wizard_lord_heavens_skills: SpellLores.heavens,
+  emp_wizard_lord_life_skills: SpellLores.life,
+  emp_wizard_lord_light_skills: SpellLores.light,
+  emp_wizard_lord_fire_skills: SpellLores.fire,
+  emp_wizard_lord_shadows_skills: SpellLores.shadows,
+  emp_wizard_lord_beasts_skills: SpellLores.beasts,
+  emp_wizard_lord_death_skills: SpellLores.death,
 };
