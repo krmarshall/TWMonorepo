@@ -39,7 +39,7 @@ export const modPackInfo: ModPackInfoInterface = {
   lege3: [{ pack: '!str_legendary', id: 2826930183 }],
   crys3: [{ pack: 'crys_leaders', id: 2880244265 }],
   scm3: [
-    { pack: 'scm_lccp', id: 3113531421, name: 'LCCP' },
+    { pack: '!scm_lccp', id: 3236567583, name: 'LCCP' },
     { pack: '!scm_totn', id: 3236566964, name: 'Tribes of the North' },
     { pack: 'str_skaven_clans', id: 2986543735, name: 'Skaven Clans' },
     { pack: '!scm_marienburg', id: 3030996759, name: 'Marienburg' },
