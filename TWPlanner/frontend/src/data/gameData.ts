@@ -70,7 +70,6 @@ const gameData: { [key: string]: GameDataInterface } = {
       `Mixu's Legendary Lords (${toParsedDateString(modTimestamps.mixu3.ab_mixu_legendary_lords)})`,
       `Mixu's Mousillon (${toParsedDateString(modTimestamps.mixu3.ab_mixu_mousillon)})`,
       `Gnoblar Hordes - The Unwashed Masses (${toParsedDateString(modTimestamps.mixu3.ab_unwashed_masses)})`,
-      `Mixu's Slayer (${toParsedDateString(modTimestamps.mixu3.ab_mixu_slayer)})`,
       `Mixu's Shadowdancer (${toParsedDateString(modTimestamps.mixu3.ab_mixu_shadowdancer)})`,
     ],
     workshopLink: 'https://steamcommunity.com/sharedfiles/filedetails/?id=2920114265',
