@@ -26,7 +26,7 @@ export const modPackInfo: ModPackInfoInterface = {
     { pack: 'ab_mixu_legendary_lords', id: 2802810577, name: "Mixu's Legendary Lords" },
     { pack: 'ab_mixu_mousillon', id: 2985441419, name: "Mixu's Mousillon" },
     { pack: 'ab_unwashed_masses', id: 2825728189, name: 'Gnoblar Hordes - The Unwashed Masses' },
-    { pack: 'ab_mixu_slayer', id: 2853477423, name: "Mixu's Slayer" },
+    // { pack: 'ab_mixu_slayer', id: 2853477423, name: "Mixu's Slayer" },
     { pack: 'ab_mixu_shadowdancer', id: 2933920316, name: "Mixu's Shadowdancer" },
   ],
   radious3: [

@@ -287,6 +287,8 @@ const addAgents = [
   { agent: 'chs_egrimm_van_horstmann', subculture: 'wh3_main_sc_tze_tzeentch', game: '3' },
   { agent: 'mixu_tze_exalted_hero', subculture: 'wh3_main_sc_tze_tzeentch', game: '3' },
 
+  { agent: 'ksl_rastiltin', subculture: 'wh3_main_sc_ksl_kislev', game: '3' },
+
   // Lege 3
   { agent: 'str_rykarth', subculture: 'wh3_dlc23_sc_chd_chaos_dwarfs', game: '3' },
   { agent: 'str_byrrnoth_grundadrakk', subculture: 'wh_main_sc_dwf_dwarfs', game: '3' },
