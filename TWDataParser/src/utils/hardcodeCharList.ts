@@ -77,7 +77,7 @@ const hardCodeNameData: { [nodeSetKey: string]: { name: string; priority?: boole
   wh3_main_skill_node_set_ksl_ataman: { name: 'Ataman' },
   wh2_main_skill_node_set_def_black_ark: { name: 'Dreadlord (Black Ark)' },
   wh2_main_skill_node_set_def_black_ark_blessed_dread: { name: 'Dreadlord (The Blessed Dread)' },
-  wh3_dlc25_dwf_lord_mikael_leadstrong: { name: 'Mikael Leadstrong (???)' },
+  wh3_dlc25_dwf_lord_mikael_leadstrong: { name: 'Mikael Leadstrong' },
 
   dread_traitor_tomb_king_nebwaneph: { name: 'Traitor King Nebwaneph' },
   dread_traitor_tomb_king_omanhan_iii: { name: 'Traitor King Omanhan III' },
@@ -129,6 +129,7 @@ export const hardcodePortraitData: { [nodeSetKey: string]: string } = {
   wh3_main_skill_node_set_dae_daemon_prince: 'vanilla3/dae_prince_0.webp',
   wh3_main_skill_node_set_sla_alluress_shadow: 'vanilla3/dae_daemonette_alluress_campaign_01_0.webp',
   wh3_main_skill_node_set_sla_alluress_slaanesh: 'vanilla3/dae_daemonette_alluress_campaign_01_0.webp',
+  wh3_dlc25_dwf_lord_mikael_leadstrong: 'vanilla3/dwf_lord_campaign_01_0.webp',
 
   Helgar_longplaits: 'lege3/helgar_longplaits.webp',
   skill_node_set_hkrul_erkstein: 'lege3/hkrul_erkstein.webp',
