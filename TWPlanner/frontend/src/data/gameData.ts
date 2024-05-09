@@ -125,7 +125,7 @@ const gameData: { [key: string]: GameDataInterface } = {
     updated: mostRecentDateString(Object.values(modTimestamps.scm3)),
     category: 'Character Mod Compilation',
     includes: [
-      `LCCP (${toParsedDateString(modTimestamps.scm3.scm_lccp)})`,
+      `LCCP (${toParsedDateString(modTimestamps.scm3['!scm_lccp'])})`,
       `Skaven Clans (${toParsedDateString(modTimestamps.scm3.str_skaven_clans)})`,
       `Marienburg (${toParsedDateString(modTimestamps.scm3['!scm_marienburg'])})`,
       `Champions of Undeath (${toParsedDateString(modTimestamps.scm3['!!!!!!Champions_of_undeath_merged_fun_tyme'])})`,
