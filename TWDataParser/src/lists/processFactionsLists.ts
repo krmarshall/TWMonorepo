@@ -120,6 +120,9 @@ const ignoreAgents: Array<{ agent: string; game?: string; subculture?: string; f
   { agent: 'str_dechala', game: 'ALL' },
   { agent: 'str_sayl', game: 'ALL' },
 
+  // Lege3 Disabled
+  { agent: 'disabled_ludwig_von_uberdorf_agent_subtype', game: 'ALL' },
+
   // Champions of Undeath
   { agent: 'bm_abhorash_2hp', game: '3', subculture: 'wh_main_sc_vmp_vampire_counts' },
 
