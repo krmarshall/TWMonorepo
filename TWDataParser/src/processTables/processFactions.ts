@@ -107,7 +107,7 @@ const processFactions = (
           return;
         }
         faction.foreignRefs?.faction_agent_permitted_subtypes?.forEach((factionAgent) => {
-          if (factionAgent.agent === 'colonel' || factionAgent.agent === 'minister') {
+          if (factionAgent.agent === 'colonel' || factionAgent.agent === 'minister' || factionAgent.mod_disabled === 'true') {
             return;
           }
           if (
