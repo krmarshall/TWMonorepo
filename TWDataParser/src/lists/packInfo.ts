@@ -54,9 +54,7 @@ export const modPackInfo: ModPackInfoInterface = {
     { pack: '!scm_empire_secessionists', id: 3030410786, name: 'Empire Secessionists' },
     { pack: 'froeb_dark_land_orcs', id: 2919542060, name: 'Dark Land Orcs' },
     { pack: 'dead_cult_possessed_unit_V2', id: 2891621259, name: "Dead's Cult of the Possessed" },
-    { pack: '!xou_khorne_karanak', id: 2824164139, name: 'Karanak, Hound of Vengeance' },
     { pack: 'cth_yinyin_pol', id: 2989226363, name: 'RotJS: Yin-Yin, the Sea Dragon' },
-    { pack: '!xou_kislev_ivan', id: 2803817483, name: 'Ivan Radinov' },
   ],
   cat3: [
     { pack: '!ak_teb3', id: 2927296206, name: "Cataph's Southern Realms (TEB)" },

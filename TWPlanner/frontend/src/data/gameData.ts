@@ -126,6 +126,7 @@ const gameData: { [key: string]: GameDataInterface } = {
     category: 'Character Mod Compilation',
     includes: [
       `LCCP (${toParsedDateString(modTimestamps.scm3['!scm_lccp'])})`,
+      `Tribes of the North (${toParsedDateString(modTimestamps.scm3['!scm_totn'])})`,
       `Skaven Clans (${toParsedDateString(modTimestamps.scm3.str_skaven_clans)})`,
       `Marienburg (${toParsedDateString(modTimestamps.scm3['!scm_marienburg'])})`,
       `Champions of Undeath (${toParsedDateString(modTimestamps.scm3['!!!!!!Champions_of_undeath_merged_fun_tyme'])})`,
@@ -138,9 +139,7 @@ const gameData: { [key: string]: GameDataInterface } = {
       `Empire Secessionists (${toParsedDateString(modTimestamps.scm3['!scm_empire_secessionists'])})`,
       `Dark Land Orcs (${toParsedDateString(modTimestamps.scm3.froeb_dark_land_orcs)})`,
       `Dead's Cult of the Possessed (${toParsedDateString(modTimestamps.scm3.dead_cult_possessed_unit_V2)})`,
-      `Karanak (${toParsedDateString(modTimestamps.scm3['!xou_khorne_karanak'])})`,
       `RotJS : Yin-Yin, the Sea Dragon (${toParsedDateString(modTimestamps.scm3.cth_yinyin_pol)})`,
-      `Ivan Radinov (${toParsedDateString(modTimestamps.scm3['!xou_kislev_ivan'])})`,
     ],
     workshopLink: 'https://steamcommunity.com/sharedfiles/filedetails/?id=2920115664',
   },
