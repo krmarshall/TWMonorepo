@@ -44,10 +44,11 @@ const processStartPosTraits = (
       const first = tables.names?.findRecordByKey('id', spChar.Name).name.trim() ?? 'MISSING';
       const last = tables.names?.findRecordByKey('id', spChar.Surname)?.name.trim() ?? '';
       const faction = startPosFaction?.localRefs?.factions?.screen_name ?? 'MISSING';
-      const campaign = startPosFaction?.localRefs?.campaigns?.onscreen_name ?? 'MISSING';
+      const campaign =
+        startPosFaction?.localRefs?.start_pos_calendars?.localRefs?.campaigns?.onscreen_name ?? 'MISSING';
       const imgPath =
         'vanilla3' +
-        traitLevel?.localRefs?.trait_info?.foreignRefs?.character_traits?.[0]?.localRefs?.trait_categories?.icon_path
+        traitLevel?.localRefs?.character_traits?.localRefs?.trait_categories?.icon_path
           .replace('campaign ui', 'campaign_ui')
           .replace(/^ui/, '')
           .replace('.png', '');

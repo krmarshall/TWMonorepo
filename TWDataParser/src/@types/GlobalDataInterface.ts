@@ -5,7 +5,7 @@ interface TableRecordNoRefs {
 }
 
 // AK Tables we dont extract with rpfm, but have schemas for now
-type RefKey = (typeof v3DbList)[number] | 'start_pos_characters' | 'start_pos_character_traits';
+type RefKey = (typeof v3DbList)[number] | 'start_pos_characters' | 'start_pos_calendars' | 'start_pos_character_traits';
 
 interface TableRecordRefs {
   // This record referencing another
