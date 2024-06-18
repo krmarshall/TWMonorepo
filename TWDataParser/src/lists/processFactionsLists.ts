@@ -207,6 +207,7 @@ const addAgents = [
   { agent: 'wh3_dlc24_tze_aekold_helbrass', subculture: 'wh_main_sc_chs_chaos', game: '3' },
 
   { agent: 'wh3_dlc24_chs_lord_mtze', subculture: 'wh_main_sc_chs_chaos', game: '3' },
+  { agent: 'wh3_dlc25_chs_lord_mnur', subculture: 'wh_main_sc_chs_chaos', game: '3' },
 
   { agent: 'wh2_pro08_neu_felix', subculture: 'wh_main_sc_brt_bretonnia', game: '3' },
   { agent: 'wh3_dlc25_neu_gotrek_hero', subculture: 'wh_main_sc_brt_bretonnia', game: '3' },
