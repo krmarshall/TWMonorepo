@@ -431,7 +431,8 @@ const vanillaCharacters: { [key: string]: string } = {
   wh3_dlc25_chs_lord_mnur: 'wh3_dlc25_chs_lord_mnur',
   wh3_dlc25_skill_node_set_nur_bray_shaman_wild_chieftain: 'wh3_dlc25_skill_node_set_nur_bray_shaman_wild_chieftain',
   wh3_dlc25_skill_node_set_nur_kayzk_the_befouled: 'wh3_dlc25_skill_node_set_nur_kayzk_the_befouled',
-  wh3_dlc25_skill_node_set_nur_fimir_balefiend_shadow_chieftain: 'wh3_dlc25_skill_node_set_nur_fimir_balefiend_shadow_chieftain',
+  wh3_dlc25_skill_node_set_nur_fimir_balefiend_shadow_chieftain:
+    'wh3_dlc25_skill_node_set_nur_fimir_balefiend_shadow_chieftain',
   wh3_dlc25_skill_node_set_nur_exalted_hero_chieftain: 'wh3_dlc25_skill_node_set_nur_exalted_hero_chieftain',
   wh3_dlc25_skill_node_set_nur_skin_wolf_werekin_chieftain: 'wh3_dlc25_skill_node_set_nur_skin_wolf_werekin_chieftain',
   wh3_dlc25_chs_sorcerer_death_mnur: 'wh3_dlc25_chs_sorcerer_death_mnur',
@@ -439,5 +440,6 @@ const vanillaCharacters: { [key: string]: string } = {
   wh3_dlc25_skill_node_set_nur_castellan_chieftain: 'wh3_dlc25_skill_node_set_nur_castellan_chieftain',
   wh2_pro08_skill_node_neu_felix: 'wh2_pro08_skill_node_neu_felix',
   wh2_pro08_skill_node_neu_gotrek: 'wh2_pro08_skill_node_neu_gotrek',
+  wh3_pro12_kho_cha_karanak: 'wh3_pro12_kho_cha_karanak',
 };
 export default vanillaCharacters;
