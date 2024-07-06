@@ -36,7 +36,7 @@ const mergeTablesIntoVanilla = (folder: string, globalData: GlobalDataInterface,
   const vanillaKeys = Object.keys(globalData.parsedData[vanillaFolder].db);
 
   vanillaKeys.forEach((vanillaKey) => {
-    const vanillaTable = globalData.parsedData[vanillaFolder].db[vanillaKey];
+    let vanillaTable = globalData.parsedData[vanillaFolder].db[vanillaKey];
     if (globalData.extractedData[folder].db[vanillaKey] !== undefined) {
       const tableKeys: Array<string> = [];
       findHighestVersionDB(schema.definitions[vanillaKey], vanillaKey).fields.forEach((field) => {
@@ -46,6 +46,11 @@ const mergeTablesIntoVanilla = (folder: string, globalData: GlobalDataInterface,
       });
 
       const moddedKeys = Object.keys(globalData.extractedData[folder].db[vanillaKey]);
+      // Data core the vanilla table if a modded table is called data__
+      if (moddedKeys.includes('data__')) {
+        vanillaTable = [];
+      }
+
       const moddedTables = moddedKeys.map((moddedKey) => globalData.extractedData[folder].db[vanillaKey][moddedKey]);
       const mergedTable = overwriteMerge(vanillaTable, moddedTables, tableKeys);
       globalData.parsedData[folder].db[vanillaKey] = mergedTable;
