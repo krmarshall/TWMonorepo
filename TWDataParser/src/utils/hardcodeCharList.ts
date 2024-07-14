@@ -285,6 +285,7 @@ const hardcodeSpellLoreData: { [nodeSetKey: string]: SpellLores } = {
   wh3_dlc25_skill_node_set_emp_gold_wizard: SpellLores.metal,
   wh3_dlc25_skill_node_set_nur_bray_shaman_wild_chieftain: SpellLores.wild,
   wh3_dlc25_skill_node_set_nur_fimir_balefiend_shadow_chieftain: SpellLores.shadows,
+  wh2_dlc10_skill_node_set_hef_alarielle: SpellLores.mixed,
 
   skill_node_set_brt_cha_lost: SpellLores.mixed,
   skill_node_set_grn_cha_savageboss: SpellLores.bigWagh,
