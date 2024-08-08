@@ -79,7 +79,7 @@ const gameData: { [key: string]: GameDataInterface } = {
     image: gameImages['lege3'],
     factions: factions,
     characters: lege3Characters as CharacterListInterface,
-    updated: toParsedDateString(modTimestamps.lege3['!str_legendary']),
+    updated: toParsedDateString(modTimestamps.lege3['!scm_legendary']),
     category: 'Character Mod',
     workshopLink: 'https://steamcommunity.com/sharedfiles/filedetails/?id=2826930183',
   },
