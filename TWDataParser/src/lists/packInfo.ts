@@ -36,7 +36,7 @@ export const modPackInfo: ModPackInfoInterface = {
     { pack: 'Radious_WH3_Mod_Part4', id: 2813892035 },
   ],
   sfo3: [{ pack: 'sfo_grimhammer_3_main', id: 2792731173 }],
-  lege3: [{ pack: '!scm_legendary', id: 3305233283 }], // { pack: '!str_legendary', id: 2826930183 } **change gameData.ts entry when you swap this back**
+  lege3: [{ pack: '!scm_legendary', id: 3305404052 }], // { pack: '!str_legendary', id: 2826930183 } **change gameData.ts entry when you swap this back**
   crys3: [{ pack: 'crys_leaders', id: 2880244265 }],
   scm3: [
     { pack: '!scm_lccp', id: 3236567583, name: 'LCCP' },
