@@ -20,6 +20,7 @@ const v3DbList = [
   'ancillary_sets',
   'ancillary_set_ancillary_junctions',
   'ancillary_set_effect_junctions',
+  '_kv_rules',
 
   // Tech
   'technology_ui_group_links',

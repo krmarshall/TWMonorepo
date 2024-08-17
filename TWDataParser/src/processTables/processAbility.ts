@@ -82,9 +82,11 @@ const processAbility = (
   unitSpecialAbility.foreignRefs?.special_ability_to_auto_deactivate_flags?.forEach((enable) => {
     enabled_if.push(
       stringInterpolator(
-        hardcodeKillThresholds(
+        lookupKillThresholds(
           enable.localRefs?.special_ability_invalid_usage_flags?.flag_key,
           enable.localRefs?.special_ability_invalid_usage_flags?.alt_description,
+          folder,
+          globalData,
         ),
         globalData.parsedData[folder].text,
       ),
@@ -97,9 +99,11 @@ const processAbility = (
   unitSpecialAbility.foreignRefs?.special_ability_to_invalid_target_flags?.forEach((target) => {
     target_if.push(
       stringInterpolator(
-        hardcodeKillThresholds(
+        lookupKillThresholds(
           target.localRefs?.special_ability_invalid_usage_flags?.flag_key,
           target.localRefs?.special_ability_invalid_usage_flags?.alt_description,
+          folder,
+          globalData,
         ),
         globalData.parsedData[folder].text,
       ),
@@ -169,15 +173,17 @@ const processAbility = (
 
 export default processAbility;
 
-const hardcodeKillThresholds = (key: string | undefined, text: string | undefined) => {
-  if (key === 'unit_tier1_kills') {
-    return 'More than 40 kills';
-  }
-  if (key === 'unit_tier2_kills') {
-    return 'More than 80 kills';
-  }
-  if (key === 'unit_tier3_kills') {
-    return 'More than 120 kills';
+const lookupKillThresholds = (
+  key: string | undefined,
+  text: string | undefined,
+  folder: string,
+  globalData: GlobalDataInterface,
+) => {
+  if (key === 'unit_tier1_kills' || key === 'unit_tier2_kills' || key === 'unit_tier3_kills') {
+    const killsRule = globalData.parsedData[folder].db['_kv_rules_tables'].find((rule) => rule.key === key);
+    if (killsRule !== undefined) {
+      return `More than ${parseInteger(killsRule.value)} kills`;
+    }
   }
   return text ?? '';
 };
