@@ -113,6 +113,11 @@ const ignoreAgents: Array<{ agent: string; game?: string; subculture?: string; f
   { agent: 'fim_finmor_kroll', game: '3', subculture: 'ovn_sc_fim_fimir' },
   { agent: 'aky_chief_fimir_great_weapons_kroll', game: '3', subculture: 'ovn_sc_fim_fimir' },
 
+  { agent: 'wh3_main_kho_cult_magus', game: '3' },
+  { agent: 'wh3_main_nur_cult_magus', game: '3' },
+  { agent: 'wh3_main_sla_cult_magus', game: '3' },
+  { agent: 'wh3_main_tze_cult_magus', game: '3' },
+
   // Marienburg
   { agent: 'rhox_mar_mundvard_criminal', game: '3' },
 
