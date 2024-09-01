@@ -41,14 +41,14 @@ export const modPackInfo: ModPackInfoInterface = {
   scm3: [
     { pack: '!scm_lccp', id: 3236567583, name: 'LCCP' },
     { pack: '!scm_totn', id: 3236566964, name: 'Tribes of the North' },
-    { pack: 'str_skaven_clans', id: 2986543735, name: 'Skaven Clans' },
+    { pack: 'scm_skaven_clans', id: 3318719948, name: 'Skaven Clans' }, // { pack: 'str_skaven_clans', id: 2986543735, name: 'Skaven Clans' }
     { pack: '!scm_marienburg', id: 3030996759, name: 'Marienburg' },
     { pack: '!!!!!!Champions_of_undeath_merged_fun_tyme', id: 3022054734, name: 'Champions of Undeath' },
     { pack: 'jade_vamp_pol', id: 2880515805, name: 'JBV: Curse of Nongchang' },
     { pack: 'jade_vamp_pol_IotM', id: 3032432016, name: 'JBV: Islanders of the Moon' },
     { pack: 'AAA_dynasty_of_the_damned', id: 2991431203, name: 'Dynasty of the Damned' },
     { pack: '!xou_age_TKExtended', id: 3029928348, name: 'Tomb Kings Extended' },
-    { pack: 'str_rotblood', id: 2838941228, name: 'Rotblood Tribe' },
+    { pack: 'scm_rotblood', id: 3318719201, name: 'Rotblood Tribe' }, // { pack: 'str_rotblood', id: 2838941228, name: 'Rotblood Tribe' }
     { pack: '@xou_emp', id: 2890463744, name: "Sigmar's Heirs" },
     { pack: '@xou_emp_assets', id: 2890463783 },
     { pack: '!scm_empire_secessionists', id: 3030410786, name: 'Empire Secessionists' },
