@@ -31,8 +31,12 @@ app.use(helmet());
 app.use(compression());
 
 // Serve rest api
-app.get('/api/skills/:gameKey.:factionKey.:characterKey.:hasBuild', (req, res) => skillListener(req, res, nodeSetMap));
-app.get('/api/techs/:gameKey.:techTreeKey', techListener);
+app.get('/api/skills/:gameKey.:factionKey.:characterKey.:hasBuild', (req, res) => {
+  skillListener(req, res, nodeSetMap);
+});
+app.get('/api/techs/:gameKey.:techTreeKey', (req, res) => {
+  techListener(req, res);
+});
 
 // Serve static front end HTML/JS/Images
 app.use(
