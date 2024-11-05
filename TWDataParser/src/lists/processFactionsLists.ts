@@ -211,6 +211,9 @@ const addAgents = [
   { agent: 'wh3_dlc24_tze_aekold_helbrass', subculture: 'wh3_main_sc_dae_daemons', game: '3' },
   { agent: 'wh3_dlc24_tze_aekold_helbrass', subculture: 'wh_main_sc_chs_chaos', game: '3' },
 
+  { agent: 'wh3_dlc24_tze_blue_scribes', subculture: 'wh_main_sc_chs_chaos', game: '3' },
+  { agent: 'wh3_dlc24_tze_blue_scribes', subculture: 'wh3_main_sc_dae_daemons', game: '3' },
+
   { agent: 'wh3_dlc24_chs_lord_mtze', subculture: 'wh_main_sc_chs_chaos', game: '3' },
   { agent: 'wh3_dlc25_chs_lord_mnur', subculture: 'wh_main_sc_chs_chaos', game: '3' },
 
