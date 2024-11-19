@@ -457,4 +457,6 @@ const hardcodeSpellLoreData: { [nodeSetKey: string]: SpellLores } = {
   lord_xlotc_skill_node: SpellLores.mixed,
   matthias_volker_skill_node: SpellLores.light,
   sheerargetru_skill_node: SpellLores.metal,
+  str_gnaw_windspeaker: SpellLores.mixed,
+  str_gnaw_wildspeaker: SpellLores.mixed,
 };

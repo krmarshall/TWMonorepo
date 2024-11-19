@@ -7,6 +7,7 @@ import processBombardment from './processBombardment';
 import processPhase from './processPhase';
 import processProjectile from './processProjectile';
 import processVortex from './processVortex';
+import log from '../utils/log';
 
 const processAbility = (
   folder: string,
@@ -20,6 +21,33 @@ const processAbility = (
     (abilityJunc.localRefs?.army_special_abilities?.localRefs?.unit_special_abilities?.localRefs
       ?.unit_abilities as TableRecord) ??
     (abilityJunc.localRefs?.battle_context_unit_ability_junctions?.localRefs?.unit_abilities as TableRecord);
+  
+  if (unitAbility === undefined) {
+    log(`Ability Junc Missing Ability: ${abilityJunc.effect} | ${folder}`,'yellow')
+    const earlyReturn: AbilityInterface = {
+      effect: abilityJunc.effect,
+      bonus_value_id: abilityJunc.bonus_value_id,
+      unit_ability: {
+        key: 'MISSING',
+        icon_name: 'MISSING',
+        overpower_option: 'MISSING',
+        type: {
+          key: 'MISSING',
+          icon_path: 'MISSING',
+          onscreen_name: 'MISSING',
+        },
+        is_hidden_in_ui: false,
+        onscreen_name: 'MISSING',
+        effect_range: 0,
+        target_enemies: false,
+        target_friends: false,
+        target_ground: false,
+        target_self: false,
+        target_intercept_range: 0,
+      }
+    }
+    return earlyReturn
+  }
   const unitAbilityType = unitAbility.localRefs?.unit_ability_types as TableRecord;
   const unitSpecialAbility = unitAbility.foreignRefs?.unit_special_abilities?.[0] as TableRecord;
 
