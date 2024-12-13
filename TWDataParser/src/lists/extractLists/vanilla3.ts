@@ -23,7 +23,8 @@ const v3DbList = [
   '_kv_rules',
 
   // Tech
-  'technology_ui_group_links',
+  // Table empty as of TW3 6.0
+  // 'technology_ui_group_links',
 ] as const;
 
 // If adding new loc table delete old extracted_files to force a re-extract
@@ -35,6 +36,7 @@ const v3LocList = [
   'units_custom_battle_mounts__',
   'ancillary_sets__',
   'pooled_resources__',
+  'provincial_initiative_records__'
 ];
 
 const v3AssKitList = ['start_pos_characters', 'start_pos_calendars', 'start_pos_character_traits'];

@@ -55,7 +55,7 @@ export class Table {
       }
     });
 
-    const tableCleanList = cleanList[tableName];
+    const tableCleanList = cleanList[tableName];6
     this.records.forEach((record: TableRecord, index: number) => {
       // Create index for keyed fields
       // record[pKey] will always be a string before linkTables()

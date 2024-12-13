@@ -441,5 +441,23 @@ const vanillaCharacters: { [key: string]: string } = {
   wh2_pro08_skill_node_neu_felix: 'wh2_pro08_skill_node_neu_felix',
   wh2_pro08_skill_node_neu_gotrek: 'wh2_pro08_skill_node_neu_gotrek',
   wh3_pro12_kho_cha_karanak: 'wh3_pro12_kho_cha_karanak',
+  wh3_dlc26_skill_node_set_kho_scyla_anfingrimm: 'wh3_dlc26_skill_node_set_kho_scyla_anfingrimm',
+  wh3_dlc26_skill_node_set_kho_skarr_bloodwrath: 'wh3_dlc26_skill_node_set_kho_skarr_bloodwrath',
+  wh3_dlc26_skill_node_set_grn_gorbad_ironclaw: 'wh3_dlc26_skill_node_set_grn_gorbad_ironclaw',
+  wh3_dlc26_skill_node_set_grn_savage_orc_great_shaman: 'wh3_dlc26_skill_node_set_grn_savage_orc_great_shaman',
+  wh3_dlc26_skill_node_set_grn_snagla_grobpsit: 'wh3_dlc26_skill_node_set_grn_snagla_grobpsit',
+  wh3_dlc26_skill_node_set_grn_night_goblin_big_boss: 'wh3_dlc26_skill_node_set_grn_night_goblin_big_boss',
+  wh3_dlc26_skill_node_set_kho_arbaal_the_undefeated: 'wh3_dlc26_skill_node_set_kho_arbaal_the_undefeated',
+  wh3_dlc26_skill_node_set_kho_skulltaker: 'wh3_dlc26_skill_node_set_kho_skulltaker',
+  wh3_dlc26_skill_node_set_kho_bloodspeaker: 'wh3_dlc26_skill_node_set_kho_bloodspeaker',
+  wh3_dlc26_skill_node_set_ogr_golgfag_maneater: 'wh3_dlc26_skill_node_set_ogr_golgfag_maneater',
+  wh3_dlc26_skill_node_set_ogr_paymaster: 'wh3_dlc26_skill_node_set_ogr_paymaster',
+  wh3_dlc26_skill_node_set_ogr_slaughtermaster_death: 'wh3_dlc26_skill_node_set_ogr_slaughtermaster_death',
+  wh3_dlc26_skill_node_set_ogr_slaughtermaster_heavens: 'wh3_dlc26_skill_node_set_ogr_slaughtermaster_heavens',
+  wh3_dlc26_skill_node_set_ogr_tyrant_camp: 'wh3_dlc26_skill_node_set_ogr_tyrant_camp',
+  wh3_dlc26_skill_node_set_ogr_bragg_the_gutsman: 'wh3_dlc26_skill_node_set_ogr_bragg_the_gutsman',
+  wh3_dlc26_skill_node_set_ogr_bruiser: 'wh3_dlc26_skill_node_set_ogr_bruiser',
+  wh3_dlc26_skill_node_set_ogr_butcher_death: 'wh3_dlc26_skill_node_set_ogr_butcher_death',
+  wh3_dlc26_skill_node_set_ogr_butcher_heavens: 'wh3_dlc26_skill_node_set_ogr_butcher_heavens'
 };
 export default vanillaCharacters;

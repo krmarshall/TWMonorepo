@@ -87,6 +87,13 @@ const hardCodeNameData: { [nodeSetKey: string]: { name: string; priority?: boole
   bc_blistrox: { name: 'Spreader of the Word Lord Blistrox', priority: false },
   bc_grilok: { name: 'Pontifex of Plagues Lord Grilok', priority: false },
   rhox_torinubar_skill_node_set_hef_convoy: { name: 'Prince (Convoy)' },
+  wh3_dlc26_skill_node_set_kho_arbaal_the_undefeated: { name: 'Arbaal the Undefeated', priority: true },
+  wh3_dlc26_skill_node_set_kho_skulltaker: { name: 'Skulltaker', priority: true },
+  wh3_dlc26_skill_node_set_kho_scyla_anfingrimm: { name: 'Scyla Anfingrimm', priority: true },
+  wh3_dlc26_skill_node_set_ogr_golgfag_maneater: { name: 'Golgfag Maneater', priority: true },
+  wh3_dlc26_skill_node_set_ogr_bragg_the_gutsman: { name: 'Bragg the Gutsman', priority: true },
+  wh3_dlc26_skill_node_set_grn_gorbad_ironclaw: { name: 'Gorbad Ironclaw', priority: true },
+  wh3_dlc26_skill_node_set_grn_snagla_grobpsit: { name: 'Snagla Grobspit', priority: true },
 };
 
 export const hardcodePortraitData: { [nodeSetKey: string]: string } = {

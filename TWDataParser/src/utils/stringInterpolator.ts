@@ -36,7 +36,7 @@ const stringInterpolator = (string: string, loc: TableRecord): string => {
   string = string.replaceAll(/\[\[\/b\]\]/g, '');
 
   if (string.includes('{{')) {
-    const tagR = string.match(/\{\{[a-zA-Z0-9:_./ ]*\}\}/);
+    const tagR = string.match(/\{\{[a-zA-Z0-9:_./\- ]*\}\}/);
     if (tagR === null) {
       log(`Invalid {{tr}} loc: ${string}`, 'yellow');
     } else {

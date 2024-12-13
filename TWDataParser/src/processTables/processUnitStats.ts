@@ -12,6 +12,7 @@ const processUnitStats = (folder: string, globalData: GlobalDataInterface, mainU
   const meleeWeapon = landUnit?.localRefs?.melee_weapons as TableRecord;
   const missileWeapon = landUnit?.localRefs?.missile_weapons;
   const attributeGroup = landUnit?.localRefs?.unit_attributes_groups;
+
   const returnStats: UnitStatsInterface = {
     run_speed: parseFloating(battleEntity.run_speed),
     mass: parseInteger(battleEntity.mass),
