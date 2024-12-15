@@ -86,14 +86,7 @@ const hardCodeNameData: { [nodeSetKey: string]: { name: string; priority?: boole
   bc_kreegrix: { name: 'The Ravener Lord Kreegrix', priority: false },
   bc_blistrox: { name: 'Spreader of the Word Lord Blistrox', priority: false },
   bc_grilok: { name: 'Pontifex of Plagues Lord Grilok', priority: false },
-  rhox_torinubar_skill_node_set_hef_convoy: { name: 'Prince (Convoy)' },
-  wh3_dlc26_skill_node_set_kho_arbaal_the_undefeated: { name: 'Arbaal the Undefeated', priority: true },
-  wh3_dlc26_skill_node_set_kho_skulltaker: { name: 'Skulltaker', priority: true },
-  wh3_dlc26_skill_node_set_kho_scyla_anfingrimm: { name: 'Scyla Anfingrimm', priority: true },
-  wh3_dlc26_skill_node_set_ogr_golgfag_maneater: { name: 'Golgfag Maneater', priority: true },
-  wh3_dlc26_skill_node_set_ogr_bragg_the_gutsman: { name: 'Bragg the Gutsman', priority: true },
-  wh3_dlc26_skill_node_set_grn_gorbad_ironclaw: { name: 'Gorbad Ironclaw', priority: true },
-  wh3_dlc26_skill_node_set_grn_snagla_grobpsit: { name: 'Snagla Grobspit', priority: true },
+  rhox_torinubar_skill_node_set_hef_convoy: { name: 'Prince (Convoy)' }
 };
 
 export const hardcodePortraitData: { [nodeSetKey: string]: string } = {
@@ -293,6 +286,9 @@ const hardcodeSpellLoreData: { [nodeSetKey: string]: SpellLores } = {
   wh3_dlc25_skill_node_set_nur_bray_shaman_wild_chieftain: SpellLores.wild,
   wh3_dlc25_skill_node_set_nur_fimir_balefiend_shadow_chieftain: SpellLores.shadows,
   wh2_dlc10_skill_node_set_hef_alarielle: SpellLores.mixed,
+  wh3_main_skill_node_set_ogr_slaughtermaster_great_maw: SpellLores['great maw'],
+  wh3_main_skill_node_set_ogr_butcher_great_maw: SpellLores['great maw'],
+  wh3_dlc26_skill_node_set_grn_savage_orc_great_shaman: SpellLores.bigWagh,
 
   skill_node_set_brt_cha_lost: SpellLores.mixed,
   skill_node_set_grn_cha_savageboss: SpellLores.bigWagh,
@@ -466,4 +462,6 @@ const hardcodeSpellLoreData: { [nodeSetKey: string]: SpellLores } = {
   sheerargetru_skill_node: SpellLores.metal,
   str_gnaw_windspeaker: SpellLores.mixed,
   str_gnaw_wildspeaker: SpellLores.mixed,
+  gnob_skill_node_set_master_muncher_great_maw: SpellLores['great maw'],
+  gnob_skill_node_set_bonechewer_great_maw: SpellLores['great maw'],
 };
