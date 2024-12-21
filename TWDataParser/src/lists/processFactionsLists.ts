@@ -135,7 +135,6 @@ const ignoreAgents: Array<{ agent: string; game?: string; subculture?: string; f
   { agent: 'str_gangrous_stinking_thing_ritual', game: '3', subculture: 'wh2_main_sc_skv_skaven' },
   { agent: 'str_septik_stinking_thing_ritual', game: '3', subculture: 'wh2_main_sc_skv_skaven' },
   { agent: 'str_kreepus_eshin_sorcerer_ritual', game: '3', subculture: 'wh2_main_sc_skv_skaven' },
-  { agent: 'str_bileflesh', game: '3', subculture: 'wh2_main_sc_skv_skaven' },
 
   // Heroes of Legend - Soft requires TEB for a character, want some db stuff, but none of the characters
   { agent: 'teb_priestess', game: '3', folder: 'hol3' },
