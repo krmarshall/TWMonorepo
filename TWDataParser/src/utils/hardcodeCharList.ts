@@ -464,4 +464,7 @@ const hardcodeSpellLoreData: { [nodeSetKey: string]: SpellLores } = {
   str_gnaw_wildspeaker: SpellLores.mixed,
   gnob_skill_node_set_master_muncher_great_maw: SpellLores['great maw'],
   gnob_skill_node_set_bonechewer_great_maw: SpellLores['great maw'],
+  str_nurgloth: SpellLores.fire,
+  str_sofia: SpellLores.vampires,
+  str_bileflesh: SpellLores.mixed,
 };
