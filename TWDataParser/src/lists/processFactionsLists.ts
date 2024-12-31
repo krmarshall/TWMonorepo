@@ -130,6 +130,7 @@ const ignoreAgents: Array<{ agent: string; game?: string; subculture?: string; f
 
   // Champions of Undeath
   { agent: 'bm_abhorash_2hp', game: '3', subculture: 'wh_main_sc_vmp_vampire_counts' },
+  { agent: 'vmp_teb_camp_commandant', game: '3', subculture: 'wh2_dlc11_sc_cst_vampire_coast' },
 
   // Skaven Clans
   { agent: 'str_gangrous_stinking_thing_ritual', game: '3', subculture: 'wh2_main_sc_skv_skaven' },
