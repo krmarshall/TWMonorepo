@@ -109,7 +109,7 @@ import ksl_druzhina from './ksl_druzhina_campaign_01_0.webp';
 import ksl_the_golden_knight from './ksl_golden_knight_0.webp';
 import placeholder from './0placeholder.webp';
 
-import vanilla2CharacterImgs from '../vanilla2/vanilla2CharacterImgs';
+import vanilla2CharacterImgs from '../vanilla2/vanilla2CharacterImgs.ts';
 
 const vanilla3CharacterImgs = {
   ...vanilla2CharacterImgs,

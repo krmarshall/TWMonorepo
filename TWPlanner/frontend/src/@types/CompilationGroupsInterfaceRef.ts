@@ -1,1 +1,1 @@
-export * from '../../../../TWDataParser/src/@types/CompilationGroupsInterface';
+export * from '../../../../TWDataParser/src/@types/CompilationGroupsInterface.ts';

@@ -1,4 +1,4 @@
-import { SpellLores } from './SpellLoresRef';
+import { SpellLores } from './SpellLoresRef.ts';
 
 interface CharacterInterface {
   name: string;

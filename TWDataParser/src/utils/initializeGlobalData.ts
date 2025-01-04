@@ -1,4 +1,4 @@
-import { GlobalDataInterface } from '../@types/GlobalDataInterface';
+import { GlobalDataInterface } from '../@types/GlobalDataInterface.ts';
 
 const initializeGlobalData = (folders: Array<string>) => {
   const globalData: GlobalDataInterface = {

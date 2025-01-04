@@ -1,8 +1,8 @@
-import { GlobalDataInterface, TableRecord } from '../@types/GlobalDataInterface';
-import { ProjectileInterface } from '../@types/CharacterInterface';
-import { parseBoolean, parseFloating, parseInteger } from '../utils/parseStringToTypes';
-import processPhase from './processPhase';
-import processVortex from './processVortex';
+import { GlobalDataInterface, TableRecord } from '../@types/GlobalDataInterface.ts';
+import { ProjectileInterface } from '../@types/CharacterInterface.ts';
+import { parseBoolean, parseFloating, parseInteger } from '../utils/parseStringToTypes.ts';
+import processPhase from './processPhase.ts';
+import processVortex from './processVortex.ts';
 
 const processProjectile = (folder: string, globalData: GlobalDataInterface, projectile: TableRecord) => {
   const returnProjectile: ProjectileInterface = {

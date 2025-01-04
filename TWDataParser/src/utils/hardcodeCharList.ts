@@ -1,5 +1,5 @@
-import { CharacterListInterface } from '../@types/CharacterListInterface';
-import { SpellLores } from '../@types/SpellLoresRef';
+import { CharacterListInterface } from '../@types/CharacterListInterface.ts';
+import { SpellLores } from '../@types/SpellLoresRef.ts';
 
 const regexp = /\((?<loreName>[a-zA-Z]*)\)/;
 export const hardcodeCharListData = (characterList: CharacterListInterface) => {
@@ -86,7 +86,7 @@ const hardCodeNameData: { [nodeSetKey: string]: { name: string; priority?: boole
   bc_kreegrix: { name: 'The Ravener Lord Kreegrix', priority: false },
   bc_blistrox: { name: 'Spreader of the Word Lord Blistrox', priority: false },
   bc_grilok: { name: 'Pontifex of Plagues Lord Grilok', priority: false },
-  rhox_torinubar_skill_node_set_hef_convoy: { name: 'Prince (Convoy)' }
+  rhox_torinubar_skill_node_set_hef_convoy: { name: 'Prince (Convoy)' },
 };
 
 export const hardcodePortraitData: { [nodeSetKey: string]: string } = {

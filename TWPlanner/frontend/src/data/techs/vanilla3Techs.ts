@@ -1,4 +1,4 @@
-import factionImages from '../../imgs/factions/factionImages';
+import factionImages from '../../imgs/factions/factionImages.ts';
 
 const vanilla3Techs = {
   bst_mil_rework: { name: 'Beastmen', image: factionImages.bst_beastmen },

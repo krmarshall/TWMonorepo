@@ -1,7 +1,7 @@
 import { useContext, useEffect } from 'react';
-import TechModSelector from '../components/Techs/TechModSelector';
-import TechSelector from '../components/Techs/TechSelector';
-import { AppContext, AppContextActions } from '../contexts/AppContext';
+import TechModSelector from '../components/Techs/TechModSelector.tsx';
+import TechSelector from '../components/Techs/TechSelector.tsx';
+import { AppContext, AppContextActions } from '../contexts/AppContext.tsx';
 
 const TechHome = () => {
   const { state, dispatch } = useContext(AppContext);

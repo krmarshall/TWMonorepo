@@ -1,13 +1,13 @@
 import { MouseEvent, useContext, useEffect, useState } from 'react';
 import { toast } from 'react-hot-toast';
-import { AppContext, AppContextActions } from '../../contexts/AppContext';
-import { skillIncreaseIsValid, isValidSkillTree } from '../../utils/skillVerification';
-import BuildInterface from '../../@types/BuildInterface';
-import { CharacterInterface, SkillInterface } from '../../@types/CharacterInterfaceRef';
-import TooltipWrapper from '../TooltipWrapper';
+import { AppContext, AppContextActions } from '../../contexts/AppContext.tsx';
+import { skillIncreaseIsValid, isValidSkillTree } from '../../utils/skillVerification.ts';
+import BuildInterface from '../../@types/BuildInterface.ts';
+import { CharacterInterface, SkillInterface } from '../../@types/CharacterInterfaceRef.ts';
+import TooltipWrapper from '../TooltipWrapper.tsx';
 
 import autoSkillIcon from '../../imgs/other/skill_auto_unlock_rank.webp';
-import BaseCell from './BaseCell';
+import BaseCell from './BaseCell.tsx';
 
 interface SkillCellPropsInterface {
   skill: SkillInterface;

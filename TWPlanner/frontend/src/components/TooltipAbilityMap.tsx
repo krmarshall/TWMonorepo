@@ -1,7 +1,7 @@
-import { AbilityInterface, AttributeInterface, PhaseInterface } from '../@types/CharacterInterfaceRef';
-import AttributeTooltip from './Planner/Tooltips/AttributeTooltip';
-import SkillAbilityTooltip from './Planner/Tooltips/SkillAbilityTooltip';
-import SkillPhase from './Planner/Tooltips/SkillPhase';
+import { AbilityInterface, AttributeInterface, PhaseInterface } from '../@types/CharacterInterfaceRef.ts';
+import AttributeTooltip from './Planner/Tooltips/AttributeTooltip.tsx';
+import SkillAbilityTooltip from './Planner/Tooltips/SkillAbilityTooltip.tsx';
+import SkillPhase from './Planner/Tooltips/SkillPhase.tsx';
 
 interface PropInterface {
   relatedAbilities: Array<AbilityInterface>;

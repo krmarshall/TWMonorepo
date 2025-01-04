@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
-import IssuesSlider from '../components/IssuesSlider';
-import useBulkMediaQueries from '../hooks/useBulkMediaQueries';
+import IssuesSlider from '../components/IssuesSlider.tsx';
+import useBulkMediaQueries from '../hooks/useBulkMediaQueries.tsx';
 import placeholderImage from '../imgs/other/0placeholder.webp';
 
 const Issues = () => {

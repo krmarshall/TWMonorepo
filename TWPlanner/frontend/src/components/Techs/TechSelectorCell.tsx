@@ -1,7 +1,7 @@
 import { useContext } from 'react';
-import { AppContext } from '../../contexts/AppContext';
-import techGameData from '../../data/techGameData';
-import ReactImage from '../ReactImage';
+import { AppContext } from '../../contexts/AppContext.tsx';
+import techGameData from '../../data/techGameData.ts';
+import ReactImage from '../ReactImage.tsx';
 import placeholderImg from '../../imgs/other/0placeholderInvis.webp';
 
 interface PropInterface {

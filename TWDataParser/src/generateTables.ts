@@ -1,7 +1,7 @@
-import { GlobalDataInterface, RefKey, TableRecord } from './@types/GlobalDataInterface';
-import { SchemaInterface, TableInterface } from './@types/SchemaInterfaces';
-import cleanList from './lists/cleanLists';
-import findHighestVersionDB from './utils/findHighestVersionDB';
+import { GlobalDataInterface, RefKey, TableRecord } from './@types/GlobalDataInterface.ts';
+import { SchemaInterface, TableInterface } from './@types/SchemaInterfaces.ts';
+import cleanList from './lists/cleanLists/index.ts';
+import findHighestVersionDB from './utils/findHighestVersionDB.ts';
 
 const generateTables = (
   folder: string,
@@ -55,7 +55,7 @@ export class Table {
       }
     });
 
-    const tableCleanList = cleanList[tableName];6
+    const tableCleanList = cleanList[tableName];
     this.records.forEach((record: TableRecord, index: number) => {
       // Create index for keyed fields
       // record[pKey] will always be a string before linkTables()

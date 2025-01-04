@@ -1,14 +1,14 @@
 import { createContext, ReactElement, useReducer } from 'react';
-import BuildInterface from '../@types/BuildInterface';
-import { CharacterInterface } from '../@types/CharacterInterfaceRef';
-import { TechSetInterface } from '../@types/TechInterface';
+import BuildInterface from '../@types/BuildInterface.ts';
+import { CharacterInterface } from '../@types/CharacterInterfaceRef.ts';
+import { TechSetInterface } from '../@types/TechInterface.ts';
 import {
   loadExtrasDrawerOpenFromStorage,
   loadStatsDrawerOpenFromStorage,
   saveExtrasDrawerOpenToStorage,
   saveStatsDrawerOpenToStorage,
-} from '../utils/storageFunctions';
-import { HighlightArrayInterface } from '../utils/searchFunctions';
+} from '../utils/storageFunctions.ts';
+import { HighlightArrayInterface } from '../utils/searchFunctions.ts';
 
 interface ContextStateInterface {
   selectedMod: string;
@@ -278,7 +278,6 @@ const reducer = (state: ContextStateInterface, action: ActionInterface) => {
 
 const AppContext = createContext<{ state: ContextStateInterface; dispatch: (action: ActionInterface) => void }>({
   state: initialState,
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
   dispatch: () => {},
 });
 

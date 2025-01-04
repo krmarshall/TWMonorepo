@@ -1,11 +1,12 @@
 import { sync } from 'fast-glob';
 import { dirname } from 'path';
+// eslint-disable-next-line import/extensions
 import { parse } from 'csv-parse/sync';
-import { TableRecord } from '../@types/GlobalDataInterface';
-import { skipVanillaAgentPrune } from '../lists/processFactionsLists';
+import { TableRecord } from '../@types/GlobalDataInterface.ts';
+import { skipVanillaAgentPrune } from '../lists/processFactionsLists.ts';
 import { ensureDirSync, readFileSync, writeJSONSync } from 'fs-extra';
-import { ModInfoInterface } from '../lists/packInfo';
-import { CompilationGroupsInterface } from '../@types/CompilationGroupsInterface';
+import { ModInfoInterface } from '../lists/packInfo.ts';
+import { CompilationGroupsInterface } from '../@types/CompilationGroupsInterface.ts';
 
 const csvParseConfig = {
   delimiter: '\t',

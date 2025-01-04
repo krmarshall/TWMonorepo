@@ -1,18 +1,18 @@
 import { Suspense, lazy } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
-import Header from './components/Header';
-import LoadingSpinner from './components/LoadingSpinner';
-import { AppProvider } from './contexts/AppContext';
-import useBulkMediaQueries from './hooks/useBulkMediaQueries';
+import Header from './components/Header.tsx';
+import LoadingSpinner from './components/LoadingSpinner.tsx';
+import { AppProvider } from './contexts/AppContext.tsx';
+import useBulkMediaQueries from './hooks/useBulkMediaQueries.tsx';
 
-const Home = lazy(() => import('./pages/Home'));
-const Planner = lazy(() => import('./pages/Planner'));
-const TechHome = lazy(() => import('./pages/TechHome'));
-const Tech = lazy(() => import('./pages/Tech'));
-const About = lazy(() => import('./pages/About'));
-const Issues = lazy(() => import('./pages/Issues'));
-const NotFound = lazy(() => import('./pages/NotFound'));
+const Home = lazy(() => import('./pages/Home.tsx'));
+const Planner = lazy(() => import('./pages/Planner.tsx'));
+const TechHome = lazy(() => import('./pages/TechHome.tsx'));
+const Tech = lazy(() => import('./pages/Tech.tsx'));
+const About = lazy(() => import('./pages/About.tsx'));
+const Issues = lazy(() => import('./pages/Issues.tsx'));
+const NotFound = lazy(() => import('./pages/NotFound.tsx'));
 
 const App = () => {
   const { isMobileWidth } = useBulkMediaQueries();

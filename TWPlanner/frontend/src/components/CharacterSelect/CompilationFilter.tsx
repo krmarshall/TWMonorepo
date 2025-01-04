@@ -1,6 +1,6 @@
 import { useContext } from 'react';
-import { AppContext, AppContextActions } from '../../contexts/AppContext';
-import { CompilationGroupsInterface } from '../../@types/CompilationGroupsInterfaceRef';
+import { AppContext, AppContextActions } from '../../contexts/AppContext.tsx';
+import { CompilationGroupsInterface } from '../../@types/CompilationGroupsInterfaceRef.ts';
 
 interface PropInterface {
   compGroups: CompilationGroupsInterface;

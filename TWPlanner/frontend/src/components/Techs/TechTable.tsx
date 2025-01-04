@@ -1,8 +1,8 @@
 import { useContext, useEffect, useRef } from 'react';
 import { Xwrapper } from 'react-xarrows';
-import { AppContext } from '../../contexts/AppContext';
-import TechArrows from './TechArrows';
-import TechRow from './TechRow';
+import { AppContext } from '../../contexts/AppContext.tsx';
+import TechArrows from './TechArrows.tsx';
+import TechRow from './TechRow.tsx';
 
 const TechTable = () => {
   const { state } = useContext(AppContext);

@@ -1,1 +1,1 @@
-export * from '../../../../TWDataParser/src/@types/CharacterListInterface';
+export * from '../../../../TWDataParser/src/@types/CharacterListInterface.ts';

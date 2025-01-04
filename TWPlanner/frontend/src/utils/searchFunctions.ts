@@ -9,8 +9,8 @@ import {
   PhaseInterface,
   SkillInterface,
   UnitStatsInterface,
-} from '../@types/CharacterInterfaceRef';
-import { TechNodeInterface, TechSetInterface } from '../@types/TechInterface';
+} from '../@types/CharacterInterfaceRef.ts';
+import { TechNodeInterface, TechSetInterface } from '../@types/TechInterface.ts';
 
 interface HighlightArrayInterface {
   skillTree: Array<Array<boolean>>;

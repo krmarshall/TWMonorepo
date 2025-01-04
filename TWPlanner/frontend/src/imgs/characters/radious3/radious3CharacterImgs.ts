@@ -26,7 +26,7 @@ import rdsNurWatcherGarden from './rad_wh3_part3_agent_uniform_nur_watcher_of_th
 import chd_herald_of_the_conclave from './rad_wh3_part3_agent_uniform_chd_herald_of_the_conclave_01.webp';
 import placeholder from './0placeholder.webp';
 
-import vanilla3CharacterImgs from '../vanilla3/vanilla3CharacterImgs';
+import vanilla3CharacterImgs from '../vanilla3/vanilla3CharacterImgs.ts';
 
 const radious3CharacterImgs = {
   ...vanilla3CharacterImgs,

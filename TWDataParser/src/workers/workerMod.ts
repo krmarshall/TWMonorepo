@@ -1,11 +1,11 @@
 import { workerData } from 'worker_threads';
 import { ensureDirSync } from 'fs-extra';
-import { ModWorkerDataInterface } from '../@types/WorkerDataInterfaces';
-import csvParse from '../csvParse';
-import generateTables from '../generateTables';
-import processFactions from '../processTables/processFactions';
-import { mergeLocsIntoVanilla, mergeTablesIntoVanilla } from '../mergeTables';
-import Extractor from '../extractor';
+import { ModWorkerDataInterface } from '../@types/WorkerDataInterfaces.ts';
+import csvParse from '../csvParse.ts';
+import generateTables from '../generateTables.ts';
+import processFactions from '../processTables/processFactions.ts';
+import { mergeLocsIntoVanilla, mergeTablesIntoVanilla } from '../mergeTables.ts';
+import Extractor from '../extractor.ts';
 
 const {
   folder,

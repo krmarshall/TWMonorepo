@@ -1,13 +1,13 @@
-import ModSelector from '../components/CharacterSelect/ModSelector';
-import FactionSelector from '../components/CharacterSelect/FactionSelector';
-import CharacterSelector from '../components/CharacterSelect/CharacterSelector';
+import ModSelector from '../components/CharacterSelect/ModSelector.tsx';
+import FactionSelector from '../components/CharacterSelect/FactionSelector.tsx';
+import CharacterSelector from '../components/CharacterSelect/CharacterSelector.tsx';
 import { useParams } from 'react-router-dom';
 import { useContext, useEffect } from 'react';
-import { AppContext, AppContextActions } from '../contexts/AppContext';
+import { AppContext, AppContextActions } from '../contexts/AppContext.tsx';
 import { useMediaQuery } from 'react-responsive';
-import gameData from '../data/gameData';
-import CompilationFilter from '../components/CharacterSelect/CompilationFilter';
-import { CompilationGroupsInterface } from '../@types/CompilationGroupsInterfaceRef';
+import gameData from '../data/gameData.ts';
+import CompilationFilter from '../components/CharacterSelect/CompilationFilter.tsx';
+import { CompilationGroupsInterface } from '../@types/CompilationGroupsInterfaceRef.ts';
 
 const Home = () => {
   const { state, dispatch } = useContext(AppContext);

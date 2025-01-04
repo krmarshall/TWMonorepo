@@ -1,11 +1,12 @@
+// eslint-disable-next-line import/extensions
 import 'dotenv/config';
 import { emptyDirSync } from 'fs-extra';
-import { v3DbList, v3LocList } from './lists/extractLists/vanilla3';
-import { workerVanilla } from './workers/workerExports';
-import { RefKey } from './@types/GlobalDataInterface';
-import { v2DbList, v2LocList } from './lists/extractLists/vanilla2';
-import modTimestamps from './utils/modTimestamps';
-import { vanillaPackInfo } from './lists/packInfo';
+import { v3DbList, v3LocList } from './lists/extractLists/vanilla3.ts';
+import { workerVanilla } from './workers/workerExports.ts';
+import { RefKey } from './@types/GlobalDataInterface.ts';
+import { v2DbList, v2LocList } from './lists/extractLists/vanilla2.ts';
+import modTimestamps from './utils/modTimestamps.ts';
+import { vanillaPackInfo } from './lists/packInfo.ts';
 
 process.chdir(process.env.CWD as string);
 

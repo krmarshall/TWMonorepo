@@ -2,10 +2,10 @@ import { useContext } from 'react';
 import { toast } from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
-import api from '../../api/api';
-import { AppContext, AppContextActions } from '../../contexts/AppContext';
-import TechSelectorCell from './TechSelectorCell';
-import techGameData from '../../data/techGameData';
+import api from '../../api/api.ts';
+import { AppContext, AppContextActions } from '../../contexts/AppContext.tsx';
+import TechSelectorCell from './TechSelectorCell.tsx';
+import techGameData from '../../data/techGameData.ts';
 
 const TechSelector = () => {
   const { state, dispatch } = useContext(AppContext);

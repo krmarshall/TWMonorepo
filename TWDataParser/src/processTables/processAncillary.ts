@@ -1,8 +1,8 @@
-import { GlobalDataInterface, TableRecord } from '../@types/GlobalDataInterface';
-import { EffectInterface, ItemInterface } from '../@types/CharacterInterface';
-import { parseInteger } from '../utils/parseStringToTypes';
-import stringInterpolator from '../utils/stringInterpolator';
-import processEffect from './processEffect';
+import { GlobalDataInterface, TableRecord } from '../@types/GlobalDataInterface.ts';
+import { EffectInterface, ItemInterface } from '../@types/CharacterInterface.ts';
+import { parseInteger } from '../utils/parseStringToTypes.ts';
+import stringInterpolator from '../utils/stringInterpolator.ts';
+import processEffect from './processEffect.ts';
 
 const processAncillary = (
   folder: string,

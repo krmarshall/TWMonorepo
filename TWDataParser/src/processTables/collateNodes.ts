@@ -1,5 +1,5 @@
-import { GlobalDataInterface } from '../@types/GlobalDataInterface';
-import { AltFactionNodeSetsInterface, ItemInterface, SkillInterface } from '../@types/CharacterInterface';
+import { GlobalDataInterface } from '../@types/GlobalDataInterface.ts';
+import { AltFactionNodeSetsInterface, ItemInterface, SkillInterface } from '../@types/CharacterInterface.ts';
 
 const collateNodes = (
   folder: string,

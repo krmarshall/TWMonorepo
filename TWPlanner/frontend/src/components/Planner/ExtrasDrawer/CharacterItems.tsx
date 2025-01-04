@@ -1,6 +1,6 @@
 import { useContext } from 'react';
-import { AppContext } from '../../../contexts/AppContext';
-import ItemCell from './ItemCell';
+import { AppContext } from '../../../contexts/AppContext.tsx';
+import ItemCell from './ItemCell.tsx';
 
 const CharacterItems = () => {
   const { state } = useContext(AppContext);

@@ -1,5 +1,5 @@
-import { TableRecord } from '../@types/GlobalDataInterface';
-import log from './log';
+import { TableRecord } from '../@types/GlobalDataInterface.ts';
+import log from './log.ts';
 
 // Locs have tags that interpolate into various things, colored text, images, text replacement ect.
 // [[col:<color>]]<text>[[/col]] Colors the <text> to be <color> inside the tags

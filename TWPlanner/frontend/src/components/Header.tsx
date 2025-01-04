@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import headerImg from '../imgs/header.webp';
-import useBulkMediaQueries from '../hooks/useBulkMediaQueries';
+import useBulkMediaQueries from '../hooks/useBulkMediaQueries.tsx';
 
 const Header = () => {
   const { isSmol, shortenHeaderTitle, isMobileWidth } = useBulkMediaQueries();

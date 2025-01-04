@@ -1,6 +1,6 @@
 import { useContext } from 'react';
-import { AppContext } from '../../contexts/AppContext';
-import techGameData from '../../data/techGameData';
+import { AppContext } from '../../contexts/AppContext.tsx';
+import techGameData from '../../data/techGameData.ts';
 
 const FactionPortrait = () => {
   const { state } = useContext(AppContext);

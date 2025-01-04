@@ -1,17 +1,17 @@
-import { findSkill } from '../../../utils/skillVerification';
-import { FactionEffectsInterface, ItemInterface, SkillInterface } from '../../../@types/CharacterInterfaceRef';
-import SkillEffect from './SkillEffect';
+import { findSkill } from '../../../utils/skillVerification.ts';
+import { FactionEffectsInterface, ItemInterface, SkillInterface } from '../../../@types/CharacterInterfaceRef.ts';
+import SkillEffect from './SkillEffect.tsx';
 import { useContext, useEffect } from 'react';
-import { AppContext } from '../../../contexts/AppContext';
-import useBulkMediaQueries from '../../../hooks/useBulkMediaQueries';
+import { AppContext } from '../../../contexts/AppContext.tsx';
+import useBulkMediaQueries from '../../../hooks/useBulkMediaQueries.tsx';
 import {
   getRelatedAbilities,
   getRelatedAttributes,
   getRelatedContactPhases,
   replaceKeepCaps,
-} from '../../../utils/sharedFunctions';
-import TooltipAbilityCycler from '../../TooltipAbiltyCycler';
-import TooltipAbilityMap from '../../TooltipAbilityMap';
+} from '../../../utils/sharedFunctions.ts';
+import TooltipAbilityCycler from '../../TooltipAbiltyCycler.tsx';
+import TooltipAbilityMap from '../../TooltipAbilityMap.tsx';
 import DOMPurify from 'dompurify';
 
 interface SkillTooltipPropInterface {

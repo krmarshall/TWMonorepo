@@ -84,7 +84,7 @@ import kou_talarian from './kou_talarian.webp';
 import str_skarr from './str_skarr.webp';
 
 import placeholder from './0placeholder.webp';
-import vanilla3CharacterImgs from '../vanilla3/vanilla3CharacterImgs';
+import vanilla3CharacterImgs from '../vanilla3/vanilla3CharacterImgs.ts';
 
 const lege3CharacterImgs = {
   str_slambo: str_slambo,

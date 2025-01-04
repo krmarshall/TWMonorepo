@@ -1,9 +1,9 @@
-import factions from '../data/factionData';
-import { GameDataInterface } from '../@types/GameInterface';
-import gameImages from '../imgs/games/gameImages';
+import factions from '../data/factionData.ts';
+import { GameDataInterface } from '../@types/GameInterface.ts';
+import gameImages from '../imgs/games/gameImages.ts';
 
-import { vanilla2CharactersMemes } from './characters/vanilla2Characters';
-import { vanilla3CharactersMemes } from './characters/vanilla3Characters';
+import { vanilla2CharactersMemes } from './characters/vanilla2Characters.ts';
+import { vanilla3CharactersMemes } from './characters/vanilla3Characters.ts';
 import sfo3Characters from '../../../TWPData/charLists/sfo3.json';
 import radious3Characters from '../../../TWPData/charLists/radious3.json';
 import mixu3Characters from '../../../TWPData/charLists/mixu3.json';
@@ -20,8 +20,8 @@ import cat3CompGroups from '../../../TWPData/compGroups/cat3.json';
 import ovn3CompGroups from '../../../TWPData/compGroups/ovn3.json';
 
 import modTimestamps from '../../../TWPData/modTimestamps.json';
-import { mostRecentDateString, toParsedDateString } from '../utils/dateFunctions';
-import { CharacterListInterface } from '../@types/CharacterListInterfaceRef';
+import { mostRecentDateString, toParsedDateString } from '../utils/dateFunctions.ts';
+import { CharacterListInterface } from '../@types/CharacterListInterfaceRef.ts';
 
 const gameData: { [key: string]: GameDataInterface } = {
   vanilla2: {

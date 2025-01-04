@@ -1,5 +1,5 @@
 import { copySync, emptyDirSync, removeSync } from 'fs-extra';
-import log from '../utils/log';
+import log from '../utils/log.ts';
 
 const exportData = () => {
   copySync(`./override_portraits`, './output_portraits');

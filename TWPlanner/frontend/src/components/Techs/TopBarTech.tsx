@@ -1,14 +1,14 @@
 import { useContext } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { AppContext } from '../../contexts/AppContext';
-import techGameData from '../../data/techGameData';
-import TooltipWrapper from '../TooltipWrapper';
+import { AppContext } from '../../contexts/AppContext.tsx';
+import techGameData from '../../data/techGameData.ts';
+import TooltipWrapper from '../TooltipWrapper.tsx';
 
 import resetIcon from '../../imgs/other/icon_reset.webp';
 import backIcon from '../../imgs/other/icon_home.webp';
 import scrollWheel from '../../imgs/other/help_page_middle_mouse.webp';
 import shift from '../../imgs/other/help_page_camera_speed_controls.webp';
-import SearchBox from '../Planner/SearchBox';
+import SearchBox from '../Planner/SearchBox.tsx';
 
 interface PropInterface {
   isMobile: boolean;

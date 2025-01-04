@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import useBulkMediaQueries from '../hooks/useBulkMediaQueries';
+import useBulkMediaQueries from '../hooks/useBulkMediaQueries.tsx';
 
 const About = () => {
   const { isShortWidth } = useBulkMediaQueries();

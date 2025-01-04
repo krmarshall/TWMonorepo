@@ -1,8 +1,8 @@
 import { toast } from 'react-hot-toast';
-import { ActionInterface, AppContextActions, ContextStateInterface } from '../contexts/AppContext';
-import StorageInterface from '../@types/StorageInterface';
-import { createCharacterBuildFromArray, createEmptyCharacterBuild } from './sharedFunctions';
-import { isValidSkillTree } from './skillVerification';
+import { ActionInterface, AppContextActions, ContextStateInterface } from '../contexts/AppContext.tsx';
+import StorageInterface from '../@types/StorageInterface.ts';
+import { createCharacterBuildFromArray, createEmptyCharacterBuild } from './sharedFunctions.ts';
+import { isValidSkillTree } from './skillVerification.ts';
 
 const initializeBuildsFromStorage = (state: ContextStateInterface, dispatch: (action: ActionInterface) => void) => {
   const storageBuilds: StorageInterface = loadBuildsFromStorage(state);

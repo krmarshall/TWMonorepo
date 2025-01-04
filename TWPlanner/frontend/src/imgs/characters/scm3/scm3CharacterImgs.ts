@@ -165,9 +165,9 @@ import hkrul_hroth from './hkrul_hrothyogg.webp';
 import hkrul_karitamen from './hkrul_karitamen.webp';
 import hkrul_spew from './hkrul_orghotts.webp';
 
-import vanilla2CharacterImgs from '../vanilla2/vanilla2CharacterImgs';
+import vanilla2CharacterImgs from '../vanilla2/vanilla2CharacterImgs.ts';
 import placeholder from './0placeholder.webp';
-import vanilla3CharacterImgs from '../vanilla3/vanilla3CharacterImgs';
+import vanilla3CharacterImgs from '../vanilla3/vanilla3CharacterImgs.ts';
 
 const scm3CharacterImgs = {
   kho_karnak: kho_karnak,

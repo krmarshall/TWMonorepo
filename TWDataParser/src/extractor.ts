@@ -1,12 +1,12 @@
 import { exec } from 'child_process';
 import { emptyDirSync, ensureDirSync, ensureFile, outputFileSync, outputJSONSync, readJSONSync } from 'fs-extra';
 import { statSync } from 'fs';
-import log from './utils/log';
+import log from './utils/log.ts';
 import { basename } from 'path';
 import { promisify } from 'util';
-import { GlobalDataInterface } from './@types/GlobalDataInterface';
+import { GlobalDataInterface } from './@types/GlobalDataInterface.ts';
 import { sync } from 'fast-glob';
-import { hardcodePortraitData } from './utils/hardcodeCharList';
+import { hardcodePortraitData } from './utils/hardcodeCharList.ts';
 
 const execPromise = promisify(exec);
 
@@ -190,7 +190,7 @@ export default class Extractor {
 
       const imagePromises = packPaths.map((packPath) => {
         let foldersString = `"/ui/battle ui/ability_icons;./extracted_files/${this.#folder}" "/ui/campaign ui/effect_bundles;./extracted_files/${this.#folder}" "/ui/campaign ui/skills;./extracted_files/${this.#folder}" "/ui/campaign ui/ancillaries;./extracted_files/${this.#folder}" "/ui/campaign ui/mounts;./extracted_files/${this.#folder}" "/ui/portraits/portholes;./extracted_files/${this.#folder}"`;
-        tech ? (foldersString += ` "/ui/campaign ui/technologies;./extracted_files/${this.#folder}"`) : undefined;
+        if (tech) foldersString += ` "/ui/campaign ui/technologies;./extracted_files/${this.#folder}"`;
         return new Promise<void>((resolveI, rejectI) => {
           execPromise(
             `${this.#rpfmPath} -g ${this.#game} pack extract -p "${packPath}.pack" -t "${this.#schemaPath}.ron" -F ${foldersString}`,

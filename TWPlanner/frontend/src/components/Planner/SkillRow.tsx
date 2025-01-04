@@ -1,6 +1,6 @@
 import { Fragment } from 'react';
-import { SkillInterface } from '../../@types/CharacterInterfaceRef';
-import SkillCell from './SkillCell';
+import { SkillInterface } from '../../@types/CharacterInterfaceRef.ts';
+import SkillCell from './SkillCell.tsx';
 
 interface SkillRowPropsInterface {
   skillRow: Array<SkillInterface>;

@@ -1,10 +1,10 @@
 import { useContext, useEffect } from 'react';
-import { AppContext, AppContextActions } from '../../../contexts/AppContext';
-import BuildStorage from './BuildStorage';
-import CharacterItems from './CharacterItems';
-import BackgroundSkills from './BackgroundSkills';
-import useBulkMediaQueries from '../../../hooks/useBulkMediaQueries';
-import FactionEffects from './FactionEffects';
+import { AppContext, AppContextActions } from '../../../contexts/AppContext.tsx';
+import BuildStorage from './BuildStorage.tsx';
+import CharacterItems from './CharacterItems.tsx';
+import BackgroundSkills from './BackgroundSkills.tsx';
+import useBulkMediaQueries from '../../../hooks/useBulkMediaQueries.tsx';
+import FactionEffects from './FactionEffects.tsx';
 
 const ExtrasDrawer = () => {
   const { state, dispatch } = useContext(AppContext);

@@ -3,9 +3,9 @@ import {
   ModWorkerDataInterface,
   MultiModWorkerDataInterface,
   VanillaWorkerDataInterface,
-} from '../@types/WorkerDataInterfaces';
-import log from '../utils/log';
-import exportData from '../utils/exportData';
+} from '../@types/WorkerDataInterfaces.ts';
+import log from '../utils/log.ts';
+import exportData from '../utils/exportData.ts';
 
 const workerVanilla = (workerData: VanillaWorkerDataInterface) => {
   const { game, folder } = workerData;

@@ -1,7 +1,7 @@
 import { useContext } from 'react';
-import { AppContext, AppContextActions } from '../../contexts/AppContext';
-import techGameData from '../../data/techGameData';
-import ReactImage from '../ReactImage';
+import { AppContext, AppContextActions } from '../../contexts/AppContext.tsx';
+import techGameData from '../../data/techGameData.ts';
+import ReactImage from '../ReactImage.tsx';
 import placeholderImg from '../../imgs/other/0placeholder.webp';
 
 const TechModSelector = () => {

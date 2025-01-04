@@ -1,16 +1,16 @@
 import { useContext, useEffect } from 'react';
-import useBulkMediaQueries from '../../hooks/useBulkMediaQueries';
-import { TechNodeInterface } from '../../@types/TechInterface';
+import useBulkMediaQueries from '../../hooks/useBulkMediaQueries.tsx';
+import { TechNodeInterface } from '../../@types/TechInterface.ts';
 import {
   getRelatedAbilities,
   getRelatedAttributes,
   getRelatedContactPhases,
   replaceKeepCaps,
-} from '../../utils/sharedFunctions';
-import SkillEffect from '../Planner/Tooltips/SkillEffect';
-import TooltipAbilityCycler from '../TooltipAbiltyCycler';
-import TooltipAbilityMap from '../TooltipAbilityMap';
-import { AppContext } from '../../contexts/AppContext';
+} from '../../utils/sharedFunctions.ts';
+import SkillEffect from '../Planner/Tooltips/SkillEffect.tsx';
+import TooltipAbilityCycler from '../TooltipAbiltyCycler.tsx';
+import TooltipAbilityMap from '../TooltipAbilityMap.tsx';
+import { AppContext } from '../../contexts/AppContext.tsx';
 import DOMPurify from 'dompurify';
 
 interface PropInterface {

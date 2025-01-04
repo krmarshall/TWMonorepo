@@ -1,6 +1,6 @@
 import { toast } from 'react-hot-toast';
-import BuildInterface from '../@types/BuildInterface';
-import { CharacterInterface, SkillInterface } from '../@types/CharacterInterfaceRef';
+import BuildInterface from '../@types/BuildInterface.ts';
+import { CharacterInterface, SkillInterface } from '../@types/CharacterInterfaceRef.ts';
 
 const isRequiredLevel = (
   characterBuild: BuildInterface | null,
@@ -151,7 +151,6 @@ const findSkill = (
     });
   });
   if (returnValue === undefined) {
-    // eslint-disable-next-line no-console
     console.log('Could not find skill in data tree');
   }
   return returnValue;

@@ -21,7 +21,7 @@ import cth_cha_gate_master from './cth_cha_gate_master_1.webp';
 
 import placeholder from './0placeholder.webp';
 
-import vanilla3CharacterImgs from '../vanilla3/vanilla3CharacterImgs';
+import vanilla3CharacterImgs from '../vanilla3/vanilla3CharacterImgs.ts';
 
 const sfo3CharacterImgs = {
   ...vanilla3CharacterImgs,

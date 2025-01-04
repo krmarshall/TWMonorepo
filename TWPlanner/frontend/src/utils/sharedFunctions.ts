@@ -1,4 +1,4 @@
-import BuildInterface from '../@types/BuildInterface';
+import BuildInterface from '../@types/BuildInterface.ts';
 import {
   AbilityInterface,
   AttributeInterface,
@@ -7,8 +7,8 @@ import {
   PhaseInterface,
   SkillInterface,
   UnitStatsInterface,
-} from '../@types/CharacterInterfaceRef';
-import { splitCharacterKey } from './urlFunctions';
+} from '../@types/CharacterInterfaceRef.ts';
+import { splitCharacterKey } from './urlFunctions.ts';
 
 const createEmptyCharacterBuild = (
   characterData: CharacterInterface,

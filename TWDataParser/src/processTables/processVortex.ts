@@ -1,7 +1,7 @@
-import { GlobalDataInterface, TableRecord } from '../@types/GlobalDataInterface';
-import { VortexInterface } from '../@types/CharacterInterface';
-import { parseBoolean, parseFloating, parseInteger } from '../utils/parseStringToTypes';
-import processPhase from './processPhase';
+import { GlobalDataInterface, TableRecord } from '../@types/GlobalDataInterface.ts';
+import { VortexInterface } from '../@types/CharacterInterface.ts';
+import { parseBoolean, parseFloating, parseInteger } from '../utils/parseStringToTypes.ts';
+import processPhase from './processPhase.ts';
 
 const processVortex = (folder: string, globalData: GlobalDataInterface, vortex: TableRecord) => {
   const returnVortex: VortexInterface = {

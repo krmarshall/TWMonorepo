@@ -1,8 +1,8 @@
 import { readJSONSync } from 'fs-extra';
-import { CharacterInterface, CharacterListInterface } from '../@types/CharacterListInterface';
-import subcultureMap from '../lists/subcultureMap';
-import vanillaCharacters from '../lists/vanillaCharacters';
-import { CompilationGroupsInterface } from '../@types/CompilationGroupsInterface';
+import { CharacterInterface, CharacterListInterface } from '../@types/CharacterListInterface.ts';
+import subcultureMap from '../lists/subcultureMap.ts';
+import vanillaCharacters from '../lists/vanillaCharacters.ts';
+import { CompilationGroupsInterface } from '../@types/CompilationGroupsInterface.ts';
 
 export const sortCharacterList = (characterList: CharacterListInterface, folder: string) => {
   const compilationGroups: CompilationGroupsInterface = readJSONSync(`./output/compGroups/${folder}.json`, {

@@ -1,16 +1,16 @@
-import { GlobalDataInterface, RefKey, TableRecord } from '../@types/GlobalDataInterface';
-import { ItemInterface, CharacterInterface } from '../@types/CharacterInterface';
-import findImage from '../utils/findImage';
-import outputAgent from './outputAgent';
-import processEffect from './processEffect';
-import processNodeSet from './processNodeSet';
-import subcultureMap from '../lists/subcultureMap';
-import { CharacterListInterface } from '../@types/CharacterListInterface';
-import processAncillary from './processAncillary';
-import processUnitStats from './processUnitStats';
-import addCharacterListReference from '../utils/addCharacterListReference';
-import processStartPosTraits from './processStartPosTraits';
-import { Table } from '../generateTables';
+import { GlobalDataInterface, RefKey, TableRecord } from '../@types/GlobalDataInterface.ts';
+import { ItemInterface, CharacterInterface } from '../@types/CharacterInterface.ts';
+import findImage from '../utils/findImage.ts';
+import outputAgent from './outputAgent.ts';
+import processEffect from './processEffect.ts';
+import processNodeSet from './processNodeSet.ts';
+import subcultureMap from '../lists/subcultureMap.ts';
+import { CharacterListInterface } from '../@types/CharacterListInterface.ts';
+import processAncillary from './processAncillary.ts';
+import processUnitStats from './processUnitStats.ts';
+import addCharacterListReference from '../utils/addCharacterListReference.ts';
+import processStartPosTraits from './processStartPosTraits.ts';
+import { Table } from '../generateTables.ts';
 
 const processAgent = (
   folder: string,

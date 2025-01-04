@@ -1,6 +1,6 @@
-import { Table } from '../generateTables';
-import { CharacterListInterface } from '../@types/CharacterListInterface';
-import { GlobalDataInterface, RefKey, TableRecord } from '../@types/GlobalDataInterface';
+import { Table } from '../generateTables.ts';
+import { CharacterListInterface } from '../@types/CharacterListInterface.ts';
+import { GlobalDataInterface, RefKey, TableRecord } from '../@types/GlobalDataInterface.ts';
 import {
   addAgents,
   ignoreAgents,
@@ -9,15 +9,15 @@ import {
   ignoreSubcultures,
   remapFactions,
   skipVanillaAgentPrune,
-} from '../lists/processFactionsLists';
-import { techNodeSetsPrune2, techNodeSetsPrune3, vanilla3TechNodeSets } from '../lists/processFactionsTechLists';
-import subcultureMap from '../lists/subcultureMap';
-import vanillaCharacters from '../lists/vanillaCharacters';
-import processAgent from './processAgent';
-import processTechNodeSet from './processTechNodeSet';
+} from '../lists/processFactionsLists.ts';
+import { techNodeSetsPrune2, techNodeSetsPrune3, vanilla3TechNodeSets } from '../lists/processFactionsTechLists.ts';
+import subcultureMap from '../lists/subcultureMap.ts';
+import vanillaCharacters from '../lists/vanillaCharacters.ts';
+import processAgent from './processAgent.ts';
+import processTechNodeSet from './processTechNodeSet.ts';
 import { outputJSONSync } from 'fs-extra';
-import { sortCharacterList } from '../utils/sortCharacterList';
-import { hardcodeCharListData } from '../utils/hardcodeCharList';
+import { sortCharacterList } from '../utils/sortCharacterList.ts';
+import { hardcodeCharListData } from '../utils/hardcodeCharList.ts';
 
 const processFactions = (
   folder: string,

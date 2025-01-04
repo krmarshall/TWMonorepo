@@ -1,9 +1,9 @@
 import { useContext, useEffect } from 'react';
-import FactionVariantSelect from './FactionVariantSelect';
-import UnitStats from './UnitStats';
-import { AppContext, AppContextActions } from '../../../contexts/AppContext';
-import useBulkMediaQueries from '../../../hooks/useBulkMediaQueries';
-import StartPosTraits from './StartPosTraits';
+import FactionVariantSelect from './FactionVariantSelect.tsx';
+import UnitStats from './UnitStats.tsx';
+import { AppContext, AppContextActions } from '../../../contexts/AppContext.tsx';
+import useBulkMediaQueries from '../../../hooks/useBulkMediaQueries.tsx';
+import StartPosTraits from './StartPosTraits.tsx';
 
 const StatsDrawer = () => {
   const { state, dispatch } = useContext(AppContext);

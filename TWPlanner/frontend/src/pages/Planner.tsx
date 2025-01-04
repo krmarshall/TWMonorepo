@@ -1,23 +1,23 @@
 import { Fragment, useContext, useEffect, useState } from 'react';
 import { toast } from 'react-hot-toast';
 import { useNavigate, useParams } from 'react-router-dom';
-import api from '../api/api';
-import { AppContext, AppContextActions } from '../contexts/AppContext';
+import api from '../api/api.ts';
+import { AppContext, AppContextActions } from '../contexts/AppContext.tsx';
 import {
   addFactionVariantNodes,
   createCharacterBuildFromArray,
   createEmptyCharacterBuild,
-} from '../utils/sharedFunctions';
-import { convertCodeToBuild, splitCharacterKey } from '../utils/urlFunctions';
-import LoadingSpinner from '../components/LoadingSpinner';
-import ExtrasDrawer from '../components/Planner/ExtrasDrawer/ExtrasDrawer';
-import TopBar from '../components/Planner/TopBar';
-import CharacterPortrait from '../components/Planner/CharacterPortrait';
-import SkillTable from '../components/Planner/SkillTable';
-import useBulkMediaQueries from '../hooks/useBulkMediaQueries';
-import gameData from '../data/gameData';
-import StatsDrawer from '../components/Planner/StatsDrawer/StatsDrawer';
-import { CharacterInterface } from '../@types/CharacterInterfaceRef';
+} from '../utils/sharedFunctions.ts';
+import { convertCodeToBuild, splitCharacterKey } from '../utils/urlFunctions.ts';
+import LoadingSpinner from '../components/LoadingSpinner.tsx';
+import ExtrasDrawer from '../components/Planner/ExtrasDrawer/ExtrasDrawer.tsx';
+import TopBar from '../components/Planner/TopBar.tsx';
+import CharacterPortrait from '../components/Planner/CharacterPortrait.tsx';
+import SkillTable from '../components/Planner/SkillTable.tsx';
+import useBulkMediaQueries from '../hooks/useBulkMediaQueries.tsx';
+import gameData from '../data/gameData.ts';
+import StatsDrawer from '../components/Planner/StatsDrawer/StatsDrawer.tsx';
+import { CharacterInterface } from '../@types/CharacterInterfaceRef.ts';
 import nodeSetMap from '../data/characters/nodeSetMap.json';
 
 const Planner = () => {

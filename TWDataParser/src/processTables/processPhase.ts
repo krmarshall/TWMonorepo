@@ -1,10 +1,10 @@
-import { GlobalDataInterface, TableRecord } from '../@types/GlobalDataInterface';
-import { AttributeInterface, PhaseInterface, StatEffectInterface } from '../@types/CharacterInterface';
-import findImage from '../utils/findImage';
-import numberPrepend from '../utils/numberPrepend';
-import { parseBoolean, parseFloating, parseInteger } from '../utils/parseStringToTypes';
-import stringInterpolator from '../utils/stringInterpolator';
-import processAttribute from './processAttribute';
+import { GlobalDataInterface, TableRecord } from '../@types/GlobalDataInterface.ts';
+import { AttributeInterface, PhaseInterface, StatEffectInterface } from '../@types/CharacterInterface.ts';
+import findImage from '../utils/findImage.ts';
+import numberPrepend from '../utils/numberPrepend.ts';
+import { parseBoolean, parseFloating, parseInteger } from '../utils/parseStringToTypes.ts';
+import stringInterpolator from '../utils/stringInterpolator.ts';
+import processAttribute from './processAttribute.ts';
 
 const processPhase = (folder: string, globalData: GlobalDataInterface, phaseJunc: TableRecord, phase: TableRecord) => {
   const returnPhase: PhaseInterface = {

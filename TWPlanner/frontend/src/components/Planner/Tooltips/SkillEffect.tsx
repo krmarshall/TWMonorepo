@@ -1,8 +1,8 @@
 import { useContext } from 'react';
-import { EffectInterface } from '../../../@types/CharacterInterfaceRef';
-import ReactImage from '../../ReactImage';
-import { AppContext } from '../../../contexts/AppContext';
-import { replaceKeepCaps } from '../../../utils/sharedFunctions';
+import { EffectInterface } from '../../../@types/CharacterInterfaceRef.ts';
+import ReactImage from '../../ReactImage.tsx';
+import { AppContext } from '../../../contexts/AppContext.tsx';
+import { replaceKeepCaps } from '../../../utils/sharedFunctions.ts';
 import DOMPurify from 'dompurify';
 
 interface SkillEffectPropsInterface {

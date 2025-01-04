@@ -1,8 +1,8 @@
 import { useContext } from 'react';
-import { AttributeInterface } from '../../../@types/CharacterInterfaceRef';
-import { AppContext } from '../../../contexts/AppContext';
+import { AttributeInterface } from '../../../@types/CharacterInterfaceRef.ts';
+import { AppContext } from '../../../contexts/AppContext.tsx';
 import DOMPurify from 'dompurify';
-import { replaceKeepCaps } from '../../../utils/sharedFunctions';
+import { replaceKeepCaps } from '../../../utils/sharedFunctions.ts';
 
 interface PropInterface {
   attribute: AttributeInterface;

@@ -1,4 +1,4 @@
-import { TechNodeBgFillerInterface, TechNodeInterface } from '../@types/TechInterface';
+import { TechNodeBgFillerInterface, TechNodeInterface } from '../@types/TechInterface.ts';
 
 const collateTechNodes = (processedNodes: Array<TechNodeInterface>) => {
   const uiGroups: { [key: string]: Array<TechNodeInterface> } = {};

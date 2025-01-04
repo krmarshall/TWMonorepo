@@ -1,5 +1,5 @@
-import { ProjectileBombardmentInterface } from '../../../@types/CharacterInterfaceRef';
-import SkillAbilityProjectile from './SkillAbilityProjectile';
+import { ProjectileBombardmentInterface } from '../../../@types/CharacterInterfaceRef.ts';
+import SkillAbilityProjectile from './SkillAbilityProjectile.tsx';
 
 interface PropsInterface {
   bombardment: ProjectileBombardmentInterface;

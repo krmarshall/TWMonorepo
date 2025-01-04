@@ -1,9 +1,9 @@
-import { TechDataInterface } from '../@types/GameInterface';
-import gameData from './gameData';
-import vanilla2Techs from './techs/vanilla2Techs';
-import vanilla3Techs from './techs/vanilla3Techs';
-import radious3Techs from './techs/radious3Techs';
-import sfo33Techs from './techs/sfo3Techs';
+import { TechDataInterface } from '../@types/GameInterface.ts';
+import gameData from './gameData.ts';
+import vanilla2Techs from './techs/vanilla2Techs.ts';
+import vanilla3Techs from './techs/vanilla3Techs.ts';
+import radious3Techs from './techs/radious3Techs.ts';
+import sfo33Techs from './techs/sfo3Techs.ts';
 
 const techGameData: { [key: string]: TechDataInterface } = {
   vanilla2: {

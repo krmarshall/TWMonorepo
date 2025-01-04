@@ -1,7 +1,7 @@
-import { GlobalDataInterface, TableRecord } from '../@types/GlobalDataInterface';
-import { AttributeInterface } from '../@types/CharacterInterface';
-import findImage from '../utils/findImage';
-import stringInterpolator from '../utils/stringInterpolator';
+import { GlobalDataInterface, TableRecord } from '../@types/GlobalDataInterface.ts';
+import { AttributeInterface } from '../@types/CharacterInterface.ts';
+import findImage from '../utils/findImage.ts';
+import stringInterpolator from '../utils/stringInterpolator.ts';
 
 const processAttribute = (
   folder: string,

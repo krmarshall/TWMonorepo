@@ -2,12 +2,12 @@ import { Fragment, useContext, useEffect, useState } from 'react';
 import { toast } from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
-import api from '../../api/api';
-import { AppContext, AppContextActions } from '../../contexts/AppContext';
-import gameData from '../../data/gameData';
-import spellLoreIcons from '../../imgs/spellLoreIcons/spellLoreIcons';
-import { createEmptyCharacterBuild } from '../../utils/sharedFunctions';
-import CharacterCell from './CharacterCell';
+import api from '../../api/api.ts';
+import { AppContext, AppContextActions } from '../../contexts/AppContext.tsx';
+import gameData from '../../data/gameData.ts';
+import spellLoreIcons from '../../imgs/spellLoreIcons/spellLoreIcons.ts';
+import { createEmptyCharacterBuild } from '../../utils/sharedFunctions.ts';
+import CharacterCell from './CharacterCell.tsx';
 
 const CharacterSelector = () => {
   const { state, dispatch } = useContext(AppContext);

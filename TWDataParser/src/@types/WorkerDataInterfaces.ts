@@ -1,6 +1,6 @@
-import { ModInfoInterface } from '../lists/packInfo';
-import { GlobalDataInterface, RefKey } from './GlobalDataInterface';
-import { SchemaInterface } from './SchemaInterfaces';
+import { ModInfoInterface } from '../lists/packInfo.ts';
+import { GlobalDataInterface, RefKey } from './GlobalDataInterface.ts';
+import { SchemaInterface } from './SchemaInterfaces.ts';
 
 export interface VanillaWorkerDataInterface {
   folder: string;

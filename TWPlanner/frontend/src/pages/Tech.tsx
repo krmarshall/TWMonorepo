@@ -1,13 +1,13 @@
 import { Fragment, useContext, useEffect } from 'react';
 import { toast } from 'react-hot-toast';
 import { useNavigate, useParams } from 'react-router-dom';
-import api from '../api/api';
-import LoadingSpinner from '../components/LoadingSpinner';
-import FactionPortrait from '../components/Techs/FactionPortrait';
-import TechTable from '../components/Techs/TechTable';
-import TopBarTech from '../components/Techs/TopBarTech';
-import { AppContext, AppContextActions } from '../contexts/AppContext';
-import useBulkMediaQueries from '../hooks/useBulkMediaQueries';
+import api from '../api/api.ts';
+import LoadingSpinner from '../components/LoadingSpinner.tsx';
+import FactionPortrait from '../components/Techs/FactionPortrait.tsx';
+import TechTable from '../components/Techs/TechTable.tsx';
+import TopBarTech from '../components/Techs/TopBarTech.tsx';
+import { AppContext, AppContextActions } from '../contexts/AppContext.tsx';
+import useBulkMediaQueries from '../hooks/useBulkMediaQueries.tsx';
 
 const Tech = () => {
   const { state, dispatch } = useContext(AppContext);

@@ -1,10 +1,10 @@
 import { useContext, useEffect } from 'react';
-import { AppContext, AppContextActions } from '../../../contexts/AppContext';
-import { StartPosTraitInterface } from '../../../@types/CharacterInterfaceRef';
+import { AppContext, AppContextActions } from '../../../contexts/AppContext.tsx';
+import { StartPosTraitInterface } from '../../../@types/CharacterInterfaceRef.ts';
 import { useParams } from 'react-router-dom';
-import { splitCharacterKey } from '../../../utils/urlFunctions';
-import TooltipWrapper from '../../TooltipWrapper';
-import BaseCell from '../BaseCell';
+import { splitCharacterKey } from '../../../utils/urlFunctions.ts';
+import TooltipWrapper from '../../TooltipWrapper.tsx';
+import BaseCell from '../BaseCell.tsx';
 
 const StartPosTraits = () => {
   const { state, dispatch } = useContext(AppContext);

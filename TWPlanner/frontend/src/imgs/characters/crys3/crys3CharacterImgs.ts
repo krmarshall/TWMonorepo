@@ -1,4 +1,4 @@
-import vanilla3CharacterImgs from '../vanilla3/vanilla3CharacterImgs';
+import vanilla3CharacterImgs from '../vanilla3/vanilla3CharacterImgs.ts';
 
 const crys3CharacterImgs = {
   ...vanilla3CharacterImgs,

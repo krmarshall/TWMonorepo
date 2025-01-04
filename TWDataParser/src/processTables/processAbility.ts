@@ -1,13 +1,13 @@
-import { GlobalDataInterface, TableRecord } from '../@types/GlobalDataInterface';
-import { AbilityInterface, PhaseInterface, UiEffectInterface } from '../@types/CharacterInterface';
-import findImage from '../utils/findImage';
-import { parseBoolean, parseFloating, parseInteger } from '../utils/parseStringToTypes';
-import stringInterpolator from '../utils/stringInterpolator';
-import processBombardment from './processBombardment';
-import processPhase from './processPhase';
-import processProjectile from './processProjectile';
-import processVortex from './processVortex';
-import log from '../utils/log';
+import { GlobalDataInterface, TableRecord } from '../@types/GlobalDataInterface.ts';
+import { AbilityInterface, PhaseInterface, UiEffectInterface } from '../@types/CharacterInterface.ts';
+import findImage from '../utils/findImage.ts';
+import { parseBoolean, parseFloating, parseInteger } from '../utils/parseStringToTypes.ts';
+import stringInterpolator from '../utils/stringInterpolator.ts';
+import processBombardment from './processBombardment.ts';
+import processPhase from './processPhase.ts';
+import processProjectile from './processProjectile.ts';
+import processVortex from './processVortex.ts';
+import log from '../utils/log.ts';
 
 const processAbility = (
   folder: string,
@@ -21,9 +21,9 @@ const processAbility = (
     (abilityJunc.localRefs?.army_special_abilities?.localRefs?.unit_special_abilities?.localRefs
       ?.unit_abilities as TableRecord) ??
     (abilityJunc.localRefs?.battle_context_unit_ability_junctions?.localRefs?.unit_abilities as TableRecord);
-  
+
   if (unitAbility === undefined) {
-    log(`Ability Junc Missing Ability: ${abilityJunc.effect} | ${folder}`,'yellow')
+    log(`Ability Junc Missing Ability: ${abilityJunc.effect} | ${folder}`, 'yellow');
     const earlyReturn: AbilityInterface = {
       effect: abilityJunc.effect,
       bonus_value_id: abilityJunc.bonus_value_id,
@@ -44,9 +44,9 @@ const processAbility = (
         target_ground: false,
         target_self: false,
         target_intercept_range: 0,
-      }
-    }
-    return earlyReturn
+      },
+    };
+    return earlyReturn;
   }
   const unitAbilityType = unitAbility.localRefs?.unit_ability_types as TableRecord;
   const unitSpecialAbility = unitAbility.foreignRefs?.unit_special_abilities?.[0] as TableRecord;

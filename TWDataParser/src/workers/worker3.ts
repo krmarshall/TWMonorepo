@@ -1,17 +1,17 @@
 import { workerData } from 'worker_threads';
 import { ensureDirSync, readJSONSync } from 'fs-extra';
-import { VanillaWorkerDataInterface } from '../@types/WorkerDataInterfaces';
-import Extractor from '../extractor';
-import initializeGlobalData from '../utils/initializeGlobalData';
-import csvParse from '../csvParse';
-import akData from '../akData';
-import generateTables from '../generateTables';
-import processFactions from '../processTables/processFactions';
-import { workerMod, workerModMulti } from './workerExports';
-import { modPackInfo, vanillaPackInfo } from '../lists/packInfo';
-import { v3AssKitList } from '../lists/extractLists/vanilla3';
-import { RefKey } from '../@types/GlobalDataInterface';
-import { SchemaInterface } from '../@types/SchemaInterfaces';
+import { VanillaWorkerDataInterface } from '../@types/WorkerDataInterfaces.ts';
+import Extractor from '../extractor.ts';
+import initializeGlobalData from '../utils/initializeGlobalData.ts';
+import csvParse from '../csvParse.ts';
+import akData from '../akData.ts';
+import generateTables from '../generateTables.ts';
+import processFactions from '../processTables/processFactions.ts';
+import { workerMod, workerModMulti } from './workerExports.ts';
+import { modPackInfo, vanillaPackInfo } from '../lists/packInfo.ts';
+import { v3AssKitList } from '../lists/extractLists/vanilla3.ts';
+import { RefKey } from '../@types/GlobalDataInterface.ts';
+import { SchemaInterface } from '../@types/SchemaInterfaces.ts';
 
 const { folder, dbPackName, locPackName, dbList, locList, game }: VanillaWorkerDataInterface = workerData;
 

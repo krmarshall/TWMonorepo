@@ -1,4 +1,4 @@
-import { v3DbList } from '../lists/extractLists/vanilla3';
+import { v3DbList } from '../lists/extractLists/vanilla3.ts';
 
 interface TableRecordNoRefs {
   [key: string]: string;

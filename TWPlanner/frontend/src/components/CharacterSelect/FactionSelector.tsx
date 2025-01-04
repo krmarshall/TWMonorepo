@@ -1,12 +1,12 @@
 import { useContext, useEffect, useState } from 'react';
-import { AppContext, AppContextActions } from '../../contexts/AppContext';
-import gameData from '../../data/gameData';
-import factionImages from '../../imgs/factions/factionImages';
-import ReactImage from '../ReactImage';
+import { AppContext, AppContextActions } from '../../contexts/AppContext.tsx';
+import gameData from '../../data/gameData.ts';
+import factionImages from '../../imgs/factions/factionImages.ts';
+import ReactImage from '../ReactImage.tsx';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import placeholderImg from '../../imgs/other/0placeholder.webp';
 import shareIcon from '../../imgs/other/icon_button_external_link.webp';
-import TooltipWrapper from '../TooltipWrapper';
+import TooltipWrapper from '../TooltipWrapper.tsx';
 import { toast } from 'react-hot-toast';
 
 const FactionSelector = () => {

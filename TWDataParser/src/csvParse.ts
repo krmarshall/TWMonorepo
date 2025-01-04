@@ -1,8 +1,9 @@
 import { sync } from 'fast-glob';
 import { readFileSync } from 'fs';
+// eslint-disable-next-line import/extensions
 import { parse } from 'csv-parse/sync';
 import path from 'path';
-import { GlobalDataInterface } from './@types/GlobalDataInterface';
+import { GlobalDataInterface } from './@types/GlobalDataInterface.ts';
 
 const csvParseConfig = {
   delimiter: '\t',

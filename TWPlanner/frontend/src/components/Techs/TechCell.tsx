@@ -1,11 +1,11 @@
 import { useContext, useEffect, useRef, useState } from 'react';
 import { useXarrow } from 'react-xarrows';
-import { AppContext } from '../../contexts/AppContext';
-import { TechNodeInterface } from '../../@types/TechInterface';
-import { setFontSize, trimString } from '../../utils/sharedFunctions';
-import TooltipWrapper from '../TooltipWrapper';
-import ReactImage from '../ReactImage';
-import TechTooltip from './TechTooltip';
+import { AppContext } from '../../contexts/AppContext.tsx';
+import { TechNodeInterface } from '../../@types/TechInterface.ts';
+import { setFontSize, trimString } from '../../utils/sharedFunctions.ts';
+import TooltipWrapper from '../TooltipWrapper.tsx';
+import ReactImage from '../ReactImage.tsx';
+import TechTooltip from './TechTooltip.tsx';
 
 import buildingRequired from '../../imgs/other/building_required.webp';
 import timerFrame from '../../imgs/other/timer_frame.webp';

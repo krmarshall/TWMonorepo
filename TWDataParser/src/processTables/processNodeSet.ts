@@ -1,7 +1,7 @@
-import { GlobalDataInterface, TableRecord } from '../@types/GlobalDataInterface';
-import { ItemInterface, SkillInterface } from '../@types/CharacterInterface';
-import collateNodes from './collateNodes';
-import processSkillNode from './processSkillNode';
+import { GlobalDataInterface, TableRecord } from '../@types/GlobalDataInterface.ts';
+import { ItemInterface, SkillInterface } from '../@types/CharacterInterface.ts';
+import collateNodes from './collateNodes.ts';
+import processSkillNode from './processSkillNode.ts';
 
 const processNodeSet = (
   folder: string,

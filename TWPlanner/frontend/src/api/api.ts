@@ -1,5 +1,5 @@
-import { CharacterInterface } from '../@types/CharacterInterfaceRef';
-import { TechSetInterface } from '../@types/TechInterface';
+import { CharacterInterface } from '../@types/CharacterInterfaceRef.ts';
+import { TechSetInterface } from '../@types/TechInterface.ts';
 
 const path = import.meta.env.DEV ? 'http://localhost:5000/api' : 'https://totalwarhammerplanner.com/api';
 

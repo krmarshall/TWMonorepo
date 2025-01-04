@@ -1,8 +1,8 @@
 import { useContext, useEffect, useRef } from 'react';
-import { AppContext } from '../../contexts/AppContext';
-import { getBgUrl } from '../../utils/sharedFunctions';
-import SkillRow from './SkillRow';
-import SearchBox from './SearchBox';
+import { AppContext } from '../../contexts/AppContext.tsx';
+import { getBgUrl } from '../../utils/sharedFunctions.ts';
+import SkillRow from './SkillRow.tsx';
+import SearchBox from './SearchBox.tsx';
 
 interface PropInterface {
   faction: string | undefined;

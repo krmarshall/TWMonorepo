@@ -1,7 +1,7 @@
 import { useContext } from 'react';
-import { FactionEffectsInterface } from '../../../@types/CharacterInterfaceRef';
-import BaseCell from '../BaseCell';
-import { AppContext } from '../../../contexts/AppContext';
+import { FactionEffectsInterface } from '../../../@types/CharacterInterfaceRef.ts';
+import BaseCell from '../BaseCell.tsx';
+import { AppContext } from '../../../contexts/AppContext.tsx';
 
 interface PropInterface {
   factionEffect: FactionEffectsInterface;

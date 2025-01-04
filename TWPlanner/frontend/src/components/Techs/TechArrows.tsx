@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import Xarrow, { anchorType } from 'react-xarrows';
-import { AppContext } from '../../contexts/AppContext';
+import { AppContext } from '../../contexts/AppContext.tsx';
 
 const TechArrows = () => {
   const { state } = useContext(AppContext);

@@ -1,11 +1,11 @@
-import { GlobalDataInterface, TableRecord } from '../@types/GlobalDataInterface';
-import { EffectInterface } from '../@types/CharacterInterface';
-import { TechNodeInterface } from '../@types/TechInterface';
-import findImage from '../utils/findImage';
-import { parseInteger } from '../utils/parseStringToTypes';
-import stringInterpolator from '../utils/stringInterpolator';
-import processAncillary from './processAncillary';
-import processEffect from './processEffect';
+import { GlobalDataInterface, TableRecord } from '../@types/GlobalDataInterface.ts';
+import { EffectInterface } from '../@types/CharacterInterface.ts';
+import { TechNodeInterface } from '../@types/TechInterface.ts';
+import findImage from '../utils/findImage.ts';
+import { parseInteger } from '../utils/parseStringToTypes.ts';
+import stringInterpolator from '../utils/stringInterpolator.ts';
+import processAncillary from './processAncillary.ts';
+import processEffect from './processEffect.ts';
 
 const processTechNode = (
   folder: string,

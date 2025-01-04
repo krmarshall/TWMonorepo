@@ -1,8 +1,8 @@
 import { useContext } from 'react';
-import { AppContext } from '../../contexts/AppContext';
-import gameData from '../../data/gameData';
+import { AppContext } from '../../contexts/AppContext.tsx';
+import gameData from '../../data/gameData.ts';
 import placeholderImg from '../../imgs/other/0placeholderInvis.webp';
-import ReactImage from '../ReactImage';
+import ReactImage from '../ReactImage.tsx';
 
 // import portholeFrame from '../imgs/other/porthole_frame_battle_load.webp';
 

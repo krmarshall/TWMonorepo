@@ -1,12 +1,12 @@
-import { GlobalDataInterface, TableRecord } from '../@types/GlobalDataInterface';
-import { ItemInterface, SkillInterface, SkillLevelInterface } from '../@types/CharacterInterface';
-import findImage from '../utils/findImage';
-import log from '../utils/log';
-import { parseBoolean, parseInteger } from '../utils/parseStringToTypes';
-import stringInterpolator from '../utils/stringInterpolator';
-import processAncillary from './processAncillary';
-import processEffect from './processEffect';
-import processUnitStats from './processUnitStats';
+import { GlobalDataInterface, TableRecord } from '../@types/GlobalDataInterface.ts';
+import { ItemInterface, SkillInterface, SkillLevelInterface } from '../@types/CharacterInterface.ts';
+import findImage from '../utils/findImage.ts';
+import log from '../utils/log.ts';
+import { parseBoolean, parseInteger } from '../utils/parseStringToTypes.ts';
+import stringInterpolator from '../utils/stringInterpolator.ts';
+import processAncillary from './processAncillary.ts';
+import processEffect from './processEffect.ts';
+import processUnitStats from './processUnitStats.ts';
 
 const processSkillNode = (
   folder: string,

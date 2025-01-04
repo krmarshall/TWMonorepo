@@ -1,11 +1,11 @@
-import { Table } from '../generateTables';
-import { GlobalDataInterface, RefKey, TableRecord } from '../@types/GlobalDataInterface';
-import { NodeLinkInterface, TechNodeInterface, TechSetInterface } from '../@types/TechInterface';
-import log from '../utils/log';
-import { parseBoolean, parseInteger } from '../utils/parseStringToTypes';
-import collateTechNodes from './collateTechNodes';
-import outputTechNodeSet from './outputTechNodeSet';
-import processTechNode from './processTechNode';
+import { Table } from '../generateTables.ts';
+import { GlobalDataInterface, RefKey, TableRecord } from '../@types/GlobalDataInterface.ts';
+import { NodeLinkInterface, TechNodeInterface, TechSetInterface } from '../@types/TechInterface.ts';
+import log from '../utils/log.ts';
+import { parseBoolean, parseInteger } from '../utils/parseStringToTypes.ts';
+import collateTechNodes from './collateTechNodes.ts';
+import outputTechNodeSet from './outputTechNodeSet.ts';
+import processTechNode from './processTechNode.ts';
 
 const processTechNodeSet = (
   folder: string,

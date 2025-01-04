@@ -1,4 +1,4 @@
-import { CharacterInterface } from '../@types/CharacterInterface';
+import { CharacterInterface } from '../@types/CharacterInterface.ts';
 import { outputJSONSync } from 'fs-extra';
 
 const outputAgent = (agent: CharacterInterface, folder: string, subculture: string) => {

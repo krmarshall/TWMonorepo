@@ -1,9 +1,9 @@
 import { useContext, useEffect, useRef, useState } from 'react';
-import { ItemInterface } from '../../../@types/CharacterInterfaceRef';
-import BaseCell from '../BaseCell';
-import { AppContext } from '../../../contexts/AppContext';
-import TooltipWrapper from '../../TooltipWrapper';
-import ItemSetTooltip from '../Tooltips/ItemSetTooltip';
+import { ItemInterface } from '../../../@types/CharacterInterfaceRef.ts';
+import BaseCell from '../BaseCell.tsx';
+import { AppContext } from '../../../contexts/AppContext.tsx';
+import TooltipWrapper from '../../TooltipWrapper.tsx';
+import ItemSetTooltip from '../Tooltips/ItemSetTooltip.tsx';
 
 import questBattle from '../../../imgs/other/icon_quest_battle.webp';
 

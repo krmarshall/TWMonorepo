@@ -1,13 +1,13 @@
 import { useContext, useEffect, useState, MouseEvent } from 'react';
 import { useParams } from 'react-router-dom';
-import { AppContext } from '../../../contexts/AppContext';
+import { AppContext } from '../../../contexts/AppContext.tsx';
 import {
   deleteBuildFromStorage,
   initializeBuildsFromStorage,
   saveBuildToStorage,
   setActiveBuildFromStorage,
-} from '../../../utils/storageFunctions';
-import { splitCharacterKey } from '../../../utils/urlFunctions';
+} from '../../../utils/storageFunctions.ts';
+import { splitCharacterKey } from '../../../utils/urlFunctions.ts';
 
 import deleteIcon from '../../../imgs/other/icon_delete.webp';
 import saveIcon from '../../../imgs/other/icon_quick_save.webp';

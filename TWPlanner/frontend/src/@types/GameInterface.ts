@@ -1,5 +1,5 @@
-import { CharacterListInterface } from './CharacterListInterfaceRef';
-import { CompilationGroupsInterface } from './CompilationGroupsInterfaceRef';
+import { CharacterListInterface } from './CharacterListInterfaceRef.ts';
+import { CompilationGroupsInterface } from './CompilationGroupsInterfaceRef.ts';
 
 interface GameDataInterface {
   text: string;

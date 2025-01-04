@@ -1,13 +1,13 @@
 import { workerData } from 'worker_threads';
 import { ensureDirSync, readJSONSync } from 'fs-extra';
-import { VanillaWorkerDataInterface } from '../@types/WorkerDataInterfaces';
-import initializeGlobalData from '../utils/initializeGlobalData';
-import csvParse from '../csvParse';
-import generateTables from '../generateTables';
-import processFactions from '../processTables/processFactions';
-import { modPackInfo, vanillaPackInfo } from '../lists/packInfo';
-import Extractor from '../extractor';
-import { SchemaInterface } from '../@types/SchemaInterfaces';
+import { VanillaWorkerDataInterface } from '../@types/WorkerDataInterfaces.ts';
+import initializeGlobalData from '../utils/initializeGlobalData.ts';
+import csvParse from '../csvParse.ts';
+import generateTables from '../generateTables.ts';
+import processFactions from '../processTables/processFactions.ts';
+import { modPackInfo, vanillaPackInfo } from '../lists/packInfo.ts';
+import Extractor from '../extractor.ts';
+import { SchemaInterface } from '../@types/SchemaInterfaces.ts';
 
 const { folder, dbPackName, locPackName, dbList, locList, game }: VanillaWorkerDataInterface = workerData;
 

@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from 'react';
-import { AppContext, AppContextActions } from '../../contexts/AppContext';
-import { searchDataForKeyword, searchTechDataForKeyword } from '../../utils/searchFunctions';
+import { AppContext, AppContextActions } from '../../contexts/AppContext.tsx';
+import { searchDataForKeyword, searchTechDataForKeyword } from '../../utils/searchFunctions.ts';
 
 const SearchBox = ({ skill }: { skill: boolean }) => {
   const { state, dispatch } = useContext(AppContext);

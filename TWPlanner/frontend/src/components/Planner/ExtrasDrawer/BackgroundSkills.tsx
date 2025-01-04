@@ -1,6 +1,6 @@
 import { useContext } from 'react';
-import { AppContext } from '../../../contexts/AppContext';
-import BaseCell from '../BaseCell';
+import { AppContext } from '../../../contexts/AppContext.tsx';
+import BaseCell from '../BaseCell.tsx';
 
 const BackgroundSkills = () => {
   const { state } = useContext(AppContext);

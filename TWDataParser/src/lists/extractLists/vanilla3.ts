@@ -1,4 +1,4 @@
-import { v2DbList, v2LocList } from './vanilla2';
+import { v2DbList, v2LocList } from './vanilla2.ts';
 
 const v3DbList = [
   ...v2DbList,
@@ -36,7 +36,7 @@ const v3LocList = [
   'units_custom_battle_mounts__',
   'ancillary_sets__',
   'pooled_resources__',
-  'provincial_initiative_records__'
+  'provincial_initiative_records__',
 ];
 
 const v3AssKitList = ['start_pos_characters', 'start_pos_calendars', 'start_pos_character_traits'];

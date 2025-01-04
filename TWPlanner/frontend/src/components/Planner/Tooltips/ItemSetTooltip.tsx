@@ -1,21 +1,21 @@
-import TooltipWrapper from '../../TooltipWrapper';
-import { ItemSetInterface } from '../../../@types/CharacterInterfaceRef';
+import TooltipWrapper from '../../TooltipWrapper.tsx';
+import { ItemSetInterface } from '../../../@types/CharacterInterfaceRef.ts';
 import { useContext, useEffect } from 'react';
-import { AppContext } from '../../../contexts/AppContext';
-import useBulkMediaQueries from '../../../hooks/useBulkMediaQueries';
+import { AppContext } from '../../../contexts/AppContext.tsx';
+import useBulkMediaQueries from '../../../hooks/useBulkMediaQueries.tsx';
 import DOMPurify from 'dompurify';
 import {
   getRelatedAbilities,
   getRelatedAttributes,
   getRelatedContactPhases,
   replaceKeepCaps,
-} from '../../../utils/sharedFunctions';
-import SkillEffect from './SkillEffect';
-import TooltipAbilityCycler from '../../TooltipAbiltyCycler';
-import TooltipAbilityMap from '../../TooltipAbilityMap';
+} from '../../../utils/sharedFunctions.ts';
+import SkillEffect from './SkillEffect.tsx';
+import TooltipAbilityCycler from '../../TooltipAbiltyCycler.tsx';
+import TooltipAbilityMap from '../../TooltipAbilityMap.tsx';
 
 import itemSetIcon from '../../../imgs/other/icon_item_set.webp';
-import ReactImage from '../../ReactImage';
+import ReactImage from '../../ReactImage.tsx';
 
 interface PropInterface {
   itemSet: ItemSetInterface;

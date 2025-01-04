@@ -1,11 +1,11 @@
 import { useNavigate, useParams } from 'react-router-dom';
-import gameData from '../../data/gameData';
+import gameData from '../../data/gameData.ts';
 import { useContext, useEffect, useState } from 'react';
-import { AppContext, AppContextActions } from '../../contexts/AppContext';
-import { createEmptyCharacterBuild } from '../../utils/sharedFunctions';
-import { convertBuildToCode, splitCharacterKey } from '../../utils/urlFunctions';
+import { AppContext, AppContextActions } from '../../contexts/AppContext.tsx';
+import { createEmptyCharacterBuild } from '../../utils/sharedFunctions.ts';
+import { convertBuildToCode, splitCharacterKey } from '../../utils/urlFunctions.ts';
 import { toast } from 'react-hot-toast';
-import TooltipWrapper from '../TooltipWrapper';
+import TooltipWrapper from '../TooltipWrapper.tsx';
 
 import resetIcon from '../../imgs/other/icon_reset.webp';
 import shareIcon from '../../imgs/other/icon_button_external_link.webp';

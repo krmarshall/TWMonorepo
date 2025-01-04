@@ -1,7 +1,7 @@
-import { GlobalDataInterface, TableRecord } from '../@types/GlobalDataInterface';
-import { ProjectileBombardmentInterface } from '../@types/CharacterInterface';
-import { parseFloating, parseInteger } from '../utils/parseStringToTypes';
-import processProjectile from './processProjectile';
+import { GlobalDataInterface, TableRecord } from '../@types/GlobalDataInterface.ts';
+import { ProjectileBombardmentInterface } from '../@types/CharacterInterface.ts';
+import { parseFloating, parseInteger } from '../utils/parseStringToTypes.ts';
+import processProjectile from './processProjectile.ts';
 
 const processBombardment = (folder: string, globalData: GlobalDataInterface, bombardment: TableRecord) => {
   const returnBombardment: ProjectileBombardmentInterface = {

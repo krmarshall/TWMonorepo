@@ -1,5 +1,5 @@
-import { TechNodeInterface } from '../../@types/TechInterface';
-import TechCell from './TechCell';
+import { TechNodeInterface } from '../../@types/TechInterface.ts';
+import TechCell from './TechCell.tsx';
 
 interface PropInterface {
   techRow: Array<TechNodeInterface> | null;

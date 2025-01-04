@@ -458,6 +458,6 @@ const vanillaCharacters: { [key: string]: string } = {
   wh3_dlc26_skill_node_set_ogr_bragg_the_gutsman: 'wh3_dlc26_skill_node_set_ogr_bragg_the_gutsman',
   wh3_dlc26_skill_node_set_ogr_bruiser: 'wh3_dlc26_skill_node_set_ogr_bruiser',
   wh3_dlc26_skill_node_set_ogr_butcher_death: 'wh3_dlc26_skill_node_set_ogr_butcher_death',
-  wh3_dlc26_skill_node_set_ogr_butcher_heavens: 'wh3_dlc26_skill_node_set_ogr_butcher_heavens'
+  wh3_dlc26_skill_node_set_ogr_butcher_heavens: 'wh3_dlc26_skill_node_set_ogr_butcher_heavens',
 };
 export default vanillaCharacters;

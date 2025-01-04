@@ -1,1 +1,1 @@
-export * from '../../../TWPlanner/frontend/src/@types/SpellLores';
+export * from '../../../TWPlanner/frontend/src/@types/SpellLores.ts';

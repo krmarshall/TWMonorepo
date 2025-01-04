@@ -1,6 +1,6 @@
 import { readJSONSync, writeJSON } from 'fs-extra';
-import { modPackInfo } from '../lists/packInfo';
-import log from './log';
+import { modPackInfo } from '../lists/packInfo.ts';
+import log from './log.ts';
 import { init } from 'steamworks.js';
 
 interface TimeStampInterface {
