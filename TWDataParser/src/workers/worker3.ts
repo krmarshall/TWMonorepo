@@ -45,7 +45,7 @@ extractor
 
     // Unpruned Mods
     workerModMulti(radiousWorkerData);
-    // workerMod(sfoWorkerData);
+    workerMod(sfoWorkerData);
     workerMod(crysWorkerData);
     // Pruned Mods
     workerModMulti(mixuWorkerData);
