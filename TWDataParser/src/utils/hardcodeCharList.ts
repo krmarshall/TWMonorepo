@@ -467,4 +467,6 @@ const hardcodeSpellLoreData: { [nodeSetKey: string]: SpellLores } = {
   str_nurgloth: SpellLores.fire,
   str_sofia: SpellLores.vampires,
   str_bileflesh: SpellLores.mixed,
+  str_anethra_skills: SpellLores.beasts,
+  str_warpscorched: SpellLores.mixed,
 };
