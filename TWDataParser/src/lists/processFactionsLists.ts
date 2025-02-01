@@ -156,6 +156,7 @@ const ignoreAgents: Array<{ agent: string; game?: string; subculture?: string; f
   { agent: 'teb_merc_general', game: '3', folder: 'hol3' },
   { agent: 'teb_merc_captain', game: '3', folder: 'hol3' },
   { agent: 'teb_lorenzo_lupo', game: '3', folder: 'hol3' },
+  { agent: 'teb_merc_general_camp', game: '3', folder: 'hol3' },
 ];
 
 const remapFactions: { [key: string]: string } = {
