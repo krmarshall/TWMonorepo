@@ -64,8 +64,8 @@ const processTechNodeSet = (
     }
 
     const nodeJunc = uiGroupRecord.foreignRefs?.technology_ui_groups_to_technology_nodes_junctions?.[0] as TableRecord;
-    const botRightNode = tables.technology_nodes?.findRecordByKey('key', nodeJunc.bottom_right_node);
-    const topLeftNode = tables.technology_nodes?.findRecordByKey('key', nodeJunc.top_left_node);
+    const botRightNode = tables.technology_nodes?.findRecordByKey('key', nodeJunc?.bottom_right_node);
+    const topLeftNode = tables.technology_nodes?.findRecordByKey('key', nodeJunc?.top_left_node);
     // const optTopRightNode = tables.technology_nodes?.findRecordByKey('key', nodeJunc.optional_top_right_node);
     // const optBotLeftNode = tables.technology_nodes?.findRecordByKey('key', nodeJunc.optional_bottom_left_node);
 

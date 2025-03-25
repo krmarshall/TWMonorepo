@@ -13,7 +13,7 @@ const vanilla3Techs = {
   hef_mil: { name: 'High Elves', image: factionImages.hef_high_elves },
   kho_mil: { name: 'Khorne', image: factionImages.kho_khorne },
   ksl_mil: { name: 'Kislev', image: factionImages.ksl_kislev },
-  ksl_ostankya: { name: 'Daughters of the Forest (Ostankya)', image: factionImages.ksl_daughtersOfTheForest },
+  // ksl_ostankya: { name: 'Daughters of the Forest (Ostankya)', image: factionImages.ksl_daughtersOfTheForest },
   lzd_mil: { name: 'Lizardmen', image: factionImages.lzd_lizardmen },
   lzd_nakai: { name: 'Spirit of the Jungle (Nakai)', image: factionImages.lzs_spirits_of_the_jungle },
   nor_mil: { name: 'Norsca', image: factionImages.nor_norsca },

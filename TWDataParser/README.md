@@ -8,6 +8,10 @@ Reverse engineered DB schema (kinda rough and not totally complete, but handy re
 
 When CA adds weird stuff that probably needs new tables (like mounts getting autoleveled) check https://github.com/Frodo45127/rpfm-schemas commits to look through table changes.
 
+## To Do
+
+- Technology Faction Variant Selector like for Skill Trees, technology_nodes has faction_key column
+
 ## Weird Errors
 
 - If workers error with diagnosticCodes its probably a typescript issue
