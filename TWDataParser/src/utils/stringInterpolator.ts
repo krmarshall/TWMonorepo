@@ -70,6 +70,10 @@ const stringInterpolator = (string: string, loc: TableRecord): string => {
     }
 
     // Hardcode Fixes
+    // CAT3 (Teb) has closing /img tag with 1 ]
+    if (element === null) {
+      element = string.match(/\[\[img[:=][a-zA-Z0-9_./ ]*\]\](?<innerText>.*)\[\[\/img\](?!\])/);
+    }
     // Vanilla locs occasionally have opening img tags without closing tags
     if (element === null) {
       element = string.match(/\[\[img[:=][a-zA-Z0-9_./ ]*\]\]/);

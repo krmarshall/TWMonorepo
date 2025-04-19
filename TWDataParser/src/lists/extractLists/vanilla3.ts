@@ -38,6 +38,7 @@ const v3LocList = [
   'pooled_resources__',
   'provincial_initiative_records__',
   'initiatives__',
+  'unit_description_short_texts__',
 ];
 
 const v3AssKitList = ['start_pos_characters', 'start_pos_calendars', 'start_pos_character_traits'];
