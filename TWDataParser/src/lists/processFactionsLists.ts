@@ -137,6 +137,17 @@ const ignoreAgents: Array<{ agent: string; game?: string; subculture?: string; f
   { agent: 'str_septik_stinking_thing_ritual', game: '3', subculture: 'wh2_main_sc_skv_skaven' },
   { agent: 'str_kreepus_eshin_sorcerer_ritual', game: '3', subculture: 'wh2_main_sc_skv_skaven' },
 
+  // Tribes of the North
+  // { agent: 'hkrul_eyri', game: '3', subculture: 'wh_dlc08_sc_nor_norsca' },
+  // { agent: 'hkrul_olaf', game: '3', subculture: 'wh_dlc08_sc_nor_norsca' },
+  // { agent: 'hkrul_berus', game: '3', subculture: 'wh_dlc08_sc_nor_norsca' },
+  // { agent: 'hkrul_kammler', game: '3', subculture: 'wh_dlc08_sc_nor_norsca' },
+  // { agent: 'hkrul_haftagg', game: '3', subculture: 'wh_dlc08_sc_nor_norsca' },
+  // { agent: 'hkrul_olg', game: '3', subculture: 'wh_dlc08_sc_nor_norsca' },
+  // { agent: 'hkrul_orgrim', game: '3', subculture: 'wh_dlc08_sc_nor_norsca' },
+  // { agent: 'hkrul_tuula', game: '3', subculture: 'wh_dlc08_sc_nor_norsca' },
+  // { agent: 'hkrul_usta', game: '3', subculture: 'wh_dlc08_sc_nor_norsca' },
+
   // Heroes of Legend - Soft requires TEB for a character, want some db stuff, but none of the characters
   { agent: 'teb_priestess', game: '3', folder: 'hol3' },
   { agent: 'bor_ranger_lord', game: '3', folder: 'hol3' },

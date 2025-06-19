@@ -4920,6 +4920,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"caniuse-lite@npm:^1.0.30001723":
+  version: 1.0.30001723
+  resolution: "caniuse-lite@npm:1.0.30001723"
+  checksum: 10c0/e019503061759b96017c4d27ddd7ca1b48533eabcd0431b51d2e3156f99f6b031075e46c279c0db63424cdfc874bba992caec2db51b922a0f945e686246886f6
+  languageName: node
+  linkType: hard
+
 "chalk@npm:^2.4.1, chalk@npm:^2.4.2":
   version: 2.4.2
   resolution: "chalk@npm:2.4.2"
@@ -12950,6 +12957,7 @@ __metadata:
   resolution: "twmonorepo@workspace:."
   dependencies:
     "@eslint/js": "npm:^9.17.0"
+    caniuse-lite: "npm:^1.0.30001723"
     concurrently: "npm:^9.1.2"
     eslint: "npm:^9.17.0"
     eslint-config-prettier: "npm:^9.1.0"
