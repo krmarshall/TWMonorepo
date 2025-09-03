@@ -37,7 +37,7 @@ const gameData: { [key: string]: GameDataInterface } = {
     image: gameImages['vanilla3'],
     factions: factions,
     characters: vanilla3CharactersMemes,
-    updated: 'Jun 24 2025 (6.2.1)',
+    updated: 'Sep 2 2025 (6.3.0)',
     category: 'Base',
   },
   sfo3: {

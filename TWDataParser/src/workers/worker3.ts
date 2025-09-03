@@ -49,8 +49,8 @@ extractor
     workerMod(crysWorkerData);
     // Pruned Mods
     workerModMulti(mixuWorkerData);
-    workerMod(legeWorkerData);
-    workerModMulti(scmWorkerData);
+    // workerMod(legeWorkerData);
+    // workerModMulti(scmWorkerData);
     workerModMulti(cat3WorkerData);
     workerModMulti(ovn3WorkerData);
     workerModMulti(hol3WorkerData);
