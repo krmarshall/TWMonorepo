@@ -127,7 +127,7 @@ const gameData: { [key: string]: GameDataInterface } = {
     includes: [
       `LCCP (${toParsedDateString(modTimestamps.scm3['!scm_lccp'])})`,
       `Tribes of the North (${toParsedDateString(modTimestamps.scm3['!scm_totn'])})`,
-      `Skaven Clans (${toParsedDateString(modTimestamps.scm3.str_skaven_clans)})`,
+      // `Skaven Clans (${toParsedDateString(modTimestamps.scm3.scm_skaven_clans)})`,
       `Marienburg (${toParsedDateString(modTimestamps.scm3['!scm_marienburg'])})`,
       `Champions of Undeath (${toParsedDateString(modTimestamps.scm3['!!!!!!Champions_of_undeath_merged_fun_tyme'])})`,
       `JBV: Curse of Nongchang (${toParsedDateString(modTimestamps.scm3.jade_vamp_pol)})`,

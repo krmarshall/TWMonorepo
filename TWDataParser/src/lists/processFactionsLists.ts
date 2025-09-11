@@ -149,7 +149,7 @@ const ignoreAgents: Array<{ agent: string; game?: string; subculture?: string; f
   // { agent: 'hkrul_usta', game: '3', subculture: 'wh_dlc08_sc_nor_norsca' },
 
   // The Hung
-  { agent: 'hng_khan_gathering', game: '3', folder: 'scm3' },
+  { agent: 'hng_mandakh', game: '3', folder: 'scm3' },
   { agent: 'hng_man_chu_capital', game: '3', folder: 'scm3' },
 
   // Heroes of Legend - Soft requires TEB for a character, want some db stuff, but none of the characters

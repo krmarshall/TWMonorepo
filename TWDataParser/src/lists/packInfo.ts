@@ -41,7 +41,7 @@ export const modPackInfo: ModPackInfoInterface = {
   scm3: [
     { pack: '!scm_lccp', id: 3236567583, name: 'LCCP' },
     { pack: '!scm_totn', id: 3236566964, name: 'Tribes of the North' },
-    { pack: 'str_skaven_clans', id: 2986543735, name: 'Skaven Clans' }, // { pack: 'scm_skaven_clans', id: 3318719948, name: 'Skaven Clans' }
+    { pack: 'scm_skaven_clans', id: 3318719948, name: 'Skaven Clans' }, // { pack: 'str_skaven_clans', id: 2986543735, name: 'Skaven Clans' }
     { pack: '!scm_marienburg', id: 3030996759, name: 'Marienburg' },
     { pack: '!!!!!!Champions_of_undeath_merged_fun_tyme', id: 3022054734, name: 'Champions of Undeath' },
     { pack: 'jade_vamp_pol', id: 2880515805, name: 'JBV: Curse of Nongchang' },
