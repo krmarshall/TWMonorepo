@@ -88,7 +88,7 @@ const hardCodeNameData: { [nodeSetKey: string]: { name: string; priority?: boole
   bc_grilok: { name: 'Pontifex of Plagues Lord Grilok', priority: false },
   rhox_torinubar_skill_node_set_hef_convoy: { name: 'Prince (Convoy)' },
   teb_merc_general_camp: { name: 'Mercenary General (Camp)' },
-  hng_khan_gathering: { name: 'Noyan' },
+  hng_skill_node_set_hng_khan_gathering: { name: 'Noyan' },
 };
 
 export const hardcodePortraitData: { [nodeSetKey: string]: string } = {
