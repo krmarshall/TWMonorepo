@@ -9,7 +9,7 @@ import radious3Characters from '../../../TWPData/charLists/radious3.json';
 import mixu3Characters from '../../../TWPData/charLists/mixu3.json';
 import lege3Characters from '../../../TWPData/charLists/lege3.json';
 import scm3Characters from '../../../TWPData/charLists/scm3.json';
-import crys3Characters from '../../../TWPData/charLists/crys3.json';
+// import crys3Characters from '../../../TWPData/charLists/crys3.json';
 import cat3Characters from '../../../TWPData/charLists/cat3.json';
 import ovn3Characters from '../../../TWPData/charLists/ovn3.json';
 import hol3Characters from '../../../TWPData/charLists/hol3.json';
@@ -79,9 +79,9 @@ const gameData: { [key: string]: GameDataInterface } = {
     image: gameImages['lege3'],
     factions: factions,
     characters: lege3Characters as CharacterListInterface,
-    updated: toParsedDateString(modTimestamps.lege3['!str_legendary']),
+    updated: toParsedDateString(modTimestamps.lege3['!scm_legendary']),
     category: 'Character Mod',
-    workshopLink: 'https://steamcommunity.com/sharedfiles/filedetails/?id=2826930183',
+    workshopLink: 'https://steamcommunity.com/sharedfiles/filedetails/?id=3305404052',
   },
   cat3: {
     text: `Cataph's Compilation 3`,
@@ -137,6 +137,7 @@ const gameData: { [key: string]: GameDataInterface } = {
       `Rotblood Tribe (${toParsedDateString(modTimestamps.scm3.str_rotblood)})`,
       `Sigmar's Heirs (${toParsedDateString(modTimestamps.scm3['@xou_emp'])})`,
       `Empire Secessionists (${toParsedDateString(modTimestamps.scm3['!scm_empire_secessionists'])})`,
+      `The Hung - Lords of the Steppes (${toParsedDateString(modTimestamps.scm3['hng_steppe_lords'])})`,
       `Dark Land Orcs (${toParsedDateString(modTimestamps.scm3.froeb_dark_land_orcs)})`,
       `Dead's Cult of the Possessed (${toParsedDateString(modTimestamps.scm3.dead_cult_possessed_unit_V2)})`,
       `RotJS : Yin-Yin, the Sea Dragon (${toParsedDateString(modTimestamps.scm3.cth_yinyin_pol)})`,
@@ -152,15 +153,15 @@ const gameData: { [key: string]: GameDataInterface } = {
     category: 'Character Mod',
     workshopLink: 'https://steamcommunity.com/sharedfiles/filedetails/?id=2931087074',
   },
-  crys3: {
-    text: 'Leaders of Legend 3',
-    image: gameImages['crys3'],
-    factions: factions,
-    characters: crys3Characters as CharacterListInterface,
-    updated: toParsedDateString(modTimestamps.crys3.crys_leaders),
-    category: 'Overhaul',
-    workshopLink: 'https://steamcommunity.com/sharedfiles/filedetails/?id=2880244265',
-  },
+  // crys3: {
+  //   text: 'Leaders of Legend 3',
+  //   image: gameImages['crys3'],
+  //   factions: factions,
+  //   characters: crys3Characters as CharacterListInterface,
+  //   updated: toParsedDateString(modTimestamps.crys3.crys_leaders),
+  //   category: 'Overhaul',
+  //   workshopLink: 'https://steamcommunity.com/sharedfiles/filedetails/?id=2880244265',
+  // },
 };
 
 export default gameData;

@@ -28,6 +28,7 @@ const factions = {
   msl_mousillon: 'Mousillon',
 
   jbv_jade_vampires: 'Jade-Blooded Vampires',
+  mixer_hng_hung: 'The Hung',
   str_rotblood: 'Rotblood Tribe',
 
   teb_southern_realms: 'Southern Realms',

@@ -18,6 +18,10 @@ const processSkillNode = (
   requiredMap: { [key: string]: Array<SkillInterface> },
 ) => {
   const skill = skillNode.localRefs?.character_skills as TableRecord;
+  if (skill === undefined) {
+    log(`${folder} ${skillNode.key} missing character skill`, 'yellow');
+    return;
+  }
   if (
     skill.key === 'wh3_main_skill_agent_action_success_scaling' ||
     skill.key === 'wh3_dlc20_skill_path_to_glory_cost_modifier'

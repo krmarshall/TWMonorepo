@@ -31,6 +31,7 @@ const subcultureMap: { [key: string]: string } = {
   wh_main_sc_vmp_jade_vampires: 'jbv_jade_vampires',
   str_rotbloods_subcult: 'str_rotblood',
   jiangshi_subculture: 'vmp_vampire_counts',
+  mixer_sc_hng_hung: 'mixer_hng_hung',
 
   mixer_teb_southern_realms: 'teb_southern_realms',
 

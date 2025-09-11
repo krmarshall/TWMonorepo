@@ -470,4 +470,7 @@ const hardcodeSpellLoreData: { [nodeSetKey: string]: SpellLores } = {
   str_bileflesh: SpellLores.mixed,
   str_anethra_skills: SpellLores.beasts,
   str_warpscorched: SpellLores.mixed,
+  hng_skill_node_set_hng_shaman_beasts: SpellLores.beasts,
+  hng_skill_node_set_hng_shaman_raging_sky: SpellLores.mixed,
+  hng_skill_node_set_hng_shaman_chaos: SpellLores.mixed,
 };

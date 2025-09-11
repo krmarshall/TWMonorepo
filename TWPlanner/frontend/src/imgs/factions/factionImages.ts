@@ -35,6 +35,7 @@ import araby from './araby.webp';
 import fimir from './fimir.webp';
 import bloodyGrail from './bloodyGrail.webp';
 import mallobaude from './mallobaude.webp';
+import mixer_hng_hung from './mixer_hng_hung.webp';
 
 // Tech Factions
 import chevaliers from './chevaliers.webp';
@@ -77,6 +78,7 @@ const factionImages = {
 
   gnb_gnoblars: gnoblars,
   jbv_jade_vampires: jadeVampires,
+  mixer_hng_hung: mixer_hng_hung,
   str_rotblood: rotbloodTribe,
   teb_southern_realms: southernRealms,
   msl_mousillon: mousillon,
