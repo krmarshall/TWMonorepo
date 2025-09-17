@@ -296,6 +296,7 @@ const hardcodeSpellLoreData: { [nodeSetKey: string]: SpellLores } = {
   wh3_main_skill_node_set_ogr_slaughtermaster_great_maw: SpellLores['great maw'],
   wh3_main_skill_node_set_ogr_butcher_great_maw: SpellLores['great maw'],
   wh3_dlc26_skill_node_set_grn_savage_orc_great_shaman: SpellLores.bigWagh,
+  wh_main_skill_node_set_chs_lord_of_change: SpellLores.metal,
 
   skill_node_set_brt_cha_lost: SpellLores.mixed,
   skill_node_set_grn_cha_savageboss: SpellLores.bigWagh,
