@@ -459,5 +459,6 @@ const vanillaCharacters: { [key: string]: string } = {
   wh3_dlc26_skill_node_set_ogr_bruiser: 'wh3_dlc26_skill_node_set_ogr_bruiser',
   wh3_dlc26_skill_node_set_ogr_butcher_death: 'wh3_dlc26_skill_node_set_ogr_butcher_death',
   wh3_dlc26_skill_node_set_ogr_butcher_heavens: 'wh3_dlc26_skill_node_set_ogr_butcher_heavens',
+  wh_main_skill_node_set_chs_lord_of_change: 'wh_main_skill_node_set_chs_lord_of_change',
 };
 export default vanillaCharacters;

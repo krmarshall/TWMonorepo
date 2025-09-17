@@ -26,7 +26,7 @@ const Header = () => {
           />
           <h1 className="my-auto text-shadow-md">
             {title}
-            <span className="text-base text-gray-400 align-super">WIP</span>
+            {/* <span className="text-base text-gray-400 align-super">WIP</span> */}
           </h1>
         </Link>
       </div>

@@ -73,8 +73,6 @@ const ignoreFactions = [
 ];
 
 const ignoreAgents: Array<{ agent: string; game?: string; subculture?: string; folder?: string }> = [
-  { agent: 'wh_main_chs_lord_of_change', game: '3' },
-
   { agent: 'wh2_dlc13_lzd_kroxigor_ancient_horde', game: 'ALL' },
   { agent: 'wh2_dlc13_lzd_red_crested_skink_chief_horde', game: 'ALL' },
   { agent: 'wh2_dlc13_lzd_saurus_old_blood_horde', game: 'ALL' },

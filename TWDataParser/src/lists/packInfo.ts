@@ -7,7 +7,7 @@ export const vanillaPackInfo = {
   vanilla3: {
     db: 'db',
     loc: 'local_en',
-    imgs: ['data', 'ui', 'ui2', 'ui2_bl', 'ui3'],
+    imgs: ['data', 'ui', 'ui2', 'ui2_bl', 'ui3', 'ui_3'],
   },
 };
 

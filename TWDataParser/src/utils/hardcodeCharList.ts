@@ -10,8 +10,10 @@ export const hardcodeCharListData = (characterList: CharacterListInterface) => {
         characterList[subcultureKey].lords[lordKey].name = hardCodeNameData[lordKey].name;
         if (hardCodeNameData[lordKey].priority) {
           characterList[subcultureKey].lords[lordKey].priority = true;
+          delete characterList[subcultureKey].lords[lordKey].depriority;
         } else if (hardCodeNameData[lordKey].priority === false) {
           characterList[subcultureKey].lords[lordKey].depriority = true;
+          delete characterList[subcultureKey].lords[lordKey].priority;
         }
       }
       // Portrait
@@ -33,8 +35,10 @@ export const hardcodeCharListData = (characterList: CharacterListInterface) => {
         characterList[subcultureKey].heroes[heroKey].name = hardCodeNameData[heroKey].name;
         if (hardCodeNameData[heroKey].priority) {
           characterList[subcultureKey].heroes[heroKey].priority = true;
+          delete characterList[subcultureKey].lords[heroKey].depriority;
         } else if (hardCodeNameData[heroKey].priority === false) {
           characterList[subcultureKey].heroes[heroKey].depriority = true;
+          delete characterList[subcultureKey].lords[heroKey].priority;
         }
       }
       // Portrait
@@ -78,6 +82,7 @@ const hardCodeNameData: { [nodeSetKey: string]: { name: string; priority?: boole
   wh2_main_skill_node_set_def_black_ark: { name: 'Dreadlord (Black Ark)' },
   wh2_main_skill_node_set_def_black_ark_blessed_dread: { name: 'Dreadlord (The Blessed Dread)' },
   wh3_dlc25_dwf_lord_mikael_leadstrong: { name: 'Mikael Leadstrong' },
+  wh_main_skill_node_set_chs_lord_of_change: { name: 'Sarthorael the Everwatcher', priority: false },
 
   dread_traitor_tomb_king_nebwaneph: { name: 'Traitor King Nebwaneph' },
   dread_traitor_tomb_king_omanhan_iii: { name: 'Traitor King Omanhan III' },
