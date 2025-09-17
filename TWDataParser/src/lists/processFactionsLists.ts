@@ -116,6 +116,8 @@ const ignoreAgents: Array<{ agent: string; game?: string; subculture?: string; f
   { agent: 'wh3_main_sla_cult_magus', game: '3' },
   { agent: 'wh3_main_tze_cult_magus', game: '3' },
 
+  { agent: 'wh_main_chs_lord_of_change', game: '3', subculture: 'wh_main_sc_chs_chaos' },
+
   // Marienburg
   { agent: 'rhox_mar_mundvard_criminal', game: '3' },
 
