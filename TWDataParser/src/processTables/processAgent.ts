@@ -79,6 +79,11 @@ const processAgent = (
       return;
     }
 
+    // HEFs have a bunch of special node sets that just have diff background traits?
+    if (nodeSet.key.includes('_affinity')) {
+      return;
+    }
+
     if (folder.includes('2')) {
       if (
         nodeSet.foreignRefs?.character_skill_nodes === undefined ||

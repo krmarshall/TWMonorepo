@@ -118,6 +118,12 @@ const ignoreAgents: Array<{ agent: string; game?: string; subculture?: string; f
 
   { agent: 'wh_main_chs_lord_of_change', game: '3', subculture: 'wh_main_sc_chs_chaos' },
 
+  { agent: 'wh3_dlc27_hef_dragonship_captain_01', game: '3', subculture: 'wh2_main_sc_hef_high_elves' },
+  { agent: 'wh3_dlc27_hef_dragonship_captain_02', game: '3', subculture: 'wh2_main_sc_hef_high_elves' },
+  { agent: 'wh3_dlc27_hef_dragonship_captain_03', game: '3', subculture: 'wh2_main_sc_hef_high_elves' },
+  { agent: 'wh3_dlc27_hef_dragonship_captain_04', game: '3', subculture: 'wh2_main_sc_hef_high_elves' },
+  { agent: 'wh3_dlc27_hef_dragonship_captain_05', game: '3', subculture: 'wh2_main_sc_hef_high_elves' },
+
   // Marienburg
   { agent: 'rhox_mar_mundvard_criminal', game: '3' },
 

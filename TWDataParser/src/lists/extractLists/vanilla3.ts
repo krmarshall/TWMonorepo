@@ -39,6 +39,9 @@ const v3LocList = [
   'provincial_initiative_records__',
   'initiatives__',
   'unit_description_short_texts__',
+  'rituals__',
+  'building_chains__',
+  'campaign_localised_strings__',
 ];
 
 const v3AssKitList = ['start_pos_characters', 'start_pos_calendars', 'start_pos_character_traits'];

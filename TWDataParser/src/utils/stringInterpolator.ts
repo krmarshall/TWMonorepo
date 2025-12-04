@@ -47,6 +47,11 @@ const stringInterpolator = (string: string, loc: TableRecord): string => {
       if (replacementText === undefined) {
         replacementText = loc[cleanedKey] as string;
       }
+      // WH3 7.0 Added some tr's that just refer to themselves, weed those out
+      if (replacementText === tagR[0]) {
+        log(`Recursive {{tr}} loc: ${string}`, 'yellow');
+        string = string.replace(tagR[0], '!CA Recursion!');
+      }
       if (replacementText === undefined) {
         log(`Missing {{tr}} loc: ${string}`, 'yellow');
         string = string.replace(tagR[0], '!Missing!');
