@@ -54,7 +54,7 @@ const TechTooltip = ({ tech, ctrCounter, setCtrCounter, setTooltipScrollable, to
         setTooltipScrollable(false);
       }
     }
-  }, [tooltipRef?.current, ctrCounter]);
+  }, [ctrCounter]);
 
   const relatedAbilities = getRelatedAbilities(tech?.technology.effects);
   const relatedPhases = getRelatedContactPhases(relatedAbilities[ctrCounter], tech?.technology.effects);

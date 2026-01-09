@@ -53,6 +53,8 @@ export default [
       "@typescript-eslint/no-unused-vars": "warn",
       "react-hooks/rules-of-hooks": "error",
       "react-hooks/exhaustive-deps": "off",
+      "react-hooks/immutability": "warn",
+      "react-hooks/set-state-in-effect": "warn",
       "react/prop-types": "off",
       "react/react-in-jsx-scope": "off",
       "promise/always-return": "off",

@@ -47,7 +47,7 @@ const TechCell = ({ tech, yIndex, xIndex, borderClass }: PropInterface) => {
         cellRef.current.removeEventListener('wheel', passScrollEvent);
       }
     };
-  }, [tooltipScrollable, tooltipRef?.current]);
+  }, [tooltipScrollable]);
 
   const fontSize = setFontSize(tech.technology.onscreen_name);
 

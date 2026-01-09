@@ -63,7 +63,7 @@ const BaseCell = ({
         cellRef.current.removeEventListener('wheel', passScrollEvent);
       }
     };
-  }, [tooltipScrollable, tooltipRef?.current]);
+  }, [tooltipScrollable]);
 
   let divClassName = 'flex flex-row rounded-lg drop-shadow-lg hover-scale bg-no-repeat bg-cover';
 

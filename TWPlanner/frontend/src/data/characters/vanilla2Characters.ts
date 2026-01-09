@@ -1,4 +1,4 @@
-import vanilla2Characters from './vanilla2.json';
+import vanilla2Characters from './vanilla2_legacy.json';
 
 const vanilla2CharactersMemes = JSON.parse(JSON.stringify(vanilla2Characters));
 vanilla2CharactersMemes.bst_beastmen.lords.wh2_dlc17_skill_node_set_bst_taurox.name = 'Taurox Wants Wheaties';

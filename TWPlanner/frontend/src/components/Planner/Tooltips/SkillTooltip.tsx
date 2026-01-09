@@ -76,7 +76,7 @@ const SkillTooltip = ({
         setTooltipScrollable(false);
       }
     }
-  }, [tooltipRef?.current, ctrCounter]);
+  }, [ctrCounter]);
 
   let parentName = '';
   if (skill?.parent_required) {

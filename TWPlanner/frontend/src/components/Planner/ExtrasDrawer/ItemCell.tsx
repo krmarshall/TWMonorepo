@@ -42,7 +42,7 @@ const ItemCell = ({ item, index }: PropInterface) => {
         cellRef.current.removeEventListener('wheel', passScrollEvent);
       }
     };
-  }, [tooltipScrollable, tooltipRef?.current]);
+  }, [tooltipScrollable]);
 
   let divClassName = 'm-auto relative';
   if (highlightArray?.items?.[index].item) {

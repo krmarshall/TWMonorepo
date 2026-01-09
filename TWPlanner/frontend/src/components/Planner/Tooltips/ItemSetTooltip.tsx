@@ -66,7 +66,7 @@ const ItemSetTooltip = ({
         setTooltipScrollable(false);
       }
     }
-  }, [tooltipRef?.current, ctrCounter]);
+  }, [ctrCounter]);
 
   const relatedAbilities = getRelatedAbilities(itemSet?.effects);
   const relatedPhases = getRelatedContactPhases(relatedAbilities[ctrCounter], itemSet?.effects);
