@@ -9,8 +9,6 @@
     "planner:build": "yarn workspace frontend build && yarn workspace backend build",
     "parser:dev": "yarn workspace twdataparser start",
     "parser:build": "yarn workspace twdataparser fullBuild",
-    "inspector:dev": "yarn workspace twinspector start",
-    "inspector:build": "yarn workspace twinspector make",
     "lint": "yarn workspaces foreach -A run lint",
     "lintFix": "yarn workspaces foreach -A run lintFix"
   },
@@ -18,8 +16,7 @@
     "./",
     "TWDataParser",
     "TWPlanner/frontend",
-    "TWPlanner/backend",
-    "TWInspector"
+    "TWPlanner/backend"
   ],
   "dependencies": {
     "concurrently": "^9.1.2"
@@ -44,5 +41,5 @@
   "resolutions": {
     "@types/react": "^18.2.60"
   },
-  "packageManager": "yarn@4.6.0"
+  "packageManager": "yarn@4.12.0"
 }

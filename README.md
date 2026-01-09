@@ -11,9 +11,3 @@ yarn parser:build
 yarn planner:dev
 yarn planner:build
 yarn planner:test
-
-## TW Inspector
-
-Electron Forge does not support npm workspaces, so does not share dependencies like the rest 🙃
-yarn inspector:def
-yarn inspector:build
