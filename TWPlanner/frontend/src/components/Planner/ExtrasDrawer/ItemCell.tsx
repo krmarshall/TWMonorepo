@@ -1,4 +1,4 @@
-import { useContext, useEffect, useRef, useState } from 'react';
+import { RefObject, useContext, useEffect, useRef, useState } from 'react';
 import { ItemInterface } from '../../../@types/CharacterInterfaceRef.ts';
 import BaseCell from '../BaseCell.tsx';
 import { AppContext } from '../../../contexts/AppContext.tsx';
@@ -85,7 +85,7 @@ const ItemCell = ({ item, index }: PropInterface) => {
           ctrCounter={ctrCounter}
           setCtrCounter={setCtrCounter}
           setTooltipScrollable={setTooltipScrollable}
-          tooltipRef={tooltipRef}
+          tooltipRef={tooltipRef as RefObject<HTMLSpanElement>}
         />
       )}
     </div>

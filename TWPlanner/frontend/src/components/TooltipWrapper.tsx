@@ -1,4 +1,4 @@
-import { cloneElement, useEffect, useState } from 'react';
+import { cloneElement, JSX, useEffect, useState } from 'react';
 import {
   Placement,
   offset,

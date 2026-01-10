@@ -1,4 +1,4 @@
-import { useContext, useEffect, useRef, useState } from 'react';
+import { RefObject, useContext, useEffect, useRef, useState } from 'react';
 import { useXarrow } from 'react-xarrows';
 import { AppContext } from '../../contexts/AppContext.tsx';
 import { TechNodeInterface } from '../../@types/TechInterface.ts';
@@ -80,7 +80,7 @@ const TechCell = ({ tech, yIndex, xIndex, borderClass }: PropInterface) => {
               ctrCounter={ctrCounter}
               setCtrCounter={setCtrCounter}
               setTooltipScrollable={setTooltipScrollable}
-              tooltipRef={tooltipRef}
+              tooltipRef={tooltipRef as RefObject<HTMLSpanElement>}
             />
           }
         >

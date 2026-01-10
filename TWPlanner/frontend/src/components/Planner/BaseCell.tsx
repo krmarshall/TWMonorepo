@@ -1,4 +1,4 @@
-import { useContext, useEffect, useRef, useState } from 'react';
+import { RefObject, useContext, useEffect, useRef, useState } from 'react';
 import { replaceKeepCaps, setFontSize, trimString } from '../../utils/sharedFunctions.ts';
 import ReactImage from '../ReactImage.tsx';
 import TooltipWrapper from '../TooltipWrapper.tsx';
@@ -96,7 +96,7 @@ const BaseCell = ({
             ctrCounter={ctrCounter}
             setCtrCounter={setCtrCounter}
             setTooltipScrollable={setTooltipScrollable}
-            tooltipRef={tooltipRef}
+            tooltipRef={tooltipRef as RefObject<HTMLSpanElement>}
           />
         }
       >
