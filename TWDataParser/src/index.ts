@@ -1,4 +1,3 @@
-// eslint-disable-next-line import/extensions
 import 'dotenv/config';
 import { emptyDirSync } from 'fs-extra';
 import { v3DbList, v3LocList } from './lists/extractLists/vanilla3.ts';

@@ -19,7 +19,7 @@ interface SkillCellPropsInterface {
 
 const SkillCell = ({ skill, skillKey, yIndex, xIndex, boxedType }: SkillCellPropsInterface) => {
   const { state, dispatch } = useContext(AppContext);
-  const { characterBuild, characterData, highlightArray, searchString } = state;
+  const { characterBuild, characterData, highlightArray } = state;
   const [selectable, setSelectable] = useState(false);
   const [previewSkillPoints, setPreviewSkillPoints] = useState(0);
   const [blocked, setBlocked] = useState(false);

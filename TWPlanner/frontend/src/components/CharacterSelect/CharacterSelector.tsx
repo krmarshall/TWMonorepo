@@ -1,7 +1,7 @@
 import { Fragment, useContext, useEffect, useState } from 'react';
 import { toast } from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
-import { CSSTransition, TransitionGroup } from 'react-transition-group';
+import { AnimatePresence } from 'motion/react';
 import api from '../../api/api.ts';
 import { AppContext, AppContextActions } from '../../contexts/AppContext.tsx';
 import gameData from '../../data/gameData.ts';
@@ -106,41 +106,32 @@ const CharacterSelector = () => {
             <hr className="grow mt-[1.25rem] opacity-50" />
           </div>
           <ul className="flex flex-row flex-wrap justify-center">
-            <TransitionGroup component={null}>
-              {lordKeys?.map((lordKey) => {
-                if (checkFactionUndefined()) {
-                  return;
-                }
-                const lord = gameCharacters[selectedFaction].lords[lordKey];
-                const lordImage = `/portraits/${lord?.portrait}`;
-                const lordMod = gameData[selectedMod].compilationGroups?.nodeSets[lordKey];
+            {lordKeys?.map((lordKey) => {
+              if (checkFactionUndefined()) {
+                return;
+              }
+              const lord = gameCharacters[selectedFaction].lords[lordKey];
+              const lordImage = `/portraits/${lord?.portrait}`;
+              const lordMod = gameData[selectedMod].compilationGroups?.nodeSets[lordKey];
 
-                let spellLore = undefined;
-                if (lord?.spellLore !== undefined) {
-                  spellLore = spellLoreIcons[lord.spellLore as keyof typeof spellLoreIcons];
-                }
-                return (
-                  <CSSTransition
+              let spellLore = undefined;
+              if (lord?.spellLore !== undefined) {
+                spellLore = spellLoreIcons[lord.spellLore as keyof typeof spellLoreIcons];
+              }
+              return (
+                <AnimatePresence key={lordKey}>
+                  <CharacterCell
                     key={lordKey}
-                    classNames={{
-                      enterActive: 'animate__animated animate__faster animate__zoomIn',
-                      exitActive: 'hidden',
-                    }}
-                    timeout={500}
-                  >
-                    <CharacterCell
-                      key={lordKey}
-                      charKey={lordKey}
-                      char={lord}
-                      charImage={lordImage}
-                      spellLore={spellLore}
-                      charMod={lordMod}
-                      handleCharacterSelect={handleCharacterSelect}
-                    />
-                  </CSSTransition>
-                );
-              })}
-            </TransitionGroup>
+                    charKey={lordKey}
+                    char={lord}
+                    charImage={lordImage}
+                    spellLore={spellLore}
+                    charMod={lordMod}
+                    handleCharacterSelect={handleCharacterSelect}
+                  />
+                </AnimatePresence>
+              );
+            })}
           </ul>
         </div>
       )}
@@ -152,41 +143,32 @@ const CharacterSelector = () => {
             <hr className="grow mt-[1.25rem] opacity-50" />
           </div>
           <ul className="flex flex-row flex-wrap justify-center mb-4">
-            <TransitionGroup component={null}>
-              {heroKeys?.map((heroKey) => {
-                if (checkFactionUndefined()) {
-                  return;
-                }
-                const hero = gameCharacters[selectedFaction].heroes[heroKey];
-                const heroImage = `/portraits/${hero?.portrait}`;
-                const heroMod = gameData[selectedMod].compilationGroups?.nodeSets[heroKey];
+            {heroKeys?.map((heroKey) => {
+              if (checkFactionUndefined()) {
+                return;
+              }
+              const hero = gameCharacters[selectedFaction].heroes[heroKey];
+              const heroImage = `/portraits/${hero?.portrait}`;
+              const heroMod = gameData[selectedMod].compilationGroups?.nodeSets[heroKey];
 
-                let spellLore = undefined;
-                if (hero?.spellLore !== undefined) {
-                  spellLore = spellLoreIcons[hero.spellLore as keyof typeof spellLoreIcons];
-                }
-                return (
-                  <CSSTransition
+              let spellLore = undefined;
+              if (hero?.spellLore !== undefined) {
+                spellLore = spellLoreIcons[hero.spellLore as keyof typeof spellLoreIcons];
+              }
+              return (
+                <AnimatePresence key={heroKey}>
+                  <CharacterCell
                     key={heroKey}
-                    classNames={{
-                      enterActive: 'animate__animated animate__faster animate__zoomIn',
-                      exitActive: 'hidden',
-                    }}
-                    timeout={500}
-                  >
-                    <CharacterCell
-                      key={heroKey}
-                      charKey={heroKey}
-                      char={hero}
-                      charImage={heroImage}
-                      spellLore={spellLore}
-                      charMod={heroMod}
-                      handleCharacterSelect={handleCharacterSelect}
-                    />
-                  </CSSTransition>
-                );
-              })}
-            </TransitionGroup>
+                    charKey={heroKey}
+                    char={hero}
+                    charImage={heroImage}
+                    spellLore={spellLore}
+                    charMod={heroMod}
+                    handleCharacterSelect={handleCharacterSelect}
+                  />
+                </AnimatePresence>
+              );
+            })}
           </ul>
         </div>
       )}

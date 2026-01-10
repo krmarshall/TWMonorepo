@@ -1,6 +1,5 @@
 import { sync } from 'fast-glob';
 import { dirname } from 'path';
-// eslint-disable-next-line import/extensions
 import { parse } from 'csv-parse/sync';
 import { TableRecord } from '../@types/GlobalDataInterface.ts';
 import { skipVanillaAgentPrune } from '../lists/processFactionsLists.ts';

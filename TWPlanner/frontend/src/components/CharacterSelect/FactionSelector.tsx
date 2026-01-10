@@ -3,7 +3,7 @@ import { AppContext, AppContextActions } from '../../contexts/AppContext.tsx';
 import gameData from '../../data/gameData.ts';
 import factionImages from '../../imgs/factions/factionImages.ts';
 import ReactImage from '../ReactImage.tsx';
-import { CSSTransition, TransitionGroup } from 'react-transition-group';
+import { AnimatePresence, motion } from 'motion/react';
 import placeholderImg from '../../imgs/other/0placeholder.webp';
 import shareIcon from '../../imgs/other/icon_button_external_link.webp';
 import TooltipWrapper from '../TooltipWrapper.tsx';
@@ -90,65 +90,61 @@ const FactionSelector = () => {
         <hr className="grow mt-[1.25rem] opacity-50" />
       </div>
       <ul className="flex flex-row flex-wrap justify-center py-1">
-        <TransitionGroup component={null}>
-          {currentModFactions?.map((factionKey) => {
-            if (
-              gameData[selectedMod].characters[factionKey]?.lords === undefined &&
-              gameData[selectedMod].characters[factionKey]?.lords === undefined
-            ) {
-              return null;
-            }
+        {currentModFactions?.map((factionKey) => {
+          if (
+            gameData[selectedMod].characters[factionKey]?.lords === undefined &&
+            gameData[selectedMod].characters[factionKey]?.lords === undefined
+          ) {
+            return null;
+          }
 
-            if (
-              gameData[selectedMod].characters[factionKey]?.lords !== undefined &&
-              Object.keys(gameData[selectedMod].characters[factionKey].lords).length === 0 &&
-              gameData[selectedMod].characters[factionKey]?.heroes !== undefined &&
-              Object.keys(gameData[selectedMod].characters[factionKey].heroes).length === 0
-            ) {
-              return null;
-            }
+          if (
+            gameData[selectedMod].characters[factionKey]?.lords !== undefined &&
+            Object.keys(gameData[selectedMod].characters[factionKey].lords).length === 0 &&
+            gameData[selectedMod].characters[factionKey]?.heroes !== undefined &&
+            Object.keys(gameData[selectedMod].characters[factionKey].heroes).length === 0
+          ) {
+            return null;
+          }
 
-            const factionName = gameData[selectedMod]?.factions[factionKey];
-            let liClassName =
-              'flex-col m-1 p-1.5 border border-gray-500 shadow-lg shadow-gray-800/60 rounded-lg hover-scale';
+          const factionName = gameData[selectedMod]?.factions[factionKey];
+          let liClassName = 'flex-col m-1 p-1.5 border border-gray-500 shadow-lg shadow-gray-800/60 rounded-lg';
 
-            if (factionKey === state.selectedFaction) {
-              liClassName += ' bg-gray-600 hover:bg-gray-500/80 scale-105';
-            } else {
-              liClassName += ' hover:bg-gray-600';
-            }
+          if (factionKey === selectedFaction) {
+            liClassName += ' bg-gray-600 hover:bg-gray-500/80 scale-105';
+          } else {
+            liClassName += ' hover:bg-gray-600';
+          }
 
-            return (
-              <CSSTransition
+          return (
+            <AnimatePresence key={factionKey}>
+              <motion.li
                 key={factionKey}
-                classNames={{
-                  enterActive: 'animate__animated animate__faster animate__zoomIn',
-                  exitActive: 'hidden',
+                className={liClassName}
+                onClick={() => {
+                  dispatch({ type: AppContextActions.changeFaction, payload: { selectedFaction: factionKey } });
                 }}
-                timeout={500}
+                layoutScroll
+                layoutId={factionKey}
+                initial={{ scale: 0.25 }}
+                animate={{ scale: selectedFaction === factionKey ? 1.05 : 1 }}
+                exit={{ scale: 0.25 }}
+                whileHover={{ scale: 1.05, transition: { duration: 0.05 } }}
               >
-                <li
-                  key={factionKey}
-                  className={liClassName}
-                  onClick={() => {
-                    dispatch({ type: AppContextActions.changeFaction, payload: { selectedFaction: factionKey } });
-                  }}
-                >
-                  <h2 className="text-center h-7 text-gray-200 text-2xl text-shadow mb-2">{factionName}</h2>
-                  <div className="flex flex-row justify-center">
-                    <ReactImage
-                      srcList={[factionImages[factionKey as keyof typeof factionImages], placeholderImg]}
-                      alt={`${factionName} icon`}
-                      className="w-20 h-auto drop-shadow-[0.1rem_0.1rem_0.35rem_rgba(0,0,0,0.7)]"
-                      w="96"
-                      h="96"
-                    />
-                  </div>
-                </li>
-              </CSSTransition>
-            );
-          })}
-        </TransitionGroup>
+                <h2 className="text-center h-7 text-gray-200 text-2xl text-shadow mb-2">{factionName}</h2>
+                <div className="flex flex-row justify-center">
+                  <ReactImage
+                    srcList={[factionImages[factionKey as keyof typeof factionImages], placeholderImg]}
+                    alt={`${factionName} icon`}
+                    className="w-20 h-auto drop-shadow-[0.1rem_0.1rem_0.35rem_rgba(0,0,0,0.7)]"
+                    w="96"
+                    h="96"
+                  />
+                </div>
+              </motion.li>
+            </AnimatePresence>
+          );
+        })}
       </ul>
     </div>
   );

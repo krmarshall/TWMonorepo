@@ -1,4 +1,5 @@
 import { useContext } from 'react';
+import { motion } from 'motion/react';
 import { AppContext } from '../../contexts/AppContext.tsx';
 import techGameData from '../../data/techGameData.ts';
 import ReactImage from '../ReactImage.tsx';
@@ -15,7 +16,15 @@ const TechSelectorCell = ({ techKey, handleTechSelect }: PropInterface) => {
 
   const tech = techGameData[selectedModTech].techTrees[techKey];
   return (
-    <li className="m-1 rounded-lg border shadow-lg shadow-gray-800/60 border-gray-500 hover:bg-gray-600 hover-scale">
+    <motion.li
+      className="m-1 rounded-lg border shadow-lg shadow-gray-800/60 border-gray-500 hover:bg-gray-600"
+      layoutScroll
+      layoutId={techKey}
+      initial={{ scale: 0.25 }}
+      animate={{ scale: 1 }}
+      exit={{ scale: 0.25 }}
+      whileHover={{ scale: 1.05, transition: { duration: 0.05 } }}
+    >
       <a
         href={`/tech/${selectedModTech}/${techKey}`}
         className="w-full h-full p-1 flex flex-col justify-around"
@@ -33,7 +42,7 @@ const TechSelectorCell = ({ techKey, handleTechSelect }: PropInterface) => {
           />
         </div>
       </a>
-    </li>
+    </motion.li>
   );
 };
 

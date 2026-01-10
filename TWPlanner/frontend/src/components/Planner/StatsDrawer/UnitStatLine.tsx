@@ -1,5 +1,4 @@
 import { PropsWithChildren, ReactElement } from 'react';
-// @ts-expect-error ts(7016)
 import { Svg, Rect } from 'react-svg-path';
 import TooltipWrapper from '../../TooltipWrapper.tsx';
 

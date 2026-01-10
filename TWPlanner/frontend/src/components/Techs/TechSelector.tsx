@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import { toast } from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
-import { TransitionGroup, CSSTransition } from 'react-transition-group';
+import { AnimatePresence } from 'motion/react';
 import api from '../../api/api.ts';
 import { AppContext, AppContextActions } from '../../contexts/AppContext.tsx';
 import TechSelectorCell from './TechSelectorCell.tsx';
@@ -42,22 +42,13 @@ const TechSelector = () => {
         <hr className="grow mt-[1.25rem] opacity-50" />
       </div>
       <ul className="flex flex-row flex-wrap justify-center">
-        <TransitionGroup component={null}>
-          {gameTechKeys.map((techKey) => {
-            return (
-              <CSSTransition
-                key={techKey}
-                classNames={{
-                  enterActive: 'animate__animated animate__faster animate__zoomIn',
-                  exitActive: 'hidden',
-                }}
-                timeout={500}
-              >
-                <TechSelectorCell techKey={techKey} handleTechSelect={handleTechSelect} />
-              </CSSTransition>
-            );
-          })}
-        </TransitionGroup>
+        {gameTechKeys.map((techKey) => {
+          return (
+            <AnimatePresence key={techKey}>
+              <TechSelectorCell techKey={techKey} handleTechSelect={handleTechSelect} />
+            </AnimatePresence>
+          );
+        })}
       </ul>
     </div>
   );

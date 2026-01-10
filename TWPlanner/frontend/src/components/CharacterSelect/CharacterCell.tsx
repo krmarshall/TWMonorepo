@@ -1,6 +1,7 @@
 import ReactImage from '../ReactImage.tsx';
 import placeholderImg from '../../imgs/other/0placeholderInvis.webp';
 import { useContext } from 'react';
+import { motion } from 'motion/react';
 import { AppContext } from '../../contexts/AppContext.tsx';
 
 interface CharacterCellProps {
@@ -22,7 +23,15 @@ const CharacterCell = ({ charKey, char, charImage, spellLore, charMod, handleCha
   const { state } = useContext(AppContext);
   const { selectedMod, selectedFaction } = state;
   return (
-    <li className="m-1 rounded-lg border shadow-lg shadow-gray-800/60 border-gray-500 hover:bg-gray-600 hover-scale">
+    <motion.li
+      className="m-1 rounded-lg border shadow-lg shadow-gray-800/60 border-gray-500 hover:bg-gray-600"
+      layoutScroll
+      layoutId={charKey}
+      initial={{ scale: 0.25 }}
+      animate={{ scale: 1 }}
+      exit={{ scale: 0.25 }}
+      whileHover={{ scale: 1.05, transition: { duration: 0.05 } }}
+    >
       <a
         href={`/planner/${selectedMod}/${selectedFaction}/${charKey}`}
         className="w-full h-full p-1 flex flex-col justify-around"
@@ -52,7 +61,7 @@ const CharacterCell = ({ charKey, char, charImage, spellLore, charMod, handleCha
           <h3 className="w-32 mx-auto text-base text-center text-shadow text-gray-200">{charMod}</h3>
         )}
       </a>
-    </li>
+    </motion.li>
   );
 };
 

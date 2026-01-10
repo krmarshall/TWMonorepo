@@ -61,7 +61,7 @@ export default [
       "no-console": "off",
       "@typescript-eslint/no-explicit-any": "warn",
       "promise/param-names": "off",
-      "import/extensions": ['error', 'always'],
+      "import/extensions": ['error', 'ignorePackages'],
       "prettier/prettier": [
         "warn",
         {
