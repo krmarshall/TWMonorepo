@@ -111,7 +111,7 @@ const FactionSelector = () => {
           let liClassName = 'flex-col m-1 p-1.5 border border-gray-500 shadow-lg shadow-gray-800/60 rounded-lg';
 
           if (factionKey === selectedFaction) {
-            liClassName += ' bg-gray-600 hover:bg-gray-500/80 scale-105';
+            liClassName += ' bg-gray-600 hover:bg-gray-500/80';
           } else {
             liClassName += ' hover:bg-gray-600';
           }
