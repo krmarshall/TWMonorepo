@@ -10,48 +10,6 @@
 }
 
 @layer utilities {
-  input:checked ~ .dot {
-    transform: translateX(100%);
-    background-color: #48bb78;
-  }
-
-  .fade-in-slow {
-    animation: fadeInSlow 3.5s linear;
-    -webkit-animation: fadeInSlow 3.5s linear;
-    -moz-animation: fadeInSlow 3.5s linear;
-    -o-animation: fadeInSlow 3.5s linear;
-    -ms-animation: fadeInSlow 3.5s linear;
-  }
-  @keyframes fadeInSlow {
-    0% {opacity:0.1; filter: grayscale(100%);}
-    99% {opacity:0.6; filter: grayscale(100%);}
-    100% {opacity:1; filter: grayscale(0%);}
-  }
-  
-  @-moz-keyframes fadeInSlow {
-    0% {opacity:0.1; filter: grayscale(100%);}
-    99% {opacity:0.6; filter: grayscale(100%);}
-    100% {opacity:1; filter: grayscale(0%);}
-  }
-  
-  @-webkit-keyframes fadeInSlow {
-    0% {opacity:0.1; filter: grayscale(100%);}
-    99% {opacity:0.6; filter: grayscale(100%);}
-    100% {opacity:1; filter: grayscale(0%);}
-  }
-  
-  @-o-keyframes fadeInSlow {
-    0% {opacity:0.1; filter: grayscale(100%);}
-    99% {opacity:0.6; filter: grayscale(100%);}
-    100% {opacity:1; filter: grayscale(0%);}
-  }
-  
-  @-ms-keyframes fadeInSlow {
-    0% {opacity:0.1; filter: grayscale(100%);}
-    99% {opacity:0.6; filter: grayscale(100%);}
-    100% {opacity:1; filter: grayscale(0%);}
-  }
-
   .fade-in {
     animation: fadeIn 0.35s;
     -webkit-animation: fadeIn 0.35s;
