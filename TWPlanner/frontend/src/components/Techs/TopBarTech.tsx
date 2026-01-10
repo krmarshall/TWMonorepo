@@ -32,7 +32,7 @@ const TopBarTech = ({ isMobile }: PropInterface) => {
     headerClass += ' m-2';
   }
   return (
-    <div className="h-[4.5rem] flex flex-row place-content-between">
+    <div className="h-18 flex flex-row place-content-between">
       <div className="w-[30vw] flex place-content-start">
         <button
           className="flex flex-row place-content-center my-auto px-3 bg-gray-500 hover:bg-gray-400/80 border rounded-xl drop-shadow-lg hover-scale"

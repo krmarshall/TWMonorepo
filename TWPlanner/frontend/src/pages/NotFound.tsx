@@ -23,7 +23,7 @@ const NotFound = () => {
           The page or character you requested could not be found. Sorry for any inconvenience, please enjoy this snek
           while your here.
         </p>
-        <img src={snek} className="w-[36rem] mx-auto mt-8" alt="snek" width="4032" height="3024" />
+        <img src={snek} className="w-xl mx-auto mt-8" alt="snek" width="4032" height="3024" />
       </div>
     </div>
   );

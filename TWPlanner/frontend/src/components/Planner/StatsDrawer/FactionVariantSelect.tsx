@@ -56,20 +56,20 @@ const FactionVariantSelect = () => {
     <div className="text-center">
       <h3 className="text-3xl text-gray-50">Faction Variants</h3>
       <select
-        className="max-w-[12rem] my-auto h-8 px-1 bg-gray-500 rounded drop-shadow-lg font-CaslonAntique text-xl text-gray-50"
+        className="max-w-48 my-auto h-8 px-1 bg-gray-500 rounded drop-shadow-lg font-[CaslonAntique] text-xl text-gray-50"
         onChange={(event) => {
           altFactionChangeHandler(event.target.value);
         }}
         defaultValue={cleanFaction}
       >
-        <option key="" value="" className="text-base font-CaslonAntique">
+        <option key="" value="" className="text-base font-[CaslonAntique]">
           Generic Faction
         </option>
         {Object.entries(characterData?.altFactionNodeSets as AltFactionNodeSetsInterface).map((entry) => {
           const factionKey = entry[0];
           const factionData = entry[1];
           return (
-            <option key={factionKey} value={factionKey} className="text-base font-CaslonAntique">
+            <option key={factionKey} value={factionKey} className="text-base font-[CaslonAntique]">
               {factionData.factionName}
             </option>
           );

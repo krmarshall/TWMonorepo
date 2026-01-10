@@ -19,14 +19,14 @@ const ModSelector = ({ containerWidth }: PropInterface) => {
   return (
     <div
       className={
-        'justify-self-center px-2 max-h-[33rem] overflow-y-scroll scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-600 ' +
+        'justify-self-center px-2 max-h-132 overflow-y-scroll scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-600 ' +
         containerWidth
       }
     >
       <div className="flex flex-row place-content-center">
-        <hr className="grow mt-[1.25rem] opacity-50" />
+        <hr className="grow mt-5 opacity-50" />
         <h1 className="w-max text-center text-4xl mx-2 text-gray-200 text-shadow">Mods</h1>
-        <hr className="grow mt-[1.25rem] opacity-50" />
+        <hr className="grow mt-5 opacity-50" />
       </div>
       <ul className="flex flex-row flex-wrap justify-center py-1">
         {gameKeys.map((gameKey) => {
@@ -81,7 +81,7 @@ const ModSelector = ({ containerWidth }: PropInterface) => {
                 <ReactImage
                   srcList={[game.image, placeholderImg]}
                   alt={`${game.text} icon`}
-                  className="m-auto w-auto max-w-[9rem] max-h-[6rem] drop-shadow-[0.1rem_0.1rem_0.5rem_rgba(0,0,0,0.7)]"
+                  className="m-auto w-auto max-w-36 max-h-24 drop-shadow-[0.1rem_0.1rem_0.5rem_rgba(0,0,0,0.7)]"
                   h="128"
                   w="128"
                 />

@@ -262,7 +262,7 @@ const SkillPhase = ({ index, phase, random, header = false }: SkillPhaseProps) =
           <div className="flex flex-row">
             <img
               src="/imgs/vanilla3/campaign_ui/effect_bundles/attribute_unbreakable.webp"
-              className="h-6 w-6 my-auto mr-[4.75rem]"
+              className="h-6 w-6 my-auto mr-19"
               alt="unbreakable"
               width="24"
               height="24"

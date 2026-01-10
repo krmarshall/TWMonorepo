@@ -43,7 +43,7 @@ const StartPosTraits = () => {
         </TooltipWrapper>
       </div>
       <select
-        className="w-full my-1 h-8 px-1 bg-gray-500 rounded drop-shadow-lg font-CaslonAntique text-xl text-gray-50"
+        className="w-full my-1 h-8 px-1 bg-gray-500 rounded drop-shadow-lg font-[CaslonAntique] text-xl text-gray-50"
         onChange={(event) => {
           dispatch({
             type: AppContextActions.changeSelectedStartPosTrait,
@@ -52,14 +52,14 @@ const StartPosTraits = () => {
         }}
         defaultValue={startPos}
       >
-        <option key="" value="" className="text-base font-CaslonAntique">
+        <option key="" value="" className="text-base font-[CaslonAntique]">
           Generic
         </option>
         {Object.entries(characterData?.startPosTraits as StartPosTraitInterface).map((entry) => {
           const id = entry[0];
           const trait = entry[1];
           return (
-            <option key={id} value={id} className="text-base font-CaslonAntique">
+            <option key={id} value={id} className="text-base font-[CaslonAntique]">
               {trait.name} | {trait.faction} | {trait.campaign}
             </option>
           );

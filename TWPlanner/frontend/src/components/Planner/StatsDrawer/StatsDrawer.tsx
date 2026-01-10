@@ -19,15 +19,15 @@ const StatsDrawer = () => {
   }, [isShort, isThin]);
 
   let drawerClass =
-    'w-full flex-shrink-0 slide-out-hor border rounded border-gray-500 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-600';
+    'w-full shrink-0 slide-out-hor border rounded border-gray-500 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-600';
   if (statsDrawerOpen) {
-    drawerClass += ' max-w-[17rem] mr-1 p-1.5 show';
+    drawerClass += ' max-w-68 mr-1 p-1.5 show';
   } else {
-    drawerClass += ' max-w-[0rem]';
+    drawerClass += ' max-w-0';
   }
 
   const drawerClassShort =
-    'mx-auto h-auto w-[17rem] mt-1.5 p-1.5 border rounded border-gray-500 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-600';
+    'mx-auto h-auto w-68 mt-1.5 p-1.5 border rounded border-gray-500 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-600';
 
   return (
     <div className={isShort ? drawerClassShort : drawerClass}>

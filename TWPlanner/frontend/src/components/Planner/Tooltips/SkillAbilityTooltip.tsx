@@ -38,7 +38,7 @@ const SkillAbilityTooltip = ({ ability }: SkillAbilityTooltipPropInterface) => {
     `/imgs/vanilla3/campaign_ui/skills/0_placeholder_skill.webp`,
   ];
   return (
-    <div className="flex-grow h-fit p-2 mb-2 rounded border border-gray-400 shadow-lg bg-gray-600 text-gray-50 text-lg">
+    <div className="grow h-fit p-2 mb-2 rounded border border-gray-400 shadow-lg bg-gray-600 text-gray-50 text-lg">
       <div className="flex flex-row ml-2">
         <ReactImage
           srcList={abilitySrcList}

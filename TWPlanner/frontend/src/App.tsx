@@ -21,7 +21,7 @@ const App = () => {
     <AppProvider>
       <div
         className={
-          'bg-gray-800 w-screen h-screen flex flex-col flex-nowrap pb-2 font-CaslonAntique select-none' + xPadding
+          'bg-gray-800 w-screen h-screen flex flex-col flex-nowrap pb-2 font-[CaslonAntique] select-none' + xPadding
         }
       >
         <Toaster

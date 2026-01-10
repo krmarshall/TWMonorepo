@@ -79,7 +79,7 @@ const BaseCell = ({
       ' filter-none bg-[url(/imgs/other/skills_tab_frame.webp)] hover:bg-[url(/imgs/other/skills_tab_frame_hover.webp)]';
   } else if (thisSkillsCurrentPoints === 0 && !selectable) {
     divClassName +=
-      ' bg-[url(/imgs/other/skills_tab_frame.webp)] hover:bg-[url(/imgs/other/skills_tab_frame_hover.webp)] brightness-[70%] filter grayscale hover:filter-none hover:grayscale-0';
+      ' bg-[url(/imgs/other/skills_tab_frame.webp)] hover:bg-[url(/imgs/other/skills_tab_frame_hover.webp)] brightness-70 filter grayscale hover:filter-none hover:grayscale-0';
   }
 
   const fontSize = setFontSize(cellTitle);
@@ -113,7 +113,7 @@ const BaseCell = ({
           )}
           <ReactImage
             srcList={srcList}
-            className={`w-[4.5rem] h-[4.5rem] my-auto drop-shadow-lg ${factionEffect !== undefined && 'p-2'}`}
+            className={`w-18 h-18 my-auto drop-shadow-lg ${factionEffect !== undefined && 'p-2'}`}
             alt="skillIcon"
             w="64"
             h="64"
@@ -121,7 +121,7 @@ const BaseCell = ({
 
           <div className="flex flex-col justify-center">
             <h2
-              className={`w-[8.5rem] text-center text-gray-200 text-shadow z-10 break-words ${fontSize}`}
+              className={`w-34 text-center text-gray-200 text-shadow z-10 wrap-break-word ${fontSize}`}
               dangerouslySetInnerHTML={{
                 __html: DOMPurify.sanitize(replaceKeepCaps(trimString(cellTitle), searchString)),
               }}

@@ -15,7 +15,7 @@ const Header = () => {
   const buttonClass = 'bg-slate-500 rounded-2xl py-1 px-5 my-auto shadow-md shadow-gray-900 hover-scale';
 
   return (
-    <div className="flex flex-row flex-nowrap justify-between h-[4.5rem]">
+    <div className="flex flex-row flex-nowrap justify-between h-18">
       <div className="w-1/3 flex flex-row flex-nowrap justify-start">
         <Link to={'/'} className="text-slate-100 text-4xl flex flex-row flex-nowrap">
           <img

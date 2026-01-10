@@ -89,13 +89,13 @@ const TechCell = ({ tech, yIndex, xIndex, borderClass }: PropInterface) => {
               <div className="">
                 <img
                   src={timerFrame}
-                  className="w-12 absolute top-[-0.3rem] right-[-1rem] z-20"
+                  className="w-12 absolute top-[-0.3rem] -right-4 z-20"
                   draggable={false}
                   alt="timer frame"
                   width="46"
                   height="27"
                 />
-                <p className="text-gray-50 text-lg absolute top-[-0.25rem] right-[-0.2rem] z-30">
+                <p className="text-gray-50 text-lg absolute -top-1 right-[-0.2rem] z-30">
                   {Math.ceil(tech.research_points_required / 100)}
                 </p>
               </div>
@@ -112,13 +112,13 @@ const TechCell = ({ tech, yIndex, xIndex, borderClass }: PropInterface) => {
             )}
             <ReactImage
               srcList={[`/imgs/${imgPath}`, `/imgs/vanilla3/campaign_ui/skills/0_placeholder_skill.webp`]}
-              className={'w-[4.5rem] h-[4.5rem] my-auto drop-shadow-lg' + imgPadding}
+              className={'w-18 h-18 my-auto drop-shadow-lg' + imgPadding}
               alt="techIcon"
               w="64"
               h="64"
             />
             <div className="flex flex-col justify-center mr-4">
-              <h2 className={`w-[8.5rem] text-center text-gray-200 text-shadow z-10 break-words ${fontSize}`}>
+              <h2 className={`w-34 text-center text-gray-200 text-shadow z-10 wrap-break-word ${fontSize}`}>
                 {trimString(tech.technology.onscreen_name)}
               </h2>
             </div>

@@ -87,14 +87,14 @@ const UnitStats = () => {
         <div className="mx-auto mb-1 flex flex-row flex-nowrap w-fit">
           <p className="text-xl text-center my-auto">Mount</p>
           <select
-            className="max-w-[12rem] ml-2 px-1 bg-gray-500 rounded text-xl font-CaslonAntique"
+            className="max-w-48 ml-2 px-1 bg-gray-500 rounded text-xl font-[CaslonAntique]"
             onChange={(event) => {
               setStats(unitStatSets[parseInt(event.target.value)].stats);
             }}
           >
             {unitStatSets.map((statSet, index) => {
               return (
-                <option key={index} value={index} className="text-base font-CaslonAntique">
+                <option key={index} value={index} className="text-base font-[CaslonAntique]">
                   {statSet.name}
                 </option>
               );

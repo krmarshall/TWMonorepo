@@ -13,14 +13,14 @@ const IssuesSlider: FC<PropInterface> = ({ children, title, bg }) => {
   if (open) {
     ulClass += ' show max-h-[80vh] mt-2';
   } else {
-    ulClass += ' max-h-[0vh]';
+    ulClass += ' max-h-0';
   }
 
   let divClass = 'flex flex-col flex-nowrap border border-gray-500 rounded-md mt-2 mx-auto px-2 py-2 ' + bg;
   if (open) {
     divClass += ' max-w-[80vw]';
   } else {
-    divClass += ' max-w-[15rem]';
+    divClass += ' max-w-60';
   }
 
   const decoratedTitle = open ? `↑ ${title} ↑` : `↓ ${title} ↓`;

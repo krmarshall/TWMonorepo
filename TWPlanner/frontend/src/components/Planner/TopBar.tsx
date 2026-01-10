@@ -101,10 +101,10 @@ const TopBar = ({ isMobile }: PropInterface) => {
   }
 
   return (
-    <div className="h-[4.5rem] flex flex-row place-content-between whitespace-nowrap">
+    <div className="h-18 flex flex-row place-content-between whitespace-nowrap">
       <div className="w-[30vw] flex place-content-start">
         <button
-          className="flex flex-row min-w-[6rem] place-content-center my-auto mr-4 px-3 bg-gray-500 hover:bg-gray-400/80 border rounded-xl drop-shadow-lg hover-scale"
+          className="flex flex-row min-w-24 place-content-center my-auto mr-4 px-3 bg-gray-500 hover:bg-gray-400/80 border rounded-xl drop-shadow-lg hover-scale"
           onClick={() => navigate('/')}
         >
           <img src={backIcon} alt="Back" width="45" height="45" className="my-auto w-8 h-8" draggable={false} />
@@ -188,7 +188,7 @@ const TopBar = ({ isMobile }: PropInterface) => {
               </div>
             </div>
             <button
-              className="flex flex-row min-w-[5rem] place-content-center mr-4 my-auto px-2 bg-blue-600 hover:bg-blue-500 border rounded-xl drop-shadow-lg hover-scale"
+              className="flex flex-row min-w-20 place-content-center mr-4 my-auto px-2 bg-blue-600 hover:bg-blue-500 border rounded-xl drop-shadow-lg hover-scale"
               onClick={shareButtonHandler}
             >
               <img src={shareIcon} alt="Share" width="20" height="20" className="my-auto w-6 h-6" draggable={false} />
@@ -198,7 +198,7 @@ const TopBar = ({ isMobile }: PropInterface) => {
         )}
 
         <button
-          className="flex flex-row min-w-[5rem] place-content-center mr-4 px-2 my-auto bg-gray-500 hover:bg-gray-400/80 border rounded-xl drop-shadow-lg hover-scale"
+          className="flex flex-row min-w-20 place-content-center mr-4 px-2 my-auto bg-gray-500 hover:bg-gray-400/80 border rounded-xl drop-shadow-lg hover-scale"
           onClick={resetButtonHandler}
         >
           <img src={resetIcon} alt="reset" width="20" height="20" className="my-auto w-6 h-6" draggable={false} />
