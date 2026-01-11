@@ -54,7 +54,7 @@ export const modPackInfo: ModPackInfoInterface = {
     { pack: '@xou_emp_assets', id: 2890463783 },
     { pack: '!scm_empire_secessionists', id: 3030410786, name: 'Empire Secessionists' },
     { pack: 'froeb_dark_land_orcs', id: 2919542060, name: 'Dark Land Orcs' },
-    { pack: 'dead_cult_possessed_unit_V2', id: 2891621259, name: "Dead's Cult of the Possessed" },
+    // { pack: 'dead_cult_possessed_unit_V2', id: 2891621259, name: "Dead's Cult of the Possessed" },
     { pack: 'cth_yinyin_pol', id: 2989226363, name: 'RotJS: Yin-Yin, the Sea Dragon' },
   ],
   cat3: [

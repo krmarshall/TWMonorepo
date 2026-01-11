@@ -103,6 +103,12 @@ const stringInterpolator = (string: string, loc: TableRecord): string => {
     if (element === null) {
       element = string.match(/\[\[\/col\]\]/);
     }
+    // SCM3 has a space in an [[i] ] tag
+    if (element === null) {
+      element = string.match(
+        /\[\[(?<tagName>[a-zA-Z_]*)[:=]?(?<tagAttribute>[a-zA-Z0-9_./ ]*)\]\s\](?<innerText>.*)\[\[\/\k<tagName>\]\]/,
+      );
+    }
 
     if (element === null) {
       log(`Invalid [[]] loc: ${string}`, 'red');

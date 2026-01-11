@@ -37,7 +37,7 @@ const gameData: { [key: string]: GameDataInterface } = {
     image: gameImages['vanilla3'],
     factions: factions,
     characters: vanilla3CharactersMemes,
-    updated: 'Dec 4 2025 (7.0.0)',
+    updated: 'Dec 10 2025 (7.0.2)',
     category: 'Base',
   },
   sfo3: {
@@ -139,7 +139,7 @@ const gameData: { [key: string]: GameDataInterface } = {
       `Empire Secessionists (${toParsedDateString(modTimestamps.scm3['!scm_empire_secessionists'])})`,
       `The Hung - Lords of the Steppes (${toParsedDateString(modTimestamps.scm3['hng_steppe_lords'])})`,
       `Dark Land Orcs (${toParsedDateString(modTimestamps.scm3.froeb_dark_land_orcs)})`,
-      `Dead's Cult of the Possessed (${toParsedDateString(modTimestamps.scm3.dead_cult_possessed_unit_V2)})`,
+      // `Dead's Cult of the Possessed (${toParsedDateString(modTimestamps.scm3.dead_cult_possessed_unit_V2)})`,
       `RotJS : Yin-Yin, the Sea Dragon (${toParsedDateString(modTimestamps.scm3.cth_yinyin_pol)})`,
     ],
     workshopLink: 'https://steamcommunity.com/sharedfiles/filedetails/?id=2920115664',

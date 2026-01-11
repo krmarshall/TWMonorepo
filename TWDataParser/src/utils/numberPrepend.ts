@@ -1,3 +1,5 @@
+import log from './log.ts';
+
 const numberPrepend = (string: string, value: number, how: string) => {
   if (string[0] !== ' ') {
     string = ` ${string}`;
@@ -15,8 +17,11 @@ const numberPrepend = (string: string, value: number, how: string) => {
       string = `x${value}${string}`;
       break;
     }
-    default:
-      throw `Invalid prepend how: ${how}`;
+    default: {
+      log(`Invalid prepend how: ${string}`, 'red');
+      string = `!INVALID PREPEND HOW! ${value}${string}`;
+      break;
+    }
   }
   return string;
 };
