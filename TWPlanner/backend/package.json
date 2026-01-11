@@ -2,31 +2,29 @@
   "name": "backend",
   "main": "./src/start.ts",
   "scripts": {
-    "prod": "tsc && SET NODE_ENV=production&&node ./dist/start.js",
-    "build": "tsc",
-    "start": "tsc && node ./dist/start.js",
-    "dev": "tsnd ./src/start.ts",
+    "prod": "SET NODE_ENV=production&&node ./src/start.ts",
+    "start": "node ./src/start.ts",
+    "dev": "node --watch ./src/start.ts",
     "lint": "eslint ./src/",
     "lintFix": "eslint ./src/ --fix"
   },
+  "type": "module",
   "dependencies": {
-    "compression": "^1.7.4",
+    "compression": "^1.8.1",
     "cors": "^2.8.5",
     "death": "^1.1.0",
-    "express": "^4.21.1",
-    "fast-glob": "^3.3.2",
-    "fs-extra": "^11.2.0",
-    "helmet": "^8.0.0",
-    "mime": "^3.0.0"
+    "express": "^5.2.1",
+    "fast-glob": "^3.3.3",
+    "fs-extra": "^11.3.3",
+    "helmet": "^8.1.0",
+    "mime": "^4.1.0"
   },
   "devDependencies": {
-    "@types/compression": "^1.7.5",
-    "@types/cors": "^2.8.17",
+    "@types/compression": "^1.8.1",
+    "@types/cors": "^2.8.19",
     "@types/death": "^1.1.5",
-    "@types/express": "^5.0.0",
+    "@types/express": "^5.0.6",
     "@types/fs-extra": "^11.0.4",
-    "@types/mime": "^3.0.0",
-    "ts-node-dev": "^2.0.0",
     "typescript": "^5.9.3"
   }
 }

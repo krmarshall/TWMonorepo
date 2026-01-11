@@ -22,7 +22,7 @@
   },
   "devDependencies": {
     "@tailwindcss/vite": "^4.1.18",
-    "@types/dompurify": "^3.0.5",
+    "@types/dompurify": "^3.2.0",
     "@types/lzbase62": "^2.0.3",
     "@types/react": "^19.2.8",
     "@types/react-dom": "^19.2.3",

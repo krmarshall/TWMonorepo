@@ -1,6 +1,6 @@
-import { Request, Response } from 'express';
-import { skillData, techData } from './initializeData';
-import { usageData } from './usageLog';
+import type { Request, Response } from 'express';
+import { skillData, techData } from './initializeData.ts';
+import { usageData } from './usageLog.ts';
 // import { readFile } from 'fs/promises';
 
 const skillListener = (req: Request, res: Response, nodeSetMap: { [key: string]: string }) => {

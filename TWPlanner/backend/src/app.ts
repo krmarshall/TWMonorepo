@@ -1,15 +1,20 @@
 import express from 'express';
 import cors from 'cors';
-import path from 'path';
+import path, { dirname } from 'path';
 import helmet from 'helmet';
 import compression from 'compression';
-import { readJSONSync } from 'fs-extra';
+import fs from 'fs-extra';
 
-import { skillListener, techListener } from './api';
-import setCustomCacheControl from './setCustomCacheControl';
-import { initializeData } from './initializeData';
+import { skillListener, techListener } from './api.ts';
+import setCustomCacheControl from './setCustomCacheControl.ts';
+import { initializeData } from './initializeData.ts';
 
-const nodeSetMap = readJSONSync('./src/nodeSetMap.json');
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+const nodeSetMap = fs.readJSONSync('./src/nodeSetMap.json');
 
 const app = express();
 
@@ -45,7 +50,7 @@ app.use(
     setHeaders: setCustomCacheControl,
   }),
 );
-app.get('*', (req, res) => {
+app.get('/*splat', (req, res) => {
   res.sendFile(path.resolve(__dirname, '../public', 'index.html'));
 });
 

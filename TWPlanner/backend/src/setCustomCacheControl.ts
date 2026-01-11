@@ -1,8 +1,8 @@
-import { Response } from 'express';
-import { getType } from 'mime/lite';
+import type { Response } from 'express';
+import mime from 'mime/lite';
 
 const setCustomCacheControl = (res: Response, path: string) => {
-  if (getType(path) === 'text/html') {
+  if (mime.getType(path) === 'text/html') {
     res.setHeader('Cache-Control', 'public, max-age=0');
   }
 };

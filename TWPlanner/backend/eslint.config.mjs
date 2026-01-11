@@ -5,7 +5,6 @@ export default [
   {
     ignores: ["dist/", "public/"],
     rules: {
-      "import/extensions": "off",
     }
   }
 ]
