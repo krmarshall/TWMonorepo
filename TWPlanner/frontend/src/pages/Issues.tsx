@@ -14,9 +14,9 @@ const Issues = () => {
     <div className="h-[88vh] bg-gray-700 w-full border border-gray-500 rounded-md px-2 py-2 overflow-y-auto overflow-x-hidden scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-600">
       <div className={'flex flex-col place-content-center mt-4 select-text font-[Helvetica]' + marginThickness}>
         <div className="flex flex-row place-content-center">
-          <hr className="grow mt-[1.6rem] opacity-50" />
+          <hr className="grow mt-[1.6rem] opacity-50 border-gray-200" />
           <h1 className="w-max text-center text-5xl mx-2 mb-2 text-gray-200 text-shadow">Report an Issue</h1>
-          <hr className="grow mt-[1.6rem] opacity-50" />
+          <hr className="grow mt-[1.6rem] opacity-50 border-gray-200" />
         </div>
         <p className="text-center text-gray-200 text-2xl">
           If you think you&apos;ve found a bug or problem the easiest way to message me is on{' '}
@@ -70,9 +70,9 @@ const Issues = () => {
         </ul>
 
         <div className="flex flex-row place-content-center mt-12">
-          <hr className="grow mt-[1.6rem] opacity-50" />
+          <hr className="grow mt-[1.6rem] opacity-50 border-gray-200" />
           <h1 className="w-max text-center text-5xl mx-2 mb-2 text-gray-200 text-shadow">Known Issues</h1>
-          <hr className="grow mt-[1.6rem] opacity-50" />
+          <hr className="grow mt-[1.6rem] opacity-50 border-gray-200" />
         </div>
 
         <ul className="list-disc list-inside text-gray-200 text-2xl">

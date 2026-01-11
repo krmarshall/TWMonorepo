@@ -37,9 +37,9 @@ const TechSelector = () => {
   return (
     <div className="justify-self-center px-2 w-full">
       <div className="flex flex-row place-content-center mt-2">
-        <hr className="grow mt-5 opacity-50" />
+        <hr className="grow mt-5 opacity-50 border-gray-200" />
         <h1 className="w-max text-center text-4xl mx-2 text-gray-200 text-shadow">Tech Trees</h1>
-        <hr className="grow mt-5 opacity-50" />
+        <hr className="grow mt-5 opacity-50 border-gray-200" />
       </div>
       <ul className="flex flex-row flex-wrap justify-center">
         {gameTechKeys.map((techKey) => {

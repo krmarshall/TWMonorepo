@@ -45,9 +45,9 @@ const CompilationFilter = ({ compGroups }: PropInterface) => {
   return (
     <div className="justify-self-center px-2 w-full">
       <div className="flex flex-row place-content-center mx-auto">
-        <hr className="grow mt-5 opacity-50" />
+        <hr className="grow mt-5 opacity-50 border-gray-200" />
         <h1 className="w-max text-center text-4xl mx-2 text-gray-200 text-shadow">Filter</h1>
-        <hr className="grow mt-5 opacity-50" />
+        <hr className="grow mt-5 opacity-50 border-gray-200" />
       </div>
 
       <div className="flex flex-row flex-wrap justify-center">

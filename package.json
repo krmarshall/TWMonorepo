@@ -4,7 +4,7 @@
     "git:submodule": "git submodule update --remote --recursive",
     "frontendDev": "yarn workspace frontend dev",
     "backendDev": "yarn workspace backend dev",
-    "planner:dev": "concurrently -m 2 -k -n front,server -c #124dc4,#c45f12 yarn:frontendDev yarn:backendDev",
+    "planner:dev": "concurrently -m 2 -k -n server,front -c #c45f12,#124dc4 yarn:backendDev yarn:frontendDev",
     "planner:test": "yarn workspace backend test",
     "planner:build": "yarn workspace frontend build",
     "parser:dev": "yarn workspace twdataparser start",

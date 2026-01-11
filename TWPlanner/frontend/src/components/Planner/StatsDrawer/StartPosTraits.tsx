@@ -74,7 +74,7 @@ const StartPosTraits = () => {
         </div>
       )}
 
-      <hr className="grow mt-3.5 mb-2 opacity-50" />
+      <hr className="grow mt-3.5 mb-2 opacity-50 border-gray-200" />
     </div>
   );
 };

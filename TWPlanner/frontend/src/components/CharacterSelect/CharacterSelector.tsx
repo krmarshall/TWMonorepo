@@ -101,9 +101,9 @@ const CharacterSelector = () => {
       {lordKeys !== undefined && lordKeys.length > 0 && (
         <div className="justify-self-center">
           <div className="flex flex-row place-content-center w-[80vw] mx-auto mt-2">
-            <hr className="grow mt-5 opacity-50" />
+            <hr className="grow mt-5 opacity-50 border-gray-200" />
             <h1 className="w-max text-center text-4xl mx-2 text-gray-200 text-shadow">Lords</h1>
-            <hr className="grow mt-5 opacity-50" />
+            <hr className="grow mt-5 opacity-50 border-gray-200" />
           </div>
           <ul className="flex flex-row flex-wrap justify-center">
             {lordKeys?.map((lordKey) => {
@@ -138,9 +138,9 @@ const CharacterSelector = () => {
       {heroKeys !== undefined && heroKeys.length > 0 && (
         <div className="justify-self-center">
           <div className="flex flex-row place-content-center w-[80vw] mx-auto mt-2">
-            <hr className="grow mt-5 opacity-50" />
+            <hr className="grow mt-5 opacity-50 border-gray-200" />
             <h1 className="w-max text-center text-4xl mx-2 text-gray-200 text-shadow">Heroes</h1>
-            <hr className="grow mt-5 opacity-50" />
+            <hr className="grow mt-5 opacity-50 border-gray-200" />
           </div>
           <ul className="flex flex-row flex-wrap justify-center mb-4">
             {heroKeys?.map((heroKey) => {

@@ -12,9 +12,9 @@ const About = () => {
     <div className="h-[88vh] bg-gray-700 w-full border border-gray-500 rounded-md px-2 py-2 overflow-y-auto overflow-x-hidden scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-600">
       <div className={'flex flex-col place-content-center mt-4 select-text font-[Helvetica]' + marginThickness}>
         <div className="flex flex-row place-content-center">
-          <hr className="grow mt-[1.6rem] opacity-50" />
+          <hr className="grow mt-[1.6rem] opacity-50 border-gray-200" />
           <h1 className="w-max text-center text-5xl mx-2 mb-2 text-gray-200 text-shadow">About</h1>
-          <hr className="grow mt-[1.6rem] opacity-50" />
+          <hr className="grow mt-[1.6rem] opacity-50 border-gray-200" />
         </div>
         <p className="text-center text-gray-200 text-2xl">
           Total Warhammer Planner is a tool for exploring, building, and sharing character skill trees in Total
@@ -27,9 +27,9 @@ const About = () => {
         </p>
 
         <div className="flex flex-row place-content-center mt-12">
-          <hr className="grow mt-[1.6rem] opacity-50" />
+          <hr className="grow mt-[1.6rem] opacity-50 border-gray-200" />
           <h1 className="w-max text-center text-5xl mx-2 mb-2 text-gray-200 text-shadow">Contact Me</h1>
-          <hr className="grow mt-[1.6rem] opacity-50" />
+          <hr className="grow mt-[1.6rem] opacity-50 border-gray-200" />
         </div>
         <p className="text-center text-gray-200 text-2xl">
           You can message me on{' '}
@@ -45,9 +45,9 @@ const About = () => {
         </p>
 
         <div className="flex flex-row place-content-center mt-12">
-          <hr className="grow mt-[1.6rem] opacity-50" />
+          <hr className="grow mt-[1.6rem] opacity-50 border-gray-200" />
           <h1 className="w-max text-center text-5xl mx-2 mb-2 text-gray-200 text-shadow">RPFM</h1>
-          <hr className="grow mt-[1.6rem] opacity-50" />
+          <hr className="grow mt-[1.6rem] opacity-50 border-gray-200" />
         </div>
         <p className="text-center text-gray-200 text-2xl">
           Consider supporting Frodo, the developer of RPFM, without which this site and countless mods wouldn&apos;t be
@@ -70,9 +70,9 @@ const About = () => {
         </a>
 
         <div className="flex flex-row place-content-center mt-12">
-          <hr className="grow mt-[1.6rem] opacity-50" />
+          <hr className="grow mt-[1.6rem] opacity-50 border-gray-200" />
           <h1 className="w-max text-center text-5xl mx-2 mb-2 text-gray-200 text-shadow">Ko-Fi</h1>
-          <hr className="grow mt-[1.6rem] opacity-50" />
+          <hr className="grow mt-[1.6rem] opacity-50 border-gray-200" />
         </div>
         <p className="text-center text-gray-200 text-2xl">
           Development is extremely time consuming, if you find this tool useful and want to help cover server costs,
@@ -90,9 +90,9 @@ const About = () => {
         </a>
 
         <div className="flex flex-row place-content-center mt-12">
-          <hr className="grow mt-[1.6rem] opacity-50" />
+          <hr className="grow mt-[1.6rem] opacity-50 border-gray-200" />
           <h1 className="w-max text-center text-5xl mx-2 mb-2 text-gray-200 text-shadow">Potential Additions</h1>
-          <hr className="grow mt-[1.6rem] opacity-50" />
+          <hr className="grow mt-[1.6rem] opacity-50 border-gray-200" />
         </div>
         <p className="text-center text-gray-200 text-2xl mb-8">
           Some general items I would like to add/improve in the future, nothing is set in stone and some of these would
