@@ -2,7 +2,7 @@ import { sync } from 'fast-glob';
 import { readFileSync } from 'fs';
 import { parse } from 'csv-parse/sync';
 import path from 'path';
-import { GlobalDataInterface } from './@types/GlobalDataInterface.ts';
+import { GlobalDataInterface, TableRecord } from './@types/GlobalDataInterface.ts';
 
 const csvParseConfig = {
   delimiter: '\t',
@@ -35,7 +35,8 @@ const csvParse = (folder: string, mod: boolean, globalData: GlobalDataInterface)
 
   dbFilePaths.forEach((filePath) => {
     const fileData = readFileSync(filePath, 'utf-8');
-    const parsedArray = parse(fileData, csvParseConfig);
+    // csv-parse with columns outputs an array of objects, but their default typing doesnt change to this z.z
+    const parsedArray = parse(fileData, csvParseConfig) as unknown as Array<TableRecord>;
 
     if (mod) {
       const dirInfo = path.parse(filePath);
@@ -56,7 +57,8 @@ const csvParse = (folder: string, mod: boolean, globalData: GlobalDataInterface)
 
   locFilePaths.forEach((filePath) => {
     const fileData = readFileSync(filePath, 'utf-8');
-    const parsedArray = parse(fileData, csvParseConfig);
+    // csv-parse with columns outputs an array of objects, but their default typing doesnt change to this z.z
+    const parsedArray = parse(fileData, csvParseConfig) as unknown as Array<{ key: string; text: string }>;
 
     parsedArray.forEach((loc: { key: string; text: string }) => {
       if (loc.text.length === 0 && locObject[loc.key]?.length > 0) {

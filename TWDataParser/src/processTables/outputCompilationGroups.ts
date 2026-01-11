@@ -28,7 +28,8 @@ const outputCompilationGroups = (folder: string, modInfoArray: Array<ModInfoInte
     const subDbPath = dirname(subDb);
     const skillNodeSetTSVs = sync(`${subDbPath}/db/character_skill_node_sets_tables/*.tsv`);
     skillNodeSetTSVs.forEach((tsv) => {
-      const parsedArray = parse(readFileSync(tsv, 'utf-8'), csvParseConfig);
+      // csv-parse with columns outputs an array of objects, but their default typing doesnt change to this z.z
+      const parsedArray = parse(readFileSync(tsv, 'utf-8'), csvParseConfig) as unknown as Array<TableRecord>;
       parsedArray.forEach((nodeSet: TableRecord) => {
         compGroups.nodeSets[nodeSet.key] = modInfo.name as string;
       });
