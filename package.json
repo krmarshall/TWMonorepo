@@ -6,7 +6,7 @@
     "backendDev": "yarn workspace backend dev",
     "planner:dev": "concurrently -m 2 -k -n front,server -c #124dc4,#c45f12 yarn:frontendDev yarn:backendDev",
     "planner:test": "yarn workspace backend test",
-    "planner:build": "yarn workspace frontend build && yarn workspace backend build",
+    "planner:build": "yarn workspace frontend build",
     "parser:dev": "yarn workspace twdataparser start",
     "parser:build": "yarn workspace twdataparser fullBuild",
     "lint": "yarn workspaces foreach -A run lint",
