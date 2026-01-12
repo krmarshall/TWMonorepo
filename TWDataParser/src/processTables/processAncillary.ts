@@ -59,6 +59,22 @@ const processAncillary = (
       };
     }
   });
+
+  // Unit Cards
+  const effects_related_unit_cards: Set<string> = new Set();
+  returnItem.effects?.forEach((effect) => {
+    effect.related_unit_cards_PARSER_ONLY?.forEach((card) => effects_related_unit_cards.add(card));
+    delete effect.related_unit_cards_PARSER_ONLY;
+  });
+  if (effects_related_unit_cards.size > 0) returnItem.related_unit_cards = Array.from(effects_related_unit_cards);
+
+  const set_related_unit_cards: Set<string> = new Set();
+  returnItem.item_set?.effects?.forEach((effect) => {
+    effect.related_unit_cards_PARSER_ONLY?.forEach((card) => set_related_unit_cards.add(card));
+    delete effect.related_unit_cards_PARSER_ONLY;
+  });
+  if (set_related_unit_cards.size > 0) returnItem.item_set.related_unit_cards = Array.from(set_related_unit_cards);
+
   return returnItem;
 };
 

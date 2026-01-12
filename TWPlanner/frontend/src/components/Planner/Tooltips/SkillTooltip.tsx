@@ -13,6 +13,7 @@ import {
 import TooltipAbilityCycler from '../../TooltipAbiltyCycler.tsx';
 import TooltipAbilityMap from '../../TooltipAbilityMap.tsx';
 import DOMPurify from 'dompurify';
+import UnitCards from './UnitCards.tsx';
 
 interface SkillTooltipPropInterface {
   skill?: SkillInterface;
@@ -156,6 +157,13 @@ const SkillTooltip = ({
               return <SkillEffect key={index} skillEffect={factionEffect} />;
             })}
           </div>
+          {skill?.levels?.[skillPoints]?.related_unit_cards !== undefined && (
+            <UnitCards relatedUnitCards={skill?.levels?.[skillPoints]?.related_unit_cards} />
+          )}
+          {item?.related_unit_cards !== undefined && <UnitCards relatedUnitCards={item?.related_unit_cards} />}
+          {factionEffect?.related_unit_cards !== undefined && (
+            <UnitCards relatedUnitCards={factionEffect?.related_unit_cards} />
+          )}
         </div>
         {relatedAbilities.length > 1 && (
           <TooltipAbilityCycler ctrCounter={ctrCounter} relatedAbilitiesLength={relatedAbilities.length} />

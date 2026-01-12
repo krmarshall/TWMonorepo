@@ -190,7 +190,7 @@ export default class Extractor {
       }
 
       const imagePromises = packPaths.map((packPath) => {
-        let foldersString = `"/ui/battle ui/ability_icons;./extracted_files/${this.#folder}" "/ui/campaign ui/effect_bundles;./extracted_files/${this.#folder}" "/ui/campaign ui/skills;./extracted_files/${this.#folder}" "/ui/campaign ui/ancillaries;./extracted_files/${this.#folder}" "/ui/campaign ui/mounts;./extracted_files/${this.#folder}" "/ui/portraits/portholes;./extracted_files/${this.#folder}"`;
+        let foldersString = `"/ui/battle ui/ability_icons;./extracted_files/${this.#folder}" "/ui/campaign ui/effect_bundles;./extracted_files/${this.#folder}" "/ui/campaign ui/skills;./extracted_files/${this.#folder}" "/ui/campaign ui/ancillaries;./extracted_files/${this.#folder}" "/ui/campaign ui/mounts;./extracted_files/${this.#folder}" "/ui/portraits/portholes;./extracted_files/${this.#folder}" "/ui/units/icons;./extracted_files/${this.#folder}"`;
         if (tech) foldersString += ` "/ui/campaign ui/technologies;./extracted_files/${this.#folder}"`;
         return new Promise<void>((resolveI, rejectI) => {
           execPromise(

@@ -52,6 +52,14 @@ const processAgent = (
     returnAgent.factionEffects.effects
       .sort((a, b) => (a.priority as number) - (b.priority as number))
       .forEach((effect) => delete effect.priority);
+
+    // Unit cards
+    const related_unit_cards: Set<string> = new Set();
+    returnAgent.factionEffects.effects.forEach((effect) => {
+      effect.related_unit_cards_PARSER_ONLY?.forEach((card) => related_unit_cards.add(card));
+      delete effect.related_unit_cards_PARSER_ONLY;
+    });
+    if (related_unit_cards.size > 0) returnAgent.factionEffects.related_unit_cards = Array.from(related_unit_cards);
   }
 
   // Quest Ancillaries WH3

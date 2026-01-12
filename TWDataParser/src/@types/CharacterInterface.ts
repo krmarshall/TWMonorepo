@@ -164,6 +164,7 @@ interface EffectInterface {
   related_abilities?: Array<AbilityInterface>;
   related_phases?: Array<PhaseInterface>;
   related_attributes?: Array<AttributeInterface>;
+  related_unit_cards_PARSER_ONLY?: Set<string>;
 }
 
 interface FactionEffectsInterface {
@@ -172,6 +173,7 @@ interface FactionEffectsInterface {
   localised_description: string;
   localised_title: string;
   ui_icon: string;
+  related_unit_cards?: Array<string>;
 }
 
 interface ItemSetInterface {
@@ -180,6 +182,7 @@ interface ItemSetInterface {
   description: string;
   contains?: Array<{ icon: string; name: string }>;
   effects?: Array<EffectInterface>;
+  related_unit_cards?: Array<string>;
 }
 
 interface ItemInterface {
@@ -191,6 +194,7 @@ interface ItemInterface {
   unlocked_at_rank?: number;
   ui_icon: string;
   item_set?: ItemSetInterface;
+  related_unit_cards?: Array<string>;
 }
 
 interface SkillLevelInterface {
@@ -199,6 +203,7 @@ interface SkillLevelInterface {
   blocks_skill_node_keys?: Array<string>;
   effects?: Array<EffectInterface>;
   mount_unit_stats?: UnitStatsInterface;
+  related_unit_cards?: Array<string>;
 }
 
 interface SkillInterface {

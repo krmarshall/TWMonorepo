@@ -12,6 +12,7 @@ import stringInterpolator from '../utils/stringInterpolator.ts';
 import processAbility from './processAbility.ts';
 import processAttribute from './processAttribute.ts';
 import processPhase from './processPhase.ts';
+import processRelatedUnitCards from './processRelatedUnitCards.ts';
 
 const processEffect = (folder: string, globalData: GlobalDataInterface, effectJunc: TableRecord) => {
   const effect = effectJunc.localRefs?.effects as TableRecord;
@@ -129,6 +130,10 @@ const processEffect = (folder: string, globalData: GlobalDataInterface, effectJu
     }
   });
   if (related_phases.length > 0) returnEffect.related_phases = related_phases;
+
+  // Unit Cards
+  const related_unit_cards: Set<string> = processRelatedUnitCards(folder, globalData, effect);
+  if (related_unit_cards.size > 0) returnEffect.related_unit_cards_PARSER_ONLY = related_unit_cards;
 
   return returnEffect;
 };

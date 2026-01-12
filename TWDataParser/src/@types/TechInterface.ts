@@ -15,6 +15,7 @@ interface TechSkillInterface {
   short_description: string;
   required_buildings?: Array<string>;
   effects: Array<EffectInterface>;
+  related_unit_cards?: Array<string>;
 }
 
 interface TechNodeInterface {

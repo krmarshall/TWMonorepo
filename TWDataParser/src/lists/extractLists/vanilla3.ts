@@ -21,6 +21,17 @@ const v3DbList = [
   'ancillary_set_ancillary_junctions',
   'ancillary_set_effect_junctions',
   '_kv_rules',
+  'effect_bonus_value_agent_subtype_junctions',
+  'unit_variants',
+  'effect_bonus_value_ids_unit_sets',
+  'unit_sets',
+  'unit_set_to_unit_junctions',
+  'effect_bonus_value_missile_weapon_junctions',
+  'unit_missile_weapon_junctions',
+  'effect_bonus_value_unit_list_junctions',
+  'unit_lists',
+  'unit_to_unit_list_junctions',
+  'effect_bonus_value_unit_record_junctions',
 
   // Tech
   // Table empty as of TW3 6.0

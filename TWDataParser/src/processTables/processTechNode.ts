@@ -76,6 +76,14 @@ const processTechNode = (
     returnTechNode.required_tech_node_keys.push(...nodeLinks);
   }
 
+  // Unit cards
+  const related_unit_cards: Set<string> = new Set();
+  returnTechNode.technology.effects.forEach((effect) => {
+    effect.related_unit_cards_PARSER_ONLY?.forEach((card) => related_unit_cards.add(card));
+    delete effect.related_unit_cards_PARSER_ONLY;
+  });
+  if (related_unit_cards.size > 0) returnTechNode.technology.related_unit_cards = Array.from(related_unit_cards);
+
   return returnTechNode;
 };
 

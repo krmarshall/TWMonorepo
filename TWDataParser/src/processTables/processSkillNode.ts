@@ -183,6 +183,16 @@ const processSkillNode = (
     });
   });
 
+  // Unit Cards
+  returnSkill.levels?.forEach((level) => {
+    const related_unit_cards: Set<string> = new Set();
+    level.effects?.forEach((effect) => {
+      effect.related_unit_cards_PARSER_ONLY?.forEach((card) => related_unit_cards.add(card));
+      delete effect.related_unit_cards_PARSER_ONLY;
+    });
+    if (related_unit_cards.size > 0) level.related_unit_cards = Array.from(related_unit_cards);
+  });
+
   return returnSkill;
 };
 

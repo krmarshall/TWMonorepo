@@ -28,6 +28,18 @@
       "cwd": "${workspaceRoot}/TWDataParser",
       "internalConsoleOptions": "openOnSessionStart",
       "skipFiles": ["<node_internals>/**", "node_modules/**"]
+    },
+    {
+      "name": "Node",
+      "type": "node",
+      "request": "launch",
+      "runtimeExecutable": "node",
+
+      "args": ["src/index.ts"],
+
+      "cwd": "${workspaceRoot}/TWDataParser",
+      "internalConsoleOptions": "openOnSessionStart",
+      "skipFiles": ["<node_internals>/**", "node_modules/**"]
     }
   ]
 }

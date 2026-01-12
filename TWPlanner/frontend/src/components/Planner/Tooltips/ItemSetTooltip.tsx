@@ -13,9 +13,10 @@ import {
 import SkillEffect from './SkillEffect.tsx';
 import TooltipAbilityCycler from '../../TooltipAbiltyCycler.tsx';
 import TooltipAbilityMap from '../../TooltipAbilityMap.tsx';
+import ReactImage from '../../ReactImage.tsx';
+import UnitCards from './UnitCards.tsx';
 
 import itemSetIcon from '../../../imgs/other/icon_item_set.webp';
-import ReactImage from '../../ReactImage.tsx';
 
 interface PropInterface {
   itemSet: ItemSetInterface;
@@ -128,6 +129,7 @@ const ItemSetTooltip = ({
               {itemSet.effects?.map((effect, index) => {
                 return <SkillEffect key={index} skillEffect={effect} />;
               })}
+              {itemSet.related_unit_cards !== undefined && <UnitCards relatedUnitCards={itemSet.related_unit_cards} />}
             </div>
             {relatedAbilities.length > 1 && (
               <TooltipAbilityCycler ctrCounter={ctrCounter} relatedAbilitiesLength={relatedAbilities.length} />
