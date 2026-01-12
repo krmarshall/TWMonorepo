@@ -41,7 +41,13 @@ const processFactions = (
     if (agent === undefined) {
       return;
     }
-    const nodeSetKey = agent.foreignRefs?.character_skill_node_sets?.[0]?.key as string;
+    let nodeSetKey = agent.foreignRefs?.character_skill_node_sets?.[0]?.key as string;
+    // HEFs have a bunch of special node sets that just have diff background traits?
+    let n = 1;
+    while (nodeSetKey?.endsWith('_affinity')) {
+      nodeSetKey = agent.foreignRefs?.character_skill_node_sets?.[n]?.key as string;
+      n++;
+    }
     if (nodeSetKey === undefined) {
       return;
     }
@@ -125,7 +131,13 @@ const processFactions = (
           ) {
             return;
           }
-          const nodeSetKey = factionAgent?.localRefs?.agent_subtypes?.foreignRefs?.character_skill_node_sets?.[0]?.key;
+          let nodeSetKey = factionAgent?.localRefs?.agent_subtypes?.foreignRefs?.character_skill_node_sets?.[0]?.key;
+          // HEFs have a bunch of special node sets that just have diff background traits?
+          let n = 1;
+          while (nodeSetKey?.endsWith('_affinity')) {
+            nodeSetKey = factionAgent?.localRefs?.agent_subtypes?.foreignRefs?.character_skill_node_sets?.[n]?.key;
+            n++;
+          }
           if (nodeSetKey === undefined) {
             return;
           }
