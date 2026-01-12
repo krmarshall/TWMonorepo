@@ -1,6 +1,6 @@
-import { GlobalDataInterface, TableRecord } from '../@types/GlobalDataInterface.ts';
-import { EffectInterface } from '../@types/CharacterInterface.ts';
-import { TechNodeInterface } from '../@types/TechInterface.ts';
+import type { GlobalDataInterface, TableRecord } from '../@types/GlobalDataInterface.ts';
+import type { EffectInterface } from '../@types/CharacterInterface.ts';
+import type { TechNodeInterface } from '../@types/TechInterface.ts';
 import findImage from '../utils/findImage.ts';
 import { parseInteger } from '../utils/parseStringToTypes.ts';
 import stringInterpolator from '../utils/stringInterpolator.ts';

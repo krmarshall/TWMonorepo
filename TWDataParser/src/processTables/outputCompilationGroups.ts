@@ -1,11 +1,12 @@
-import { sync } from 'fast-glob';
+import fastGlob from 'fast-glob';
 import { dirname } from 'path';
 import { parse } from 'csv-parse/sync';
-import { TableRecord } from '../@types/GlobalDataInterface.ts';
+import type { TableRecord } from '../@types/GlobalDataInterface.ts';
 import { skipVanillaAgentPrune } from '../lists/processFactionsLists.ts';
-import { ensureDirSync, readFileSync, writeJSONSync } from 'fs-extra';
-import { ModInfoInterface } from '../lists/packInfo.ts';
-import { CompilationGroupsInterface } from '../@types/CompilationGroupsInterface.ts';
+import { ensureDirSync, writeJSONSync } from 'fs-extra/esm';
+import { readFileSync } from 'fs';
+import type { ModInfoInterface } from '../lists/packInfo.ts';
+import type { CompilationGroupsInterface } from '../@types/CompilationGroupsInterface.ts';
 
 const csvParseConfig = {
   delimiter: '\t',
@@ -24,9 +25,9 @@ const outputCompilationGroups = (folder: string, modInfoArray: Array<ModInfoInte
       return;
     }
     compGroups.mods.push(modInfo.name);
-    const subDb = sync(`./extracted_files/${folder}/subDB*/${modInfo.pack}`)[0];
+    const subDb = fastGlob.sync(`./extracted_files/${folder}/subDB*/${modInfo.pack}`)[0];
     const subDbPath = dirname(subDb);
-    const skillNodeSetTSVs = sync(`${subDbPath}/db/character_skill_node_sets_tables/*.tsv`);
+    const skillNodeSetTSVs = fastGlob.sync(`${subDbPath}/db/character_skill_node_sets_tables/*.tsv`);
     skillNodeSetTSVs.forEach((tsv) => {
       // csv-parse with columns outputs an array of objects, but their default typing doesnt change to this z.z
       const parsedArray = parse(readFileSync(tsv, 'utf-8'), csvParseConfig) as unknown as Array<TableRecord>;

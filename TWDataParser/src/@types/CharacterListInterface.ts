@@ -1,4 +1,4 @@
-import { SpellLores } from './SpellLoresRef.ts';
+import type { SpellLoresT } from './SpellLores.ts';
 
 interface CharacterInterface {
   name: string;
@@ -6,7 +6,7 @@ interface CharacterInterface {
   priority?: boolean;
   depriority?: boolean;
   folder?: string;
-  spellLore?: SpellLores;
+  spellLore?: SpellLoresT;
 }
 
 interface CharacterListInterface {

@@ -1,5 +1,5 @@
-import { CharacterInterface, CharacterListInterface } from '../@types/CharacterListInterface.ts';
-import { GlobalDataInterface, TableRecord } from '../@types/GlobalDataInterface.ts';
+import type { CharacterInterface, CharacterListInterface } from '../@types/CharacterListInterface.ts';
+import type { GlobalDataInterface, TableRecord } from '../@types/GlobalDataInterface.ts';
 import subcultureMap from '../lists/subcultureMap.ts';
 import stringInterpolator from './stringInterpolator.ts';
 

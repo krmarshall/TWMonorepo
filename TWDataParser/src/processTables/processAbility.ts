@@ -1,5 +1,5 @@
-import { GlobalDataInterface, TableRecord } from '../@types/GlobalDataInterface.ts';
-import { AbilityInterface, PhaseInterface, UiEffectInterface } from '../@types/CharacterInterface.ts';
+import type { GlobalDataInterface, TableRecord } from '../@types/GlobalDataInterface.ts';
+import type { AbilityInterface, PhaseInterface, UiEffectInterface } from '../@types/CharacterInterface.ts';
 import findImage from '../utils/findImage.ts';
 import { parseBoolean, parseFloating, parseInteger } from '../utils/parseStringToTypes.ts';
 import stringInterpolator from '../utils/stringInterpolator.ts';

@@ -5,10 +5,11 @@
     "lintFix": "eslint ./src --fix",
     "updateSchemas": "git submodule update --remote",
     "convertSchemas": "cd ./bins && convertSchemas.bat",
-    "start": "set NODE_OPTIONS='--max-old-space-size=8192' && ts-node ./src/index.ts",
+    "start": "set NODE_OPTIONS='--max-old-space-size=8192' && node ./src/index.ts",
     "fullBuild": "run-s updateSchemas convertSchemas start",
-    "profile": "set NODE_OPTIONS='--max-old-space-size=8192' && node -r ts-node/register --prof ./src/index.ts"
+    "profile": "set NODE_OPTIONS='--max-old-space-size=8192' && node --prof ./src/index.ts"
   },
+  "type": "module",
   "dependencies": {
     "csv-parse": "^6.1.0",
     "dotenv": "^17.2.3",
@@ -21,7 +22,6 @@
   "devDependencies": {
     "@types/fs-extra": "^11.0.4",
     "@types/node": "^25.0.6",
-    "ts-node": "^10.9.2",
     "typescript": "^5.9.3"
   }
 }

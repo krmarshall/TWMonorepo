@@ -1,5 +1,5 @@
-import { GlobalDataInterface, TableRecord } from '../@types/GlobalDataInterface.ts';
-import { AbilityInterface, AttributeInterface, UnitStatsInterface } from '../@types/CharacterInterface.ts';
+import type { GlobalDataInterface, TableRecord } from '../@types/GlobalDataInterface.ts';
+import type { AbilityInterface, AttributeInterface, UnitStatsInterface } from '../@types/CharacterInterface.ts';
 import { parseFloating, parseInteger } from '../utils/parseStringToTypes.ts';
 import processAbility from './processAbility.ts';
 import processAttribute from './processAttribute.ts';

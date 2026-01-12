@@ -1,5 +1,5 @@
-import { GlobalDataInterface, TableRecord } from '../@types/GlobalDataInterface.ts';
-import { VortexInterface } from '../@types/CharacterInterface.ts';
+import type { GlobalDataInterface, TableRecord } from '../@types/GlobalDataInterface.ts';
+import type { VortexInterface } from '../@types/CharacterInterface.ts';
 import { parseBoolean, parseFloating, parseInteger } from '../utils/parseStringToTypes.ts';
 import processPhase from './processPhase.ts';
 

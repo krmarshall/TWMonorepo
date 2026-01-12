@@ -1,4 +1,4 @@
-import schema from '../../bins/jsonSchemas/schema_wh3.json';
+import schema from '../../bins/jsonSchemas/schema_wh3.json' with { type: 'json' };
 
 interface FieldInterface {
   name: string;
@@ -40,4 +40,4 @@ interface SchemaInterface {
 
 export type DirectSchema = typeof schema;
 
-export { SchemaInterface, TableInterface };
+export type { SchemaInterface, TableInterface };

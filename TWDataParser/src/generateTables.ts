@@ -1,5 +1,5 @@
-import { GlobalDataInterface, RefKey, TableRecord } from './@types/GlobalDataInterface.ts';
-import { SchemaInterface, TableInterface } from './@types/SchemaInterfaces.ts';
+import type { GlobalDataInterface, RefKey, TableRecord } from './@types/GlobalDataInterface.ts';
+import type { SchemaInterface, TableInterface } from './@types/SchemaInterfaces.ts';
 import cleanList from './lists/cleanLists/index.ts';
 import findHighestVersionDB from './utils/findHighestVersionDB.ts';
 

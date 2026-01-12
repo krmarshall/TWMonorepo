@@ -1,11 +1,11 @@
-import { GlobalDataInterface, RefKey, TableRecord } from '../@types/GlobalDataInterface.ts';
-import { ItemInterface, CharacterInterface } from '../@types/CharacterInterface.ts';
+import type { GlobalDataInterface, RefKey, TableRecord } from '../@types/GlobalDataInterface.ts';
+import type { ItemInterface, CharacterInterface } from '../@types/CharacterInterface.ts';
 import findImage from '../utils/findImage.ts';
 import outputAgent from './outputAgent.ts';
 import processEffect from './processEffect.ts';
 import processNodeSet from './processNodeSet.ts';
 import subcultureMap from '../lists/subcultureMap.ts';
-import { CharacterListInterface } from '../@types/CharacterListInterface.ts';
+import type { CharacterListInterface } from '../@types/CharacterListInterface.ts';
 import processAncillary from './processAncillary.ts';
 import processUnitStats from './processUnitStats.ts';
 import addCharacterListReference from '../utils/addCharacterListReference.ts';

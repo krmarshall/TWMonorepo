@@ -1,5 +1,5 @@
-import { GlobalDataInterface, TableRecord } from '../@types/GlobalDataInterface.ts';
-import { AttributeInterface } from '../@types/CharacterInterface.ts';
+import type { GlobalDataInterface, TableRecord } from '../@types/GlobalDataInterface.ts';
+import type { AttributeInterface } from '../@types/CharacterInterface.ts';
 import findImage from '../utils/findImage.ts';
 import stringInterpolator from '../utils/stringInterpolator.ts';
 

@@ -1,6 +1,6 @@
-import { GlobalDataInterface, TableRecord } from './@types/GlobalDataInterface.ts';
+import type { GlobalDataInterface, TableRecord } from './@types/GlobalDataInterface.ts';
 import log from './utils/log.ts';
-import { SchemaInterface } from './@types/SchemaInterfaces.ts';
+import type { SchemaInterface } from './@types/SchemaInterfaces.ts';
 import findHighestVersionDB from './utils/findHighestVersionDB.ts';
 
 const overwriteMerge = (

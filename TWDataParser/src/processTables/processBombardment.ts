@@ -1,5 +1,5 @@
-import { GlobalDataInterface, TableRecord } from '../@types/GlobalDataInterface.ts';
-import { ProjectileBombardmentInterface } from '../@types/CharacterInterface.ts';
+import type { GlobalDataInterface, TableRecord } from '../@types/GlobalDataInterface.ts';
+import type { ProjectileBombardmentInterface } from '../@types/CharacterInterface.ts';
 import { parseFloating, parseInteger } from '../utils/parseStringToTypes.ts';
 import processProjectile from './processProjectile.ts';
 

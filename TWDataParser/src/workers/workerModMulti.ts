@@ -1,6 +1,6 @@
 import { workerData } from 'worker_threads';
-import { ensureDirSync } from 'fs-extra';
-import { MultiModWorkerDataInterface } from '../@types/WorkerDataInterfaces.ts';
+import { ensureDirSync } from 'fs-extra/esm';
+import type { MultiModWorkerDataInterface } from '../@types/WorkerDataInterfaces.ts';
 import csvParse from '../csvParse.ts';
 import generateTables from '../generateTables.ts';
 import processFactions from '../processTables/processFactions.ts';

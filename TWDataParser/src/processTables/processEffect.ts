@@ -1,5 +1,10 @@
-import { GlobalDataInterface, TableRecord } from '../@types/GlobalDataInterface.ts';
-import { AbilityInterface, AttributeInterface, EffectInterface, PhaseInterface } from '../@types/CharacterInterface.ts';
+import type { GlobalDataInterface, TableRecord } from '../@types/GlobalDataInterface.ts';
+import type {
+  AbilityInterface,
+  AttributeInterface,
+  EffectInterface,
+  PhaseInterface,
+} from '../@types/CharacterInterface.ts';
 import findImage from '../utils/findImage.ts';
 import numberInsertion from '../utils/numberInsertion.ts';
 import { parseInteger } from '../utils/parseStringToTypes.ts';

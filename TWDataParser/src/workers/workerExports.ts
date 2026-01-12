@@ -1,5 +1,5 @@
 import { Worker } from 'worker_threads';
-import {
+import type {
   ModWorkerDataInterface,
   MultiModWorkerDataInterface,
   VanillaWorkerDataInterface,
@@ -13,7 +13,6 @@ const workerVanilla = (workerData: VanillaWorkerDataInterface) => {
   const workerScript = game === 'warhammer_2' ? './src/workers/worker2.ts' : './src/workers/worker3.ts';
   const workerVanilla = new Worker(workerScript, {
     workerData,
-    execArgv: ['--require', 'ts-node/register'],
     name: folder,
   });
   workerVanilla.on('error', (error) => {
@@ -36,7 +35,6 @@ const workerMod = (workerData: ModWorkerDataInterface) => {
   console.time(folder);
   const workerMod = new Worker('./src/workers/workerMod.ts', {
     workerData,
-    execArgv: ['--require', 'ts-node/register'],
     name: folder,
   });
   workerMod.on('error', (error) => {
@@ -53,7 +51,6 @@ const workerModMulti = (workerData: MultiModWorkerDataInterface) => {
   console.time(folder);
   const workerModMulti = new Worker('./src/workers/workerModMulti.ts', {
     workerData,
-    execArgv: ['--require', 'ts-node/register'],
     name: folder,
   });
   workerModMulti.on('error', (error) => {

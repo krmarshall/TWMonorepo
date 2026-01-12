@@ -1,5 +1,5 @@
-import { GlobalDataInterface, TableRecord } from '../@types/GlobalDataInterface.ts';
-import { ItemInterface, SkillInterface, SkillLevelInterface } from '../@types/CharacterInterface.ts';
+import type { GlobalDataInterface, TableRecord } from '../@types/GlobalDataInterface.ts';
+import type { ItemInterface, SkillInterface, SkillLevelInterface } from '../@types/CharacterInterface.ts';
 import findImage from '../utils/findImage.ts';
 import log from '../utils/log.ts';
 import { parseBoolean, parseInteger } from '../utils/parseStringToTypes.ts';

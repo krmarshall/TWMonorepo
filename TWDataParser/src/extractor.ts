@@ -1,11 +1,11 @@
 import { exec } from 'child_process';
-import { emptyDirSync, ensureDirSync, ensureFile, outputFileSync, outputJSONSync, readJSONSync } from 'fs-extra';
+import { emptyDirSync, ensureDirSync, ensureFile, outputFileSync, outputJSONSync, readJSONSync } from 'fs-extra/esm';
 import { statSync } from 'fs';
 import log from './utils/log.ts';
 import { basename } from 'path';
 import { promisify } from 'util';
-import { GlobalDataInterface } from './@types/GlobalDataInterface.ts';
-import { sync } from 'fast-glob';
+import type { GlobalDataInterface } from './@types/GlobalDataInterface.ts';
+import fastGlob from 'fast-glob';
 import { hardcodePortraitData } from './utils/hardcodeCharList.ts';
 
 const execPromise = promisify(exec);
@@ -75,6 +75,7 @@ export default class Extractor {
     return new Promise<void>((resolve, reject) => {
       execPromise(
         `${this.#rpfmPath} -g ${this.#game} pack extract -p "${packPath}.pack" -t "${this.#schemaPath}.ron" -F ${tablesString}`,
+        { shell: 'powershell.exe' },
       )
         .then(() => resolve())
         .catch((error) => reject(error));
@@ -194,6 +195,7 @@ export default class Extractor {
         return new Promise<void>((resolveI, rejectI) => {
           execPromise(
             `${this.#rpfmPath} -g ${this.#game} pack extract -p "${packPath}.pack" -t "${this.#schemaPath}.ron" -F ${foldersString}`,
+            { shell: 'powershell.exe' },
           )
             .then(() => resolveI())
             .catch((error) => rejectI(error));
@@ -209,13 +211,13 @@ export default class Extractor {
   };
 
   #convertImages = () => {
-    const imageDirs = sync(`./extracted_files/${this.#folder}/ui/**/`, {
+    const imageDirs = fastGlob.sync(`./extracted_files/${this.#folder}/ui/**/`, {
       markDirectories: true,
       onlyDirectories: true,
       ignore: [`./extracted_files/${this.#folder}/ui/portraits/**/`],
     });
     const imagePromises = imageDirs.map((imageDir, index) => {
-      const imagePaths = sync(`${imageDir}*.png`);
+      const imagePaths = fastGlob.sync(`${imageDir}*.png`);
       if (imagePaths.length !== 0) {
         const splitPath = imageDir.split(`${this.#folder}/ui/`);
         let outPath = `./output_img/${this.#folder}/${splitPath[splitPath.length - 1]}`;
@@ -246,12 +248,13 @@ export default class Extractor {
   };
 
   #convertPortraitBins = () => {
-    const portraitSettingsPaths = sync(`./extracted_files/${this.#folder}/ui/portraits/portholes/*.bin`);
+    const portraitSettingsPaths = fastGlob.sync(`./extracted_files/${this.#folder}/ui/portraits/portholes/*.bin`);
     const portraitPromises = portraitSettingsPaths.map((portraitSettingsPath) => {
       return new Promise<void>((resolve, reject) => {
         const portraitSettingsName = basename(portraitSettingsPath, '.bin');
         execPromise(
           `${this.#rpfmPath} -g ${this.#game} portrait-settings to-json --bin-path "${portraitSettingsPath}" --json-path "./extracted_files/${this.#folder}/ui/portraits/portholes/${portraitSettingsName}.json"`,
+          { shell: 'powershell.exe' },
         )
           .then(() => {
             this.#fillPortraitGlobalData(portraitSettingsPath.replace(/.bin$/, '.json'));
@@ -280,7 +283,9 @@ export default class Extractor {
     Object.entries(hardcodePortraitData).forEach((entry) => {
       const nodeSetKey = entry[0];
       const portraitFile = basename(entry[1], '.webp');
-      const portraitPaths = sync(`./extracted_files/${this.#folder}/ui/portraits/portholes/**/${portraitFile}.png`);
+      const portraitPaths = fastGlob.sync(
+        `./extracted_files/${this.#folder}/ui/portraits/portholes/**/${portraitFile}.png`,
+      );
       if (portraitPaths.length !== 0) {
         const path = portraitPaths[0].replace(`./extracted_files/${this.#folder}/`, '');
         this.#globalData.portraitPaths[this.#folder][nodeSetKey] = path;

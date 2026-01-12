@@ -1,0 +1,39 @@
+const SpellLores = {
+  runic: 'runic',
+  mixed: 'mixed',
+  wild: 'wild',
+  beasts: 'beasts',
+  shadows: 'shadows',
+  life: 'life',
+  light: 'light',
+  fire: 'fire',
+  death: 'death',
+  metal: 'metal',
+  bigWagh: 'bigWagh',
+  lilWagh: 'lilWagh',
+  heavens: 'heavens',
+  vampires: 'vampires',
+  nehekhara: 'nehekhara',
+  deep: 'deep',
+  stealth: 'stealth',
+  high: 'high',
+  wefHigh: 'wefHigh',
+  plague: 'plague',
+  ruin: 'ruin',
+  dark: 'dark',
+  ice: 'ice',
+  tempest: 'tempest',
+  yin: 'yin',
+  yang: 'yang',
+  tzeentch: 'tzeentch',
+  nurgle: 'nurgle',
+  slaanesh: 'slaanesh',
+  'great maw': 'great maw',
+  hashut: 'hashut',
+  hag: 'hag',
+} as const;
+
+type SpellLoresT = (typeof SpellLores)[keyof typeof SpellLores];
+
+export default SpellLores;
+export type { SpellLoresT };

@@ -1,6 +1,6 @@
 import { Table } from '../generateTables.ts';
-import { GlobalDataInterface, RefKey, TableRecord } from '../@types/GlobalDataInterface.ts';
-import { NodeLinkInterface, TechNodeInterface, TechSetInterface } from '../@types/TechInterface.ts';
+import type { GlobalDataInterface, RefKey, TableRecord } from '../@types/GlobalDataInterface.ts';
+import type { NodeLinkInterface, TechNodeInterface, TechSetInterface } from '../@types/TechInterface.ts';
 import log from '../utils/log.ts';
 import { parseBoolean, parseInteger } from '../utils/parseStringToTypes.ts';
 import collateTechNodes from './collateTechNodes.ts';

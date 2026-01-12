@@ -51,5 +51,4 @@ interface GlobalDataInterface {
   };
 }
 
-export type { RefKey };
-export { GlobalDataInterface, TableRecord };
+export type { RefKey, GlobalDataInterface, TableRecord };

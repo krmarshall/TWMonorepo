@@ -1,8 +1,8 @@
 import 'dotenv/config';
-import { emptyDirSync } from 'fs-extra';
+import { emptyDirSync } from 'fs-extra/esm';
 import { v3DbList, v3LocList } from './lists/extractLists/vanilla3.ts';
 import { workerVanilla } from './workers/workerExports.ts';
-import { RefKey } from './@types/GlobalDataInterface.ts';
+import type { RefKey } from './@types/GlobalDataInterface.ts';
 import { v2DbList, v2LocList } from './lists/extractLists/vanilla2.ts';
 import modTimestamps from './utils/modTimestamps.ts';
 import { vanillaPackInfo } from './lists/packInfo.ts';

@@ -1,6 +1,6 @@
 import { Table } from '../generateTables.ts';
-import { CharacterListInterface } from '../@types/CharacterListInterface.ts';
-import { GlobalDataInterface, RefKey, TableRecord } from '../@types/GlobalDataInterface.ts';
+import type { CharacterListInterface } from '../@types/CharacterListInterface.ts';
+import type { GlobalDataInterface, RefKey, TableRecord } from '../@types/GlobalDataInterface.ts';
 import {
   addAgents,
   ignoreAgents,
@@ -15,7 +15,7 @@ import subcultureMap from '../lists/subcultureMap.ts';
 import vanillaCharacters from '../lists/vanillaCharacters.ts';
 import processAgent from './processAgent.ts';
 import processTechNodeSet from './processTechNodeSet.ts';
-import { outputJSONSync } from 'fs-extra';
+import { outputJSONSync } from 'fs-extra/esm';
 import { sortCharacterList } from '../utils/sortCharacterList.ts';
 import { hardcodeCharListData } from '../utils/hardcodeCharList.ts';
 

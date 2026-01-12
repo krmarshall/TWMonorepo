@@ -1,4 +1,4 @@
-import { copySync, emptyDirSync, removeSync } from 'fs-extra';
+import { copySync, emptyDirSync, removeSync } from 'fs-extra/esm';
 import log from '../utils/log.ts';
 
 const exportData = () => {

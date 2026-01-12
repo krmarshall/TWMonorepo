@@ -1,4 +1,4 @@
-import { TableInterface } from '../@types/SchemaInterfaces.ts';
+import type { TableInterface } from '../@types/SchemaInterfaces.ts';
 
 const findHighestVersionDB = (tableVersions: Array<TableInterface>, dbKey: string) => {
   if (tableVersions.length === 0) {

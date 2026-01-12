@@ -1,4 +1,4 @@
-import { TableRecord } from '../@types/GlobalDataInterface.ts';
+import type { TableRecord } from '../@types/GlobalDataInterface.ts';
 import log from './log.ts';
 
 // Locs have tags that interpolate into various things, colored text, images, text replacement ect.

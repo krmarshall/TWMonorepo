@@ -1,5 +1,5 @@
-import { GlobalDataInterface, TableRecord } from '../@types/GlobalDataInterface.ts';
-import { ItemInterface, SkillInterface } from '../@types/CharacterInterface.ts';
+import type { GlobalDataInterface, TableRecord } from '../@types/GlobalDataInterface.ts';
+import type { ItemInterface, SkillInterface } from '../@types/CharacterInterface.ts';
 import collateNodes from './collateNodes.ts';
 import processSkillNode from './processSkillNode.ts';
 
