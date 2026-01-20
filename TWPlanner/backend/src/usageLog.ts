@@ -4,9 +4,11 @@ interface LogInterface {
     [key: string]: number;
   };
   misses: number;
-  missList: Array<string>;
+  missList: Set<string>;
   techHits: number;
   buildCode: number;
+
+  uniqueIps: Set<string>;
 }
 
 const usageData: LogInterface = {
@@ -18,7 +20,6 @@ const usageData: LogInterface = {
     sfo3: 0,
     mixu3: 0,
     lege3: 0,
-    crys3: 0,
     scm3: 0,
     cat3: 0,
     ovn3: 0,
@@ -27,9 +28,11 @@ const usageData: LogInterface = {
     other: 0,
   },
   misses: 0,
-  missList: [],
+  missList: new Set(),
   techHits: 0,
   buildCode: 0,
+
+  uniqueIps: new Set(),
 };
 
 const usageLog = (hoursInterval: number) => {
@@ -41,11 +44,13 @@ const usageLog = (hoursInterval: number) => {
 
 const outputLog = () => {
   console.log('--------------------------------------');
+  console.log(`Unique Users: ${usageData.uniqueIps.size}`);
   console.log(`Skill Hits: ${usageData.hits}`);
-  console.log(usageData.modHits);
+  console.log(`Vanilla2: ${usageData.modHits.vanilla2} | Vanilla3: ${usageData.modHits.vanilla3}
+SFO3: ${usageData.modHits.sfo3} | Rad3: ${usageData.modHits.radious3} | Mixu3: ${usageData.modHits.mixu3} | Lege3: ${usageData.modHits.lege3} | SCM3: ${usageData.modHits.scm3} | Cat3: ${usageData.modHits.cat3} | OVN3: ${usageData.modHits.ovn3} | HoL3: ${usageData.modHits.hol3}
+Other: ${usageData.modHits.other}`);
   console.log(`Skill Misses: ${usageData.misses}`);
-  // console.log('API Missed Links:');
-  // console.log(usageData.missList);
+  console.log(`API Missed Links: ${Array.from(usageData.missList)}`);
   console.log(`Tech Hits: ${usageData.techHits}`);
   console.log(`Build Codes: ${usageData.buildCode}`);
 
@@ -57,7 +62,6 @@ const outputLog = () => {
     sfo3: 0,
     mixu3: 0,
     lege3: 0,
-    crys3: 0,
     scm3: 0,
     cat3: 0,
     ovn3: 0,
@@ -66,9 +70,10 @@ const outputLog = () => {
     other: 0,
   };
   usageData.misses = 0;
-  usageData.missList = [];
+  usageData.missList = new Set();
   usageData.techHits = 0;
   usageData.buildCode = 0;
+  usageData.uniqueIps = new Set();
 };
 
 export { usageLog, outputLog, usageData };

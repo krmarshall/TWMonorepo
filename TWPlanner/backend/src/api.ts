@@ -4,13 +4,15 @@ import { usageData } from './usageLog.ts';
 // import { readFile } from 'fs/promises';
 
 const skillListener = (req: Request, res: Response, nodeSetMap: { [key: string]: string }) => {
+  if (req.ip !== undefined) usageData.uniqueIps.add(req.ip);
+
   let selectedCharacter = skillData[req.params.gameKey]?.[req.params.factionKey]?.[req.params.characterKey];
   if (selectedCharacter === undefined && nodeSetMap[req.params.characterKey] !== undefined) {
     selectedCharacter = skillData[req.params.gameKey]?.[req.params.factionKey]?.[nodeSetMap[req.params.characterKey]];
   }
   if (selectedCharacter === undefined) {
     usageData.misses++;
-    usageData.missList.push(req.originalUrl);
+    usageData.missList.add(req.originalUrl);
     return res.sendStatus(404);
   }
 

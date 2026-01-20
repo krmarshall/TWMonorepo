@@ -35,6 +35,7 @@ app.use(cors());
 app.use(helmet());
 app.use(compression());
 
+app.set('trust proxy', true);
 // Serve rest api
 app.get('/api/skills/:gameKey.:factionKey.:characterKey.:hasBuild', (req, res) => {
   skillListener(req, res, nodeSetMap);
