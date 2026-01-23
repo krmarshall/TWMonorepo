@@ -7,8 +7,6 @@ interface LogInterface {
   missList: Set<string>;
   techHits: number;
   buildCode: number;
-
-  uniqueIps: Set<string>;
 }
 
 const usageData: LogInterface = {
@@ -31,8 +29,6 @@ const usageData: LogInterface = {
   missList: new Set(),
   techHits: 0,
   buildCode: 0,
-
-  uniqueIps: new Set(),
 };
 
 const usageLog = (hoursInterval: number) => {
@@ -44,15 +40,12 @@ const usageLog = (hoursInterval: number) => {
 
 const outputLog = () => {
   console.log('--------------------------------------');
-  console.log(`Unique Users: ${usageData.uniqueIps.size}`);
-  console.log(`Skill Hits: ${usageData.hits}`);
+  console.log(`Skill Hits: ${usageData.hits} | Build Codes: ${usageData.buildCode} | Tech Hits: ${usageData.techHits}`);
   console.log(`Vanilla2: ${usageData.modHits.vanilla2} | Vanilla3: ${usageData.modHits.vanilla3}
 SFO3: ${usageData.modHits.sfo3} | Rad3: ${usageData.modHits.radious3} | Mixu3: ${usageData.modHits.mixu3} | Lege3: ${usageData.modHits.lege3} | SCM3: ${usageData.modHits.scm3} | Cat3: ${usageData.modHits.cat3} | OVN3: ${usageData.modHits.ovn3} | HoL3: ${usageData.modHits.hol3}
 Other: ${usageData.modHits.other}`);
   console.log(`Skill Misses: ${usageData.misses}`);
   console.log(`API Missed Links: ${Array.from(usageData.missList)}`);
-  console.log(`Tech Hits: ${usageData.techHits}`);
-  console.log(`Build Codes: ${usageData.buildCode}`);
 
   usageData.hits = 0;
   usageData.modHits = {
@@ -73,7 +66,6 @@ Other: ${usageData.modHits.other}`);
   usageData.missList = new Set();
   usageData.techHits = 0;
   usageData.buildCode = 0;
-  usageData.uniqueIps = new Set();
 };
 
 export { usageLog, outputLog, usageData };
