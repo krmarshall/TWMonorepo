@@ -15,7 +15,7 @@ const ModSelector = () => {
   return (
     <div
       className={
-        'w-270 bg-gray-700 border rounded-md border-gray-500 justify-self-center mt-2 p-1 max-h-112 overflow-y-scroll scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-600 '
+        'w-270 bg-gray-700 border rounded-md border-gray-500 justify-self-center p-1 max-h-112 overflow-y-scroll scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-600 '
       }
     >
       <div className="flex flex-row place-content-center">

@@ -97,7 +97,7 @@ const CharacterSelector = () => {
   };
 
   return (
-    <div className="bg-gray-700 border rounded-md border-gray-500 my-2 p-1 grow">
+    <div className="bg-gray-700 border rounded-md border-gray-500 my-2 p-1">
       {lordKeys !== undefined && lordKeys.length > 0 && (
         <div className="justify-self-center">
           <div className="flex flex-row place-content-center w-full mx-auto">

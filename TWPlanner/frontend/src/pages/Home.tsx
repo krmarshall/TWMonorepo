@@ -68,13 +68,13 @@ const Home = () => {
   }, []);
 
   return (
-    <div className="w-full px-2 overflow-y-auto overflow-x-hidden scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-600">
+    <div className="w-full h-full p-2 overflow-y-auto overflow-x-hidden scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-600">
       <div className="flex flex-col">
         <div className="flex flex-row flex-nowrap w-full">
           <ModSelector />
           <div
             className={
-              'w-full ml-2 mt-2 p-1 flex flex-col flex-nowrap bg-gray-700 border rounded-md border-gray-500 max-h-112 overflow-y-scroll scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-60 '
+              'w-full ml-2 p-1 flex flex-col flex-nowrap bg-gray-700 border rounded-md border-gray-500 max-h-112 overflow-y-scroll scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-60 '
             }
           >
             {gameData[selectedMod].compilationGroups !== undefined && (
