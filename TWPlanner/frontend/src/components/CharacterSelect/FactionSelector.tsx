@@ -66,7 +66,7 @@ const FactionSelector = () => {
   };
 
   return (
-    <div className="justify-self-center px-2 w-full">
+    <div className="justify-self-center w-full">
       <div className="flex flex-row place-content-center mx-auto">
         <hr className="grow mt-5 opacity-50 border-gray-200" />
         <h1 className="w-max text-center text-4xl mx-2 text-gray-200 text-shadow">Factions</h1>
@@ -136,7 +136,7 @@ const FactionSelector = () => {
                   <ReactImage
                     srcList={[factionImages[factionKey as keyof typeof factionImages], placeholderImg]}
                     alt={`${factionName} icon`}
-                    className="w-20 h-auto drop-shadow-[0.1rem_0.1rem_0.35rem_rgba(0,0,0,0.7)]"
+                    className="w-18 h-auto drop-shadow-[0.1rem_0.1rem_0.35rem_rgba(0,0,0,0.7)]"
                     w="96"
                     h="96"
                   />

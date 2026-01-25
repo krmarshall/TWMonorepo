@@ -4,7 +4,6 @@ import { Toaster } from 'react-hot-toast';
 import Header from './components/Header.tsx';
 import LoadingSpinner from './components/LoadingSpinner.tsx';
 import { AppProvider } from './contexts/AppContext.tsx';
-import useBulkMediaQueries from './hooks/useBulkMediaQueries.tsx';
 
 const Home = lazy(() => import('./pages/Home.tsx'));
 const Planner = lazy(() => import('./pages/Planner.tsx'));
@@ -15,15 +14,9 @@ const Issues = lazy(() => import('./pages/Issues.tsx'));
 const NotFound = lazy(() => import('./pages/NotFound.tsx'));
 
 const App = () => {
-  const { isMobileWidth } = useBulkMediaQueries();
-  const xPadding = isMobileWidth ? ' px-2' : ' px-8';
   return (
     <AppProvider>
-      <div
-        className={
-          'bg-gray-800 w-screen h-screen flex flex-col flex-nowrap pb-2 font-[CaslonAntique] select-none' + xPadding
-        }
-      >
+      <div className={'bg-gray-800 w-screen h-screen flex flex-col flex-nowrap font-[CaslonAntique] select-none'}>
         <Toaster
           position="bottom-center"
           toastOptions={{
@@ -60,6 +53,9 @@ const App = () => {
             </Routes>
           </Suspense>
         </BrowserRouter>
+        <div className="w-full h-24">
+          <p className=" text-center m-auto text-gray-200">Testing</p>
+        </div>
       </div>
     </AppProvider>
   );

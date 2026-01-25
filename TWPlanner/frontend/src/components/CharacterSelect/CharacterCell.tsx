@@ -38,7 +38,7 @@ const CharacterCell = ({ charKey, char, charImage, spellLore, charMod, handleCha
         onClick={(event) => handleCharacterSelect(event, charKey)}
         draggable={false}
       >
-        <h2 className="w-36 text-center text-2xl text-shadow text-gray-200 mb-2">{char?.name}</h2>
+        <h2 className="w-36 text-center text-2xl text-shadow text-gray-200 mb-1">{char?.name}</h2>
         <div className="flex flex-row justify-center relative">
           <ReactImage
             srcList={[charImage as string, charImage?.replace(selectedMod, 'vanilla3') as string, placeholderImg]}

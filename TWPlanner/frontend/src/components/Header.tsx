@@ -15,13 +15,13 @@ const Header = () => {
   const buttonClass = 'bg-slate-500 rounded-2xl py-1 px-5 my-auto shadow-md shadow-gray-900 hover-scale';
 
   return (
-    <div className="flex flex-row flex-nowrap justify-between h-18">
+    <div className="bg-gray-900 flex flex-row flex-nowrap justify-between h-16 px-4 border-b border-gray-500">
       <div className="w-1/3 flex flex-row flex-nowrap justify-start">
         <Link to={'/'} className="text-slate-100 text-4xl flex flex-row flex-nowrap">
           <img
             src={headerImg}
             alt="header diplomacy icon"
-            className="w-20 h-20 my-auto drop-shadow-[0.1rem_0.1rem_0.5rem_rgba(0,0,0,0.7)]"
+            className="w-16 h-16 my-auto drop-shadow-[0.1rem_0.1rem_0.5rem_rgba(0,0,0,0.7)]"
             draggable={false}
           />
           <h1 className="my-auto text-shadow-md">

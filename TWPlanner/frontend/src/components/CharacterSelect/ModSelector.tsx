@@ -6,11 +6,7 @@ import TooltipWrapper from '../TooltipWrapper.tsx';
 import ReactImage from '../ReactImage.tsx';
 import placeholderImg from '../../imgs/other/0placeholder.webp';
 
-interface PropInterface {
-  containerWidth: string;
-}
-
-const ModSelector = ({ containerWidth }: PropInterface) => {
+const ModSelector = () => {
   const { state, dispatch } = useContext(AppContext);
   const { selectedMod } = state;
 
@@ -19,8 +15,7 @@ const ModSelector = ({ containerWidth }: PropInterface) => {
   return (
     <div
       className={
-        'justify-self-center px-2 max-h-132 overflow-y-scroll scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-600 ' +
-        containerWidth
+        'w-270 bg-gray-700 border rounded-md border-gray-500 justify-self-center mt-2 p-1 max-h-112 overflow-y-scroll scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-600 '
       }
     >
       <div className="flex flex-row place-content-center">
@@ -32,7 +27,7 @@ const ModSelector = ({ containerWidth }: PropInterface) => {
         {gameKeys.map((gameKey) => {
           const game = gameData[gameKey as keyof typeof gameData];
           let liClassName =
-            'flex flex-col justify-around m-2 mt-1 px-1.5 py-1 border border-gray-500 shadow-lg shadow-gray-800/60 rounded-lg';
+            'flex flex-col justify-around m-1 px-1.5 py-1 border border-gray-500 shadow-lg shadow-gray-800/60 rounded-lg';
 
           if (gameKey === selectedMod) {
             liClassName += ' bg-gray-600 hover:bg-gray-500/80';
@@ -85,7 +80,7 @@ const ModSelector = ({ containerWidth }: PropInterface) => {
                   h="128"
                   w="128"
                 />
-                <h3 className="text-center text-gray-400 text-lg text-shadow mt-2">{game.updated}</h3>
+                <h3 className="text-center text-gray-300 text-base text-shadow mt-2">{game.updated}</h3>
                 <TooltipWrapper
                   tooltip={
                     <span className="text-center flex flex-row max-w-[25vw]">
@@ -106,7 +101,7 @@ const ModSelector = ({ containerWidth }: PropInterface) => {
                     </span>
                   }
                 >
-                  <h3 className="w-fit mx-auto text-center text-gray-300 text-lg text-shadow mb-1 underline decoration-dashed underline-offset-2">
+                  <h3 className="w-fit mx-auto text-center text-gray-300 text-lg text-shadow underline decoration-dashed underline-offset-2">
                     {game.category}
                   </h3>
                 </TooltipWrapper>
