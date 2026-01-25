@@ -84,6 +84,7 @@ const hardCodeNameData: { [nodeSetKey: string]: { name: string; priority?: boole
   wh2_main_skill_node_set_def_black_ark_blessed_dread: { name: 'Dreadlord (The Blessed Dread)' },
   wh3_dlc25_dwf_lord_mikael_leadstrong: { name: 'Mikael Leadstrong' },
   wh_main_skill_node_set_chs_lord_of_change: { name: 'Sarthorael the Everwatcher', priority: false },
+  wh3_dlc23_skill_node_set_chd_lord_convoy_overseer: { name: 'Convoy Overseer' },
 
   dread_traitor_tomb_king_nebwaneph: { name: 'Traitor King Nebwaneph' },
   dread_traitor_tomb_king_omanhan_iii: { name: 'Traitor King Omanhan III' },
