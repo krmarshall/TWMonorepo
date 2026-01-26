@@ -53,7 +53,7 @@ const App = () => {
             </Routes>
           </Suspense>
         </BrowserRouter>
-        <div className="w-full min-h-24 bg-gray-900">
+        <div className="grow w-full min-h-24 bg-gray-900">
           <p className=" text-center m-auto text-gray-200">Testing</p>
         </div>
       </div>
