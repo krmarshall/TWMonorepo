@@ -44,9 +44,6 @@ const Header = () => {
         <Link className={buttonClass + ' mr-4'} to={'/about'} draggable={false}>
           About
         </Link>
-        <Link className={buttonClass} to={'/issues'} draggable={false}>
-          Issues
-        </Link>
       </div>
     </div>
   );

@@ -13,6 +13,12 @@
   --color-gray-700: oklch(0.35 0.034 256.848);
 }
 
+@layer components {
+  .button {
+    @apply px-5
+  }
+}
+
 @layer utilities {
   .fade-in {
     animation: fadeIn 0.35s;

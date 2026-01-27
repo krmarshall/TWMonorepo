@@ -10,7 +10,6 @@ const Planner = lazy(() => import('./pages/Planner.tsx'));
 const TechHome = lazy(() => import('./pages/TechHome.tsx'));
 const Tech = lazy(() => import('./pages/Tech.tsx'));
 const About = lazy(() => import('./pages/About.tsx'));
-const Issues = lazy(() => import('./pages/Issues.tsx'));
 const NotFound = lazy(() => import('./pages/NotFound.tsx'));
 
 const App = () => {
@@ -43,7 +42,6 @@ const App = () => {
               <Route path="/tech/:mod/:techTree" element={<Tech />} />
 
               <Route path="/about" element={<About />} />
-              <Route path="/issues" element={<Issues />} />
               <Route path="/404" element={<NotFound />} />
 
               <Route path="/:mod/:faction" element={<Home />} />
@@ -53,8 +51,9 @@ const App = () => {
             </Routes>
           </Suspense>
         </BrowserRouter>
-        <div className="grow w-full min-h-24 bg-gray-900">
-          <p className=" text-center m-auto text-gray-200">Testing</p>
+        <div className="w-full min-h-24 bg-gray-900 flex flex-row flex-nowrap place-content-around">
+          <div className="w-[728px] h-[90px] my-auto border border-gray-400"></div>
+          <div className="w-[728px] h-[90px] my-auto border border-gray-400"></div>
         </div>
       </div>
     </AppProvider>

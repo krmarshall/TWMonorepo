@@ -146,7 +146,7 @@ const Planner = () => {
   const mobileTabButtonColorsSelected = ' bg-gray-500 hover:bg-gray-400';
   const mobileTabButtonColorsDeselected = ' bg-gray-600 hover:bg-gray-500';
   return (
-    <div className="grow mt-1 flex flex-col bg-gray-700 w-full border border-gray-500 rounded-md px-2 py-2 overflow-y-hidden overflow-x-hidden">
+    <div className="grow flex flex-col w-full p-2 overflow-y-hidden overflow-x-hidden">
       {characterData === null ? (
         <LoadingSpinner loadingText="Loading Character Data..." />
       ) : (

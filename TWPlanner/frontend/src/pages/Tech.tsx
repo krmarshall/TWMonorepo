@@ -40,7 +40,7 @@ const Tech = () => {
     document.title = 'Total Warhammer Planner';
   }, []);
   return (
-    <div className="h-fit mt-1 flex flex-col w-full rounded-md p-2 overflow-y-hidden overflow-x-hidden">
+    <div className="w-full h-full mt-1 flex flex-col rounded-md p-2 overflow-y-hidden overflow-x-hidden">
       {techData === null ? (
         <LoadingSpinner loadingText="Loading Tech Tree Data..." />
       ) : (

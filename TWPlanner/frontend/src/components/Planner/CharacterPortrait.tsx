@@ -22,7 +22,7 @@ const CharacterPortrait = () => {
     <div className="absolute place-self-center top-2 bg-gray-700 rounded-full border border-gray-500 drop-shadow-[0.1rem_0.1rem_0.5rem_rgba(0,0,0,0.7)]">
       <ReactImage
         srcList={srcList}
-        className="w-38 h-38 rounded-full drop-shadow-[0.1rem_0.1rem_0.5rem_rgba(0,0,0,0.7)]"
+        className="w-36 h-36 rounded-full drop-shadow-[0.1rem_0.1rem_0.5rem_rgba(0,0,0,0.7)]"
         w="164"
         h="164"
         alt=""

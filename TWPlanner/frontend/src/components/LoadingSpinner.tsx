@@ -2,7 +2,7 @@ import spinner from '../imgs/other/spinner.webp';
 
 const LoadingSpinner = ({ loadingText = 'Loading...' }: { loadingText?: string }) => {
   return (
-    <div className="flex flex-col place-items-center mt-[20vh]">
+    <div className="grow flex flex-col place-items-center mt-[20vh]">
       <p className="text-center text-4xl text-gray-200">{loadingText}</p>
       <img
         src={spinner}

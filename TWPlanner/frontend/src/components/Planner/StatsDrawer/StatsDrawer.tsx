@@ -19,7 +19,7 @@ const StatsDrawer = () => {
   }, [isShort, isThin]);
 
   let drawerClass =
-    'w-full shrink-0 slide-out-hor border rounded border-gray-500 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-600';
+    'w-68 shrink-0 slide-out-hor bg-gray-700 border rounded border-gray-500 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-600';
   if (statsDrawerOpen) {
     drawerClass += ' max-w-68 mr-1 p-1.5 show';
   } else {

@@ -93,7 +93,7 @@ const TopBar = ({ isMobile }: PropInterface) => {
 
   const rankLimit = mod?.includes('2') ? 40 : 50;
 
-  let headerClass = 'z-10 text-center text-4xl  mx-auto text-gray-200 text-shadow-border ';
+  let headerClass = 'z-10 text-center text-4xl mx-auto text-gray-200 text-shadow-border ';
   if (isMobile) {
     headerClass += ' mb-2';
   } else {

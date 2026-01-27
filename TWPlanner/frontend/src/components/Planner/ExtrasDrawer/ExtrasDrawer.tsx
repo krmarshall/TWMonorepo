@@ -19,7 +19,7 @@ const ExtrasDrawer = () => {
     }
   }, [isShort, isThin]);
 
-  let drawerClass = 'flex flex-row place-content-evenly slide-out-vert';
+  let drawerClass = 'mt-1.5 flex flex-row place-content-evenly slide-out-vert';
   if (extrasDrawerOpen) {
     drawerClass += ' show max-h-[20vh] min-h-32';
   } else {
@@ -37,6 +37,7 @@ const ExtrasDrawer = () => {
         <FactionEffects factionEffect={state.characterData?.factionEffects} />
       )}
       {!isShort && <BuildStorage />}
+      <div className="grow max-w-128 max-h-[18vh] border border-gray-400"></div>
     </div>
   );
 };

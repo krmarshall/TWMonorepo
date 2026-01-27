@@ -9,7 +9,7 @@ const About = () => {
     document.title = 'Total Warhammer Planner - About';
   }, []);
   return (
-    <div className="h-[88vh] bg-gray-700 w-full border border-gray-500 rounded-md px-2 py-2 overflow-y-auto overflow-x-hidden scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-600">
+    <div className="grow w-full h-full px-2 py-2 overflow-y-auto overflow-x-hidden scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-600">
       <div className={'flex flex-col place-content-center mt-4 select-text font-[Helvetica]' + marginThickness}>
         <div className="flex flex-row place-content-center">
           <hr className="grow mt-[1.6rem] opacity-50 border-gray-200" />
@@ -91,6 +91,26 @@ const About = () => {
 
         <div className="flex flex-row place-content-center mt-12">
           <hr className="grow mt-[1.6rem] opacity-50 border-gray-200" />
+          <h1 className="w-max text-center text-5xl mx-2 mb-2 text-gray-200 text-shadow">Known Issues</h1>
+          <hr className="grow mt-[1.6rem] opacity-50 border-gray-200" />
+        </div>
+
+        <ul className="list-disc list-inside text-gray-200 text-2xl">
+          <li>Skill nodes that overlap indent and tier with another node have inconsistent behavior</li>
+          <li>
+            Tooltips that cant find horizontal space to fit in the viewport without conflicting with the cursor
+            aren&apos;t visible
+          </li>
+          <li>Tooltips for Stat Drawer Abilities that vertically overflow the viewport are not scrollable</li>
+          <li>Certain effects only have their first 3 abilities linked (eg. Vanilla 2 -CD to all Spells)</li>
+          <li>Belakor has duplicate Lord of Torment and Whispers in the Darkness skills in his tree</li>
+          <li>Some poorly scaled skill icons depending on file path, mostly affects mods</li>
+          <li>Mounts obtained as quest items do not have stats linked</li>
+          <li>Faction Effects are not linked for WH2 Legendary Lords</li>
+        </ul>
+
+        <div className="flex flex-row place-content-center mt-12">
+          <hr className="grow mt-[1.6rem] opacity-50 border-gray-200" />
           <h1 className="w-max text-center text-5xl mx-2 mb-2 text-gray-200 text-shadow">Potential Additions</h1>
           <hr className="grow mt-[1.6rem] opacity-50 border-gray-200" />
         </div>
@@ -98,7 +118,7 @@ const About = () => {
           Some general items I would like to add/improve in the future, nothing is set in stone and some of these would
           take a lot of time, but I&apos;ve at least thought about them.
         </p>
-        <ul className="list-disc list-inside mx-auto text-gray-200 text-2xl">
+        <ul className="list-disc list-inside text-gray-200 text-2xl">
           <li>Character stats mount comparison</li>
           <li>Character stats skill integration</li>
           <li>Banner ancillary details</li>
