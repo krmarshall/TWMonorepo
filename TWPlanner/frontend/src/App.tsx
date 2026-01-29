@@ -42,6 +42,7 @@ const App = () => {
               <Route path="/tech/:mod/:techTree" element={<Tech />} />
 
               <Route path="/about" element={<About />} />
+              <Route path="/issues" element={<About />} />
               <Route path="/404" element={<NotFound />} />
 
               <Route path="/:mod/:faction" element={<Home />} />
