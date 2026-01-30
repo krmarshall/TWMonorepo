@@ -4,6 +4,7 @@ import { Toaster } from 'react-hot-toast';
 import Header from './components/Header.tsx';
 import LoadingSpinner from './components/LoadingSpinner.tsx';
 import { AppProvider } from './contexts/AppContext.tsx';
+import useBulkMediaQueries from './hooks/useBulkMediaQueries.tsx';
 
 const Home = lazy(() => import('./pages/Home.tsx'));
 const Planner = lazy(() => import('./pages/Planner.tsx'));
@@ -13,6 +14,7 @@ const About = lazy(() => import('./pages/About.tsx'));
 const NotFound = lazy(() => import('./pages/NotFound.tsx'));
 
 const App = () => {
+  const { doubleAdWidth, isMobile } = useBulkMediaQueries();
   return (
     <AppProvider>
       <div className={'bg-gray-800 w-screen h-screen flex flex-col flex-nowrap font-[CaslonAntique] select-none'}>
@@ -52,10 +54,12 @@ const App = () => {
             </Routes>
           </Suspense>
         </BrowserRouter>
-        <div className="w-full min-h-24 bg-gray-900 flex flex-row flex-nowrap place-content-around">
-          <div className="w-[728px] h-[90px] my-auto border border-gray-400"></div>
-          <div className="w-[728px] h-[90px] my-auto border border-gray-400"></div>
-        </div>
+        {!isMobile && (
+          <div className="w-full min-h-24 bg-gray-900 flex flex-row flex-nowrap place-content-around">
+            <div className="w-[728px] h-[90px] my-auto border border-gray-400"></div>
+            {doubleAdWidth && <div className="w-[728px] h-[90px] my-auto border border-gray-400"></div>}
+          </div>
+        )}
       </div>
     </AppProvider>
   );

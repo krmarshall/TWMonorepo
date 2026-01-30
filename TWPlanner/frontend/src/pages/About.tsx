@@ -22,7 +22,7 @@ const About = () => {
           <br /> Want to figure out what all the various lords and heroes actually do without recruiting each of them?
           <br /> Check what various overhaul mods have done to your favorite units?
           <br /> Help someone new to Total Warhammer figure out how to build characters?
-          <br /> Or maybe you are just a giant nerd like me and want to plan out what skills your going to have to skip.
+          <br /> Or maybe you are just a giant nerd like me and like to explore skill trees.
           <br /> These are some of the things I wanted to address with this tool and hopefully you find it useful!
         </p>
 
@@ -50,8 +50,8 @@ const About = () => {
           <hr className="grow mt-[1.6rem] opacity-50 border-gray-200" />
         </div>
         <p className="text-center text-gray-200 text-2xl">
-          Consider supporting Frodo, the developer of RPFM, without which this site and countless mods wouldn&apos;t be
-          possible.
+          Consider supporting Frodo the developer of RPFM. Without his tools this site and countless mods likely
+          wouldn&apos;t exist!
         </p>
         <a
           href="https://www.patreon.com/RPFM"
@@ -75,8 +75,7 @@ const About = () => {
           <hr className="grow mt-[1.6rem] opacity-50 border-gray-200" />
         </div>
         <p className="text-center text-gray-200 text-2xl">
-          Development is extremely time consuming, if you find this tool useful and want to help cover server costs,
-          keep this tool ad and tracking free, or just buy me a coffee by donating it is greatly appreciated.
+          If you have disposable income and feel like donating it is greatly appreciated!
         </p>
 
         <a href="https://ko-fi.com/D1D6EX4Y6" target="_blank" rel="noopener noreferrer" className="mx-auto mt-2">

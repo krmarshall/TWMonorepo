@@ -15,11 +15,24 @@
 
 @layer components {
   .button {
-    @apply px-5
+    @apply px-5 py-1 rounded-2xl my-auto shadow-md shadow-gray-900
   }
 }
 
 @layer utilities {
+  [popover]::backdrop {
+    backdrop-filter: brightness(65%);
+  }
+  
+  [popover] {
+    animation: scaleIn 0.2s;
+  }
+  @keyframes scaleIn {
+    0% {scale: 0.25}
+    75% {scale: 1.05}
+    100% {scale: 1.0}
+  }
+
   .fade-in {
     animation: fadeIn 0.35s;
     -webkit-animation: fadeIn 0.35s;

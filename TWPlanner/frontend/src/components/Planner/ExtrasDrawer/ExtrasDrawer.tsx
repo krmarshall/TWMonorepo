@@ -9,7 +9,7 @@ import FactionEffects from './FactionEffects.tsx';
 const ExtrasDrawer = () => {
   const { state, dispatch } = useContext(AppContext);
   const { extrasDrawerOpen } = state;
-  const { isShortWidth, isShortHeight, isThin } = useBulkMediaQueries();
+  const { isShortWidth, isShortHeight, isThin, drawerAdWidth } = useBulkMediaQueries();
 
   const isShort = isShortWidth || isShortHeight ? true : false;
 
@@ -37,7 +37,7 @@ const ExtrasDrawer = () => {
         <FactionEffects factionEffect={state.characterData?.factionEffects} />
       )}
       {!isShort && <BuildStorage />}
-      <div className="grow max-w-128 max-h-[18vh] border border-gray-400"></div>
+      {drawerAdWidth && <div className="grow max-w-128 max-h-[18vh] border border-gray-400"></div>}
     </div>
   );
 };

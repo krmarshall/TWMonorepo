@@ -5,19 +5,21 @@ import gameData from '../../data/gameData.ts';
 import TooltipWrapper from '../TooltipWrapper.tsx';
 import ReactImage from '../ReactImage.tsx';
 import placeholderImg from '../../imgs/other/0placeholder.webp';
+import useBulkMediaQueries from '../../hooks/useBulkMediaQueries.tsx';
 
 const ModSelector = () => {
   const { state, dispatch } = useContext(AppContext);
   const { selectedMod } = state;
+  const { isMobile } = useBulkMediaQueries();
 
   const gameKeys = Object.keys(gameData);
 
+  const layoutType = isMobile
+    ? 'w-fit'
+    : 'w-270 max-h-112 overflow-y-scroll scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-600';
+
   return (
-    <div
-      className={
-        'w-270 bg-gray-700 border rounded-md border-gray-500 justify-self-center p-1 max-h-112 overflow-y-scroll scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-600 '
-      }
-    >
+    <div className={layoutType + ' bg-gray-700 border rounded-md border-gray-500 justify-self-center p-1'}>
       <div className="flex flex-row place-content-center">
         <hr className="grow mt-5 opacity-50 border-gray-200" />
         <h1 className="w-max text-center text-4xl mx-2 text-gray-200 text-shadow">Mods</h1>
@@ -72,7 +74,7 @@ const ModSelector = () => {
                 exit={{ scale: 0.25 }}
                 whileHover={{ scale: 1.05, transition: { duration: 0.05 } }}
               >
-                <h2 className="text-center text-gray-200 text-2xl text-shadow mb-1">{game.text}</h2>
+                <h2 className="w-36 text-center mx-auto text-gray-200 text-2xl text-shadow mb-1">{game.text}</h2>
                 <ReactImage
                   srcList={[game.image, placeholderImg]}
                   alt={`${game.text} icon`}
@@ -101,7 +103,7 @@ const ModSelector = () => {
                     </span>
                   }
                 >
-                  <h3 className="w-fit mx-auto text-center text-gray-300 text-lg text-shadow underline decoration-dashed underline-offset-2">
+                  <h3 className="w-36 mx-auto text-center text-gray-300 text-lg text-shadow underline decoration-dashed underline-offset-2">
                     {game.category}
                   </h3>
                 </TooltipWrapper>
