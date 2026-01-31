@@ -10,11 +10,11 @@ import {
   getRelatedContactPhases,
   replaceKeepCaps,
 } from '../../../utils/sharedFunctions.ts';
-import SkillEffect from './SkillEffect.tsx';
-import TooltipAbilityCycler from '../../TooltipAbiltyCycler.tsx';
-import TooltipAbilityMap from '../../TooltipAbilityMap.tsx';
+import SkillEffect from './SubToolTips/SkillEffect.tsx';
+import TooltipAbilityCycler from './TooltipAbiltyCycler.tsx';
+import TooltipAbilityMap from './TooltipAbilityMap.tsx';
 import ReactImage from '../../ReactImage.tsx';
-import UnitCards from './UnitCards.tsx';
+import UnitCards from './SubToolTips/UnitCards.tsx';
 
 import itemSetIcon from '../../../imgs/other/icon_item_set.webp';
 
@@ -37,9 +37,7 @@ const ItemSetTooltip = ({
 }: PropInterface) => {
   const { state } = useContext(AppContext);
   const { searchString, selectedMod, highlightArray } = state;
-
-  const { isMobileWidth, isMobileHeight } = useBulkMediaQueries();
-  const isMobile = isMobileWidth || isMobileHeight ? true : false;
+  const { isMobile } = useBulkMediaQueries();
 
   useEffect(() => {
     const ctrKeyDownHandler = (event: KeyboardEvent) => {
@@ -79,71 +77,152 @@ const ItemSetTooltip = ({
   }
   return (
     <TooltipWrapper
+      noSkillRanks={true}
       tooltip={
-        <span
-          ref={tooltipRef}
-          className=" max-h-[98vh] text-center flex flex-row overflow-y-auto scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-700"
-        >
-          <div className="flex flex-col">
-            <div className="h-fit p-2 rounded border border-gray-400 shadow-lg text-gray-50 bg-gray-600">
-              <h3
-                className="text-gray-50 text-2xl"
-                dangerouslySetInnerHTML={{
-                  __html: DOMPurify.sanitize(replaceKeepCaps(itemSet.name, searchString)),
-                }}
-              ></h3>
-              {itemSet.description.trim() && !isMobile && (
-                <h4
-                  className="max-w-[20vw] mx-auto text-gray-50 opacity-70 text-lg"
-                  dangerouslySetInnerHTML={{
-                    __html: DOMPurify.sanitize(replaceKeepCaps(itemSet.description, searchString)),
-                  }}
-                ></h4>
-              )}
-              <div className="flex flex-row flex-wrap max-w-[20vw] mb-2">
-                <h4 className="text-gray-50 text-xl">Set Contains:</h4>
-                {itemSet.contains?.map((subItem, index) => {
-                  let subImgClassName = 'ml-2 w-12 h-12 -mr-1 -my-2 inline';
-                  if (subItem.icon.match(/\/ability_icons\/|\/skills\/|campaign_ui\/ancillaries\//) !== null) {
-                    subImgClassName += ' p-2.5';
-                  }
-                  return (
-                    <div key={index} className="flex flex-row flex-nowrap w-full">
-                      <ReactImage
-                        srcList={[
-                          `/imgs/vanilla3/${subItem.icon}.webp`,
-                          `/imgs/${selectedMod}/${subItem.icon}.webp`,
-                          `/imgs/vanilla3/${subItem.icon}.webp`,
-                        ]}
-                        className={subImgClassName}
-                        alt=""
-                        w="32"
-                        h="32"
-                      />
-                      <span className="inline my-auto text-lg">{subItem.name}</span>
-                    </div>
-                  );
-                })}
+        <>
+          {!isMobile && (
+            <span
+              ref={tooltipRef}
+              className="max-h-[98vh] text-center flex flex-row overflow-y-auto scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-700"
+            >
+              <div className="flex flex-col">
+                <div className="h-fit p-2 rounded border border-gray-400 shadow-lg text-gray-50 bg-gray-600">
+                  <h3
+                    className="text-gray-50 text-2xl"
+                    dangerouslySetInnerHTML={{
+                      __html: DOMPurify.sanitize(replaceKeepCaps(itemSet.name, searchString)),
+                    }}
+                  ></h3>
+                  {itemSet.description.trim() && (
+                    <h4
+                      className="max-w-[20vw] mx-auto text-gray-50 opacity-70 text-lg"
+                      dangerouslySetInnerHTML={{
+                        __html: DOMPurify.sanitize(replaceKeepCaps(itemSet.description, searchString)),
+                      }}
+                    ></h4>
+                  )}
+                  <div className="flex flex-row flex-wrap max-w-[20vw] mb-2">
+                    <h4 className="text-gray-50 text-xl">Set Contains:</h4>
+                    {itemSet.contains?.map((subItem, index) => {
+                      let subImgClassName = 'ml-2 w-12 h-12 -mr-1 -my-2 inline';
+                      if (subItem.icon.match(/\/ability_icons\/|\/skills\/|campaign_ui\/ancillaries\//) !== null) {
+                        subImgClassName += ' p-2.5';
+                      }
+                      return (
+                        <div key={index} className="flex flex-row flex-nowrap w-full">
+                          <ReactImage
+                            srcList={[
+                              `/imgs/vanilla3/${subItem.icon}.webp`,
+                              `/imgs/${selectedMod}/${subItem.icon}.webp`,
+                              `/imgs/vanilla3/${subItem.icon}.webp`,
+                            ]}
+                            className={subImgClassName}
+                            alt=""
+                            w="32"
+                            h="32"
+                          />
+                          <span className="inline my-auto text-lg">{subItem.name}</span>
+                        </div>
+                      );
+                    })}
+                  </div>
+                  <h4 className="text-gray-50 text-xl text-left mb-2">Provides the following effects once equipped:</h4>
+                  {itemSet.effects?.map((effect, index) => {
+                    return <SkillEffect key={index} skillEffect={effect} />;
+                  })}
+                  {itemSet.related_unit_cards !== undefined && (
+                    <UnitCards relatedUnitCards={itemSet.related_unit_cards} />
+                  )}
+                </div>
+                {relatedAbilities.length > 1 && (
+                  <TooltipAbilityCycler
+                    ctrCounter={ctrCounter}
+                    setCtrCounter={setCtrCounter}
+                    relatedAbilitiesLength={relatedAbilities.length}
+                  />
+                )}
               </div>
-              <h4 className="text-gray-50 text-xl text-left mb-2">Provides the following effects once equipped:</h4>
-              {itemSet.effects?.map((effect, index) => {
-                return <SkillEffect key={index} skillEffect={effect} />;
-              })}
-              {itemSet.related_unit_cards !== undefined && <UnitCards relatedUnitCards={itemSet.related_unit_cards} />}
-            </div>
-            {relatedAbilities.length > 1 && (
-              <TooltipAbilityCycler ctrCounter={ctrCounter} relatedAbilitiesLength={relatedAbilities.length} />
-            )}
-          </div>
-          {(relatedAbilities.length !== 0 || relatedPhases.length !== 0 || relatedAttributes.length !== 0) && (
-            <TooltipAbilityMap
-              relatedAbilities={relatedAbilities}
-              relatedPhases={relatedPhases}
-              relatedAttributes={relatedAttributes}
-              ctrCounter={ctrCounter}
-            />
+              {(relatedAbilities.length !== 0 || relatedPhases.length !== 0 || relatedAttributes.length !== 0) && (
+                <TooltipAbilityMap
+                  relatedAbilities={relatedAbilities}
+                  relatedPhases={relatedPhases}
+                  relatedAttributes={relatedAttributes}
+                  ctrCounter={ctrCounter}
+                />
+              )}
+            </span>
           )}
-        </span>
+          {isMobile && (
+            <span
+              ref={tooltipRef}
+              className="w-full max-h-full my-auto text-center flex flex-col overflow-y-auto scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-700"
+            >
+              <div className="h-fit p-2 rounded border border-gray-400 shadow-lg text-gray-50 bg-gray-600">
+                <h3
+                  className="text-gray-50 text-2xl"
+                  dangerouslySetInnerHTML={{
+                    __html: DOMPurify.sanitize(replaceKeepCaps(itemSet.name, searchString)),
+                  }}
+                ></h3>
+                {itemSet.description.trim() && !isMobile && (
+                  <h4
+                    className="mx-auto text-gray-50 opacity-70 text-lg"
+                    dangerouslySetInnerHTML={{
+                      __html: DOMPurify.sanitize(replaceKeepCaps(itemSet.description, searchString)),
+                    }}
+                  ></h4>
+                )}
+                <div className="flex flex-row flex-wrap mb-2">
+                  <h4 className="text-gray-50 text-xl">Set Contains:</h4>
+                  {itemSet.contains?.map((subItem, index) => {
+                    let subImgClassName = 'ml-2 w-12 h-12 -mr-1 -my-2 inline';
+                    if (subItem.icon.match(/\/ability_icons\/|\/skills\/|campaign_ui\/ancillaries\//) !== null) {
+                      subImgClassName += ' p-2.5';
+                    }
+                    return (
+                      <div key={index} className="flex flex-row flex-nowrap w-full">
+                        <ReactImage
+                          srcList={[
+                            `/imgs/vanilla3/${subItem.icon}.webp`,
+                            `/imgs/${selectedMod}/${subItem.icon}.webp`,
+                            `/imgs/vanilla3/${subItem.icon}.webp`,
+                          ]}
+                          className={subImgClassName}
+                          alt=""
+                          w="32"
+                          h="32"
+                        />
+                        <span className="inline my-auto text-lg">{subItem.name}</span>
+                      </div>
+                    );
+                  })}
+                </div>
+                <h4 className="text-gray-50 text-xl text-left mb-2">Provides the following effects once equipped:</h4>
+                {itemSet.effects?.map((effect, index) => {
+                  return <SkillEffect key={index} skillEffect={effect} />;
+                })}
+                {itemSet.related_unit_cards !== undefined && (
+                  <UnitCards relatedUnitCards={itemSet.related_unit_cards} />
+                )}
+              </div>
+              {relatedAbilities.length > 1 && (
+                <TooltipAbilityCycler
+                  ctrCounter={ctrCounter}
+                  setCtrCounter={setCtrCounter}
+                  relatedAbilitiesLength={relatedAbilities.length}
+                />
+              )}
+              {(relatedAbilities.length !== 0 || relatedPhases.length !== 0 || relatedAttributes.length !== 0) && (
+                <TooltipAbilityMap
+                  relatedAbilities={relatedAbilities}
+                  relatedPhases={relatedPhases}
+                  relatedAttributes={relatedAttributes}
+                  ctrCounter={ctrCounter}
+                />
+              )}
+            </span>
+          )}
+        </>
       }
     >
       <img

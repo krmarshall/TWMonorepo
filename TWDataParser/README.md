@@ -11,6 +11,7 @@ When CA adds weird stuff that probably needs new tables (like mounts getting aut
 ## To Do
 
 - Technology Faction Variant Selector like for Skill Trees, technology_nodes has faction_key column
+- Automate SpellLores with special_ability_groups_to_units_junctions_tables
 
 ## Weird Errors
 
@@ -19,7 +20,6 @@ When CA adds weird stuff that probably needs new tables (like mounts getting aut
 
 ## Keep any eye on
 
-- effect_bonus_value_unit_list_junctions_tables | ui_effect_excluded_units_and_sets_tables related to showing what units benefit from effects?
 - technology_ui_tabs_tables | technology_ui_tabs_to_technology_nodes_junctions_tables
 
 ## How To Use

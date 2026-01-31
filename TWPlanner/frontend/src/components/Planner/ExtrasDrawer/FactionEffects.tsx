@@ -17,9 +17,7 @@ const FactionEffects = ({ factionEffect }: PropInterface) => {
   return (
     <div className="flex flex-col mx-1 min-w-58 shadow-lg bg-gray-700 border border-gray-500 rounded">
       <h2 className="text-center text-3xl mt-1 text-gray-200 text-shadow">Faction Effects</h2>
-      <div
-        className={highlightArray?.factionEffects ? 'w-full m-auto pb-1 rounded searchOutline' : 'w-full m-auto pb-1'}
-      >
+      <div className={highlightArray?.factionEffects ? 'w-fit m-auto pb-1 rounded searchOutline' : 'w-fit m-auto pb-1'}>
         <BaseCell factionEffect={factionEffect} srcList={srcList} />
       </div>
     </div>

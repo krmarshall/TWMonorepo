@@ -5,7 +5,7 @@ import { Fragment } from 'react/jsx-runtime';
 import { Ref, useRef } from 'react';
 
 const Header = () => {
-  const { isSmol, shortenHeaderTitle, isMobileWidth } = useBulkMediaQueries();
+  const { isNarrow, shortenHeaderTitle, isMobileWidth } = useBulkMediaQueries();
   const popoverRef: Ref<HTMLDivElement> | null = useRef(null);
 
   const closePopover = () => {
@@ -31,7 +31,7 @@ const Header = () => {
         </Link>
       </div>
 
-      {!isSmol && ( // Desktop Links
+      {!isNarrow && ( // Desktop Links
         <Fragment>
           <div className={'w-1/3 flex flex-row justify-center text-2xl text-slate-50 my-auto'}>
             <Link className={buttonClass + avoidImageMargin} to={'/'} draggable={false}>
@@ -49,7 +49,7 @@ const Header = () => {
           </div>
         </Fragment>
       )}
-      {isSmol && ( // Mobile Links Hamburger/Popover
+      {isNarrow && ( // Mobile Links Hamburger/Popover
         <Fragment>
           <button popoverTarget="navPopover" popoverTargetAction="toggle">
             <svg

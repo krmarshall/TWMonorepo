@@ -15,7 +15,7 @@ const ModSelector = () => {
   const gameKeys = Object.keys(gameData);
 
   const layoutType = isMobile
-    ? 'w-fit'
+    ? 'w-fit mb-2'
     : 'w-270 max-h-112 overflow-y-scroll scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-600';
 
   return (
@@ -83,30 +83,35 @@ const ModSelector = () => {
                   w="128"
                 />
                 <h3 className="text-center text-gray-300 text-base text-shadow mt-2">{game.updated}</h3>
-                <TooltipWrapper
-                  tooltip={
-                    <span className="text-center flex flex-row max-w-[25vw]">
-                      <div className="h-fit p-2 rounded border border-gray-400 shadow-lg text-gray-50 text-xl bg-gray-600">
-                        <h3 className="text-gray-50">{categoryDesc}</h3>
-                        <div className="text-center">
-                          {game.includes !== undefined && <p className="pt-3">Includes:</p>}
-                          {game.includes !== undefined &&
-                            game.includes?.map((includedMod) => {
-                              return (
-                                <p key={includedMod} className="pt-1">
-                                  {includedMod}
-                                </p>
-                              );
-                            })}
+                {!isMobile && (
+                  <TooltipWrapper
+                    tooltip={
+                      <span className="text-center flex flex-row max-w-[25vw]">
+                        <div className="h-fit p-2 rounded border border-gray-400 shadow-lg text-gray-50 text-xl bg-gray-600">
+                          <h3 className="text-gray-50">{categoryDesc}</h3>
+                          <div className="text-center">
+                            {game.includes !== undefined && <p className="pt-3">Includes:</p>}
+                            {game.includes !== undefined &&
+                              game.includes?.map((includedMod) => {
+                                return (
+                                  <p key={includedMod} className="pt-1">
+                                    {includedMod}
+                                  </p>
+                                );
+                              })}
+                          </div>
                         </div>
-                      </div>
-                    </span>
-                  }
-                >
-                  <h3 className="w-36 mx-auto text-center text-gray-300 text-lg text-shadow underline decoration-dashed underline-offset-2">
-                    {game.category}
-                  </h3>
-                </TooltipWrapper>
+                      </span>
+                    }
+                  >
+                    <h3 className="w-36 mx-auto text-center text-gray-300 text-lg text-shadow underline decoration-dashed underline-offset-2">
+                      {game.category}
+                    </h3>
+                  </TooltipWrapper>
+                )}
+                {isMobile && (
+                  <h3 className="w-36 mx-auto text-center text-gray-300 text-lg text-shadow">{game.category}</h3>
+                )}
                 {game.workshopLink !== undefined && (
                   <h3 className="text-center text-blue-400 text-lg text-shadow">
                     <a href={game.workshopLink} target="_blank" rel="noopener noreferrer" className="hover:underline">

@@ -24,13 +24,10 @@ const Planner = () => {
   const { state, dispatch } = useContext(AppContext);
   const { characterData } = state;
   const { mod, faction, character, code } = useParams();
-  const { isMobileWidth, isMobileHeight, isShortWidth, isShortHeight } = useBulkMediaQueries();
+  const { isMobile } = useBulkMediaQueries();
 
   const [urlLoaded, setUrlLoaded] = useState(false);
   const [mobileTab, setMobileTab] = useState('skills');
-
-  const isMobile = isMobileWidth || isMobileHeight ? true : false;
-  const isShort = isShortWidth || isShortHeight ? true : false;
 
   const navigate = useNavigate();
 
@@ -151,10 +148,10 @@ const Planner = () => {
         <LoadingSpinner loadingText="Loading Character Data..." />
       ) : (
         <>
-          {!isShort ? (
+          {!isMobile ? (
             <>
-              <TopBar isMobile={isMobile} />
-              {!isMobile && <CharacterPortrait />}
+              <TopBar />
+              <CharacterPortrait />
               <div className="relative flex flex-row flex-nowrap grow max-h-[88vh] min-h-[50vh]">
                 <StatsDrawer />
 

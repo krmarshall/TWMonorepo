@@ -7,9 +7,9 @@ import {
   getRelatedContactPhases,
   replaceKeepCaps,
 } from '../../utils/sharedFunctions.ts';
-import SkillEffect from '../Planner/Tooltips/SkillEffect.tsx';
-import TooltipAbilityCycler from '../TooltipAbiltyCycler.tsx';
-import TooltipAbilityMap from '../TooltipAbilityMap.tsx';
+import SkillEffect from '../Planner/Tooltips/SubToolTips/SkillEffect.tsx';
+import TooltipAbilityCycler from '../Planner/Tooltips/TooltipAbiltyCycler.tsx';
+import TooltipAbilityMap from '../Planner/Tooltips/TooltipAbilityMap.tsx';
 import { AppContext } from '../../contexts/AppContext.tsx';
 import DOMPurify from 'dompurify';
 
@@ -105,7 +105,11 @@ const TechTooltip = ({ tech, ctrCounter, setCtrCounter, setTooltipScrollable, to
           </div>
         </div>
         {relatedAbilities.length > 1 && (
-          <TooltipAbilityCycler ctrCounter={ctrCounter} relatedAbilitiesLength={relatedAbilities.length} />
+          <TooltipAbilityCycler
+            ctrCounter={ctrCounter}
+            setCtrCounter={setCtrCounter}
+            relatedAbilitiesLength={relatedAbilities.length}
+          />
         )}
       </div>
 

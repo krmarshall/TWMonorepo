@@ -1,7 +1,8 @@
-import { AbilityInterface, AttributeInterface, PhaseInterface } from '../@types/CharacterInterfaceRef.ts';
-import AttributeTooltip from './Planner/Tooltips/AttributeTooltip.tsx';
-import SkillAbilityTooltip from './Planner/Tooltips/SkillAbilityTooltip.tsx';
-import SkillPhase from './Planner/Tooltips/SkillPhase.tsx';
+import { AbilityInterface, AttributeInterface, PhaseInterface } from '../../../@types/CharacterInterfaceRef.ts';
+import useBulkMediaQueries from '../../../hooks/useBulkMediaQueries.tsx';
+import AttributeTooltip from './AttributeTooltip.tsx';
+import SkillAbilityTooltip from './SkillAbilityTooltip.tsx';
+import SkillPhase from './SubToolTips/SkillPhase.tsx';
 
 interface PropInterface {
   relatedAbilities: Array<AbilityInterface>;
@@ -11,8 +12,10 @@ interface PropInterface {
 }
 
 const TooltipAbilityMap = ({ relatedAbilities, relatedPhases, relatedAttributes, ctrCounter }: PropInterface) => {
+  const { isMobile } = useBulkMediaQueries();
+  const layoutType = isMobile ? '' : 'w-fit h-fit max-w-[30vw] ml-2';
   return (
-    <div className="flex flex-col w-fit h-fit max-w-[30vw] ml-2">
+    <div className={layoutType + ' flex flex-col gap-2'}>
       {relatedAbilities.map((ability, index) => {
         if (index !== ctrCounter) {
           return;

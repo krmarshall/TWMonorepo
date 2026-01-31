@@ -1,9 +1,9 @@
 import DOMPurify from 'dompurify';
-import { StatEffectInterface } from '../../../@types/CharacterInterfaceRef.ts';
-import { replaceKeepCaps } from '../../../utils/sharedFunctions.ts';
-import ReactImage from '../../ReactImage.tsx';
+import { StatEffectInterface } from '../../../../@types/CharacterInterfaceRef.ts';
+import { replaceKeepCaps } from '../../../../utils/sharedFunctions.ts';
+import ReactImage from '../../../ReactImage.tsx';
 import { useContext } from 'react';
-import { AppContext } from '../../../contexts/AppContext.tsx';
+import { AppContext } from '../../../../contexts/AppContext.tsx';
 
 interface PropInterface {
   effect: StatEffectInterface;

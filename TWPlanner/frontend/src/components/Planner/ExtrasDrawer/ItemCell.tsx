@@ -6,6 +6,7 @@ import TooltipWrapper from '../../TooltipWrapper.tsx';
 import ItemSetTooltip from '../Tooltips/ItemSetTooltip.tsx';
 
 import questBattle from '../../../imgs/other/icon_quest_battle.webp';
+import useBulkMediaQueries from '../../../hooks/useBulkMediaQueries.tsx';
 
 interface PropInterface {
   item: ItemInterface;
@@ -15,6 +16,7 @@ interface PropInterface {
 const ItemCell = ({ item, index }: PropInterface) => {
   const { state } = useContext(AppContext);
   const { selectedMod, highlightArray } = state;
+  const { isMobile } = useBulkMediaQueries();
 
   const [tooltipScrollable, setTooltipScrollable] = useState(false);
   const [ctrCounter, setCtrCounter] = useState(0);
@@ -48,6 +50,8 @@ const ItemCell = ({ item, index }: PropInterface) => {
   if (highlightArray?.items?.[index].item) {
     divClassName += ' rounded searchOutline m-auto';
   }
+
+  const tooltipLayoutContext = isMobile ? 'w-full max-h-full my-auto' : 'w-max';
   return (
     <div key={item.key} className={divClassName} ref={cellRef}>
       <BaseCell
@@ -62,8 +66,13 @@ const ItemCell = ({ item, index }: PropInterface) => {
       />
       {item.unlocked_at_rank !== undefined && (
         <TooltipWrapper
+          noSkillRanks={true}
           tooltip={
-            <div className="w-max p-2 rounded border border-gray-400 shadow-lg text-gray-50 bg-gray-600">
+            <div
+              className={
+                tooltipLayoutContext + ' p-2 rounded border border-gray-400 shadow-lg text-gray-50 bg-gray-600'
+              }
+            >
               <p className="text-yellow-300 text-xl">Available via Quest/Rank unlock at Rank {item.unlocked_at_rank}</p>
             </div>
           }

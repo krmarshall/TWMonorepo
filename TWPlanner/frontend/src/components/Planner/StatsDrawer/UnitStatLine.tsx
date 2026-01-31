@@ -42,7 +42,7 @@ const UnitStatLine = ({
         />
         {tooltip !== undefined ? (
           <div className="my-auto w-8">
-            <TooltipWrapper tooltip={tooltip}>
+            <TooltipWrapper tooltip={tooltip} noSkillRanks={true}>
               <p className="w-8 underline decoration-dashed decoration-gray-300">{statValue}</p>
             </TooltipWrapper>
           </div>

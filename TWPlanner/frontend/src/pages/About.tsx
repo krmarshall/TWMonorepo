@@ -2,8 +2,8 @@ import { useEffect } from 'react';
 import useBulkMediaQueries from '../hooks/useBulkMediaQueries.tsx';
 
 const About = () => {
-  const { isShortWidth } = useBulkMediaQueries();
-  const marginThickness = isShortWidth ? ' mx-2' : ' mx-32';
+  const { isMobileWidth } = useBulkMediaQueries();
+  const marginThickness = isMobileWidth ? ' mx-2' : ' mx-32';
 
   useEffect(() => {
     document.title = 'Total Warhammer Planner - About';
@@ -121,7 +121,6 @@ const About = () => {
           <li>Character stats mount comparison</li>
           <li>Character stats skill integration</li>
           <li>Banner ancillary details</li>
-          <li>Mobile UI</li>
         </ul>
       </div>
     </div>

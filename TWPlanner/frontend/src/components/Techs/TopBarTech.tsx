@@ -35,7 +35,7 @@ const TopBarTech = ({ isMobile }: PropInterface) => {
     <div className="h-18 flex flex-row place-content-between">
       <div className="w-[30vw] flex place-content-start">
         <button
-          className="flex flex-row place-content-center my-auto px-3 bg-gray-500 hover:bg-gray-400/80 border rounded-xl drop-shadow-lg hover-scale"
+          className="flex flex-row place-content-center my-auto px-3 bg-gray-500 hover:bg-gray-400/80 rounded-xl drop-shadow-lg hover-scale"
           onClick={() => navigate('/techHome')}
         >
           <img src={backIcon} alt="Back" width="45" height="45" className="my-auto w-8 h-8" draggable={false} />
@@ -75,12 +75,12 @@ const TopBarTech = ({ isMobile }: PropInterface) => {
             </div>
           }
         >
-          <div className="my-auto mr-4 px-3 text-2xl text-gray-50 border rounded-full bg-gray-500 hover:bg-gray-400/80 drop-shadow-lg hover-scale">
+          <div className="my-auto mr-4 px-3 text-2xl text-gray-50 rounded-full bg-gray-500 hover:bg-gray-400/80 drop-shadow-lg hover-scale">
             ?
           </div>
         </TooltipWrapper>
         <button
-          className="flex flex-row place-content-center mr-4 px-2 my-auto bg-gray-500 hover:bg-gray-400/80 border rounded-xl drop-shadow-lg hover-scale"
+          className="flex flex-row place-content-center mr-4 px-2 my-auto bg-gray-500 hover:bg-gray-400/80 rounded-xl drop-shadow-lg hover-scale"
           onClick={resetButtonHandler}
         >
           <img src={resetIcon} alt="reset" width="20" height="20" className="my-auto w-6 h-6" draggable={false} />

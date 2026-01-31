@@ -8,15 +8,13 @@ import StartPosTraits from './StartPosTraits.tsx';
 const StatsDrawer = () => {
   const { state, dispatch } = useContext(AppContext);
   const { characterData, statsDrawerOpen } = state;
-  const { isShortWidth, isShortHeight, isThin } = useBulkMediaQueries();
-
-  const isShort = isShortWidth || isShortHeight ? true : false;
+  const { isMobile } = useBulkMediaQueries();
 
   useEffect(() => {
-    if (isShort || isThin) {
+    if (isMobile) {
       dispatch({ type: AppContextActions.changeStatsDrawerOpen, payload: { statsDrawerOpen: false } });
     }
-  }, [isShort, isThin]);
+  }, [isMobile]);
 
   let drawerClass =
     'w-68 shrink-0 slide-out-hor bg-gray-700 border rounded border-gray-500 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-600';
@@ -26,11 +24,11 @@ const StatsDrawer = () => {
     drawerClass += ' max-w-0';
   }
 
-  const drawerClassShort =
-    'mx-auto h-auto w-68 mt-1.5 p-1.5 border rounded border-gray-500 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-600';
+  const drawerClassMobile =
+    'mx-auto h-auto w-68 mt-1.5 p-1.5 bg-gray-700 border rounded border-gray-500 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-600';
 
   return (
-    <div className={isShort ? drawerClassShort : drawerClass}>
+    <div className={isMobile ? drawerClassMobile : drawerClass}>
       {characterData?.startPosTraits !== undefined && <StartPosTraits />}
       {characterData?.altFactionNodeSets !== undefined && <FactionVariantSelect />}
       <UnitStats />

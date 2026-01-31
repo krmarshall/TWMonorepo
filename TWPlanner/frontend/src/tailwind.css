@@ -21,7 +21,7 @@
 
 @layer utilities {
   [popover]::backdrop {
-    backdrop-filter: brightness(65%);
+    backdrop-filter: brightness(50%) grayscale(100%);
   }
   
   [popover] {

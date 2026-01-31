@@ -14,7 +14,7 @@ const About = lazy(() => import('./pages/About.tsx'));
 const NotFound = lazy(() => import('./pages/NotFound.tsx'));
 
 const App = () => {
-  const { doubleAdWidth, isMobile } = useBulkMediaQueries();
+  const { adWidthControl, isMobile } = useBulkMediaQueries();
   return (
     <AppProvider>
       <div className={'bg-gray-800 w-screen h-screen flex flex-col flex-nowrap font-[CaslonAntique] select-none'}>
@@ -57,7 +57,7 @@ const App = () => {
         {!isMobile && (
           <div className="w-full min-h-24 bg-gray-900 flex flex-row flex-nowrap place-content-around">
             <div className="w-[728px] h-[90px] my-auto border border-gray-400"></div>
-            {doubleAdWidth && <div className="w-[728px] h-[90px] my-auto border border-gray-400"></div>}
+            {adWidthControl && <div className="w-[728px] h-[90px] my-auto border border-gray-400"></div>}
           </div>
         )}
       </div>

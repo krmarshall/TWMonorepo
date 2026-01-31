@@ -1,4 +1,4 @@
-import { VortexInterface } from '../../../@types/CharacterInterfaceRef.ts';
+import { VortexInterface } from '../../../../@types/CharacterInterfaceRef.ts';
 
 interface PropsInterface {
   vortex: VortexInterface;

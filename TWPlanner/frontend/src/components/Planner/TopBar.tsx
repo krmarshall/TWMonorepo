@@ -15,12 +15,9 @@ import rightMouse from '../../imgs/other/help_page_right_mouse.webp';
 import scrollWheel from '../../imgs/other/help_page_middle_mouse.webp';
 import shift from '../../imgs/other/help_page_camera_speed_controls.webp';
 import nodeSetMap from '../../data/characters/nodeSetMap.json';
+import useBulkMediaQueries from '../../hooks/useBulkMediaQueries.tsx';
 
-interface PropInterface {
-  isMobile: boolean;
-}
-
-const TopBar = ({ isMobile }: PropInterface) => {
+const TopBar = () => {
   const { state, dispatch } = useContext(AppContext);
   const {
     characterBuild,
@@ -31,7 +28,7 @@ const TopBar = ({ isMobile }: PropInterface) => {
     selectedStartPosTrait,
   } = state;
   const { mod, faction, character } = useParams();
-
+  const { isMobile } = useBulkMediaQueries();
   const [effectiveRank, setEffectiveRank] = useState(1);
 
   const navigate = useNavigate();
@@ -104,7 +101,7 @@ const TopBar = ({ isMobile }: PropInterface) => {
     <div className="h-18 flex flex-row place-content-between whitespace-nowrap">
       <div className="w-[30vw] flex place-content-start">
         <button
-          className="flex flex-row min-w-24 place-content-center my-auto mr-4 px-3 bg-gray-500 hover:bg-gray-400/80 border rounded-xl drop-shadow-lg hover-scale"
+          className="flex flex-row min-w-24 place-content-center my-auto mr-4 px-3 bg-gray-500 hover:bg-gray-400/80 rounded-xl drop-shadow-lg hover-scale"
           onClick={() => navigate('/')}
         >
           <img src={backIcon} alt="Back" width="45" height="45" className="my-auto w-8 h-8" draggable={false} />
@@ -136,7 +133,7 @@ const TopBar = ({ isMobile }: PropInterface) => {
               </div>
             }
           >
-            <div className="my-auto px-3 mr-4 text-2xl text-gray-50 border rounded-full bg-gray-500 hover:bg-gray-400/80 drop-shadow-lg hover-scale">
+            <div className="my-auto px-3 mr-4 text-2xl text-gray-50 rounded-full bg-gray-500 hover:bg-gray-400/80 drop-shadow-lg hover-scale">
               ?
             </div>
           </TooltipWrapper>
@@ -188,7 +185,7 @@ const TopBar = ({ isMobile }: PropInterface) => {
               </div>
             </div>
             <button
-              className="flex flex-row min-w-20 place-content-center mr-4 my-auto px-2 bg-blue-600 hover:bg-blue-500 border rounded-xl drop-shadow-lg hover-scale"
+              className="flex flex-row min-w-20 place-content-center mr-4 my-auto px-2 bg-blue-600 hover:bg-blue-500 rounded-xl drop-shadow-lg hover-scale"
               onClick={shareButtonHandler}
             >
               <img src={shareIcon} alt="Share" width="20" height="20" className="my-auto w-6 h-6" draggable={false} />
@@ -198,7 +195,7 @@ const TopBar = ({ isMobile }: PropInterface) => {
         )}
 
         <button
-          className="flex flex-row min-w-20 place-content-center mr-4 px-2 my-auto bg-gray-500 hover:bg-gray-400/80 border rounded-xl drop-shadow-lg hover-scale"
+          className="flex flex-row min-w-20 place-content-center mr-4 px-2 my-auto bg-gray-500 hover:bg-gray-400/80 rounded-xl drop-shadow-lg hover-scale"
           onClick={resetButtonHandler}
         >
           <img src={resetIcon} alt="reset" width="20" height="20" className="my-auto w-6 h-6" draggable={false} />

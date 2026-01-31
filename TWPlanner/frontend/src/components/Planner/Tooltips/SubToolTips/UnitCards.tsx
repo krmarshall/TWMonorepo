@@ -1,6 +1,7 @@
 import { useContext } from 'react';
-import { AppContext } from '../../../contexts/AppContext.tsx';
-import ReactImage from '../../ReactImage.tsx';
+import { AppContext } from '../../../../contexts/AppContext.tsx';
+import ReactImage from '../../../ReactImage.tsx';
+import useBulkMediaQueries from '../../../../hooks/useBulkMediaQueries.tsx';
 
 interface PropInterface {
   relatedUnitCards: Array<string>;
@@ -9,12 +10,15 @@ interface PropInterface {
 const UnitCards = ({ relatedUnitCards }: PropInterface) => {
   const { state } = useContext(AppContext);
   const { selectedMod } = state;
+  const { isMobile } = useBulkMediaQueries();
+
+  const contextWidth = isMobile ? '' : ' max-w-[26vw]';
 
   const unitCardsArray = Array.from(relatedUnitCards);
   return (
     <div className="max-w-fit">
       <p className="text-gray-50 text-xl text-left my-2">Units receiving bonuses from this skill:</p>
-      <ul className="flex flex-wrap max-w-[26vw]">
+      <ul className={'flex flex-wrap' + contextWidth}>
         {unitCardsArray.map((unitCard) => (
           <ReactImage
             key={unitCard}
