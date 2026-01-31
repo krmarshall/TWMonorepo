@@ -15,7 +15,6 @@ import rightMouse from '../../imgs/other/help_page_right_mouse.webp';
 import scrollWheel from '../../imgs/other/help_page_middle_mouse.webp';
 import shift from '../../imgs/other/help_page_camera_speed_controls.webp';
 import nodeSetMap from '../../data/characters/nodeSetMap.json';
-import useBulkMediaQueries from '../../hooks/useBulkMediaQueries.tsx';
 
 const TopBar = () => {
   const { state, dispatch } = useContext(AppContext);
@@ -28,7 +27,6 @@ const TopBar = () => {
     selectedStartPosTrait,
   } = state;
   const { mod, faction, character } = useParams();
-  const { isMobile } = useBulkMediaQueries();
   const [effectiveRank, setEffectiveRank] = useState(1);
 
   const navigate = useNavigate();
@@ -90,13 +88,6 @@ const TopBar = () => {
 
   const rankLimit = mod?.includes('2') ? 40 : 50;
 
-  let headerClass = 'z-10 text-center text-4xl mx-auto text-gray-200 text-shadow-border ';
-  if (isMobile) {
-    headerClass += ' mb-2';
-  } else {
-    headerClass += ' m-2';
-  }
-
   return (
     <div className="h-18 flex flex-row place-content-between whitespace-nowrap">
       <div className="w-[30vw] flex place-content-start">
@@ -107,92 +98,84 @@ const TopBar = () => {
           <img src={backIcon} alt="Back" width="45" height="45" className="my-auto w-8 h-8" draggable={false} />
           <p className="text-center text-gray-200 text-2xl px-0.5 ml-1">Home</p>
         </button>
-        {!isMobile && (
-          <TooltipWrapper
-            tooltip={
-              <div className="h-fit p-2 rounded border border-gray-400 shadow-lg text-gray-50 text-xl bg-gray-600">
-                <h5 className="text-3xl text-center">Controls</h5>
-                <div className="flex flex-row flex-nowrap mb-1">
-                  <img src={leftMouse} alt="left mouse" height="36" width="27" />
-                  <p className="my-auto">Select Skill</p>
-                </div>
-                <div className="flex flex-row flex-nowrap mb-1">
-                  <img src={rightMouse} alt="right mouse" height="36" width="27" />
-                  <p className="my-auto">Deselect Skill</p>
-                </div>
-                <div className="flex flex-row flex-nowrap mb-1">
-                  <img src={scrollWheel} alt="scroll wheel" height="36" width="27" />
-                  <p className="my-auto">Scroll Horizontally</p>
-                </div>
-                <div className="flex flex-row flex-nowrap">
-                  <img src={shift} alt="shift" height="32" width="86" />
-                  <p className="my-auto">+</p>
-                  <img src={scrollWheel} alt="scroll wheel" height="36" width="27" />
-                  <p className="my-auto">Scroll Vertically</p>
-                </div>
+        <TooltipWrapper
+          tooltip={
+            <div className="h-fit p-2 rounded border border-gray-400 shadow-lg text-gray-50 text-xl bg-gray-600">
+              <h5 className="text-3xl text-center">Controls</h5>
+              <div className="flex flex-row flex-nowrap mb-1">
+                <img src={leftMouse} alt="left mouse" height="36" width="27" />
+                <p className="my-auto">Select Skill</p>
               </div>
-            }
-          >
-            <div className="my-auto px-3 mr-4 text-2xl text-gray-50 rounded-full bg-gray-500 hover:bg-gray-400/80 drop-shadow-lg hover-scale">
-              ?
+              <div className="flex flex-row flex-nowrap mb-1">
+                <img src={rightMouse} alt="right mouse" height="36" width="27" />
+                <p className="my-auto">Deselect Skill</p>
+              </div>
+              <div className="flex flex-row flex-nowrap mb-1">
+                <img src={scrollWheel} alt="scroll wheel" height="36" width="27" />
+                <p className="my-auto">Scroll Horizontally</p>
+              </div>
+              <div className="flex flex-row flex-nowrap">
+                <img src={shift} alt="shift" height="32" width="86" />
+                <p className="my-auto">+</p>
+                <img src={scrollWheel} alt="scroll wheel" height="36" width="27" />
+                <p className="my-auto">Scroll Vertically</p>
+              </div>
             </div>
-          </TooltipWrapper>
-        )}
-        <p className="text-gray-200 text-2xl text-center my-auto">
-          {isMobile ? gameData[state.selectedMod]?.text : `Selected Game: ${gameData[state.selectedMod]?.text}`}
-        </p>
+          }
+        >
+          <div className="my-auto px-3 mr-4 text-2xl text-gray-50 rounded-full bg-gray-500 hover:bg-gray-400/80 drop-shadow-lg hover-scale">
+            ?
+          </div>
+        </TooltipWrapper>
+        <p className="text-gray-200 text-2xl text-center my-auto">Selected Game: {gameData[state.selectedMod]?.text}</p>
       </div>
 
-      <h1 className={headerClass}>{characterName}</h1>
+      <h1 className="z-10 m-2 text-center text-4xl mx-auto text-gray-200 text-shadow-border">{characterName}</h1>
 
       <div className="w-[30vw] flex place-content-end">
-        {!isMobile && (
-          <>
-            <div className=" flex flex-col flex-nowrap justify-center mr-4 text-gray-50">
-              <div className="ml-auto flex flex-row flex-nowrap w-fit">
-                <label htmlFor="statsCheckbox" className="text-2xl text-center my-auto cursor-pointer">
-                  Stats Drawer
-                </label>
-                <input
-                  type="checkbox"
-                  id="statsCheckbox"
-                  defaultChecked={statsDrawerOpen}
-                  onChange={() => {
-                    dispatch({
-                      type: AppContextActions.changeStatsDrawerOpen,
-                      payload: { statsDrawerOpen: !statsDrawerOpen },
-                    });
-                  }}
-                  className="ml-2 w-4 cursor-pointer"
-                />
-              </div>
-              <div className="ml-auto mb-1 flex flex-row flex-nowrap w-fit">
-                <label htmlFor="extrasCheckbox" className="text-2xl text-center my-auto cursor-pointer">
-                  Extras Drawer
-                </label>
-                <input
-                  type="checkbox"
-                  id="extrasCheckbox"
-                  defaultChecked={extrasDrawerOpen}
-                  onChange={() => {
-                    dispatch({
-                      type: AppContextActions.changeExtrasDrawerOpen,
-                      payload: { extrasDrawerOpen: !extrasDrawerOpen },
-                    });
-                  }}
-                  className="ml-2 w-4 cursor-pointer"
-                />
-              </div>
-            </div>
-            <button
-              className="flex flex-row min-w-20 place-content-center mr-4 my-auto px-2 bg-blue-600 hover:bg-blue-500 rounded-xl drop-shadow-lg hover-scale"
-              onClick={shareButtonHandler}
-            >
-              <img src={shareIcon} alt="Share" width="20" height="20" className="my-auto w-6 h-6" draggable={false} />
-              <p className="text-center text-gray-200 text-2xl px-0.5">Share</p>
-            </button>
-          </>
-        )}
+        <div className=" flex flex-col flex-nowrap justify-center mr-4 text-gray-50">
+          <div className="ml-auto flex flex-row flex-nowrap w-fit">
+            <label htmlFor="statsCheckbox" className="text-2xl text-center my-auto cursor-pointer">
+              Stats Drawer
+            </label>
+            <input
+              type="checkbox"
+              id="statsCheckbox"
+              defaultChecked={statsDrawerOpen}
+              onChange={() => {
+                dispatch({
+                  type: AppContextActions.changeStatsDrawerOpen,
+                  payload: { statsDrawerOpen: !statsDrawerOpen },
+                });
+              }}
+              className="ml-2 w-4 cursor-pointer"
+            />
+          </div>
+          <div className="ml-auto mb-1 flex flex-row flex-nowrap w-fit">
+            <label htmlFor="extrasCheckbox" className="text-2xl text-center my-auto cursor-pointer">
+              Extras Drawer
+            </label>
+            <input
+              type="checkbox"
+              id="extrasCheckbox"
+              defaultChecked={extrasDrawerOpen}
+              onChange={() => {
+                dispatch({
+                  type: AppContextActions.changeExtrasDrawerOpen,
+                  payload: { extrasDrawerOpen: !extrasDrawerOpen },
+                });
+              }}
+              className="ml-2 w-4 cursor-pointer"
+            />
+          </div>
+        </div>
+        <button
+          className="flex flex-row min-w-20 place-content-center mr-4 my-auto px-2 bg-blue-600 hover:bg-blue-500 rounded-xl drop-shadow-lg hover-scale"
+          onClick={shareButtonHandler}
+        >
+          <img src={shareIcon} alt="Share" width="20" height="20" className="my-auto w-6 h-6" draggable={false} />
+          <p className="text-center text-gray-200 text-2xl px-0.5">Share</p>
+        </button>
 
         <button
           className="flex flex-row min-w-20 place-content-center mr-4 px-2 my-auto bg-gray-500 hover:bg-gray-400/80 rounded-xl drop-shadow-lg hover-scale"

@@ -1,4 +1,4 @@
-import { Fragment, useContext, useEffect } from 'react';
+import { useContext, useEffect } from 'react';
 import { toast } from 'react-hot-toast';
 import { useNavigate, useParams } from 'react-router-dom';
 import api from '../api/api.ts';
@@ -8,16 +8,15 @@ import TechTable from '../components/Techs/TechTable.tsx';
 import TopBarTech from '../components/Techs/TopBarTech.tsx';
 import { AppContext, AppContextActions } from '../contexts/AppContext.tsx';
 import useBulkMediaQueries from '../hooks/useBulkMediaQueries.tsx';
+import SearchBox from '../components/Planner/SearchBox.tsx';
 
 const Tech = () => {
   const { state, dispatch } = useContext(AppContext);
   const { techData } = state;
   const { mod, techTree } = useParams();
+  const { isMobile } = useBulkMediaQueries();
 
   const navigate = useNavigate();
-
-  const { isMobileWidth, isMobileHeight } = useBulkMediaQueries();
-  const isMobile = isMobileWidth || isMobileHeight ? true : false;
 
   useEffect(() => {
     if (techData === null) {
@@ -44,13 +43,17 @@ const Tech = () => {
       {techData === null ? (
         <LoadingSpinner loadingText="Loading Tech Tree Data..." />
       ) : (
-        <Fragment>
-          <TopBarTech isMobile={isMobile} />
-
-          {!isMobile && <FactionPortrait />}
+        <>
+          {!isMobile && (
+            <>
+              <TopBarTech />
+              <FactionPortrait />
+            </>
+          )}
+          {isMobile && <SearchBox skill={false} />}
 
           <TechTable />
-        </Fragment>
+        </>
       )}
     </div>
   );

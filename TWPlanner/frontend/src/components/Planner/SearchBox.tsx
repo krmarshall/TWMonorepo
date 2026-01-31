@@ -41,16 +41,8 @@ const SearchBox = ({ skill }: { skill: boolean }) => {
     return () => clearTimeout(debounceInputTimeoutId);
   }, [searchText]);
 
-  let divClassName = 'p-2 bg-slate-500 rounded-xl';
-
-  if (skill) {
-    divClassName += ' absolute top-2 right-2 z-20';
-  } else {
-    divClassName += ' my-auto mr-4';
-  }
-
   return (
-    <div className={divClassName}>
+    <div className="p-2 bg-slate-500 rounded-xl absolute top-2 right-2 z-20">
       <input
         type="text"
         placeholder="Search"

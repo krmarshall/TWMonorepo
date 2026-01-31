@@ -10,30 +10,16 @@ import scrollWheel from '../../imgs/other/help_page_middle_mouse.webp';
 import shift from '../../imgs/other/help_page_camera_speed_controls.webp';
 import SearchBox from '../Planner/SearchBox.tsx';
 
-interface PropInterface {
-  isMobile: boolean;
-}
-
-const TopBarTech = ({ isMobile }: PropInterface) => {
+const TopBarTech = () => {
   const { state } = useContext(AppContext);
   const { selectedModTech } = state;
   const { techTree } = useParams();
 
   const navigate = useNavigate();
 
-  const resetButtonHandler = () => {
-    // Todo
-  };
-
-  let headerClass = 'z-10 text-center text-4xl  mx-auto text-gray-200 text-shadow-border ';
-  if (isMobile) {
-    headerClass += ' mb-2';
-  } else {
-    headerClass += ' m-2';
-  }
   return (
     <div className="h-18 flex flex-row place-content-between">
-      <div className="w-[30vw] flex place-content-start">
+      <div className="w-[40vw] flex place-content-start">
         <button
           className="flex flex-row place-content-center my-auto px-3 bg-gray-500 hover:bg-gray-400/80 rounded-xl drop-shadow-lg hover-scale"
           onClick={() => navigate('/techHome')}
@@ -41,15 +27,6 @@ const TopBarTech = ({ isMobile }: PropInterface) => {
           <img src={backIcon} alt="Back" width="45" height="45" className="my-auto w-8 h-8" draggable={false} />
           <p className="text-center text-gray-200 text-2xl px-0.5 ml-1">Home</p>
         </button>
-        <p className="text-gray-200 text-2xl text-center my-auto ml-4">
-          {isMobile ? techGameData[selectedModTech]?.text : `Selected Game: ${techGameData[selectedModTech]?.text}`}
-        </p>
-      </div>
-
-      <h1 className={headerClass}>{techGameData[selectedModTech].techTrees[techTree as string].name}</h1>
-
-      <div className="w-[30vw] flex place-content-end">
-        <SearchBox skill={false} />
         <TooltipWrapper
           tooltip={
             <div className="h-fit p-2 rounded border border-gray-400 shadow-lg text-gray-50 text-xl bg-gray-600">
@@ -75,17 +52,21 @@ const TopBarTech = ({ isMobile }: PropInterface) => {
             </div>
           }
         >
-          <div className="my-auto mr-4 px-3 text-2xl text-gray-50 rounded-full bg-gray-500 hover:bg-gray-400/80 drop-shadow-lg hover-scale">
+          <div className="my-auto ml-4 px-3 text-2xl text-gray-50 rounded-full bg-gray-500 hover:bg-gray-400/80 drop-shadow-lg hover-scale">
             ?
           </div>
         </TooltipWrapper>
-        <button
-          className="flex flex-row place-content-center mr-4 px-2 my-auto bg-gray-500 hover:bg-gray-400/80 rounded-xl drop-shadow-lg hover-scale"
-          onClick={resetButtonHandler}
-        >
-          <img src={resetIcon} alt="reset" width="20" height="20" className="my-auto w-6 h-6" draggable={false} />
-          <p className="text-center text-gray-200 text-2xl px-0.5">Reset</p>
-        </button>
+        <p className="text-gray-200 text-2xl text-center my-auto ml-4">
+          Selected Game: {techGameData[selectedModTech]?.text}
+        </p>
+      </div>
+
+      <h1 className="z-10 m-2 text-center text-4xl mx-auto text-gray-200 text-shadow-border">
+        {techGameData[selectedModTech].techTrees[techTree as string].name}
+      </h1>
+
+      <div className="w-[40vw] relative flex place-content-end">
+        <SearchBox skill={false} />
       </div>
     </div>
   );
