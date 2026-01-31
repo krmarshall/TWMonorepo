@@ -94,7 +94,7 @@ const TooltipWrapper = ({ children, tooltip, placement = 'right', skillClickHand
             onMouseDown={(event) => event.stopPropagation()}
           >
             {isPortrait && (
-              <div className="flex flex-col w-screen h-screen p-2">
+              <div className="flex flex-col w-screen h-dvh p-2">
                 {/* <div className="w-full grow max-h-[15vh] mb-2 border bg-gray-900 border-gray-400">
                   <div className="h-[15vh]">Ad Test</div>
                 </div> */}
@@ -136,11 +136,11 @@ const TooltipWrapper = ({ children, tooltip, placement = 'right', skillClickHand
               </div>
             )}
             {!isPortrait && (
-              <div className="flex flex-row w-screen h-screen px-2">
-                <div className="invisible max-w-[20vw] min-w-[20vw] grow h-screen mr-2 border bg-gray-900 border-gray-400">
+              <div className="flex flex-row w-screen h-dvh px-2">
+                <div className="invisible max-w-[20vw] min-w-[20vw] grow h-dvh mr-2 border bg-gray-900 border-gray-400">
                   <div className="w-[20vh]">Ad Test</div>
                 </div>
-                <div className="flex flex-col w-fit h-screen mx-auto">
+                <div className="flex flex-col w-fit h-dvh mx-auto">
                   {tooltip}
                   <div className="flex flex-row flex-nowrap gap-2 place-content-around text-xl m-1.5">
                     {!noSkillRanks && (
@@ -177,7 +177,7 @@ const TooltipWrapper = ({ children, tooltip, placement = 'right', skillClickHand
                     </button>
                   </div>
                 </div>
-                <div className="invisible max-w-[20vw] min-w-[20vw] grow h-screen ml-2 border bg-gray-900 border-gray-400">
+                <div className="invisible max-w-[20vw] min-w-[20vw] grow h-dvh ml-2 border bg-gray-900 border-gray-400">
                   <div className="w-[20vh]">Ad Test</div>
                 </div>
               </div>
