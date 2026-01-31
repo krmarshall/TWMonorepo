@@ -2,15 +2,16 @@ import { AbilityInterface } from '../../../@types/CharacterInterfaceRef.ts';
 import cooldownImg from '../../../imgs/other/icon_cooldown_26.webp';
 import windsImg from '../../../imgs/other/winds_ui_replenish_battle_ph.webp';
 import chargesImg from '../../../imgs/other/icon_uses.webp';
-import SkillPhase from './SkillPhase.tsx';
+import SkillPhase from './SubToolTips/SkillPhase.tsx';
 import ReactImage from '../../ReactImage.tsx';
-import SkillAbilityVortex from './SkillAbilityVortex.tsx';
-import SkillAbilityProjectile from './SkillAbilityProjectile.tsx';
-import SkillAbilityBombardment from './SkillAbilityBombardment.tsx';
+import SkillAbilityVortex from './SubToolTips/SkillAbilityVortex.tsx';
+import SkillAbilityProjectile from './SubToolTips/SkillAbilityProjectile.tsx';
+import SkillAbilityBombardment from './SubToolTips/SkillAbilityBombardment.tsx';
 import { useContext } from 'react';
 import { AppContext } from '../../../contexts/AppContext.tsx';
 import DOMPurify from 'dompurify';
 import { replaceKeepCaps } from '../../../utils/sharedFunctions.ts';
+import useBulkMediaQueries from '../../../hooks/useBulkMediaQueries.tsx';
 
 interface SkillAbilityTooltipPropInterface {
   ability: AbilityInterface;
@@ -18,6 +19,7 @@ interface SkillAbilityTooltipPropInterface {
 
 const SkillAbilityTooltip = ({ ability }: SkillAbilityTooltipPropInterface) => {
   const { state } = useContext(AppContext);
+  const { isMobile } = useBulkMediaQueries();
   const { searchString } = state;
   const unitAbility = ability.unit_ability;
 
@@ -38,40 +40,82 @@ const SkillAbilityTooltip = ({ ability }: SkillAbilityTooltipPropInterface) => {
     `/imgs/vanilla3/campaign_ui/skills/0_placeholder_skill.webp`,
   ];
   return (
-    <div className="grow h-fit p-2 mb-2 rounded border border-gray-400 shadow-lg bg-gray-600 text-gray-50 text-lg">
-      <div className="flex flex-row ml-2">
-        <ReactImage
-          srcList={abilitySrcList}
-          className="w-8 h-8 m-0 mr-2 p-0"
-          alt={unitAbility.onscreen_name}
-          w="48"
-          h="48"
-        />
-        <h3
-          className="text-left whitespace-nowrap text-2xl pr-6 mr-auto"
-          dangerouslySetInnerHTML={{
-            __html: DOMPurify.sanitize(replaceKeepCaps(unitAbility.onscreen_name, searchString)),
-          }}
-        ></h3>
-        {unitAbility.num_uses !== undefined && unitAbility.num_uses > 0 && (
-          <div className="flex flex-row mr-3">
-            <img className="w-6 h-6" src={chargesImg} alt="charges icon" width="24" height="24" />
-            <p className="ml-1 text-center">{unitAbility.num_uses}</p>
+    <div className="grow h-fit p-2 rounded border border-gray-400 shadow-lg bg-gray-600 text-gray-50 text-lg">
+      {!isMobile && (
+        <div className="flex flex-row ml-2">
+          <ReactImage
+            srcList={abilitySrcList}
+            className="w-8 h-8 m-0 mr-2 p-0"
+            alt={unitAbility.onscreen_name}
+            w="48"
+            h="48"
+          />
+          <h3
+            className="text-left whitespace-nowrap text-2xl pr-6 mr-auto"
+            dangerouslySetInnerHTML={{
+              __html: DOMPurify.sanitize(replaceKeepCaps(unitAbility.onscreen_name, searchString)),
+            }}
+          ></h3>
+          {unitAbility.num_uses !== undefined && unitAbility.num_uses > 0 && (
+            <div className="flex flex-row mr-3">
+              <img className="w-6 h-6" src={chargesImg} alt="charges icon" width="24" height="24" />
+              <p className="ml-1 text-center">{unitAbility.num_uses}</p>
+            </div>
+          )}
+          {unitAbility.mana_cost !== undefined && unitAbility.mana_cost > 0 && (
+            <div className="flex flex-row mr-3">
+              <img className="w-6 h-6" src={windsImg} alt="winds icon" width="24" height="24" />
+              <p className="ml-1 text-center">{unitAbility.mana_cost}</p>
+            </div>
+          )}
+          {unitAbility.recharge_time !== undefined && unitAbility.recharge_time > 0 && (
+            <div className="flex flex-row mr-3">
+              <img className="w-6 h-6" src={cooldownImg} alt="cooldown icon" width="24" height="24" />
+              <p className="ml-1 text-center">{unitAbility.recharge_time}s</p>
+            </div>
+          )}
+        </div>
+      )}
+      {isMobile && (
+        <>
+          <div className="ml-2 flex flex-row">
+            <ReactImage
+              srcList={abilitySrcList}
+              className="w-8 h-8 m-0 mr-2 p-0"
+              alt={unitAbility.onscreen_name}
+              w="48"
+              h="48"
+            />
+            <h3
+              className="text-left whitespace-nowrap text-2xl"
+              dangerouslySetInnerHTML={{
+                __html: DOMPurify.sanitize(replaceKeepCaps(unitAbility.onscreen_name, searchString)),
+              }}
+            ></h3>
           </div>
-        )}
-        {unitAbility.mana_cost !== undefined && unitAbility.mana_cost > 0 && (
-          <div className="flex flex-row mr-3">
-            <img className="w-6 h-6" src={windsImg} alt="winds icon" width="24" height="24" />
-            <p className="ml-1 text-center">{unitAbility.mana_cost}</p>
+          <div className="flex flex-row mt-2">
+            {unitAbility.num_uses !== undefined && unitAbility.num_uses > 0 && (
+              <div className="flex flex-row mr-3">
+                <img className="w-6 h-6" src={chargesImg} alt="charges icon" width="24" height="24" />
+                <p className="ml-1 text-center">{unitAbility.num_uses}</p>
+              </div>
+            )}
+            {unitAbility.mana_cost !== undefined && unitAbility.mana_cost > 0 && (
+              <div className="flex flex-row mr-3">
+                <img className="w-6 h-6" src={windsImg} alt="winds icon" width="24" height="24" />
+                <p className="ml-1 text-center">{unitAbility.mana_cost}</p>
+              </div>
+            )}
+            {unitAbility.recharge_time !== undefined && unitAbility.recharge_time > 0 && (
+              <div className="flex flex-row mr-3">
+                <img className="w-6 h-6" src={cooldownImg} alt="cooldown icon" width="24" height="24" />
+                <p className="ml-1 text-center">{unitAbility.recharge_time}s</p>
+              </div>
+            )}
           </div>
-        )}
-        {unitAbility.recharge_time !== undefined && unitAbility.recharge_time > 0 && (
-          <div className="flex flex-row mr-3">
-            <img className="w-6 h-6" src={cooldownImg} alt="cooldown icon" width="24" height="24" />
-            <p className="ml-1 text-center">{unitAbility.recharge_time}s</p>
-          </div>
-        )}
-      </div>
+        </>
+      )}
+
       {unitAbility.type.onscreen_name && (
         <div className="flex flex-row">
           <h5 className="text-left w-24">Type:</h5>

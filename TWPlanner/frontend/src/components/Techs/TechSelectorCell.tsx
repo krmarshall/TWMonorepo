@@ -31,11 +31,13 @@ const TechSelectorCell = ({ techKey, handleTechSelect }: PropInterface) => {
         onClick={(event) => handleTechSelect(event, techKey)}
         draggable={false}
       >
-        <h2 className="w-32 text-center text-2xl text-shadow text-gray-200 mb-2">{tech?.name}</h2>
+        <h2 className="max-w-44 min-w-24 text-center text-wrap text-2xl text-shadow text-gray-200 mb-1 p-1">
+          {tech?.name}
+        </h2>
         <div className="flex flex-row justify-center relative">
           <ReactImage
             srcList={[tech?.image, placeholderImg]}
-            className="w-24 mb-1 drop-shadow-[0.1rem_0.1rem_0.5rem_rgba(0,0,0,0.7)]"
+            className="w-20 mb-1 drop-shadow-[0.1rem_0.1rem_0.5rem_rgba(0,0,0,0.7)]"
             alt={`${tech?.name} icon`}
             w="96"
             h="96"

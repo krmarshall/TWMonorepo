@@ -3,6 +3,7 @@ import { AttributeInterface } from '../../../@types/CharacterInterfaceRef.ts';
 import { AppContext } from '../../../contexts/AppContext.tsx';
 import DOMPurify from 'dompurify';
 import { replaceKeepCaps } from '../../../utils/sharedFunctions.ts';
+import useBulkMediaQueries from '../../../hooks/useBulkMediaQueries.tsx';
 
 interface PropInterface {
   attribute: AttributeInterface;
@@ -10,9 +11,12 @@ interface PropInterface {
 
 const AttributeTooltip = ({ attribute }: PropInterface) => {
   const { state } = useContext(AppContext);
+  const { isMobile } = useBulkMediaQueries();
   const { searchString } = state;
+
+  const layoutContext = isMobile ? 'w-full max-h-full my-auto' : 'w-fit max-w-[24rem]';
   return (
-    <div className="w-fit max-w-[24rem] mb-2 rounded-lg border border-gray-400 p-2 shadow-lg bg-gray-600 text-gray-50">
+    <div className={layoutContext + ' rounded-lg border border-gray-400 p-2 shadow-lg bg-gray-600 text-gray-50'}>
       <div className="flex flex-row flex-nowrap">
         <img
           src={`/imgs/${attribute.icon}.webp`}

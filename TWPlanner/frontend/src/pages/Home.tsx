@@ -4,18 +4,16 @@ import CharacterSelector from '../components/CharacterSelect/CharacterSelector.t
 import { useParams } from 'react-router-dom';
 import { useContext, useEffect } from 'react';
 import { AppContext, AppContextActions } from '../contexts/AppContext.tsx';
-import { useMediaQuery } from 'react-responsive';
 import gameData from '../data/gameData.ts';
 import CompilationFilter from '../components/CharacterSelect/CompilationFilter.tsx';
 import { CompilationGroupsInterface } from '../@types/CompilationGroupsInterfaceRef.ts';
+import useBulkMediaQueries from '../hooks/useBulkMediaQueries.tsx';
 
 const Home = () => {
   const { state, dispatch } = useContext(AppContext);
   const { selectedMod } = state;
   const { mod, faction } = useParams();
-
-  const isTabletOrMobileWidth = useMediaQuery({ maxWidth: 1365 });
-  const isMobileWidth = useMediaQuery({ maxWidth: 1023 });
+  const { isMobile } = useBulkMediaQueries();
 
   // Info toast example
   // let toastId: any;
@@ -67,34 +65,40 @@ const Home = () => {
     }
   }, []);
 
-  let modContainerWidth;
-  if (isMobileWidth) {
-    modContainerWidth = 'w-full mt-3';
-  } else if (isTabletOrMobileWidth) {
-    modContainerWidth = 'w-full mt-3';
-  } else {
-    modContainerWidth = 'w-[45%] mt-3';
-  }
-  const factionContainerWidth = isTabletOrMobileWidth ? 'w-full' : 'w-[55%] mt-3';
-
   return (
-    <div className="grow mt-1 bg-gray-700 w-full border border-gray-500 rounded-md px-3 pb-2 overflow-y-auto overflow-x-hidden scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-600">
-      <div className="flex flex-row flex-wrap place-content-center">
-        <ModSelector containerWidth={modContainerWidth} />
-        <div
-          className={
-            'flex flex-col flex-nowrap max-h-132 overflow-y-scroll scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-60 ' +
-            factionContainerWidth
-          }
-        >
-          {gameData[selectedMod].compilationGroups !== undefined && (
-            <CompilationFilter compGroups={gameData[selectedMod].compilationGroups as CompilationGroupsInterface} />
-          )}
-          <FactionSelector />
-        </div>
+    <div className="w-full h-full p-2 overflow-y-auto overflow-x-hidden scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-600">
+      {!isMobile && ( // Desktop Layout
+        <div className="flex flex-col">
+          <div className="flex flex-row flex-nowrap w-full">
+            <ModSelector />
+            <div
+              className={
+                'w-full ml-2 p-1 flex flex-col flex-nowrap bg-gray-700 border rounded-md border-gray-500 max-h-112 overflow-y-scroll scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-60 '
+              }
+            >
+              {gameData[selectedMod].compilationGroups !== undefined && (
+                <CompilationFilter compGroups={gameData[selectedMod].compilationGroups as CompilationGroupsInterface} />
+              )}
+              <FactionSelector />
+            </div>
+          </div>
 
-        <CharacterSelector />
-      </div>
+          <CharacterSelector />
+        </div>
+      )}
+      {isMobile && ( // Mobile Layout
+        <div className="flex flex-col">
+          <ModSelector />
+          <div className="w-full p-1 bg-gray-700 border rounded-md border-gray-500">
+            {gameData[selectedMod].compilationGroups !== undefined && (
+              <CompilationFilter compGroups={gameData[selectedMod].compilationGroups as CompilationGroupsInterface} />
+            )}
+            <FactionSelector />
+          </div>
+
+          <CharacterSelector />
+        </div>
+      )}
     </div>
   );
 };

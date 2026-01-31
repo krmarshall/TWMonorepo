@@ -42,7 +42,7 @@ const UnitStatLine = ({
         />
         {tooltip !== undefined ? (
           <div className="my-auto w-8">
-            <TooltipWrapper tooltip={tooltip}>
+            <TooltipWrapper tooltip={tooltip} noSkillRanks={true}>
               <p className="w-8 underline decoration-dashed decoration-gray-300">{statValue}</p>
             </TooltipWrapper>
           </div>
@@ -53,7 +53,7 @@ const UnitStatLine = ({
         <div className="my-auto mx-2">
           <Svg width={barWidth} height={10}>
             <Rect width={barWidth} height={10} stroke="#000000" fill="#00000000"></Rect>
-            <Rect width={scaledStatValue} height={8} ox={ox} stroke="#00000000" fill="#c29221" />
+            <Rect width={scaledStatValue} height={8} ox={ox} stroke="#00000000" fill="#d88425" />
           </Svg>
         </div>
 

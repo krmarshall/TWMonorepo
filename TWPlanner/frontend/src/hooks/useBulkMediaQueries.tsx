@@ -1,16 +1,27 @@
 import { useMediaQuery } from 'react-responsive';
 
+interface MediaQueriesInterface {
+  isMobileWidth: boolean;
+  isMobileHeight: boolean;
+  isMobile: boolean;
+  isNarrow: boolean;
+  shortenHeaderTitle: boolean;
+  adWidthControl: boolean;
+  isPortrait: boolean;
+}
+
 const useBulkMediaQueries = () => {
-  return {
+  const mediaQueries: MediaQueriesInterface = {
     isMobileWidth: useMediaQuery({ maxWidth: 1023 }),
-    isMobileHeight: useMediaQuery({ maxHeight: 719 }),
-    isShortWidth: useMediaQuery({ maxWidth: 965 }),
-    isShortHeight: useMediaQuery({ maxHeight: 669 }),
-    isThin: useMediaQuery({ maxWidth: 737 }),
-    tallWindow: useMediaQuery({ minHeight: 920 }),
-    isSmol: useMediaQuery({ maxWidth: 600 }),
-    shortenHeaderTitle: useMediaQuery({ minWidth: 898 }),
+    isMobileHeight: useMediaQuery({ maxHeight: 767 }),
+    isMobile: false,
+    isNarrow: useMediaQuery({ maxWidth: 600 }),
+    shortenHeaderTitle: useMediaQuery({ minWidth: 1164 }),
+    adWidthControl: useMediaQuery({ minWidth: 1456 }),
+    isPortrait: useMediaQuery({ orientation: 'portrait' }),
   };
+  mediaQueries.isMobile = mediaQueries.isMobileHeight || mediaQueries.isMobileWidth;
+  return mediaQueries;
 };
 
 export default useBulkMediaQueries;

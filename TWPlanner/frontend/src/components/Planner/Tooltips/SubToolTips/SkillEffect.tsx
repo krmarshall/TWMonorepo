@@ -1,9 +1,10 @@
 import { useContext } from 'react';
-import { EffectInterface } from '../../../@types/CharacterInterfaceRef.ts';
-import ReactImage from '../../ReactImage.tsx';
-import { AppContext } from '../../../contexts/AppContext.tsx';
-import { replaceKeepCaps } from '../../../utils/sharedFunctions.ts';
+import { EffectInterface } from '../../../../@types/CharacterInterfaceRef.ts';
+import ReactImage from '../../../ReactImage.tsx';
+import { AppContext } from '../../../../contexts/AppContext.tsx';
+import { replaceKeepCaps } from '../../../../utils/sharedFunctions.ts';
 import DOMPurify from 'dompurify';
+import useBulkMediaQueries from '../../../../hooks/useBulkMediaQueries.tsx';
 
 interface SkillEffectPropsInterface {
   skillEffect: EffectInterface;
@@ -12,6 +13,9 @@ interface SkillEffectPropsInterface {
 const SkillEffect = ({ skillEffect }: SkillEffectPropsInterface) => {
   const { state } = useContext(AppContext);
   const { searchString } = state;
+  const { isMobile } = useBulkMediaQueries();
+
+  const contextWidth = isMobile ? '' : ' max-w-[25vw]';
   const goodBadEffectClassName = 'text-lg whitespace-pre-wrap';
   // if (skillEffect.goodEffect) {
   //   goodBadEffectClassName += ' text-green-400';
@@ -36,7 +40,7 @@ const SkillEffect = ({ skillEffect }: SkillEffectPropsInterface) => {
     <div className="flex flex-row flex-nowrap">
       <ReactImage srcList={srcList} className="w-6 h-6" alt={`${skillEffect.key} icon`} w="24" h="24" />
 
-      <div className="flex flex-col justify-center ml-1 text-left max-w-[25vw]">
+      <div className={'flex flex-col justify-center mx-1 text-left' + contextWidth}>
         <p
           className={goodBadEffectClassName}
           dangerouslySetInnerHTML={{

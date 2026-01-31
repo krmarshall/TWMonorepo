@@ -27,6 +27,7 @@ const StartPosTraits = () => {
       <div className="flex flex-row flex-nowrap text-3xl place-content-center">
         <h3 className="text-gray-50">Unique Variants&nbsp;</h3>
         <TooltipWrapper
+          noSkillRanks={true}
           tooltip={
             <span className="text-center flex flex-row">
               <div className="w-[50%] h-fit p-2 rounded border border-gray-400 shadow-lg text-gray-50 text-xl bg-gray-600">

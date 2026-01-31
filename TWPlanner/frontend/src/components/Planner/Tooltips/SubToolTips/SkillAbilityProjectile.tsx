@@ -1,7 +1,7 @@
 import { Fragment } from 'react';
-import { ProjectileInterface } from '../../../@types/CharacterInterfaceRef.ts';
+import { ProjectileInterface } from '../../../../@types/CharacterInterfaceRef.ts';
 import SkillAbilityVortex from './SkillAbilityVortex.tsx';
-import ReactImage from '../../ReactImage.tsx';
+import ReactImage from '../../../ReactImage.tsx';
 
 interface PropsInterface {
   projectile: ProjectileInterface;

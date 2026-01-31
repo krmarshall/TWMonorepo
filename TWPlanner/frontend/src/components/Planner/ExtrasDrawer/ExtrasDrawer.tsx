@@ -9,34 +9,32 @@ import FactionEffects from './FactionEffects.tsx';
 const ExtrasDrawer = () => {
   const { state, dispatch } = useContext(AppContext);
   const { extrasDrawerOpen } = state;
-  const { isShortWidth, isShortHeight, isThin } = useBulkMediaQueries();
-
-  const isShort = isShortWidth || isShortHeight ? true : false;
+  const { isMobile, adWidthControl } = useBulkMediaQueries();
 
   useEffect(() => {
-    if (isShort || isThin) {
+    if (isMobile) {
       dispatch({ type: AppContextActions.changeExtrasDrawerOpen, payload: { extrasDrawerOpen: false } });
     }
-  }, [isShort, isThin]);
+  }, [isMobile]);
 
-  let drawerClass = 'flex flex-row place-content-evenly slide-out-vert';
-  if (extrasDrawerOpen) {
-    drawerClass += ' show max-h-[20vh] min-h-32';
-  } else {
-    drawerClass += ' max-h-0 min-h-0';
+  let layoutType = isMobile
+    ? 'flex-col gap-2 mx-auto overflow-y-auto scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-600'
+    : 'flex-row place-content-evenly slide-out-vert';
+
+  if (extrasDrawerOpen && !isMobile) {
+    layoutType += ' show max-h-[20vh] min-h-32';
+  } else if (!isMobile) {
+    layoutType += ' max-h-0 min-h-0';
   }
-
-  const drawerClassShort =
-    'flex flex-col mx-auto overflow-y-auto scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-600';
-
   return (
-    <div className={isShort ? drawerClassShort : drawerClass}>
+    <div className={layoutType + ' flex mt-1.5'}>
       {state.characterData?.items && state.characterData?.items.length > 0 && <CharacterItems />}
       {state.characterData?.backgroundSkills && state.characterData.backgroundSkills.length > 0 && <BackgroundSkills />}
       {state.characterData?.factionEffects !== undefined && (
         <FactionEffects factionEffect={state.characterData?.factionEffects} />
       )}
-      {!isShort && <BuildStorage />}
+      {!isMobile && <BuildStorage />}
+      {/* {adWidthControl && <div className="grow max-w-128 max-h-[19vh] border border-gray-400">Ad Test</div>} */}
     </div>
   );
 };

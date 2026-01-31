@@ -1,14 +1,14 @@
 import { useContext } from 'react';
-import { AppContext } from '../../../contexts/AppContext.tsx';
-import { PhaseInterface } from '../../../@types/CharacterInterfaceRef.ts';
+import { AppContext } from '../../../../contexts/AppContext.tsx';
+import { PhaseInterface } from '../../../../@types/CharacterInterfaceRef.ts';
 import SkillPhaseAttribute from './SkillPhaseAttribute.tsx';
 import SkillPhaseEffect from './SkillPhaseEffect.tsx';
-import randomPhase0 from '../../../imgs/other/random_phase_0.webp';
-import randomPhase1 from '../../../imgs/other/random_phase_1.webp';
-import randomPhase2 from '../../../imgs/other/random_phase_2.webp';
+import randomPhase0 from '../../../../imgs/other/random_phase_0.webp';
+import randomPhase1 from '../../../../imgs/other/random_phase_1.webp';
+import randomPhase2 from '../../../../imgs/other/random_phase_2.webp';
 import DOMPurify from 'dompurify';
-import { replaceKeepCaps } from '../../../utils/sharedFunctions.ts';
-import ReactImage from '../../ReactImage.tsx';
+import { replaceKeepCaps } from '../../../../utils/sharedFunctions.ts';
+import ReactImage from '../../../ReactImage.tsx';
 
 interface SkillPhaseProps {
   index: number;

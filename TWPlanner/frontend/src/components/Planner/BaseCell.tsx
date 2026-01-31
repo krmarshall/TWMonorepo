@@ -1,4 +1,4 @@
-import { RefObject, useContext, useEffect, useRef, useState } from 'react';
+import { RefObject, useContext, useEffect, useRef, useState, MouseEvent } from 'react';
 import { replaceKeepCaps, setFontSize, trimString } from '../../utils/sharedFunctions.ts';
 import ReactImage from '../ReactImage.tsx';
 import TooltipWrapper from '../TooltipWrapper.tsx';
@@ -19,6 +19,7 @@ interface PropInterface {
   blocked?: boolean;
   srcList: Array<string>;
   showRanks?: boolean;
+  skillClickHandler?: (event: MouseEvent) => void;
 }
 
 const BaseCell = ({
@@ -31,6 +32,7 @@ const BaseCell = ({
   blocked = false,
   srcList,
   showRanks = false,
+  skillClickHandler,
 }: PropInterface) => {
   const { state } = useContext(AppContext);
   const { characterBuild, searchString } = state;
@@ -86,6 +88,7 @@ const BaseCell = ({
   return (
     <div className={divClassName} ref={cellRef}>
       <TooltipWrapper
+        skillClickHandler={skillClickHandler}
         tooltip={
           <SkillTooltip
             skill={skill}

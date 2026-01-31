@@ -8,6 +8,7 @@ import TooltipWrapper from '../TooltipWrapper.tsx';
 
 import autoSkillIcon from '../../imgs/other/skill_auto_unlock_rank.webp';
 import BaseCell from './BaseCell.tsx';
+import useBulkMediaQueries from '../../hooks/useBulkMediaQueries.tsx';
 
 interface SkillCellPropsInterface {
   skill: SkillInterface;
@@ -20,6 +21,7 @@ interface SkillCellPropsInterface {
 const SkillCell = ({ skill, skillKey, yIndex, xIndex, boxedType }: SkillCellPropsInterface) => {
   const { state, dispatch } = useContext(AppContext);
   const { characterBuild, characterData, highlightArray } = state;
+  const { isMobile } = useBulkMediaQueries();
   const [selectable, setSelectable] = useState(false);
   const [previewSkillPoints, setPreviewSkillPoints] = useState(0);
   const [blocked, setBlocked] = useState(false);
@@ -278,6 +280,7 @@ const SkillCell = ({ skill, skillKey, yIndex, xIndex, boxedType }: SkillCellProp
   }
   srcList.push(`/imgs/vanilla3/campaign_ui/skills/0_placeholder_skill.webp`);
 
+  const autoRankTooltipLayoutContext = isMobile ? 'w-full max-h-full my-auto' : 'w-max';
   return (
     <td
       className={tdClassName}
@@ -291,7 +294,11 @@ const SkillCell = ({ skill, skillKey, yIndex, xIndex, boxedType }: SkillCellProp
       {skill.levels?.[0]?.auto_unlock_at_rank !== undefined && skill.levels?.[0]?.auto_unlock_at_rank !== 0 && (
         <TooltipWrapper
           tooltip={
-            <div className="w-max p-2 rounded border border-gray-400 shadow-lg text-gray-50 bg-gray-600">
+            <div
+              className={
+                autoRankTooltipLayoutContext + ' p-2 rounded border border-gray-400 shadow-lg text-gray-50 bg-gray-600'
+              }
+            >
               <p className="text-yellow-300 text-xl">
                 This skill automatically unlocks at rank {skill.levels?.[0]?.auto_unlock_at_rank}
               </p>
@@ -316,6 +323,7 @@ const SkillCell = ({ skill, skillKey, yIndex, xIndex, boxedType }: SkillCellProp
         blocked={blocked}
         srcList={srcList}
         showRanks={true}
+        skillClickHandler={skillClickHandler}
       />
     </td>
   );

@@ -4,16 +4,18 @@ import TooltipWrapper from '../../TooltipWrapper.tsx';
 import smallEntityIcon from '../../../imgs/other/icon_entity_small.webp';
 import largeEntityIcon from '../../../imgs/other/icon_entity_large.webp';
 import { loadAdvancedToggleFromStorage, saveAdvancedToggleToStorage } from '../../../utils/storageFunctions.ts';
-import SkillPhase from '../Tooltips/SkillPhase.tsx';
+import SkillPhase from '../Tooltips/SubToolTips/SkillPhase.tsx';
 import UnitStatLine from './UnitStatLine.tsx';
 import { getRelatedAttributes, getRelatedContactPhases, getUnitStatSets } from '../../../utils/sharedFunctions.ts';
 import AttributeTooltip from '../Tooltips/AttributeTooltip.tsx';
-import TooltipAbilityMap from '../../TooltipAbilityMap.tsx';
+import TooltipAbilityMap from '../Tooltips/TooltipAbilityMap.tsx';
 import ReactImage from '../../ReactImage.tsx';
+import useBulkMediaQueries from '../../../hooks/useBulkMediaQueries.tsx';
 
 const UnitStats = () => {
   const { state } = useContext(AppContext);
   const { characterData, highlightArray } = state;
+  const { isMobile } = useBulkMediaQueries();
   const unitStatSets = getUnitStatSets(characterData);
   const [stats, setStats] = useState(unitStatSets[0].stats);
 
@@ -63,6 +65,8 @@ const UnitStats = () => {
   } else if (stats.missile_block_chance > 0) {
     shieldImg = '/imgs/vanilla3/skins/default/modifier_icon_shield1.webp';
   }
+
+  const weaponStrengthTooltipLayout = isMobile ? 'w-full max-h-full my-auto' : '';
   return (
     <div className="text-gray-50 text-lg">
       <h3 className="text-3xl text-center">Character Stats</h3>
@@ -120,6 +124,7 @@ const UnitStats = () => {
       <UnitStatLine statName="Armour" imgPath="icon_stat_armour" statValue={stats.armour}>
         {shieldImg !== '' && (
           <TooltipWrapper
+            noSkillRanks={true}
             tooltip={
               <div className="bg-gray-600 p-1.5 border border-gray-400 rounded-xl text-xl text-gray-50">
                 {stats.missile_block_chance}% Missile Block
@@ -146,7 +151,12 @@ const UnitStats = () => {
         imgPath="icon_stat_damage"
         statValue={stats.damage + stats.ap_damage}
         tooltip={
-          <div className="flex flex-col bg-gray-600 p-1.5 border border-gray-400 rounded-xl text-xl text-gray-50">
+          <div
+            className={
+              weaponStrengthTooltipLayout +
+              ' flex flex-col bg-gray-600 p-1.5 border border-gray-400 rounded-xl text-xl text-gray-50'
+            }
+          >
             <div className="flex flex-row flex-nowrap">
               <img
                 src="/imgs/vanilla3/skins/default/icon_stat_damage_base.webp"
@@ -245,6 +255,7 @@ const UnitStats = () => {
             )}
             {stats.contact_phase !== undefined && (
               <TooltipWrapper
+                noSkillRanks={true}
                 tooltip={
                   <div className="rounded-lg text-xl text-gray-50">
                     <SkillPhase index={0} phase={stats.contact_phase} random={false} header={true} />
@@ -307,7 +318,12 @@ const UnitStats = () => {
             (stats.projectile.burst_size ?? 1)
           }
           tooltip={
-            <div className="flex flex-col bg-gray-600 p-1.5 border border-gray-400 rounded-xl text-xl text-gray-50">
+            <div
+              className={
+                weaponStrengthTooltipLayout +
+                ' flex flex-col bg-gray-600 p-1.5 border border-gray-400 rounded-xl text-xl text-gray-50'
+              }
+            >
               <div className="flex flex-row flex-nowrap">
                 <img
                   src="/imgs/vanilla3/skins/default/icon_stat_ranged_damage_base.webp"
@@ -455,6 +471,7 @@ const UnitStats = () => {
             )}
             {stats.projectile.contact_stat_effect !== undefined && (
               <TooltipWrapper
+                noSkillRanks={true}
                 tooltip={
                   <div className="rounded-lg text-xl text-gray-50">
                     <SkillPhase index={0} phase={stats.projectile.contact_stat_effect} random={false} header={true} />
@@ -506,6 +523,7 @@ const UnitStats = () => {
           {stats.can_siege && (
             <TooltipWrapper
               key="siege_attacker_manual"
+              noSkillRanks={true}
               tooltip={
                 <AttributeTooltip
                   attribute={{
@@ -531,6 +549,7 @@ const UnitStats = () => {
             stats.attributes?.find((attribute) => attribute.key === 'mounted_fire_move') === undefined && (
               <TooltipWrapper
                 key="mounted_fire_move_manual"
+                noSkillRanks={true}
                 tooltip={
                   <AttributeTooltip
                     attribute={{
@@ -557,7 +576,11 @@ const UnitStats = () => {
               imgClassName += ' searchOutline rounded';
             }
             return (
-              <TooltipWrapper key={attribute.key} tooltip={<AttributeTooltip attribute={attribute} />}>
+              <TooltipWrapper
+                key={attribute.key}
+                noSkillRanks={true}
+                tooltip={<AttributeTooltip attribute={attribute} />}
+              >
                 <div>
                   <ReactImage
                     srcList={[
@@ -580,11 +603,18 @@ const UnitStats = () => {
             if (highlightArray?.unitStats.abilities?.[index]) {
               imgClassName += ' searchOutline rounded ';
             }
+            const abilityTooltipLayoutContext = isMobile ? 'w-full max-h-full my-auto' : 'max-h-[98vh]';
             return (
               <TooltipWrapper
                 key={ability.unit_ability.key}
+                noSkillRanks={true}
                 tooltip={
-                  <div className="max-h-[98vh] overflow-y-auto scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-700">
+                  <div
+                    className={
+                      abilityTooltipLayoutContext +
+                      ' overflow-y-auto scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-700'
+                    }
+                  >
                     <TooltipAbilityMap
                       relatedAbilities={[ability]}
                       relatedPhases={relatedPhases}

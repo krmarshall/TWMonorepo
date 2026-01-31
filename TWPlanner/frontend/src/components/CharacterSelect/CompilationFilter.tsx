@@ -40,10 +40,10 @@ const CompilationFilter = ({ compGroups }: PropInterface) => {
     });
   };
   const buttonClass =
-    'text-center text-xl text-gray-200 text-shadow rounded mx-1.5 py-1 px-2 my-0.5 shadow-md shadow-gray-800 hover-scale';
+    'text-center text-xl text-gray-200 text-shadow rounded mx-1.5 py-1 px-1 my-0.5 shadow-md shadow-gray-800 hover-scale';
 
   return (
-    <div className="justify-self-center px-2 w-full">
+    <div className="justify-self-center w-full mb-1">
       <div className="flex flex-row place-content-center mx-auto">
         <hr className="grow mt-5 opacity-50 border-gray-200" />
         <h1 className="w-max text-center text-4xl mx-2 text-gray-200 text-shadow">Filter</h1>

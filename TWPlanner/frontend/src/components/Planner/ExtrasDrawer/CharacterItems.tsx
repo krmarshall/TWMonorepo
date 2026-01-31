@@ -5,7 +5,7 @@ import ItemCell from './ItemCell.tsx';
 const CharacterItems = () => {
   const { state } = useContext(AppContext);
   return (
-    <div className="flex flex-col mt-1.5 mx-1 min-w-58 max-w-140 shadow-lg border border-gray-500 rounded">
+    <div className="flex flex-col mx-1 min-w-58 max-w-140 shadow-lg bg-gray-700 border border-gray-500 rounded">
       <h2 className="text-center text-3xl mt-1 text-gray-200 text-shadow">Items</h2>
       <div className="flex flex-row flex-wrap w-full h-full pb-1 overflow-x-hidden overflow-y-auto scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-600">
         {state.characterData?.items?.map((item, index) => {

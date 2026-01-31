@@ -8,11 +8,13 @@ import placeholderImg from '../../imgs/other/0placeholder.webp';
 import shareIcon from '../../imgs/other/icon_button_external_link.webp';
 import TooltipWrapper from '../TooltipWrapper.tsx';
 import { toast } from 'react-hot-toast';
+import useBulkMediaQueries from '../../hooks/useBulkMediaQueries.tsx';
 
 const FactionSelector = () => {
   const { state, dispatch } = useContext(AppContext);
   const { selectedMod, selectedFaction, selectedCompGroups } = state;
   const [currentModFactions, setCurrentModFactions] = useState(Object.keys(gameData[selectedMod].factions));
+  const { isMobile } = useBulkMediaQueries();
 
   useEffect(() => {
     if (gameData[selectedMod].compilationGroups !== undefined && selectedCompGroups.length > 0) {
@@ -66,19 +68,30 @@ const FactionSelector = () => {
   };
 
   return (
-    <div className="justify-self-center px-2 w-full">
+    <div className="justify-self-center w-full">
       <div className="flex flex-row place-content-center mx-auto">
         <hr className="grow mt-5 opacity-50 border-gray-200" />
         <h1 className="w-max text-center text-4xl mx-2 text-gray-200 text-shadow">Factions</h1>
-        <TooltipWrapper
-          tooltip={
-            <span className="text-center flex flex-row">
-              <div className="h-fit p-2 rounded border border-gray-400 shadow-lg text-gray-50 text-xl bg-gray-600">
-                <h3 className="text-gray-50">Copy link to currently selected mod/faction</h3>
-              </div>
-            </span>
-          }
-        >
+        {!isMobile && (
+          <TooltipWrapper
+            tooltip={
+              <span className="text-center flex flex-row">
+                <div className="h-fit p-2 rounded border border-gray-400 shadow-lg text-gray-50 text-xl bg-gray-600">
+                  <h3 className="text-gray-50">Copy link to currently selected mod/faction</h3>
+                </div>
+              </span>
+            }
+          >
+            <img
+              src={shareIcon}
+              className="w-6 h-6 m-auto cursor-pointer"
+              width="24"
+              height="24"
+              onClick={shareHandler}
+            />
+          </TooltipWrapper>
+        )}
+        {isMobile && (
           <img
             src={shareIcon}
             className="w-6 h-6 m-auto cursor-pointer"
@@ -86,7 +99,8 @@ const FactionSelector = () => {
             height="24"
             onClick={shareHandler}
           />
-        </TooltipWrapper>
+        )}
+
         <hr className="grow mt-5 opacity-50 border-gray-200" />
       </div>
       <ul className="flex flex-row flex-wrap justify-center py-1">
@@ -136,7 +150,7 @@ const FactionSelector = () => {
                   <ReactImage
                     srcList={[factionImages[factionKey as keyof typeof factionImages], placeholderImg]}
                     alt={`${factionName} icon`}
-                    className="w-20 h-auto drop-shadow-[0.1rem_0.1rem_0.35rem_rgba(0,0,0,0.7)]"
+                    className="w-18 h-auto drop-shadow-[0.1rem_0.1rem_0.35rem_rgba(0,0,0,0.7)]"
                     w="96"
                     h="96"
                   />

@@ -74,6 +74,7 @@ const TechCell = ({ tech, yIndex, xIndex, borderClass }: PropInterface) => {
         className="flex flex-row relative z-10 rounded-lg drop-shadow-lg hover-scale bg-no-repeat bg-cover filter-none bg-[url(/imgs/other/skills_tab_frame.webp)] hover:bg-[url(/imgs/other/skills_tab_frame_hover.webp)]"
       >
         <TooltipWrapper
+          noSkillRanks={true}
           tooltip={
             <TechTooltip
               tech={tech}

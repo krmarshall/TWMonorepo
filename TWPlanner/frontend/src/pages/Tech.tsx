@@ -1,4 +1,4 @@
-import { Fragment, useContext, useEffect } from 'react';
+import { useContext, useEffect } from 'react';
 import { toast } from 'react-hot-toast';
 import { useNavigate, useParams } from 'react-router-dom';
 import api from '../api/api.ts';
@@ -8,16 +8,15 @@ import TechTable from '../components/Techs/TechTable.tsx';
 import TopBarTech from '../components/Techs/TopBarTech.tsx';
 import { AppContext, AppContextActions } from '../contexts/AppContext.tsx';
 import useBulkMediaQueries from '../hooks/useBulkMediaQueries.tsx';
+import SearchBox from '../components/Planner/SearchBox.tsx';
 
 const Tech = () => {
   const { state, dispatch } = useContext(AppContext);
   const { techData } = state;
   const { mod, techTree } = useParams();
+  const { isMobile } = useBulkMediaQueries();
 
   const navigate = useNavigate();
-
-  const { isMobileWidth, isMobileHeight } = useBulkMediaQueries();
-  const isMobile = isMobileWidth || isMobileHeight ? true : false;
 
   useEffect(() => {
     if (techData === null) {
@@ -40,17 +39,21 @@ const Tech = () => {
     document.title = 'Total Warhammer Planner';
   }, []);
   return (
-    <div className="grow mt-1 flex flex-col bg-gray-700 w-full border border-gray-500 rounded-md px-2 py-2 overflow-y-hidden overflow-x-hidden">
+    <div className="w-full h-full mt-1 flex flex-col rounded-md p-2 overflow-y-hidden overflow-x-hidden">
       {techData === null ? (
         <LoadingSpinner loadingText="Loading Tech Tree Data..." />
       ) : (
-        <Fragment>
-          <TopBarTech isMobile={isMobile} />
-
-          {!isMobile && <FactionPortrait />}
+        <>
+          {!isMobile && (
+            <>
+              <TopBarTech />
+              <FactionPortrait />
+            </>
+          )}
+          {isMobile && <SearchBox skill={false} />}
 
           <TechTable />
-        </Fragment>
+        </>
       )}
     </div>
   );

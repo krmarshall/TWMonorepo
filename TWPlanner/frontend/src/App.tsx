@@ -11,19 +11,13 @@ const Planner = lazy(() => import('./pages/Planner.tsx'));
 const TechHome = lazy(() => import('./pages/TechHome.tsx'));
 const Tech = lazy(() => import('./pages/Tech.tsx'));
 const About = lazy(() => import('./pages/About.tsx'));
-const Issues = lazy(() => import('./pages/Issues.tsx'));
 const NotFound = lazy(() => import('./pages/NotFound.tsx'));
 
 const App = () => {
-  const { isMobileWidth } = useBulkMediaQueries();
-  const xPadding = isMobileWidth ? ' px-2' : ' px-8';
+  const { adWidthControl, isMobile } = useBulkMediaQueries();
   return (
     <AppProvider>
-      <div
-        className={
-          'bg-gray-800 w-screen h-screen flex flex-col flex-nowrap pb-2 font-[CaslonAntique] select-none' + xPadding
-        }
-      >
+      <div className={'bg-gray-800 w-screen h-screen flex flex-col flex-nowrap font-[CaslonAntique] select-none'}>
         <Toaster
           position="bottom-center"
           toastOptions={{
@@ -50,7 +44,7 @@ const App = () => {
               <Route path="/tech/:mod/:techTree" element={<Tech />} />
 
               <Route path="/about" element={<About />} />
-              <Route path="/issues" element={<Issues />} />
+              <Route path="/issues" element={<About />} />
               <Route path="/404" element={<NotFound />} />
 
               <Route path="/:mod/:faction" element={<Home />} />
@@ -60,6 +54,12 @@ const App = () => {
             </Routes>
           </Suspense>
         </BrowserRouter>
+        {/* {!isMobile && (
+          <div className="w-full min-h-24 bg-gray-900 flex flex-row flex-nowrap place-content-around">
+            <div className="w-[728px] h-[90px] my-auto border border-gray-400">Ad Test</div>
+            {adWidthControl && <div className="w-[728px] h-[90px] my-auto border border-gray-400">Ad Test</div>}
+          </div>
+        )} */}
       </div>
     </AppProvider>
   );

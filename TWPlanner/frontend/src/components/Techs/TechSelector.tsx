@@ -35,8 +35,8 @@ const TechSelector = () => {
   };
 
   return (
-    <div className="justify-self-center px-2 w-full">
-      <div className="flex flex-row place-content-center mt-2">
+    <div className="bg-gray-700 border rounded-md border-gray-500 mt-2 p-1">
+      <div className="flex flex-row place-content-center">
         <hr className="grow mt-5 opacity-50 border-gray-200" />
         <h1 className="w-max text-center text-4xl mx-2 text-gray-200 text-shadow">Tech Trees</h1>
         <hr className="grow mt-5 opacity-50 border-gray-200" />

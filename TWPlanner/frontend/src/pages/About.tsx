@@ -2,14 +2,14 @@ import { useEffect } from 'react';
 import useBulkMediaQueries from '../hooks/useBulkMediaQueries.tsx';
 
 const About = () => {
-  const { isShortWidth } = useBulkMediaQueries();
-  const marginThickness = isShortWidth ? ' mx-2' : ' mx-32';
+  const { isMobileWidth } = useBulkMediaQueries();
+  const marginThickness = isMobileWidth ? ' mx-2' : ' mx-32';
 
   useEffect(() => {
     document.title = 'Total Warhammer Planner - About';
   }, []);
   return (
-    <div className="h-[88vh] bg-gray-700 w-full border border-gray-500 rounded-md px-2 py-2 overflow-y-auto overflow-x-hidden scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-600">
+    <div className="grow w-full h-full px-2 py-2 overflow-y-auto overflow-x-hidden scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-600">
       <div className={'flex flex-col place-content-center mt-4 select-text font-[Helvetica]' + marginThickness}>
         <div className="flex flex-row place-content-center">
           <hr className="grow mt-[1.6rem] opacity-50 border-gray-200" />
@@ -22,7 +22,7 @@ const About = () => {
           <br /> Want to figure out what all the various lords and heroes actually do without recruiting each of them?
           <br /> Check what various overhaul mods have done to your favorite units?
           <br /> Help someone new to Total Warhammer figure out how to build characters?
-          <br /> Or maybe you are just a giant nerd like me and want to plan out what skills your going to have to skip.
+          <br /> Or maybe you are just a giant nerd like me and like to explore skill trees.
           <br /> These are some of the things I wanted to address with this tool and hopefully you find it useful!
         </p>
 
@@ -50,8 +50,8 @@ const About = () => {
           <hr className="grow mt-[1.6rem] opacity-50 border-gray-200" />
         </div>
         <p className="text-center text-gray-200 text-2xl">
-          Consider supporting Frodo, the developer of RPFM, without which this site and countless mods wouldn&apos;t be
-          possible.
+          Consider supporting Frodo the developer of RPFM. Without his tools this site and countless mods likely
+          wouldn&apos;t exist!
         </p>
         <a
           href="https://www.patreon.com/RPFM"
@@ -75,8 +75,7 @@ const About = () => {
           <hr className="grow mt-[1.6rem] opacity-50 border-gray-200" />
         </div>
         <p className="text-center text-gray-200 text-2xl">
-          Development is extremely time consuming, if you find this tool useful and want to help cover server costs,
-          keep this tool ad and tracking free, or just buy me a coffee by donating it is greatly appreciated.
+          If you have disposable income and feel like donating it is greatly appreciated!
         </p>
 
         <a href="https://ko-fi.com/D1D6EX4Y6" target="_blank" rel="noopener noreferrer" className="mx-auto mt-2">
@@ -91,6 +90,26 @@ const About = () => {
 
         <div className="flex flex-row place-content-center mt-12">
           <hr className="grow mt-[1.6rem] opacity-50 border-gray-200" />
+          <h1 className="w-max text-center text-5xl mx-2 mb-2 text-gray-200 text-shadow">Known Issues</h1>
+          <hr className="grow mt-[1.6rem] opacity-50 border-gray-200" />
+        </div>
+
+        <ul className="list-disc list-inside text-gray-200 text-2xl">
+          <li>Skill nodes that overlap indent and tier with another node have inconsistent behavior</li>
+          <li>
+            Tooltips that cant find horizontal space to fit in the viewport without conflicting with the cursor
+            aren&apos;t visible
+          </li>
+          <li>Tooltips for Stat Drawer Abilities that vertically overflow the viewport are not scrollable</li>
+          <li>Certain effects only have their first 3 abilities linked (eg. Vanilla 2 -CD to all Spells)</li>
+          <li>Belakor has duplicate Lord of Torment and Whispers in the Darkness skills in his tree</li>
+          <li>Some poorly scaled skill icons depending on file path, mostly affects mods</li>
+          <li>Mounts obtained as quest items do not have stats linked</li>
+          <li>Faction Effects are not linked for WH2 Legendary Lords</li>
+        </ul>
+
+        <div className="flex flex-row place-content-center mt-12">
+          <hr className="grow mt-[1.6rem] opacity-50 border-gray-200" />
           <h1 className="w-max text-center text-5xl mx-2 mb-2 text-gray-200 text-shadow">Potential Additions</h1>
           <hr className="grow mt-[1.6rem] opacity-50 border-gray-200" />
         </div>
@@ -98,11 +117,10 @@ const About = () => {
           Some general items I would like to add/improve in the future, nothing is set in stone and some of these would
           take a lot of time, but I&apos;ve at least thought about them.
         </p>
-        <ul className="list-disc list-inside mx-auto text-gray-200 text-2xl">
+        <ul className="list-disc list-inside text-gray-200 text-2xl">
           <li>Character stats mount comparison</li>
           <li>Character stats skill integration</li>
           <li>Banner ancillary details</li>
-          <li>Mobile UI</li>
         </ul>
       </div>
     </div>

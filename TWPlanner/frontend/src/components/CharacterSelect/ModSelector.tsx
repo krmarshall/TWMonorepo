@@ -5,24 +5,21 @@ import gameData from '../../data/gameData.ts';
 import TooltipWrapper from '../TooltipWrapper.tsx';
 import ReactImage from '../ReactImage.tsx';
 import placeholderImg from '../../imgs/other/0placeholder.webp';
+import useBulkMediaQueries from '../../hooks/useBulkMediaQueries.tsx';
 
-interface PropInterface {
-  containerWidth: string;
-}
-
-const ModSelector = ({ containerWidth }: PropInterface) => {
+const ModSelector = () => {
   const { state, dispatch } = useContext(AppContext);
   const { selectedMod } = state;
+  const { isMobile } = useBulkMediaQueries();
 
   const gameKeys = Object.keys(gameData);
 
+  const layoutType = isMobile
+    ? 'w-fit mb-2'
+    : 'w-270 max-h-112 overflow-y-scroll scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-600';
+
   return (
-    <div
-      className={
-        'justify-self-center px-2 max-h-132 overflow-y-scroll scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-600 ' +
-        containerWidth
-      }
-    >
+    <div className={layoutType + ' bg-gray-700 border rounded-md border-gray-500 justify-self-center p-1'}>
       <div className="flex flex-row place-content-center">
         <hr className="grow mt-5 opacity-50 border-gray-200" />
         <h1 className="w-max text-center text-4xl mx-2 text-gray-200 text-shadow">Mods</h1>
@@ -32,7 +29,7 @@ const ModSelector = ({ containerWidth }: PropInterface) => {
         {gameKeys.map((gameKey) => {
           const game = gameData[gameKey as keyof typeof gameData];
           let liClassName =
-            'flex flex-col justify-around m-2 mt-1 px-1.5 py-1 border border-gray-500 shadow-lg shadow-gray-800/60 rounded-lg';
+            'flex flex-col justify-around m-1 px-1.5 py-1 border border-gray-500 shadow-lg shadow-gray-800/60 rounded-lg';
 
           if (gameKey === selectedMod) {
             liClassName += ' bg-gray-600 hover:bg-gray-500/80';
@@ -77,7 +74,7 @@ const ModSelector = ({ containerWidth }: PropInterface) => {
                 exit={{ scale: 0.25 }}
                 whileHover={{ scale: 1.05, transition: { duration: 0.05 } }}
               >
-                <h2 className="text-center text-gray-200 text-2xl text-shadow mb-1">{game.text}</h2>
+                <h2 className="w-36 text-center mx-auto text-gray-200 text-2xl text-shadow mb-1">{game.text}</h2>
                 <ReactImage
                   srcList={[game.image, placeholderImg]}
                   alt={`${game.text} icon`}
@@ -85,31 +82,36 @@ const ModSelector = ({ containerWidth }: PropInterface) => {
                   h="128"
                   w="128"
                 />
-                <h3 className="text-center text-gray-400 text-lg text-shadow mt-2">{game.updated}</h3>
-                <TooltipWrapper
-                  tooltip={
-                    <span className="text-center flex flex-row max-w-[25vw]">
-                      <div className="h-fit p-2 rounded border border-gray-400 shadow-lg text-gray-50 text-xl bg-gray-600">
-                        <h3 className="text-gray-50">{categoryDesc}</h3>
-                        <div className="text-center">
-                          {game.includes !== undefined && <p className="pt-3">Includes:</p>}
-                          {game.includes !== undefined &&
-                            game.includes?.map((includedMod) => {
-                              return (
-                                <p key={includedMod} className="pt-1">
-                                  {includedMod}
-                                </p>
-                              );
-                            })}
+                <h3 className="text-center text-gray-300 text-base text-shadow mt-2">{game.updated}</h3>
+                {!isMobile && (
+                  <TooltipWrapper
+                    tooltip={
+                      <span className="text-center flex flex-row max-w-[25vw]">
+                        <div className="h-fit p-2 rounded border border-gray-400 shadow-lg text-gray-50 text-xl bg-gray-600">
+                          <h3 className="text-gray-50">{categoryDesc}</h3>
+                          <div className="text-center">
+                            {game.includes !== undefined && <p className="pt-3">Includes:</p>}
+                            {game.includes !== undefined &&
+                              game.includes?.map((includedMod) => {
+                                return (
+                                  <p key={includedMod} className="pt-1">
+                                    {includedMod}
+                                  </p>
+                                );
+                              })}
+                          </div>
                         </div>
-                      </div>
-                    </span>
-                  }
-                >
-                  <h3 className="w-fit mx-auto text-center text-gray-300 text-lg text-shadow mb-1 underline decoration-dashed underline-offset-2">
-                    {game.category}
-                  </h3>
-                </TooltipWrapper>
+                      </span>
+                    }
+                  >
+                    <h3 className="w-36 mx-auto text-center text-gray-300 text-lg text-shadow underline decoration-dashed underline-offset-2">
+                      {game.category}
+                    </h3>
+                  </TooltipWrapper>
+                )}
+                {isMobile && (
+                  <h3 className="w-36 mx-auto text-center text-gray-300 text-lg text-shadow">{game.category}</h3>
+                )}
                 {game.workshopLink !== undefined && (
                   <h3 className="text-center text-blue-400 text-lg text-shadow">
                     <a href={game.workshopLink} target="_blank" rel="noopener noreferrer" className="hover:underline">

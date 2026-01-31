@@ -24,13 +24,10 @@ const Planner = () => {
   const { state, dispatch } = useContext(AppContext);
   const { characterData } = state;
   const { mod, faction, character, code } = useParams();
-  const { isMobileWidth, isMobileHeight, isShortWidth, isShortHeight } = useBulkMediaQueries();
+  const { isMobile } = useBulkMediaQueries();
 
   const [urlLoaded, setUrlLoaded] = useState(false);
   const [mobileTab, setMobileTab] = useState('skills');
-
-  const isMobile = isMobileWidth || isMobileHeight ? true : false;
-  const isShort = isShortWidth || isShortHeight ? true : false;
 
   const navigate = useNavigate();
 
@@ -146,15 +143,15 @@ const Planner = () => {
   const mobileTabButtonColorsSelected = ' bg-gray-500 hover:bg-gray-400';
   const mobileTabButtonColorsDeselected = ' bg-gray-600 hover:bg-gray-500';
   return (
-    <div className="grow mt-1 flex flex-col bg-gray-700 w-full border border-gray-500 rounded-md px-2 py-2 overflow-y-hidden overflow-x-hidden">
+    <div className="grow flex flex-col w-full p-2 overflow-y-hidden overflow-x-hidden">
       {characterData === null ? (
         <LoadingSpinner loadingText="Loading Character Data..." />
       ) : (
         <>
-          {!isShort ? (
+          {!isMobile ? (
             <>
-              <TopBar isMobile={isMobile} />
-              {!isMobile && <CharacterPortrait />}
+              <TopBar />
+              <CharacterPortrait />
               <div className="relative flex flex-row flex-nowrap grow max-h-[88vh] min-h-[50vh]">
                 <StatsDrawer />
 
