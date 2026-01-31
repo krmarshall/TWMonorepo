@@ -54,12 +54,12 @@ const App = () => {
             </Routes>
           </Suspense>
         </BrowserRouter>
-        {!isMobile && (
+        {/* {!isMobile && (
           <div className="w-full min-h-24 bg-gray-900 flex flex-row flex-nowrap place-content-around">
-            <div className="w-[728px] h-[90px] my-auto border border-gray-400"></div>
-            {adWidthControl && <div className="w-[728px] h-[90px] my-auto border border-gray-400"></div>}
+            <div className="w-[728px] h-[90px] my-auto border border-gray-400">Ad Test</div>
+            {adWidthControl && <div className="w-[728px] h-[90px] my-auto border border-gray-400">Ad Test</div>}
           </div>
-        )}
+        )} */}
       </div>
     </AppProvider>
   );

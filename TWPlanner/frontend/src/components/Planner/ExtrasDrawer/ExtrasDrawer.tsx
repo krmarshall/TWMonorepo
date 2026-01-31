@@ -34,7 +34,7 @@ const ExtrasDrawer = () => {
         <FactionEffects factionEffect={state.characterData?.factionEffects} />
       )}
       {!isMobile && <BuildStorage />}
-      {adWidthControl && <div className="grow max-w-128 max-h-[19vh] border border-gray-400"></div>}
+      {/* {adWidthControl && <div className="grow max-w-128 max-h-[19vh] border border-gray-400">Ad Test</div>} */}
     </div>
   );
 };
