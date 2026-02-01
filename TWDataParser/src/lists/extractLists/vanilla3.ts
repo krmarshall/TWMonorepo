@@ -55,6 +55,7 @@ const v3LocList = [
   'campaign_localised_strings__',
 ];
 
+// Also have to manually handle new AssKit tables in akData.ts
 const v3AssKitList = ['start_pos_characters', 'start_pos_calendars', 'start_pos_character_traits'];
 
 export { v3DbList, v3LocList, v3AssKitList };
