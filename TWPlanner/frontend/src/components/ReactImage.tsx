@@ -1,6 +1,6 @@
 import { useEffect, useState, useTransition } from 'react';
 
-import spinner from '../imgs/other/spinner.webp';
+import spinner from '../imgs/other/spinner.webp?inline';
 
 interface PropsInterface {
   srcList: Array<string>;

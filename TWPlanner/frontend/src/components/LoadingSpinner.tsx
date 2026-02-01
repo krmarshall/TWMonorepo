@@ -1,4 +1,4 @@
-import spinner from '../imgs/other/spinner.webp';
+import spinner from '../imgs/other/spinner.webp?inline';
 
 const LoadingSpinner = ({ loadingText = 'Loading...' }: { loadingText?: string }) => {
   return (

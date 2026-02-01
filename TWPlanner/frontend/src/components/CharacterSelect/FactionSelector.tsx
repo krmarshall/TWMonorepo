@@ -84,6 +84,7 @@ const FactionSelector = () => {
           >
             <img
               src={shareIcon}
+              alt="copyLink"
               className="w-6 h-6 m-auto cursor-pointer"
               width="24"
               height="24"
