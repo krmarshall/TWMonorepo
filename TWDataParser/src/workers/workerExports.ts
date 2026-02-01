@@ -6,6 +6,7 @@ import type {
 } from '../@types/WorkerDataInterfaces.ts';
 import log from '../utils/log.ts';
 import exportData from '../utils/exportData.ts';
+import exportSitemap from '../utils/exportSitemap.ts';
 
 const workerVanilla = (workerData: VanillaWorkerDataInterface) => {
   const { game, folder } = workerData;
@@ -21,6 +22,7 @@ const workerVanilla = (workerData: VanillaWorkerDataInterface) => {
   workerVanilla.on('exit', () => {
     console.timeEnd(`${game} total`);
     if (game === 'warhammer_3') {
+      exportSitemap();
       exportData();
       // steamworks.js doesnt seem to be intended for scripts like this, stays open holding the node process running
       // force close after everything is finished
