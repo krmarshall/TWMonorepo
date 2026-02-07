@@ -41,8 +41,8 @@ const processStartPosTraits = (
       }
 
       // Both name and surname link to names_tables, so localRef would only be one of them
-      const first = (tables.names?.findRecordByKey('id', spChar.Name as string).name as string).trim() ?? 'MISSING';
-      const last = (tables.names?.findRecordByKey('id', spChar.Surname as string)?.name as string).trim() ?? '';
+      const first = (tables.names?.findRecordByKey('id', spChar.Name as string).name as string)?.trim() ?? 'MISSING';
+      const last = (tables.names?.findRecordByKey('id', spChar.Surname as string)?.name as string)?.trim() ?? '';
       const faction = startPosFaction?.localRefs?.factions?.screen_name ?? 'MISSING';
       const campaign =
         startPosFaction?.localRefs?.start_pos_calendars?.localRefs?.campaigns?.onscreen_name ?? 'MISSING';
