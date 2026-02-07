@@ -101,7 +101,7 @@ export class Table {
         } else if (record[refField.fieldName] === undefined) {
           // Ref field was deleted by cleanColumn
         } else {
-          if (typeof record[refField.fieldName] !== 'string') {
+          if (!['string', 'number', 'boolean'].includes(typeof record[refField.fieldName])) {
             throw `Table already linked: ${this.tableName}`;
           }
           const fieldCurValue = record[refField.fieldName] as string;
