@@ -88,7 +88,8 @@ const addSortedSubTablesToGlobalData = (
   });
 
   // Add vanilla records before any mods
-  globalData.parsedData[folder].db[dbTable].forEach((record) => {
+  const vanillaTable = folder.includes('3') ? 'vanilla3' : 'vanilla2';
+  globalData.parsedData[vanillaTable].db[dbTable].forEach((record) => {
     let recordCompositeKey = '';
     tableKeys.forEach((key) => (recordCompositeKey += record[key]));
     mergedMap[recordCompositeKey] = record;
