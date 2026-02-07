@@ -1,25 +1,14 @@
 import { workerData } from 'worker_threads';
 import { ensureDirSync } from 'fs-extra/esm';
 import type { MultiModWorkerDataInterface } from '../@types/WorkerDataInterfaces.ts';
-import csvParse from '../csvParse.ts';
 import generateTables from '../generateTables.ts';
 import processFactions from '../processTables/processFactions.ts';
-import { mergeLocsIntoVanilla, mergeTablesIntoVanilla } from '../mergeTables.ts';
 import outputCompilationGroups from '../processTables/outputCompilationGroups.ts';
 import Extractor from '../extractor.ts';
+import RpfmClient from '../rpfmClient.ts';
+import { parser } from '../parser.ts';
 
-const {
-  folder,
-  globalData,
-  modInfoArray,
-  dbList,
-  locList,
-  game,
-  schemaPath,
-  schema,
-  tech,
-  pruneVanilla,
-}: MultiModWorkerDataInterface = workerData;
+const { folder, dbList, game, globalData, modInfoArray, pruneVanilla, tech }: MultiModWorkerDataInterface = workerData;
 
 if (globalData === undefined) {
   throw `${folder} missing globalData`;
@@ -28,27 +17,23 @@ if (globalData === undefined) {
 const packPaths = modInfoArray.map((modInfo) => `${process.env.WH3_WORKSHOP_PATH}/${modInfo.id}/${modInfo.pack}`);
 
 ensureDirSync(`./extracted_files/${folder}/`);
+
+const rpfmClient = new RpfmClient();
+await rpfmClient.init();
+await rpfmClient.setGame(game, true);
+await rpfmClient.openPacks(packPaths);
+
+await parser(folder, globalData, rpfmClient, dbList);
+
 const extractor = new Extractor({
   folder,
-  game,
-  rpfmPath: process.env.RPFM_PATH as string,
-  schemaPath,
-  nconvertPath: process.env.NCONVERT_PATH as string,
   globalData,
+  packPaths,
+  nconvertPath: process.env.NCONVERT_PATH as string,
+  rpfmClient,
 });
-extractor
-  .extractPackfileMulti(packPaths, packPaths, dbList, locList, false)
-  .then(() => extractor.parseImages(packPaths, tech))
-  .then(() => {
-    outputCompilationGroups(folder, modInfoArray);
+await extractor.extractAndParseImages();
 
-    csvParse(folder, true, globalData);
-    mergeTablesIntoVanilla(folder, globalData, schema);
-    mergeLocsIntoVanilla(folder, globalData);
-
-    const tables = generateTables(folder, globalData, dbList, schema);
-    processFactions(folder, globalData, tables, pruneVanilla, tech);
-  })
-  .catch((error) => {
-    throw error;
-  });
+const tables = await generateTables(folder, globalData, dbList, rpfmClient);
+outputCompilationGroups(folder, modInfoArray);
+processFactions(folder, globalData, tables, pruneVanilla, tech);

@@ -8,6 +8,20 @@ import log from '../utils/log.ts';
 import exportData from '../utils/exportData.ts';
 import exportSitemap from '../utils/exportSitemap.ts';
 
+const workerRpfmServer = async (): Promise<void> => {
+  return new Promise((resolve, reject) => {
+    const workerRpfmServer = new Worker('./src/workers/workerRpfmServer.ts', { name: 'RpfmServer' });
+    workerRpfmServer.on('error', (error) => {
+      reject(error);
+    });
+    workerRpfmServer.on('message', (message) => {
+      if (message === 'ready') {
+        resolve();
+      }
+    });
+  });
+};
+
 const workerVanilla = (workerData: VanillaWorkerDataInterface) => {
   const { game, folder } = workerData;
   console.time(`${game} total`);
@@ -17,6 +31,7 @@ const workerVanilla = (workerData: VanillaWorkerDataInterface) => {
     name: folder,
   });
   workerVanilla.on('error', (error) => {
+    console.error(error);
     throw error;
   });
   workerVanilla.on('exit', () => {
@@ -41,6 +56,7 @@ const workerMod = (workerData: ModWorkerDataInterface) => {
   });
   workerMod.on('error', (error) => {
     log(`${folder} failed`, 'red');
+    console.error(error);
     throw error;
   });
   workerMod.on('exit', () => {
@@ -57,6 +73,7 @@ const workerModMulti = (workerData: MultiModWorkerDataInterface) => {
   });
   workerModMulti.on('error', (error) => {
     log(`${folder} failed`, 'red');
+    console.error(error);
     throw error;
   });
   workerModMulti.on('exit', () => {
@@ -64,4 +81,4 @@ const workerModMulti = (workerData: MultiModWorkerDataInterface) => {
   });
 };
 
-export { workerVanilla, workerMod, workerModMulti };
+export { workerRpfmServer, workerVanilla, workerMod, workerModMulti };

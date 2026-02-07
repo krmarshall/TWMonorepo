@@ -1,185 +1,154 @@
 import { workerData } from 'worker_threads';
-import { ensureDirSync, readJSONSync } from 'fs-extra/esm';
+import { ensureDirSync } from 'fs-extra/esm';
 import type { VanillaWorkerDataInterface } from '../@types/WorkerDataInterfaces.ts';
 import Extractor from '../extractor.ts';
 import initializeGlobalData from '../utils/initializeGlobalData.ts';
-import csvParse from '../csvParse.ts';
 import akData from '../akData.ts';
 import generateTables from '../generateTables.ts';
 import processFactions from '../processTables/processFactions.ts';
 import { workerMod, workerModMulti } from './workerExports.ts';
 import { modPackInfo, vanillaPackInfo } from '../lists/packInfo.ts';
-import { v3AssKitList } from '../lists/extractLists/vanilla3.ts';
+import { v3AssKitList } from '../lists/extractLists/dbLists.ts';
 import type { RefKey } from '../@types/GlobalDataInterface.ts';
-import type { SchemaInterface } from '../@types/SchemaInterfaces.ts';
+import RpfmClient from '../rpfmClient.ts';
+import { parser } from '../parser.ts';
 
-const { folder, dbPackName, locPackName, dbList, locList, game }: VanillaWorkerDataInterface = workerData;
+const { folder, packs, dbList, game }: VanillaWorkerDataInterface = workerData;
 
-const dbPackPath = `${process.env.WH3_DATA_PATH}/${dbPackName}`;
-const locPackPath = `${process.env.WH3_DATA_PATH}/${locPackName}`;
-const imagePackPaths = vanillaPackInfo.vanilla3.imgs.map(
-  (imgPackName) => `${process.env.WH3_DATA_PATH}/${imgPackName}`,
-);
-const schemaPath = `${process.env.SCHEMAS_PATH as string}/schema_wh3`;
-const schema: SchemaInterface = readJSONSync(`${schemaPath}.json`);
+const packPaths = packs.map((pack) => `${process.env.WH3_DATA_PATH}/${pack}.pack`);
 
 console.time(folder);
 
 const globalData = initializeGlobalData([...Object.keys(vanillaPackInfo), ...Object.keys(modPackInfo)]);
+// Just collapse this so its out of the way
+const modData = {
+  // Unpruned Mods
+  radiousWorkerData: {
+    folder: 'radious3',
+    dbList,
+    game: 'warhammer_3',
+    globalData,
+    modInfoArray: modPackInfo.radious3,
+    pruneVanilla: false,
+    tech: true,
+  },
+
+  sfoWorkerData: {
+    folder: 'sfo3',
+    dbList,
+    game: 'warhammer_3',
+    globalData,
+    modInfo: modPackInfo.sfo3[0],
+    pruneVanilla: false,
+    tech: true,
+  },
+
+  // crysWorkerData: {
+  //   folder: 'crys3',
+  //   dbList,
+  //   game: 'warhammer_3',
+  //   globalData,
+  //   modInfo: modPackInfo.crys3[0],
+  //   pruneVanilla: false,
+  //   tech: false,
+  // },
+
+  // Pruned Mods
+  mixuWorkerData: {
+    folder: 'mixu3',
+    dbList,
+    game: 'warhammer_3',
+    globalData,
+    modInfoArray: modPackInfo.mixu3,
+    pruneVanilla: true,
+    tech: false,
+  },
+
+  legeWorkerData: {
+    folder: 'lege3',
+    dbList,
+    game: 'warhammer_3',
+    globalData,
+    modInfo: modPackInfo.lege3[0],
+    pruneVanilla: true,
+    tech: false,
+  },
+
+  scmWorkerData: {
+    folder: 'scm3',
+    dbList,
+    game: 'warhammer_3',
+    globalData,
+    modInfoArray: modPackInfo.scm3,
+    pruneVanilla: true,
+    tech: false,
+  },
+
+  cat3WorkerData: {
+    folder: 'cat3',
+    dbList,
+    game: 'warhammer_3',
+    globalData,
+    modInfoArray: modPackInfo.cat3,
+    pruneVanilla: true,
+    tech: false,
+  },
+
+  ovn3WorkerData: {
+    folder: 'ovn3',
+    dbList,
+    game: 'warhammer_3',
+    globalData,
+    modInfoArray: modPackInfo.ovn3,
+    pruneVanilla: true,
+    tech: false,
+  },
+
+  hol3WorkerData: {
+    folder: 'hol3',
+    dbList,
+    game: 'warhammer_3',
+    globalData,
+    modInfoArray: modPackInfo.hol3,
+    pruneVanilla: true,
+    tech: false,
+  },
+};
 
 ensureDirSync(`./extracted_files/${folder}/`);
+
+const rpfmClient = new RpfmClient();
+await rpfmClient.init();
+await rpfmClient.setGame(game, true);
+await rpfmClient.openPacks(packPaths);
+
+await parser(folder, globalData, rpfmClient, dbList);
+
 const extractor = new Extractor({
   folder,
-  game,
-  rpfmPath: process.env.RPFM_PATH as string,
-  schemaPath,
-  nconvertPath: process.env.NCONVERT_PATH as string,
   globalData,
+  packPaths,
+  nconvertPath: process.env.NCONVERT_PATH as string,
+  rpfmClient,
 });
-extractor
-  .extractPackfile(dbPackPath, locPackPath, dbList, locList, false)
-  .then(() => extractor.parseImages(imagePackPaths, true))
-  .then(() => {
-    csvParse(folder, false, globalData);
-    akData(folder, globalData, process.env.WH3_DATA_PATH as string);
+await extractor.extractAndParseImages();
 
-    // Unpruned Mods
-    workerModMulti(radiousWorkerData);
-    workerMod(sfoWorkerData);
-    // workerMod(crysWorkerData);
-    // Pruned Mods
-    workerModMulti(mixuWorkerData);
-    workerMod(legeWorkerData);
-    workerModMulti(scmWorkerData);
-    workerModMulti(cat3WorkerData);
-    workerModMulti(ovn3WorkerData);
-    workerModMulti(hol3WorkerData);
-
-    dbList.push(...(v3AssKitList as Array<RefKey>));
-    const tables = generateTables(folder, globalData, dbList, schema);
-    processFactions(folder, globalData, tables, false, true);
-
-    console.timeEnd(folder);
-  })
-  .catch((error) => {
-    throw error;
-  });
+akData(folder, globalData, process.env.WH3_DATA_PATH as string);
 
 // Unpruned Mods
-const radiousWorkerData = {
-  globalData,
-  folder: 'radious3',
-  modInfoArray: modPackInfo.radious3,
-  dbList,
-  locList: undefined,
-  game: 'warhammer_3',
-  schemaPath,
-  schema,
-  pruneVanilla: false,
-  tech: true,
-};
-
-const sfoWorkerData = {
-  globalData,
-  folder: 'sfo3',
-  modInfo: modPackInfo.sfo3[0],
-  dbList,
-  locList: undefined,
-  game: 'warhammer_3',
-  schemaPath,
-  schema,
-  pruneVanilla: false,
-  tech: true,
-};
-
-const crysWorkerData = {
-  globalData,
-  folder: 'crys3',
-  modInfo: modPackInfo.crys3[0],
-  dbList,
-  locList: undefined,
-  game: 'warhammer_3',
-  schemaPath,
-  schema,
-  pruneVanilla: false,
-  tech: false,
-};
-
+workerModMulti(modData.radiousWorkerData);
+workerMod(modData.sfoWorkerData);
+// workerMod(crysWorkerData);
 // Pruned Mods
-const mixuWorkerData = {
-  globalData,
-  folder: 'mixu3',
-  modInfoArray: modPackInfo.mixu3,
-  dbList,
-  locList: undefined,
-  game: 'warhammer_3',
-  schemaPath,
-  schema,
-  pruneVanilla: true,
-  tech: false,
-};
+workerModMulti(modData.mixuWorkerData);
+workerMod(modData.legeWorkerData);
+workerModMulti(modData.scmWorkerData);
+workerModMulti(modData.cat3WorkerData);
+workerModMulti(modData.ovn3WorkerData);
+workerModMulti(modData.hol3WorkerData);
 
-const legeWorkerData = {
-  globalData,
-  folder: 'lege3',
-  modInfo: modPackInfo.lege3[0],
-  dbList,
-  locList: undefined,
-  game: 'warhammer_3',
-  schemaPath,
-  schema,
-  pruneVanilla: true,
-  tech: false,
-};
+dbList.push(...(v3AssKitList as Array<RefKey>));
+const tables = await generateTables(folder, globalData, dbList, rpfmClient);
+processFactions(folder, globalData, tables, false, true);
 
-const scmWorkerData = {
-  globalData,
-  folder: 'scm3',
-  modInfoArray: modPackInfo.scm3,
-  dbList,
-  locList: undefined,
-  game: 'warhammer_3',
-  schemaPath,
-  schema,
-  pruneVanilla: true,
-  tech: false,
-};
-
-const cat3WorkerData = {
-  globalData,
-  folder: 'cat3',
-  modInfoArray: modPackInfo.cat3,
-  dbList,
-  locList: undefined,
-  game: 'warhammer_3',
-  schemaPath,
-  schema,
-  pruneVanilla: true,
-  tech: false,
-};
-
-const ovn3WorkerData = {
-  globalData,
-  folder: 'ovn3',
-  modInfoArray: modPackInfo.ovn3,
-  dbList,
-  locList: undefined,
-  game: 'warhammer_3',
-  schemaPath,
-  schema,
-  pruneVanilla: true,
-  tech: false,
-};
-
-const hol3WorkerData = {
-  globalData,
-  folder: 'hol3',
-  modInfoArray: modPackInfo.hol3,
-  dbList,
-  locList: undefined,
-  game: 'warhammer_3',
-  schemaPath,
-  schema,
-  pruneVanilla: true,
-  tech: false,
-};
+console.timeEnd(folder);
