@@ -14,7 +14,7 @@ if (globalData === undefined) {
   throw `${folder} missing globalData`;
 }
 
-const packPaths = modInfoArray.map((modInfo) => `${process.env.WH3_WORKSHOP_PATH}/${modInfo.id}/${modInfo.pack}`);
+const packPaths = modInfoArray.map((modInfo) => `${process.env.WH3_WORKSHOP_PATH}/${modInfo.id}/${modInfo.pack}.pack`);
 
 ensureDirSync(`./extracted_files/${folder}/`);
 
