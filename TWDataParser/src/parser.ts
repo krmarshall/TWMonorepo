@@ -116,6 +116,9 @@ const addLocsToGlobalData = async (folder: string, globalData: GlobalDataInterfa
   const parsedLocTables: { [key: string]: Array<{ [key: string]: string }> } = {};
   const locPaths = await rpfmClient.getLocPaths();
   const locPromises = locPaths.map(async (locPath) => {
+    if (!locPath.endsWith('.loc')) {
+      return;
+    }
     const { table_data } = await rpfmClient.decodeLoc(locPath);
     const parsedLocTable = table_data.map((row) => {
       const key = row[0].StringU16 as string;
