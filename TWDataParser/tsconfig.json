@@ -1,6 +1,7 @@
 {
+  "include": ["./src/"],
   "compilerOptions": {
-    "noEmit": true, // Optional - see note below
+    "noEmit": true,
     "target": "esnext",
     "module": "nodenext",
     "moduleResolution": "nodenext",
