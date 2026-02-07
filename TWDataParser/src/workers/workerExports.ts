@@ -30,8 +30,8 @@ const workerVanilla = (workerData: VanillaWorkerDataInterface) => {
     workerData,
     name: folder,
   });
-  workerVanilla.on('error', (error) => {
-    console.error(error);
+  workerVanilla.on('error', (error: Error) => {
+    console.error(error.stack);
     throw error;
   });
   workerVanilla.on('exit', () => {
@@ -54,9 +54,9 @@ const workerMod = (workerData: ModWorkerDataInterface) => {
     workerData,
     name: folder,
   });
-  workerMod.on('error', (error) => {
+  workerMod.on('error', (error: Error) => {
     log(`${folder} failed`, 'red');
-    console.error(error);
+    console.error(error.stack);
     throw error;
   });
   workerMod.on('exit', () => {
@@ -71,9 +71,9 @@ const workerModMulti = (workerData: MultiModWorkerDataInterface) => {
     workerData,
     name: folder,
   });
-  workerModMulti.on('error', (error) => {
+  workerModMulti.on('error', (error: Error) => {
     log(`${folder} failed`, 'red');
-    console.error(error);
+    console.error(error.stack);
     throw error;
   });
   workerModMulti.on('exit', () => {
