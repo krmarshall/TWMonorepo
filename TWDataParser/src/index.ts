@@ -1,13 +1,14 @@
 import 'dotenv/config';
 import { emptyDirSync } from 'fs-extra/esm';
-import { v3DbList, v3LocList } from './lists/extractLists/vanilla3.ts';
-import { workerVanilla } from './workers/workerExports.ts';
+import { v2DbList, v3DbList } from './lists/extractLists/dbLists.ts';
+import { workerRpfmServer, workerVanilla } from './workers/workerExports.ts';
 import type { RefKey } from './@types/GlobalDataInterface.ts';
-import { v2DbList, v2LocList } from './lists/extractLists/vanilla2.ts';
 import modTimestamps from './utils/modTimestamps.ts';
 import { vanillaPackInfo } from './lists/packInfo.ts';
 
 process.chdir(process.env.CWD as string);
+
+await workerRpfmServer();
 
 emptyDirSync('./output');
 emptyDirSync('./output_img');
@@ -19,18 +20,14 @@ modTimestamps();
 
 workerVanilla({
   folder: 'vanilla2',
-  dbPackName: vanillaPackInfo.vanilla2.db,
-  locPackName: vanillaPackInfo.vanilla2.loc,
+  packs: vanillaPackInfo.vanilla2,
   dbList: v2DbList as unknown as Array<RefKey>,
-  locList: v2LocList,
   game: 'warhammer_2',
 });
 
 workerVanilla({
   folder: 'vanilla3',
-  dbPackName: vanillaPackInfo.vanilla3.db,
-  locPackName: vanillaPackInfo.vanilla3.loc,
+  packs: vanillaPackInfo.vanilla3,
   dbList: v3DbList as unknown as Array<RefKey>,
-  locList: v3LocList,
   game: 'warhammer_3',
 });

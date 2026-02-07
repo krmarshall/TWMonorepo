@@ -1,14 +1,6 @@
 export const vanillaPackInfo = {
-  vanilla2: {
-    db: 'data',
-    loc: 'local_en',
-    imgs: ['data'],
-  },
-  vanilla3: {
-    db: 'db',
-    loc: 'local_en',
-    imgs: ['data', 'ui', 'ui2', 'ui2_bl', 'ui3', 'ui_3'],
-  },
+  vanilla2: ['data', 'local_en', 'data'],
+  vanilla3: ['db', 'local_en', 'data', 'ui', 'ui2', 'ui2_bl', 'ui3', 'ui_3'],
 };
 
 export interface ModInfoInterface {

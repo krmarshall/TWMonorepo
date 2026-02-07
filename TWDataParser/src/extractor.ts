@@ -1,241 +1,121 @@
 import { exec } from 'child_process';
-import { emptyDirSync, ensureDirSync, ensureFile, outputFileSync, outputJSONSync, readJSONSync } from 'fs-extra/esm';
+import { outputFileSync, outputJson, readJSONSync } from 'fs-extra/esm';
 import { statSync } from 'fs';
-import log from './utils/log.ts';
 import { basename } from 'path';
 import { promisify } from 'util';
 import type { GlobalDataInterface } from './@types/GlobalDataInterface.ts';
 import fastGlob from 'fast-glob';
 import { hardcodePortraitData } from './utils/hardcodeCharList.ts';
+import RpfmClient from './rpfmClient.ts';
+import { imgFolders } from './lists/extractLists/imgFolders.ts';
 
 const execPromise = promisify(exec);
 
+interface CacheInterface {
+  packs: Array<string>;
+  newestTimestamp: number;
+}
+
 export default class Extractor {
-  #folder: string;
-  #game: string;
-  #rpfmPath: string;
-  #schemaPath: string;
-  #nconvertPath: string;
-  #globalData: GlobalDataInterface;
+  private folder: string;
+  private globalData: GlobalDataInterface;
+  private packPaths: Array<string>;
+  private nconvertPath: string;
+  private rpfmClient: RpfmClient;
+
   constructor(extractorArgs: {
     folder: string;
-    game: string;
-    rpfmPath: string;
-    schemaPath: string;
+    packPaths: Array<string>;
     nconvertPath: string;
     globalData: GlobalDataInterface;
+    rpfmClient: RpfmClient;
   }) {
-    this.#folder = extractorArgs.folder;
-    this.#game = extractorArgs.game;
-    this.#rpfmPath = extractorArgs.rpfmPath;
-    this.#schemaPath = extractorArgs.schemaPath;
-    this.#nconvertPath = extractorArgs.nconvertPath;
-    this.#globalData = extractorArgs.globalData;
+    this.folder = extractorArgs.folder;
+    this.packPaths = extractorArgs.packPaths;
+    this.nconvertPath = extractorArgs.nconvertPath;
+    this.globalData = extractorArgs.globalData;
+    this.rpfmClient = extractorArgs.rpfmClient;
   }
-  #generateTablesString = (dbList: Array<string>, appendString = '') => {
-    return dbList.reduce((prev, cur) => {
-      return `${prev} "/db/${cur}_tables;./extracted_files/${this.#folder}${appendString}"`;
-    }, '');
-  };
 
-  #generateLocsString = (locList: Array<string>, appendString = '') => {
-    return locList.reduce((prev, cur) => {
-      return `${prev} "/text/db/${cur}.loc;./extracted_files/${this.#folder}${appendString}"`;
-    }, '');
-  };
-
-  #createExtractedTimestamp = (dbPackName: string, dbPackPath: string, appendString = '') => {
-    const fileStats = statSync(`${dbPackPath}.pack`);
-    outputJSONSync(`./extracted_files/${this.#folder}/${dbPackName}_timestamp${appendString}.json`, {
-      time: fileStats.mtime.toString(),
+  private getLatestPackTimestamp = (): number => {
+    let latestTimestamp = 0;
+    this.packPaths.forEach((pack) => {
+      const fileStats = statSync(pack);
+      const fileModifiedTime = fileStats.mtime.getTime();
+      if (fileModifiedTime > latestTimestamp) {
+        latestTimestamp = fileModifiedTime;
+      }
     });
+    return latestTimestamp;
   };
 
-  #checkCachedExtractGood = (packPath: string, newTables: Array<string>, forceExtract: boolean) => {
-    const dbPackName = basename(packPath);
-    const oldDbTimestamp = readJSONSync(`./extracted_files/${this.#folder}/${dbPackName}_timestamp.json`, {
+  private checkCacheValid = (latestPackTimestamp: number): boolean => {
+    const oldCacheInfo: CacheInterface = readJSONSync(`./extracted_files/${this.folder}/timestamp.json`, {
       throws: false,
     });
-    const newFileStats = statSync(`${packPath}.pack`);
-    const oldTables = readJSONSync(`./extracted_files/${this.#folder}/tables.json`, { throws: false });
-    if (
-      !forceExtract &&
-      oldDbTimestamp !== null &&
-      oldDbTimestamp.time === newFileStats.mtime.toString() &&
-      oldTables !== null &&
-      JSON.stringify(oldTables) === JSON.stringify(newTables)
-    ) {
-      return true;
-    } else {
+    if (oldCacheInfo === null) {
       return false;
     }
+    if (JSON.stringify(oldCacheInfo.packs) !== JSON.stringify(this.packPaths)) {
+      return false;
+    }
+    if (oldCacheInfo.newestTimestamp !== latestPackTimestamp) {
+      return false;
+    }
+    return true;
   };
 
-  #extractData = (packPath: string, tablesString: string) => {
-    return new Promise<void>((resolve, reject) => {
-      execPromise(
-        `${this.#rpfmPath} -g ${this.#game} pack extract -p "${packPath}.pack" -t "${this.#schemaPath}.ron" -F ${tablesString}`,
-        { shell: 'powershell.exe' },
-      )
-        .then(() => resolve())
-        .catch((error) => reject(error));
+  private extractImages = async (): Promise<void> => {
+    const latestPackTimestamp = this.getLatestPackTimestamp();
+    if (this.checkCacheValid(latestPackTimestamp)) {
+      return;
+    }
+    const containerPaths = imgFolders.map((imgFolderPath) => {
+      return { Folder: imgFolderPath };
     });
-  };
-
-  extractPackfile = (
-    dbPackPath: string,
-    locPackPath: string,
-    dbList: Array<string>,
-    locList: Array<string> | undefined,
-    forceExtract: boolean,
-  ) => {
-    return new Promise<void>((resolve, reject) => {
-      const newTables = [...dbList];
-      newTables.push(...(locList ?? ''));
-
-      const goodCachedExtract = this.#checkCachedExtractGood(dbPackPath, newTables, forceExtract);
-      if (goodCachedExtract) {
-        log(`Cached extract ${this.#folder}`, 'green');
-        return resolve();
-      } else {
-        emptyDirSync(`./extracted_files/${this.#folder}`);
-      }
-
-      const tablesString = this.#generateTablesString(dbList);
-      const locString =
-        locList !== undefined ? this.#generateLocsString(locList) : `"/text;./extracted_files/${this.#folder}"`;
-      const dataPromise = this.#extractData(dbPackPath, tablesString);
-      const locPromise = this.#extractData(locPackPath, locString);
-
-      Promise.all([dataPromise, locPromise])
-        .then(() => {
-          const dbPackName = basename(dbPackPath);
-          this.#createExtractedTimestamp(dbPackName, dbPackPath);
-          outputJSONSync(`./extracted_files/${this.#folder}/tables.json`, newTables);
-          resolve();
-        })
-        .catch((error) => reject(error));
+    await this.rpfmClient.extractFiles(
+      {
+        PackFile: containerPaths,
+        AssKitFiles: undefined,
+        ExternalFile: undefined,
+        GameFiles: undefined,
+        ParentFiles: undefined,
+      },
+      `./extracted_files/${this.folder}/`,
+    );
+    outputJson(`./extracted_files/${this.folder}/timestamp.json`, {
+      packs: this.packPaths,
+      newestTimestamp: latestPackTimestamp,
     });
+    return;
   };
 
-  extractPackfileMulti = (
-    dbPackPaths: Array<string>,
-    locPackPaths: Array<string>,
-    dbList: Array<string>,
-    locList: Array<string> | undefined,
-    forceExtract: boolean,
-  ) => {
-    return new Promise<void>((resolve, reject) => {
-      const newTables = [...dbList];
-      newTables.push(...(locList ?? ''));
-
-      let goodCachedExtract = true;
-      dbPackPaths.forEach((dbPackPath) => {
-        if (!this.#checkCachedExtractGood(dbPackPath, newTables, forceExtract)) goodCachedExtract = false;
-      });
-
-      if (goodCachedExtract) {
-        log(`Cached extract ${this.#folder}`, 'green');
-        return resolve();
-      } else {
-        emptyDirSync(`./extracted_files/${this.#folder}`);
-      }
-
-      const dataPromises = dbPackPaths.map((dbPackPath, index) => {
-        const dbPackName = basename(dbPackPath);
-        ensureDirSync(`./extracted_files/${this.#folder}/subDB${index}`);
-        ensureFile(`./extracted_files/${this.#folder}/subDB${index}/${dbPackName}`);
-        const tablesString = this.#generateTablesString(dbList, `/subDB${index}`);
-        return this.#extractData(dbPackPath, tablesString);
-      });
-
-      const locPromises = locPackPaths.map((locPackPath, index) => {
-        const locPackName = basename(locPackPath);
-        ensureDirSync(`./extracted_files/${this.#folder}/subLOC${index}`);
-        ensureFile(`./extracted_files/${this.#folder}/subLOC${index}/${locPackName}`);
-        const locString =
-          locList !== undefined
-            ? this.#generateLocsString(locList, `/subLOC${index}`)
-            : `"/text;./extracted_files/${this.#folder}/subLOC${index}"`;
-        return this.#extractData(locPackPath, locString);
-      });
-
-      Promise.all([...dataPromises, ...locPromises])
-        .then(() => {
-          dbPackPaths.forEach((dbPackPath) => this.#createExtractedTimestamp(basename(dbPackPath), dbPackPath));
-          outputJSONSync(`./extracted_files/${this.#folder}/tables.json`, newTables);
-          resolve();
-        })
-        .catch((error) => reject(error));
-    });
-  };
-
-  #extractImages = (packPaths: Array<string>, tech: boolean) => {
-    return new Promise<void>((resolve, reject) => {
-      let goodCachedExtract = true;
-      packPaths.forEach((packPath) => {
-        const packName = basename(packPath);
-        const oldTimestamp = readJSONSync(`./extracted_files/${this.#folder}/${packName}_timestamp_img.json`, {
-          throws: false,
-        });
-        const newFileStats = statSync(`${packPath}.pack`);
-        if (oldTimestamp === null || oldTimestamp.time !== newFileStats.mtime.toString()) {
-          goodCachedExtract = false;
-        }
-      });
-      if (goodCachedExtract) {
-        return resolve();
-      } else {
-        emptyDirSync(`./extracted_files/${this.#folder}/ui`);
-      }
-
-      const imagePromises = packPaths.map((packPath) => {
-        let foldersString = `"/ui/battle ui/ability_icons;./extracted_files/${this.#folder}" "/ui/campaign ui/effect_bundles;./extracted_files/${this.#folder}" "/ui/campaign ui/skills;./extracted_files/${this.#folder}" "/ui/campaign ui/ancillaries;./extracted_files/${this.#folder}" "/ui/campaign ui/mounts;./extracted_files/${this.#folder}" "/ui/portraits/portholes;./extracted_files/${this.#folder}" "/ui/units/icons;./extracted_files/${this.#folder}"`;
-        if (tech) foldersString += ` "/ui/campaign ui/technologies;./extracted_files/${this.#folder}"`;
-        return new Promise<void>((resolveI, rejectI) => {
-          execPromise(
-            `${this.#rpfmPath} -g ${this.#game} pack extract -p "${packPath}.pack" -t "${this.#schemaPath}.ron" -F ${foldersString}`,
-            { shell: 'powershell.exe' },
-          )
-            .then(() => resolveI())
-            .catch((error) => rejectI(error));
-        });
-      });
-      Promise.all(imagePromises)
-        .then(() => {
-          packPaths.forEach((packPath) => this.#createExtractedTimestamp(basename(packPath), packPath, '_img'));
-          resolve();
-        })
-        .catch((error) => reject(error));
-    });
-  };
-
-  #convertImages = () => {
-    const imageDirs = fastGlob.sync(`./extracted_files/${this.#folder}/ui/**/`, {
+  private convertImages = async (): Promise<void> => {
+    const imageDirs = fastGlob.sync(`./extracted_files/${this.folder}/ui/**/`, {
       markDirectories: true,
       onlyDirectories: true,
-      ignore: [`./extracted_files/${this.#folder}/ui/portraits/**/`],
+      ignore: [`./extracted_files/${this.folder}/ui/portraits/**/`],
     });
     const imagePromises = imageDirs.map((imageDir, index) => {
       const imagePaths = fastGlob.sync(`${imageDir}*.png`);
       if (imagePaths.length !== 0) {
-        const splitPath = imageDir.split(`${this.#folder}/ui/`);
-        let outPath = `./output_img/${this.#folder}/${splitPath[splitPath.length - 1]}`;
+        const splitPath = imageDir.split(`${this.folder}/ui/`);
+        let outPath = `./output_img/${this.folder}/${splitPath[splitPath.length - 1]}`;
         outPath = outPath.replaceAll(' ', '_');
         // ensureDirSync(outPath);
         const script = `### -out webp -q 90 -rmeta -quiet -lower -o ${outPath}%`;
         const finalScript = imagePaths.reduce((prev, cur) => {
-          const fileSplitPath = cur.split(`${this.#folder}/ui/`);
+          const fileSplitPath = cur.split(`${this.folder}/ui/`);
           const filePath = fileSplitPath[fileSplitPath.length - 1]
             .replaceAll(' ', '_')
             .replace('.png', '')
             .toLowerCase();
-          this.#globalData.imgPaths[this.#folder][filePath] = filePath;
+          this.globalData.imgPaths[this.folder][filePath] = filePath;
           return `${prev}\n${cur}`;
         }, script);
-        outputFileSync(`./bins/nScripts/${this.#folder}${index}.txt`, finalScript);
+        outputFileSync(`./bins/nScripts/${this.folder}${index}.txt`, finalScript);
         return new Promise<void>((resolve, reject) => {
-          execPromise(`${this.#nconvertPath} ./bins/nScripts/${this.#folder}${index}.txt`, {
+          execPromise(`${this.nconvertPath} ./bins/nScripts/${this.folder}${index}.txt`, {
             maxBuffer: 5 * 1024 * 1024,
           })
             .then(() => resolve())
@@ -243,81 +123,67 @@ export default class Extractor {
         });
       }
     });
-
-    return Promise.all(imagePromises);
+    await Promise.all(imagePromises);
+    return;
   };
 
-  #convertPortraitBins = () => {
-    const portraitSettingsPaths = fastGlob.sync(`./extracted_files/${this.#folder}/ui/portraits/portholes/*.bin`);
-    const portraitPromises = portraitSettingsPaths.map((portraitSettingsPath) => {
-      return new Promise<void>((resolve, reject) => {
-        const portraitSettingsName = basename(portraitSettingsPath, '.bin');
-        execPromise(
-          `${this.#rpfmPath} -g ${this.#game} portrait-settings to-json --bin-path "${portraitSettingsPath}" --json-path "./extracted_files/${this.#folder}/ui/portraits/portholes/${portraitSettingsName}.json"`,
-          { shell: 'powershell.exe' },
-        )
-          .then(() => {
-            this.#fillPortraitGlobalData(portraitSettingsPath.replace(/.bin$/, '.json'));
-            resolve();
-          })
-          .catch(() => {
-            // log(`Bad portrait bin:${portraitSettingsPath}`, 'yellow');
-            resolve();
-          });
+  private parsePortraitBins = async () => {
+    const portraitSettingsPaths = fastGlob.sync(`./extracted_files/${this.folder}/ui/portraits/portholes/*.bin`);
+    const cleanPortraitSettingPaths = portraitSettingsPaths.map((path) =>
+      path.replace(`./extracted_files/${this.folder}/`, ''),
+    );
+    const portraitPromises = cleanPortraitSettingPaths.map(async (binPath) => {
+      const portraitSettings = await this.rpfmClient.decodePortraitBin(binPath);
+      portraitSettings.entries.forEach((entry) => {
+        // Agents can have multiple portrait variants, just grab the first one and ignore the rest
+        if (entry.id.match(/0[2-9]$|[1-9][1-9]$/)) {
+          return;
+        }
+        const imgPath = entry.variants[0].file_diffuse.toLowerCase();
+        this.globalData.portraitPaths[this.folder][entry.id] = imgPath;
       });
-    });
-
-    return Promise.all(portraitPromises);
-  };
-  #fillPortraitGlobalData = (jsonPath: string) => {
-    const portraitSettings = readJSONSync(jsonPath);
-    portraitSettings.entries.forEach((entry: { id: string; variants: Array<{ file_diffuse: string }> }) => {
-      // art set id's typically end with 01-99 for variants, only want first variant
-      if (entry.id.match(/0[2-9]$|[1-9][1-9]$/)) {
-        return;
-      }
-      const imgPath = entry.variants[0].file_diffuse.toLowerCase();
-      this.#globalData.portraitPaths[this.#folder][entry.id] = imgPath;
     });
 
     Object.entries(hardcodePortraitData).forEach((entry) => {
       const nodeSetKey = entry[0];
       const portraitFile = basename(entry[1], '.webp');
       const portraitPaths = fastGlob.sync(
-        `./extracted_files/${this.#folder}/ui/portraits/portholes/**/${portraitFile}.png`,
+        `./extracted_files/${this.folder}/ui/portraits/portholes/**/${portraitFile}.png`,
       );
       if (portraitPaths.length !== 0) {
-        const path = portraitPaths[0].replace(`./extracted_files/${this.#folder}/`, '');
-        this.#globalData.portraitPaths[this.#folder][nodeSetKey] = path;
+        const path = portraitPaths[0].replace(`./extracted_files/${this.folder}/`, '');
+        this.globalData.portraitPaths[this.folder][nodeSetKey] = path;
       }
     });
+
+    await Promise.all(portraitPromises);
+    return;
   };
-  #convertPortraits = () => {
+
+  private convertPortraits = () => {
     const portraitMap = new Map<string, boolean>();
-    const script = `### -canvas 164 164 center -out webp -q 90 -rmeta -quiet -lower -o ./output_portraits/${this.#folder}/%`;
-    const finalScript = Object.values(this.#globalData.portraitPaths[this.#folder]).reduce((prev, portraitPath) => {
+    const script = `### -canvas 164 164 center -out webp -q 90 -rmeta -quiet -lower -o ./output_portraits/${this.folder}/%`;
+    const finalScript = Object.values(this.globalData.portraitPaths[this.folder]).reduce((prev, portraitPath) => {
       if (portraitMap.has(portraitPath)) {
         return prev;
       } else {
         portraitMap.set(portraitPath, true);
-        return `${prev}\n./extracted_files/${this.#folder}/${portraitPath}`;
+        return `${prev}\n./extracted_files/${this.folder}/${portraitPath}`;
       }
     }, script);
-    outputFileSync(`./bins/nScripts/${this.#folder}portraits.txt`, finalScript);
+    outputFileSync(`./bins/nScripts/${this.folder}portraits.txt`, finalScript);
     return new Promise<void>((resolve, reject) => {
-      execPromise(`${this.#nconvertPath} ./bins/nScripts/${this.#folder}portraits.txt`, { maxBuffer: 5 * 1024 * 1024 })
+      execPromise(`${this.nconvertPath} ./bins/nScripts/${this.folder}portraits.txt`, { maxBuffer: 5 * 1024 * 1024 })
         .then(() => resolve())
         .catch((error) => reject(error));
     });
   };
-  parseImages = (packPaths: Array<string>, tech: boolean) => {
-    return new Promise<void>((resolve, reject) => {
-      this.#extractImages(packPaths, tech)
-        .then(() => this.#convertImages())
-        .then(() => this.#convertPortraitBins())
-        .then(() => this.#convertPortraits())
-        .then(() => resolve())
-        .catch((error) => reject(error));
-    });
+
+  extractAndParseImages = async () => {
+    await this.extractImages();
+    await this.convertImages();
+    await this.parsePortraitBins();
+    await this.convertPortraits();
+    return;
   };
 }
