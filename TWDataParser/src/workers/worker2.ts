@@ -39,3 +39,4 @@ const tables = await generateTables(folder, globalData, dbList, rpfmClient);
 processFactions(folder, globalData, tables, false, true);
 
 console.timeEnd(folder);
+rpfmClient.disconnect();

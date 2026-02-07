@@ -35,3 +35,5 @@ await extractor.extractAndParseImages();
 
 const tables = await generateTables(folder, globalData, dbList, rpfmClient);
 processFactions(folder, globalData, tables, pruneVanilla, tech);
+
+rpfmClient.disconnect();
