@@ -1,6 +1,5 @@
 import type { GlobalDataInterface, TableRecord } from '../@types/GlobalDataInterface.ts';
 import type { EffectInterface, ItemInterface } from '../@types/CharacterInterface.ts';
-import { parseInteger } from '../utils/parseStringToTypes.ts';
 import stringInterpolator from '../utils/stringInterpolator.ts';
 import processEffect from './processEffect.ts';
 
@@ -8,19 +7,18 @@ const processAncillary = (
   folder: string,
   globalData: GlobalDataInterface,
   ancillaryJunc: TableRecord,
-  unlocked_at_rank: string | undefined,
+  unlocked_at_rank: number | undefined,
 ) => {
   const ancillary = ancillaryJunc.localRefs?.ancillaries as TableRecord;
   const ancillaryInfo = ancillary.localRefs?.ancillary_info as TableRecord;
   const returnItem: ItemInterface = {
-    key: ancillaryInfo.ancillary,
-    onscreen_name: stringInterpolator(ancillary.onscreen_name, globalData.parsedData[folder].text),
-    colour_text: stringInterpolator(ancillary.colour_text, globalData.parsedData[folder].text),
+    key: ancillaryInfo.ancillary as string,
+    onscreen_name: stringInterpolator(ancillary.onscreen_name as string, globalData.parsedData[folder].text),
+    colour_text: stringInterpolator(ancillary.colour_text as string, globalData.parsedData[folder].text),
     ui_icon: ancillaryImage(ancillary),
   };
 
-  if (unlocked_at_rank !== undefined && unlocked_at_rank !== '')
-    returnItem.unlocked_at_rank = parseInteger(unlocked_at_rank);
+  if (unlocked_at_rank !== undefined) returnItem.unlocked_at_rank = unlocked_at_rank;
 
   const effects: Array<EffectInterface> = [];
   // Standard Item Effects
@@ -42,7 +40,7 @@ const processAncillary = (
     if (ancSet !== undefined) {
       const contains = ancSet.foreignRefs?.ancillary_set_ancillary_junctions?.map((ancJunc) => {
         return {
-          name: ancJunc?.localRefs?.ancillaries?.onscreen_name ?? 'Unknown',
+          name: (ancJunc?.localRefs?.ancillaries?.onscreen_name as string) ?? 'Unknown',
           icon: ancillaryImage(ancJunc?.localRefs?.ancillaries),
         };
       });
@@ -51,9 +49,9 @@ const processAncillary = (
       });
 
       returnItem.item_set = {
-        key: ancSet.key,
-        name: ancSet.name,
-        description: ancSet.description,
+        key: ancSet.key as string,
+        name: ancSet.name as string,
+        description: ancSet.description as string,
         contains,
         effects,
       };
@@ -79,7 +77,7 @@ const processAncillary = (
 };
 
 const ancillaryImage = (ancillary: TableRecord | undefined) => {
-  return (ancillary?.localRefs?.ancillary_types?.ui_icon ?? '')
+  return ((ancillary?.localRefs?.ancillary_types?.ui_icon as string) ?? '')
     .replaceAll(' ', '_')
     .replace('.png', '')
     .replace(/^ui\/|^UI\/|^Ui\//, '');

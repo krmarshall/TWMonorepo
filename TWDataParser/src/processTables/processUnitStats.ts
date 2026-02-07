@@ -1,6 +1,5 @@
 import type { GlobalDataInterface, TableRecord } from '../@types/GlobalDataInterface.ts';
 import type { AbilityInterface, AttributeInterface, UnitStatsInterface } from '../@types/CharacterInterface.ts';
-import { parseFloating, parseInteger } from '../utils/parseStringToTypes.ts';
 import processAbility from './processAbility.ts';
 import processAttribute from './processAttribute.ts';
 import processPhase from './processPhase.ts';
@@ -14,39 +13,39 @@ const processUnitStats = (folder: string, globalData: GlobalDataInterface, mainU
   const attributeGroup = landUnit?.localRefs?.unit_attributes_groups;
 
   const returnStats: UnitStatsInterface = {
-    run_speed: parseFloating(battleEntity.run_speed),
-    mass: parseInteger(battleEntity.mass),
-    size: battleEntity.size,
+    run_speed: battleEntity.run_speed as number,
+    mass: battleEntity.mass as number,
+    size: battleEntity.size as string,
 
-    hit_points: parseInteger(battleEntity.hit_points),
-    bonus_hit_points: parseInteger(landUnit.bonus_hit_points),
-    armour: parseInteger(landUnit?.localRefs?.unit_armour_types?.armour_value as string),
-    missile_block_chance: parseInteger(landUnit?.localRefs?.unit_shield_types?.missile_block_chance as string),
-    morale: parseInteger(landUnit.morale),
-    damage_mod_flame: parseInteger(landUnit.damage_mod_flame),
-    damage_mod_magic: parseInteger(landUnit.damage_mod_magic),
-    damage_mod_physical: parseInteger(landUnit.damage_mod_physical),
-    damage_mod_missile: parseInteger(landUnit.damage_mod_missile),
-    damage_mod_all: parseInteger(landUnit.damage_mod_all),
+    hit_points: battleEntity.hit_points as number,
+    bonus_hit_points: landUnit.bonus_hit_points as number,
+    armour: landUnit?.localRefs?.unit_armour_types?.armour_value as number,
+    missile_block_chance: landUnit?.localRefs?.unit_shield_types?.missile_block_chance as number,
+    morale: landUnit.morale as number,
+    damage_mod_flame: landUnit.damage_mod_flame as number,
+    damage_mod_magic: landUnit.damage_mod_magic as number,
+    damage_mod_physical: landUnit.damage_mod_physical as number,
+    damage_mod_missile: landUnit.damage_mod_missile as number,
+    damage_mod_all: landUnit.damage_mod_all as number,
 
-    melee_attack: parseInteger(landUnit.melee_attack),
-    melee_defence: parseInteger(landUnit.melee_defence),
-    charge_bonus: parseInteger(landUnit.charge_bonus),
-    bonus_v_large: parseInteger(meleeWeapon.bonus_v_large),
-    bonus_v_infantry: parseInteger(meleeWeapon.bonus_v_infantry),
-    damage: parseInteger(meleeWeapon.damage),
-    ap_damage: parseInteger(meleeWeapon.ap_damage),
-    splash_target_size_limit: meleeWeapon.splash_attack_target_size,
-    splash_attack_max_attacks: parseInteger(meleeWeapon.splash_attack_max_attacks),
-    melee_attack_interval: parseFloating(meleeWeapon.melee_attack_interval),
+    melee_attack: landUnit.melee_attack as number,
+    melee_defence: landUnit.melee_defence as number,
+    charge_bonus: landUnit.charge_bonus as number,
+    bonus_v_large: meleeWeapon.bonus_v_large as number,
+    bonus_v_infantry: meleeWeapon.bonus_v_infantry as number,
+    damage: meleeWeapon.damage as number,
+    ap_damage: meleeWeapon.ap_damage as number,
+    splash_target_size_limit: meleeWeapon.splash_attack_target_size as string,
+    splash_attack_max_attacks: meleeWeapon.splash_attack_max_attacks as number,
+    melee_attack_interval: meleeWeapon.melee_attack_interval as number,
   };
 
   if (mainUnit.barrier_health !== undefined && mainUnit.barrier_health !== '0')
-    returnStats.barrier = parseInteger(mainUnit.barrier_health);
+    returnStats.barrier = mainUnit.barrier_health as number;
   if (mainUnit.can_siege === 'true') returnStats.can_siege = true;
   if (landUnit.can_skirmish === 'true') returnStats.can_skirmish = true;
-  if (battleEntity.fly_speed !== '0') returnStats.fly_speed = parseFloating(battleEntity.fly_speed);
-  if (parseInteger(meleeWeapon.ignition_amount) >= 1) returnStats.is_flaming = true;
+  if (battleEntity.fly_speed !== '0') returnStats.fly_speed = battleEntity.fly_speed as number;
+  if ((meleeWeapon.ignition_amount as number) >= 1) returnStats.is_flaming = true;
   if (meleeWeapon.is_magical === 'true') returnStats.is_magical = true;
   if (meleeWeapon.localRefs?.special_ability_phases !== undefined) {
     returnStats.contact_phase = processPhase(
@@ -59,11 +58,11 @@ const processUnitStats = (folder: string, globalData: GlobalDataInterface, mainU
 
   if (missileWeapon !== undefined) {
     returnStats.projectile = processProjectile(folder, globalData, missileWeapon.localRefs?.projectiles as TableRecord);
-    returnStats.accuracy = parseInteger(landUnit.accuracy);
-    returnStats.reload = parseInteger(landUnit.reload);
-    returnStats.primary_ammo = parseInteger(landUnit.primary_ammo);
-    if (landUnit.secondary_ammo !== '0') returnStats.secondary_ammo = parseInteger(landUnit.secondary_ammo);
-    returnStats.fire_arc = parseInteger(battleEntity.fire_arc_close);
+    returnStats.accuracy = landUnit.accuracy as number;
+    returnStats.reload = landUnit.reload as number;
+    returnStats.primary_ammo = landUnit.primary_ammo as number;
+    if (landUnit.secondary_ammo !== '0') returnStats.secondary_ammo = landUnit.secondary_ammo as number;
+    returnStats.fire_arc = battleEntity.fire_arc_close as number;
   }
 
   const attributes: Array<AttributeInterface> = [];
@@ -90,13 +89,13 @@ const processUnitStats = (folder: string, globalData: GlobalDataInterface, mainU
 
   const mountEntity = landUnit?.localRefs?.mounts?.localRefs?.battle_entities;
   if (mountEntity !== undefined) {
-    returnStats.hit_points = parseInteger(mountEntity.hit_points);
-    returnStats.mass = parseInteger(mountEntity.mass);
-    returnStats.run_speed = parseInteger(mountEntity.run_speed);
-    returnStats.size = mountEntity.size;
-    if (mountEntity.fly_speed !== '0') returnStats.fly_speed = parseFloating(mountEntity.fly_speed);
+    returnStats.hit_points = mountEntity.hit_points as number;
+    returnStats.mass = mountEntity.mass as number;
+    returnStats.run_speed = mountEntity.run_speed as number;
+    returnStats.size = mountEntity.size as string;
+    if (mountEntity.fly_speed !== '0') returnStats.fly_speed = mountEntity.fly_speed as number;
     if (missileWeapon !== undefined) {
-      returnStats.fire_arc = parseInteger(mountEntity.fire_arc_close);
+      returnStats.fire_arc = mountEntity.fire_arc_close as number;
     }
   }
 

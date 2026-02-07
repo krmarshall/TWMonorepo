@@ -1,44 +1,42 @@
 import type { GlobalDataInterface, TableRecord } from '../@types/GlobalDataInterface.ts';
 import type { ProjectileInterface } from '../@types/CharacterInterface.ts';
-import { parseBoolean, parseFloating, parseInteger } from '../utils/parseStringToTypes.ts';
 import processPhase from './processPhase.ts';
 import processVortex from './processVortex.ts';
 
 const processProjectile = (folder: string, globalData: GlobalDataInterface, projectile: TableRecord) => {
   const returnProjectile: ProjectileInterface = {
-    key: projectile.key,
-    damage: parseFloating(projectile.damage),
-    ap_damage: parseFloating(projectile.ap_damage),
-    shockwave_radius: parseFloating(projectile.shockwave_radius),
-    effective_range: parseInteger(projectile.effective_range),
-    base_reload_time: parseFloating(projectile.base_reload_time),
+    key: projectile.key as string,
+    damage: projectile.damage as number,
+    ap_damage: projectile.ap_damage as number,
+    shockwave_radius: projectile.shockwave_radius as number,
+    effective_range: projectile.effective_range as number,
+    base_reload_time: projectile.base_reload_time as number,
   };
 
-  if (parseInteger(projectile.bonus_v_infantry) > 0)
-    returnProjectile.bonus_v_infantry = parseInteger(projectile.bonus_v_infantry);
-  if (parseInteger(projectile.bonus_v_large) > 0)
-    returnProjectile.bonus_v_large = parseInteger(projectile.bonus_v_large);
-  if (parseInteger(projectile.projectile_number) > 1)
-    returnProjectile.projectile_number = parseInteger(projectile.projectile_number);
-  if (parseInteger(projectile.burst_size) > 1) returnProjectile.burst_size = parseInteger(projectile.burst_size);
+  if ((projectile.bonus_v_infantry as number) > 0)
+    returnProjectile.bonus_v_infantry = projectile.bonus_v_infantry as number;
+  if ((projectile.bonus_v_large as number) > 0) returnProjectile.bonus_v_large = projectile.bonus_v_large as number;
+  if ((projectile.projectile_number as number) > 1)
+    returnProjectile.projectile_number = projectile.projectile_number as number;
+  if ((projectile.burst_size as number) > 1) returnProjectile.burst_size = projectile.burst_size as number;
   if (projectile.is_magical === 'true') returnProjectile.is_magical = true;
-  if (parseInteger(projectile.ignition_amount) >= 1) returnProjectile.is_flaming = true;
-  if (parseInteger(projectile.shots_per_volley) > 1)
-    returnProjectile.shots_per_volley = parseInteger(projectile.shots_per_volley);
+  if ((projectile.ignition_amount as number) >= 1) returnProjectile.is_flaming = true;
+  if ((projectile.shots_per_volley as number) > 1)
+    returnProjectile.shots_per_volley = projectile.shots_per_volley as number;
   if (projectile.can_damage_allies === 'true') returnProjectile.can_damage_allies = true;
 
   // explosion_type
   if (projectile.localRefs?.projectiles_explosions !== undefined) {
     const explosion = projectile.localRefs?.projectiles_explosions;
     returnProjectile.explosion_type = {
-      key: explosion.key,
-      affects_allies: parseBoolean(explosion.affects_allies),
-      detonation_damage: parseFloating(explosion.detonation_damage),
-      detonation_damage_ap: parseFloating(explosion.detonation_damage_ap),
-      detonation_radius: parseFloating(explosion.detonation_radius),
+      key: explosion.key as string,
+      affects_allies: explosion.affects_allies as boolean,
+      detonation_damage: explosion.detonation_damage as number,
+      detonation_damage_ap: explosion.detonation_damage_ap as number,
+      detonation_radius: explosion.detonation_radius as number,
     };
     if (explosion.is_magical === 'true') returnProjectile.explosion_type.is_magical = true;
-    if (parseInteger(explosion.ignition_amount) >= 1) returnProjectile.explosion_type.is_flaming = true;
+    if ((explosion.ignition_amount as number) >= 1) returnProjectile.explosion_type.is_flaming = true;
     if (explosion.localRefs?.special_ability_phases !== undefined) {
       returnProjectile.explosion_type.contact_phase_effect = processPhase(
         folder,

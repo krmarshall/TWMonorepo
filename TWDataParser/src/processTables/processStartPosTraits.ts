@@ -28,7 +28,7 @@ const processStartPosTraits = (
       traitLevel.foreignRefs?.trait_level_effects?.forEach((traitEffect) => {
         // Bunch of LL have hidden traits that just give titles, skip these
         if (
-          traitEffect.localRefs?.effects?.description.includes('[HIDDEN]') &&
+          (traitEffect.localRefs?.effects?.description as string).includes('[HIDDEN]') &&
           traitEffect.effect !== 'wh2_dlc11_enable_immortal_hidden'
         ) {
           return;
@@ -41,29 +41,29 @@ const processStartPosTraits = (
       }
 
       // Both name and surname link to names_tables, so localRef would only be one of them
-      const first = tables.names?.findRecordByKey('id', spChar.Name).name.trim() ?? 'MISSING';
-      const last = tables.names?.findRecordByKey('id', spChar.Surname)?.name.trim() ?? '';
+      const first = (tables.names?.findRecordByKey('id', spChar.Name as string).name as string).trim() ?? 'MISSING';
+      const last = (tables.names?.findRecordByKey('id', spChar.Surname as string)?.name as string).trim() ?? '';
       const faction = startPosFaction?.localRefs?.factions?.screen_name ?? 'MISSING';
       const campaign =
         startPosFaction?.localRefs?.start_pos_calendars?.localRefs?.campaigns?.onscreen_name ?? 'MISSING';
       const imgPath =
         'vanilla3' +
-        traitLevel?.localRefs?.character_traits?.localRefs?.trait_categories?.icon_path
+        (traitLevel?.localRefs?.character_traits?.localRefs?.trait_categories?.icon_path as string)
           .replace('campaign ui', 'campaign_ui')
           .replace(/^ui/, '')
           .replace('.png', '');
 
-      variants[spChar.ID] = {
+      variants[spChar.ID as number] = {
         name: `${first}${last.length === 0 ? '' : ' '}${last}`,
-        campaign: campaign,
-        faction: faction,
+        campaign: campaign as string,
+        faction: faction as string,
         trait: {
-          key: traitLevel.key,
+          key: traitLevel.key as string,
           image_path: imgPath,
           is_background_skill: true,
-          localised_name: traitLevel.onscreen_name,
-          localised_description: traitLevel.colour_text,
-          character_skill_key: traitLevel.trait,
+          localised_name: traitLevel.onscreen_name as string,
+          localised_description: traitLevel.colour_text as string,
+          character_skill_key: traitLevel.trait as string,
           tier: 6,
           indent: 99,
           points_on_creation: 0,

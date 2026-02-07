@@ -59,7 +59,7 @@ const processRelatedUnitCards = (folder: string, globalData: GlobalDataInterface
 
 const addMainUnit = (mainUnit: TableRecord | undefined, related_unit_cards: Set<string>) => {
   mainUnit?.localRefs?.land_units?.foreignRefs?.unit_variants?.forEach((unitVariant) =>
-    related_unit_cards.add(unitVariant.unit_card),
+    related_unit_cards.add(unitVariant.unit_card as string),
   );
 };
 

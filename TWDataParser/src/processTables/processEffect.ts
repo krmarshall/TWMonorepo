@@ -7,7 +7,6 @@ import type {
 } from '../@types/CharacterInterface.ts';
 import findImage from '../utils/findImage.ts';
 import numberInsertion from '../utils/numberInsertion.ts';
-import { parseInteger } from '../utils/parseStringToTypes.ts';
 import stringInterpolator from '../utils/stringInterpolator.ts';
 import processAbility from './processAbility.ts';
 import processAttribute from './processAttribute.ts';
@@ -25,16 +24,16 @@ const processEffect = (folder: string, globalData: GlobalDataInterface, effectJu
   }
   const returnEffect: EffectInterface = {
     description: numberInsertion(
-      stringInterpolator(effect.description, globalData.parsedData[folder].text),
-      parseInteger(effectJunc.value),
+      stringInterpolator(effect.description as string, globalData.parsedData[folder].text),
+      effectJunc.value as number,
     ),
-    key: effect.effect,
-    icon: findEffectImage(folder, globalData, effect.icon),
-    priority: parseInteger(effect.priority),
+    key: effect.effect as string,
+    icon: findEffectImage(folder, globalData, effect.icon as string),
+    priority: effect.priority as number,
   };
   if (effectJunc.scope === 'character_to_character_own') {
     returnEffect.scope = effectJunc.scope;
-    returnEffect.value = parseInteger(effectJunc.value);
+    returnEffect.value = effectJunc.value as number;
   }
   if (effectJunc.localRefs?.campaign_effect_scopes?.localised_text !== '') {
     returnEffect.description += stringInterpolator(
@@ -52,7 +51,7 @@ const processEffect = (folder: string, globalData: GlobalDataInterface, effectJu
       (abilityJunc.bonus_value_id === 'recharge_mod' &&
         index < 4 &&
         abilityJunc.localRefs?.unit_abilities?.overpower_option === '') ||
-      wantedBonusValueIdList.includes(abilityJunc.bonus_value_id)
+      wantedBonusValueIdList.includes(abilityJunc.bonus_value_id as string)
     ) {
       related_abilities.push(processAbility(folder, globalData, abilityJunc));
     }
@@ -61,19 +60,19 @@ const processEffect = (folder: string, globalData: GlobalDataInterface, effectJu
   wantedBonusValueIdList.push('recharge_mod');
   // unit_set_ability
   effect.foreignRefs?.effect_bonus_value_unit_set_unit_ability_junctions?.forEach((abilityJunc) => {
-    if (wantedBonusValueIdList.includes(abilityJunc.bonus_value_id)) {
+    if (wantedBonusValueIdList.includes(abilityJunc.bonus_value_id as string)) {
       related_abilities.push(processAbility(folder, globalData, abilityJunc));
     }
   });
   // army_special_ability
   effect.foreignRefs?.effect_bonus_value_military_force_ability_junctions?.forEach((abilityJunc) => {
-    if (wantedBonusValueIdList.includes(abilityJunc.bonus_value_id)) {
+    if (wantedBonusValueIdList.includes(abilityJunc.bonus_value_id as string)) {
       related_abilities.push(processAbility(folder, globalData, abilityJunc));
     }
   });
   // battle_context
   effect.foreignRefs?.effect_bonus_value_battle_context_unit_ability_junctions?.forEach((abilityJunc) => {
-    if (wantedBonusValueIdList.includes(abilityJunc.bonus_value_id)) {
+    if (wantedBonusValueIdList.includes(abilityJunc.bonus_value_id as string)) {
       related_abilities.push(processAbility(folder, globalData, abilityJunc));
     }
   });

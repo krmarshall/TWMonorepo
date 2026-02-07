@@ -1,7 +1,6 @@
 import type { GlobalDataInterface, TableRecord } from '../@types/GlobalDataInterface.ts';
 import type { AbilityInterface, PhaseInterface, UiEffectInterface } from '../@types/CharacterInterface.ts';
 import findImage from '../utils/findImage.ts';
-import { parseBoolean, parseFloating, parseInteger } from '../utils/parseStringToTypes.ts';
 import stringInterpolator from '../utils/stringInterpolator.ts';
 import processBombardment from './processBombardment.ts';
 import processPhase from './processPhase.ts';
@@ -25,8 +24,8 @@ const processAbility = (
   if (unitAbility === undefined) {
     log(`Ability Junc Missing Ability: ${abilityJunc.effect} | ${folder}`, 'yellow');
     const earlyReturn: AbilityInterface = {
-      effect: abilityJunc.effect,
-      bonus_value_id: abilityJunc.bonus_value_id,
+      effect: abilityJunc.effect as string,
+      bonus_value_id: abilityJunc.bonus_value_id as string,
       unit_ability: {
         key: 'MISSING',
         icon_name: 'MISSING',
@@ -52,39 +51,39 @@ const processAbility = (
   const unitSpecialAbility = unitAbility.foreignRefs?.unit_special_abilities?.[0] as TableRecord;
 
   const returnAbility: AbilityInterface = {
-    effect: abilityJunc.effect,
-    bonus_value_id: abilityJunc.bonus_value_id,
+    effect: abilityJunc.effect as string,
+    bonus_value_id: abilityJunc.bonus_value_id as string,
     unit_ability: {
-      key: unitAbility.key,
-      icon_name: findAbilityImage(folder, globalData, unitAbility.icon_name),
-      overpower_option: unitAbility.overpower_option,
+      key: unitAbility.key as string,
+      icon_name: findAbilityImage(folder, globalData, unitAbility.icon_name as string),
+      overpower_option: unitAbility.overpower_option as string,
       type: {
-        key: unitAbilityType.key,
-        icon_path: findAbilityTypeImage(folder, globalData, unitAbilityType.icon_path),
-        onscreen_name: stringInterpolator(unitAbilityType.onscreen_name, globalData.parsedData[folder].text),
+        key: unitAbilityType.key as string,
+        icon_path: findAbilityTypeImage(folder, globalData, unitAbilityType.icon_path as string),
+        onscreen_name: stringInterpolator(unitAbilityType.onscreen_name as string, globalData.parsedData[folder].text),
       },
-      is_hidden_in_ui: parseBoolean(unitAbility.is_hidden_in_ui),
-      onscreen_name: stringInterpolator(unitAbility.onscreen_name, globalData.parsedData[folder].text),
-      active_time: parseFloating(unitSpecialAbility.active_time),
-      effect_range: parseFloating(unitSpecialAbility.effect_range),
-      mana_cost: parseInteger(unitSpecialAbility.mana_cost),
-      min_range: parseFloating(unitSpecialAbility.min_range),
-      miscast_chance: parseFloating(unitSpecialAbility.miscast_chance),
-      num_effected_enemy_units: parseInteger(unitSpecialAbility.num_effected_enemy_units),
-      num_effected_friendly_units: parseInteger(unitSpecialAbility.num_effected_friendly_units),
-      num_uses: parseInteger(unitSpecialAbility.num_uses),
-      recharge_time: parseFloating(unitSpecialAbility.recharge_time),
-      shared_recharge_time: parseFloating(unitSpecialAbility.shared_recharge_time),
-      target_enemies: parseBoolean(unitSpecialAbility.target_enemies),
-      target_friends: parseBoolean(unitSpecialAbility.target_friends),
-      target_ground: parseBoolean(unitSpecialAbility.target_ground),
-      target_self: parseBoolean(unitSpecialAbility.target_self),
-      target_intercept_range: parseFloating(unitSpecialAbility.target_intercept_range),
-      wind_up_time: parseFloating(unitSpecialAbility.wind_up_time),
+      is_hidden_in_ui: unitAbility.is_hidden_in_ui as boolean,
+      onscreen_name: stringInterpolator(unitAbility.onscreen_name as string, globalData.parsedData[folder].text),
+      active_time: unitSpecialAbility.active_time as number,
+      effect_range: unitSpecialAbility.effect_range as number,
+      mana_cost: unitSpecialAbility.mana_cost as number,
+      min_range: unitSpecialAbility.min_range as number,
+      miscast_chance: unitSpecialAbility.miscast_chance as number,
+      num_effected_enemy_units: unitSpecialAbility.num_effected_enemy_units as number,
+      num_effected_friendly_units: unitSpecialAbility.num_effected_friendly_units as number,
+      num_uses: unitSpecialAbility.num_uses as number,
+      recharge_time: unitSpecialAbility.recharge_time as number,
+      shared_recharge_time: unitSpecialAbility.shared_recharge_time as number,
+      target_enemies: unitSpecialAbility.target_enemies as boolean,
+      target_friends: unitSpecialAbility.target_friends as boolean,
+      target_ground: unitSpecialAbility.target_ground as boolean,
+      target_self: unitSpecialAbility.target_self as boolean,
+      target_intercept_range: unitSpecialAbility.target_intercept_range as number,
+      wind_up_time: unitSpecialAbility.wind_up_time as number,
     },
   };
   if (effectEnabling)
-    returnAbility.unit_ability.requires_effect_enabling = parseBoolean(unitAbility.requires_effect_enabling);
+    returnAbility.unit_ability.requires_effect_enabling = unitAbility.requires_effect_enabling as boolean;
 
   [
     'active_time',
@@ -111,8 +110,8 @@ const processAbility = (
     enabled_if.push(
       stringInterpolator(
         lookupKillThresholds(
-          enable.localRefs?.special_ability_invalid_usage_flags?.flag_key,
-          enable.localRefs?.special_ability_invalid_usage_flags?.alt_description,
+          enable.localRefs?.special_ability_invalid_usage_flags?.flag_key as string,
+          enable.localRefs?.special_ability_invalid_usage_flags?.alt_description as string,
           folder,
           globalData,
         ),
@@ -128,8 +127,8 @@ const processAbility = (
     target_if.push(
       stringInterpolator(
         lookupKillThresholds(
-          target.localRefs?.special_ability_invalid_usage_flags?.flag_key,
-          target.localRefs?.special_ability_invalid_usage_flags?.alt_description,
+          target.localRefs?.special_ability_invalid_usage_flags?.flag_key as string,
+          target.localRefs?.special_ability_invalid_usage_flags?.alt_description as string,
           folder,
           globalData,
         ),
@@ -144,12 +143,12 @@ const processAbility = (
   unitAbility.foreignRefs?.unit_abilities_to_additional_ui_effects_juncs?.forEach((uiEffectJunc) => {
     const uiEffect = uiEffectJunc.localRefs?.unit_abilities_additional_ui_effects as TableRecord;
     const returnUiEffect = {
-      key: uiEffect.key,
-      sort_order: parseInteger(uiEffect.sort_order),
-      localised_text: stringInterpolator(uiEffect.localised_text, globalData.parsedData[folder].text),
-      effect_state: uiEffect.effect_state,
+      key: uiEffect.key as string,
+      sort_order: uiEffect.sort_order as number,
+      localised_text: stringInterpolator(uiEffect.localised_text as string, globalData.parsedData[folder].text),
+      effect_state: uiEffect.effect_state as string,
     };
-    if (uiEffect.effect_state !== undefined) returnUiEffect.effect_state = uiEffect.effect_state;
+    if (uiEffect.effect_state !== undefined) returnUiEffect.effect_state = uiEffect.effect_state as string;
     ui_effects.push(returnUiEffect);
   });
   if (ui_effects.length > 0) {
@@ -210,7 +209,7 @@ const lookupKillThresholds = (
   if (key === 'unit_tier1_kills' || key === 'unit_tier2_kills' || key === 'unit_tier3_kills') {
     const killsRule = globalData.parsedData[folder].db['_kv_rules_tables'].find((rule) => rule.key === key);
     if (killsRule !== undefined) {
-      return `More than ${parseInteger(killsRule.value)} kills`;
+      return `More than ${killsRule.value as number} kills`;
     }
   }
   return text ?? '';

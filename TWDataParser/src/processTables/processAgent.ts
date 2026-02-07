@@ -40,10 +40,10 @@ const processAgent = (
     const { foreignRefs, ...effectBundle } = agent.foreignRefs?.faction_starting_general_effects[0].localRefs
       ?.effect_bundles as TableRecord;
     returnAgent.factionEffects = {
-      key: effectBundle.key,
-      localised_description: effectBundle.localised_description,
-      localised_title: effectBundle.localised_title,
-      ui_icon: findFactionEffectImage(folder, globalData, effectBundle.ui_icon),
+      key: effectBundle.key as string,
+      localised_description: effectBundle.localised_description as string,
+      localised_title: effectBundle.localised_title as string,
+      ui_icon: findFactionEffectImage(folder, globalData, effectBundle.ui_icon as string),
       effects: [],
     };
     foreignRefs?.effect_bundles_to_effects_junctions?.forEach((effectJunc) => {
@@ -64,7 +64,7 @@ const processAgent = (
 
   // Quest Ancillaries WH3
   agent.foreignRefs?.character_ancillary_quest_ui_details?.forEach((ancillaryQuest) => {
-    unfilteredItems.push(processAncillary(folder, globalData, ancillaryQuest, ancillaryQuest.rank));
+    unfilteredItems.push(processAncillary(folder, globalData, ancillaryQuest, ancillaryQuest.rank as number));
   });
   // Character locked ancillaries (no unlock rank, so mostly for picking up edge cases), includes mounts
   agent.foreignRefs?.ancillaries_included_agent_subtypes?.forEach((ancillaryAgent) => {
@@ -88,7 +88,7 @@ const processAgent = (
     }
 
     // HEFs have a bunch of special node sets that just have diff background traits?
-    if (nodeSet.key.includes('_affinity')) {
+    if ((nodeSet.key as string).includes('_affinity')) {
       return;
     }
 

@@ -36,7 +36,9 @@ const collateNodes = (
     } else if (completeNode.indent <= 5 && completeNode.faction && factionKeys.has(completeNode.faction)) {
       if (altFactionNodeSets === undefined) altFactionNodeSets = {};
       if (altFactionNodeSets[completeNode.faction] === undefined) {
-        const factionName = globalData.parsedData[folder].text[`factions_screen_name_${completeNode.faction}`];
+        const factionName = globalData.parsedData[folder].text[
+          `factions_screen_name_${completeNode.faction}`
+        ] as string;
         altFactionNodeSets[completeNode.faction] = { factionName: factionName ?? 'Missing Faction Name', nodes: [] };
       }
       altFactionNodeSets[completeNode.faction].nodes.push(completeNode);

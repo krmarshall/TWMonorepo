@@ -10,20 +10,23 @@ const processAttribute = (
   attributeType?: string,
 ) => {
   // Attribute imued_effect_text is generally just the attribute name, but sometimes has below bullet text format
-  const description = stringInterpolator(attribute.imued_effect_text ?? '', globalData.parsedData[folder].text);
+  const description = stringInterpolator(
+    (attribute.imued_effect_text as string) ?? '',
+    globalData.parsedData[folder].text,
+  );
   const splitDescription = description.split('||');
   const strippedDescription = splitDescription[0];
 
   // Attribute bullet text has the format AttributeName||AttributeDescription, just want the description
-  const bulletText = stringInterpolator(attribute.bullet_text ?? '', globalData.parsedData[folder].text);
+  const bulletText = stringInterpolator((attribute.bullet_text as string) ?? '', globalData.parsedData[folder].text);
   const splitBulletText = bulletText.split('||');
   const strippedBulletText = splitBulletText[splitBulletText?.length - 1];
 
   const returnAttribute: AttributeInterface = {
-    key: attribute.key,
+    key: attribute.key as string,
     description: strippedDescription,
     bullet_text: strippedBulletText,
-    icon: findAttributeImage(folder, globalData, attribute.key),
+    icon: findAttributeImage(folder, globalData, attribute.key as string),
   };
   if (attributeType === 'negative') {
     returnAttribute.description = 'Removes ' + returnAttribute.description.trimStart();
