@@ -5,6 +5,18 @@ const exportSitemap = () => {
   const siteAddress = 'https://www.totalwarhammerplanner.com';
   let xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<url>
+<loc>${siteAddress}</loc>
+<changefreq>monthly</changefreq>
+</url>
+<url>
+<loc>${siteAddress}/techHome</loc>
+<changefreq>monthly</changefreq>
+</url>
+<url>
+<loc>${siteAddress}/about</loc>
+<changefreq>monthly</changefreq>
+</url>
 `;
 
   const skillPaths = fg.sync(process.env.CWD + '/output/skills/**/*.json', { onlyFiles: true });
