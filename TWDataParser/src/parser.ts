@@ -17,6 +17,9 @@ export const parser = async (
 
     // Get all the sub table paths of that tableName eg. db/ancillaries_table/data__
     const tablePaths = await rpfmClient.getTablePathsByTableName(dbTable);
+    if (tablePaths.length === 0) {
+      return;
+    }
 
     // For each of those sub table paths decode and parse it
     const tablePromises = tablePaths.map(async (subTablePath) => {
