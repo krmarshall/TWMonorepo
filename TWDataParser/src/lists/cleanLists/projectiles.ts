@@ -1,4 +1,4 @@
-const projectiles_tables = [
+const projectiles = [
   'category',
   'shot_type',
   'high_air_resistance',
@@ -43,4 +43,4 @@ const projectiles_tables = [
   'projectile_shot_type_display',
 ];
 
-export default projectiles_tables;
+export default projectiles;

@@ -1,4 +1,4 @@
-const unit_special_abilities_tables = [
+const unit_special_abilities = [
   'update_targets_every_frame',
   'assume_specific_behaviour',
   'clear_current_order',
@@ -56,4 +56,4 @@ const unit_special_abilities_tables = [
   'align_orientation_to_target_unit',
 ];
 
-export default unit_special_abilities_tables;
+export default unit_special_abilities;

@@ -31,9 +31,9 @@ const akData = (folder: string, globalData: GlobalDataInterface, wh3Path: string
     },
   );
 
-  globalData.parsedData[folder].db['start_pos_characters_tables'] = startPosCharacters;
-  globalData.parsedData[folder].db['start_pos_calendars_tables'] = startPosCalendars;
-  globalData.parsedData[folder].db['start_pos_character_traits_tables'] = startPosCharacterTraits;
+  globalData.parsedData[folder].db['start_pos_characters'] = startPosCharacters;
+  globalData.parsedData[folder].db['start_pos_calendars'] = startPosCalendars;
+  globalData.parsedData[folder].db['start_pos_character_traits'] = startPosCharacterTraits;
 };
 
 export default akData;

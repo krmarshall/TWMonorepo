@@ -207,7 +207,7 @@ const lookupKillThresholds = (
   globalData: GlobalDataInterface,
 ) => {
   if (key === 'unit_tier1_kills' || key === 'unit_tier2_kills' || key === 'unit_tier3_kills') {
-    const killsRule = globalData.parsedData[folder].db['_kv_rules_tables'].find((rule) => rule.key === key);
+    const killsRule = globalData.parsedData[folder].db['_kv_rules'].find((rule) => rule.key === key);
     if (killsRule !== undefined) {
       return `More than ${killsRule.value as number} kills`;
     }

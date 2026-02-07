@@ -12,12 +12,7 @@ const generateTables = async (
   const tables: { [key in RefKey]?: Table } = {};
   const tablePromises = dbList.map(async (db) => {
     const definition = await rpfmClient.getTableDefinition(db);
-    tables[db] = new Table(
-      db,
-      definition,
-      globalData.parsedData[folder].db[db + '_tables'],
-      globalData.parsedData[folder].text,
-    );
+    tables[db] = new Table(db, definition, globalData.parsedData[folder].db[db], globalData.parsedData[folder].text);
   });
 
   await Promise.all(tablePromises);
