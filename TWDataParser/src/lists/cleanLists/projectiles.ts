@@ -4,7 +4,6 @@ const projectiles = [
   'high_air_resistance',
   'spin_type',
   'trajectory_sight',
-  'effective_range',
   'minimum_range',
   'max_elevation',
   'muzzle_velocity',

@@ -8,7 +8,6 @@ import fastGlob from 'fast-glob';
 import { hardcodePortraitData } from './utils/hardcodeCharList.ts';
 import RpfmClient from './rpfmClient.ts';
 import { imgFolders } from './lists/extractLists/imgFolders.ts';
-import log from './utils/log.ts';
 
 const execPromise = promisify(exec);
 
