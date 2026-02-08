@@ -8,6 +8,7 @@ import fastGlob from 'fast-glob';
 import { hardcodePortraitData } from './utils/hardcodeCharList.ts';
 import RpfmClient from './rpfmClient.ts';
 import { imgFolders } from './lists/extractLists/imgFolders.ts';
+import log from './utils/log.ts';
 
 const execPromise = promisify(exec);
 
@@ -133,7 +134,13 @@ export default class Extractor {
       path.replace(`./extracted_files/${this.folder}/`, ''),
     );
     const portraitPromises = cleanPortraitSettingPaths.map(async (binPath) => {
-      const portraitSettings = await this.rpfmClient.decodePortraitBin(binPath);
+      let portraitSettings;
+      try {
+        portraitSettings = await this.rpfmClient.decodePortraitBin(binPath);
+      } catch (error) {
+        log(`Bad Portrait Bin: ${this.folder} | ${binPath}`, 'yellow');
+        return;
+      }
       portraitSettings.entries.forEach((entry) => {
         // Agents can have multiple portrait variants, just grab the first one and ignore the rest
         if (entry.id.match(/0[2-9]$|[1-9][1-9]$/)) {
