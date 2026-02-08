@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
+<loc>https://www.totalwarhammerplanner.com</loc>
+<changefreq>monthly</changefreq>
+</url>
+<url>
+<loc>https://www.totalwarhammerplanner.com/techHome</loc>
+<changefreq>monthly</changefreq>
+</url>
+<url>
+<loc>https://www.totalwarhammerplanner.com/about</loc>
+<changefreq>monthly</changefreq>
+</url>
+<url>
 <loc>https://www.totalwarhammerplanner.com/planner/cat3/dwf_dwarfs/kraka_cromson</loc>
 <changefreq>monthly</changefreq>
 </url><url>
