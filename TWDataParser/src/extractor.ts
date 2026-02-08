@@ -138,7 +138,7 @@ export default class Extractor {
       try {
         portraitSettings = await this.rpfmClient.decodePortraitBin(binPath);
       } catch (error) {
-        log(`Bad Portrait Bin: ${this.folder} | ${binPath}`, 'yellow');
+        // log(`Bad Portrait Bin: ${this.folder} | ${binPath}`, 'yellow');
         return;
       }
       portraitSettings.entries.forEach((entry) => {
