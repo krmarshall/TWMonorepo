@@ -26,7 +26,10 @@ export const parser = async (
         const parsedRow: { [key: string]: string | number | boolean } = {};
         row.forEach((field, index) => {
           // field value from the table_date, have to get the field key from the definitions
-          const value = Object.values(field)[0];
+          let value = Object.values(field)[0];
+          if (typeof value === 'number') {
+            value = parseFloat(value.toFixed(4));
+          }
           const key = definition.fields[index].name;
           parsedRow[key] = value;
         });
