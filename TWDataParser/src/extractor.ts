@@ -8,6 +8,8 @@ import fastGlob from 'fast-glob';
 import { hardcodePortraitData } from './utils/hardcodeCharList.ts';
 import RpfmClient from './rpfmClient.ts';
 import { imgFolders } from './lists/extractLists/imgFolders.ts';
+import type { PortraitSettings } from './@types/CustomRpfmTypes.ts';
+import log from './utils/log.ts';
 
 const execPromise = promisify(exec);
 
@@ -133,7 +135,7 @@ export default class Extractor {
       path.replace(`./extracted_files/${this.folder}/`, ''),
     );
     const portraitPromises = cleanPortraitSettingPaths.map(async (binPath) => {
-      let portraitSettings;
+      let portraitSettings: PortraitSettings;
       try {
         portraitSettings = await this.rpfmClient.decodePortraitBin(binPath);
       } catch (error) {

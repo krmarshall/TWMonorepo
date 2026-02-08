@@ -38,7 +38,7 @@ const addCharacterListReference = (
     }
   }
 
-  if (agent.recruitment_category === 'legendary_lords' || agent.contributes_to_agent_cap === 'false') {
+  if (agent.recruitment_category === 'legendary_lords' || agent.contributes_to_agent_cap === false) {
     characterListEntry.priority = true;
   }
   if (characterList[subcultureMap[subcultureKey]] !== undefined) {
