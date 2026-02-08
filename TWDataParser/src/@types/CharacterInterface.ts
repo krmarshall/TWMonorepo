@@ -17,9 +17,9 @@ interface AttributeInterface {
 interface PhaseInterface {
   icon: string;
   order: number;
-  target_enemies: boolean;
-  target_self: boolean;
-  target_friends: boolean;
+  target_enemies?: boolean;
+  target_self?: boolean;
+  target_friends?: boolean;
   duration: number;
   effect_type: string;
   onscreen_name?: string;
