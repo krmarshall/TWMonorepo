@@ -35,7 +35,7 @@ const extractor = new Extractor({
 await extractor.extractAndParseImages();
 
 const tables = await generateTables(folder, globalData, dbList, rpfmClient);
-outputCompilationGroups(folder, modInfoArray);
+await outputCompilationGroups(folder, game, modInfoArray, packPaths);
 processFactions(folder, globalData, tables, pruneVanilla, tech);
 
 rpfmClient.disconnect();
