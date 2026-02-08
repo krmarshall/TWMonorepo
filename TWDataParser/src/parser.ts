@@ -13,7 +13,6 @@ export const parser = async (
   // For every table (eg. ancillaries) we extract
   const dbPromises = dbList.map(async (dbTable) => {
     const parsedSubTables: { [key: string]: Array<TableRecord> } = {};
-    const tableDefinitions: { [key: string]: Definition } = {};
 
     // Get all the sub table paths of that tableName eg. db/ancillaries_table/data__
     const tablePaths = await rpfmClient.getTablePathsByTableName(dbTable);
@@ -22,7 +21,6 @@ export const parser = async (
     const tablePromises = tablePaths.map(async (subTablePath) => {
       let subTableName = basename(subTablePath);
       const { definition, table_data } = await rpfmClient.decodeDbTable(subTablePath);
-      addDefinition(dbTable, definition, tableDefinitions);
 
       const parsedSubTable: Array<TableRecord> = table_data.map((row) => {
         const parsedRow: { [key: string]: string | number | boolean } = {};
@@ -42,8 +40,9 @@ export const parser = async (
       return;
     });
 
+    const tableDefinition = await rpfmClient.getTableDefinition(dbTable);
     await Promise.all(tablePromises);
-    addSortedSubTablesToGlobalData(folder, globalData, parsedSubTables, tableDefinitions, dbTable);
+    addSortedSubTablesToGlobalData(folder, globalData, parsedSubTables, tableDefinition, dbTable);
     return;
   });
 
@@ -53,21 +52,11 @@ export const parser = async (
   return;
 };
 
-const addDefinition = (dbTable: RefKey, definition: Definition, tableDefinitions: { [key: string]: Definition }) => {
-  if (tableDefinitions[dbTable] === undefined) {
-    tableDefinitions[dbTable] = definition;
-  }
-  // If definition already exists in table, but new definition has a higher version, overwrite it
-  if (tableDefinitions[dbTable] !== undefined && tableDefinitions[dbTable].version < definition.version) {
-    tableDefinitions[dbTable] = definition;
-  }
-};
-
 const addSortedSubTablesToGlobalData = (
   folder: string,
   globalData: GlobalDataInterface,
   parsedSubTables: { [key: string]: Array<TableRecord> },
-  tableDefinitions: { [key: string]: Definition },
+  tableDefinition: Definition,
   dbTable: RefKey,
 ) => {
   // Vanilla should only have the data__ sub tables
@@ -80,7 +69,7 @@ const addSortedSubTablesToGlobalData = (
   let mergedMap: { [key: string]: TableRecord } = {};
   // Find the primary/composite keys for the dbTable
   const tableKeys: Array<string> = [];
-  tableDefinitions[dbTable]?.fields.forEach((field) => {
+  tableDefinition.fields.forEach((field) => {
     if (field.is_key) tableKeys.push(field.name);
   });
 
