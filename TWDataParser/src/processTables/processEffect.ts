@@ -109,7 +109,7 @@ const processEffect = (folder: string, globalData: GlobalDataInterface, effectJu
         processPhase(
           folder,
           globalData,
-          { order: '0', target_enemies: 'true', target_self: 'false', target_friends: 'false' },
+          { order: 0, target_enemies: true, target_self: false, target_friends: false },
           phase,
         ),
       );
@@ -122,7 +122,7 @@ const processEffect = (folder: string, globalData: GlobalDataInterface, effectJu
         processPhase(
           folder,
           globalData,
-          { order: '0', target_enemies: 'true', target_self: 'false', target_friends: 'false' },
+          { order: 0, target_enemies: true, target_self: false, target_friends: false },
           phase,
         ),
       );

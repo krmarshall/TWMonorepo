@@ -77,7 +77,7 @@ export class Table {
     });
   }
 
-  findRecordByKey = (keyName: string, keyValue: string) => {
+  findRecordByKey = (keyName: string, keyValue: string | number) => {
     const recordIndex = this.indexedKeys[keyName][keyValue];
     return this.records[recordIndex];
   };
@@ -104,7 +104,7 @@ export class Table {
           if (!['string', 'number', 'boolean'].includes(typeof record[refField.fieldName])) {
             throw `Table already linked: ${this.tableName}`;
           }
-          const fieldCurValue = record[refField.fieldName] as string;
+          const fieldCurValue = record[refField.fieldName] as string | number;
           const refRecord = tables[refField.refTable]?.findRecordByKey(refField.refKey, fieldCurValue);
           if (refRecord !== undefined) {
             // Local Reference

@@ -188,7 +188,7 @@ const processAbility = (
   // vortex
   const battleVortex = unitSpecialAbility.localRefs?.battle_vortexs;
   if (battleVortex !== undefined) {
-    if (battleVortex.damage === '0' && battleVortex.damage_ap === '0' && battleVortex.contact_effect === '') {
+    if (battleVortex.damage === 0 && battleVortex.damage_ap === 0 && battleVortex.contact_effect === '') {
       // some vortices are purely there for vfx, dont add these
     } else {
       returnAbility.unit_ability.vortex = processVortex(folder, globalData, battleVortex);

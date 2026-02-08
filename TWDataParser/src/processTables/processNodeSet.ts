@@ -45,7 +45,7 @@ const processNodeSet = (
   } else {
     nodeSet.foreignRefs?.character_skill_node_set_items?.forEach((nodeSetItem) => {
       const skillNode = nodeSetItem.localRefs?.character_skill_nodes;
-      if (nodeSetItem.mod_disabled === 'false' && skillNode !== undefined) {
+      if (nodeSetItem.mod_disabled === false && skillNode !== undefined) {
         const tempNode = processSkillNode(
           folder,
           globalData,

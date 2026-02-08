@@ -38,8 +38,8 @@ const processTechNode = (
     },
   };
 
-  if (techNode.cost_per_round !== '0') returnTechNode.cost_per_round = techNode.cost_per_round as number;
-  if (techNode.required_parents !== '0' && techNode.required_parents !== undefined) {
+  if (techNode.cost_per_round !== 0) returnTechNode.cost_per_round = techNode.cost_per_round as number;
+  if (techNode.required_parents !== 0 && techNode.required_parents !== undefined) {
     returnTechNode.required_parents = techNode.required_parents as number;
   }
   const uiGroup = techNode.localRefs?.technology_ui_groups?.key;

@@ -72,7 +72,7 @@ const processPhase = (folder: string, globalData: GlobalDataInterface, phaseJunc
     returnPhase.imbue_contact = processPhase(
       folder,
       globalData,
-      { order: '1', target_enemies: 'true', target_self: 'false', target_friends: 'false' },
+      { order: 1, target_enemies: true, target_self: false, target_friends: false },
       phase.localRefs?.special_ability_phases as TableRecord,
     );
   }
@@ -88,7 +88,7 @@ const processPhase = (folder: string, globalData: GlobalDataInterface, phaseJunc
     const statLoc = phaseStat.localRefs?.modifiable_unit_stats?.localRefs?.unit_stat_localisations as TableRecord;
     let uiUnitStat = statLoc.foreignRefs?.ui_unit_stats?.[0] as TableRecord;
     if (uiUnitStat === undefined) {
-      uiUnitStat = { icon: 'ui/skins/default/icon_stat_bracing.png', order: '0' };
+      uiUnitStat = { icon: 'ui/skins/default/icon_stat_bracing.png', order: 0 };
     }
     statEffects.push({
       value: phaseStat.value as number,

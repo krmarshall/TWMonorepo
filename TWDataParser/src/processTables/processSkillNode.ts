@@ -52,9 +52,9 @@ const processSkillNode = (
     // Most skills have a hidden effect that increases or decreases agent action chances, dont add these
     if (
       (effectJunc.effect_key === 'wh_main_effect_agent_action_success_chance_enemy_skill' &&
-        effectJunc.localRefs?.effects?.priority === '0') ||
+        effectJunc.localRefs?.effects?.priority === 0) ||
       (effectJunc.effect_key === 'wh_main_effect_agent_action_success_chance_skill' &&
-        effectJunc.localRefs?.effects?.priority === '0')
+        effectJunc.localRefs?.effects?.priority === 0)
     ) {
       return;
     }
@@ -102,7 +102,7 @@ const processSkillNode = (
   });
   // character_skills_to_level_reached_criterias WH3
   skill.foreignRefs?.character_skills_to_level_reached_criterias?.forEach((levelReached) => {
-    if (levelReached.character_level === '0') {
+    if (levelReached.character_level === 0) {
       returnSkill.points_on_creation = 1;
     } else {
       const upgradeToSkillLevel = (levelReached.upgrade_to_skill_level as number) - 1;

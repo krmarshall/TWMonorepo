@@ -104,8 +104,8 @@ const processFactions = (
           });
         }
         if (
-          faction.is_quest_faction === 'true' ||
-          faction.is_rebel === 'true' ||
+          faction.is_quest_faction === true ||
+          faction.is_rebel === true ||
           factionKey.includes('_separatists') ||
           factionKey.includes('_invasion') ||
           factionKey.includes('_prologue') ||
@@ -118,7 +118,7 @@ const processFactions = (
           if (
             factionAgent.agent === 'colonel' ||
             factionAgent.agent === 'minister' ||
-            factionAgent.mod_disabled === 'true'
+            factionAgent.mod_disabled === true
           ) {
             return;
           }

@@ -40,18 +40,18 @@ const processUnitStats = (folder: string, globalData: GlobalDataInterface, mainU
     melee_attack_interval: meleeWeapon.melee_attack_interval as number,
   };
 
-  if (mainUnit.barrier_health !== undefined && mainUnit.barrier_health !== '0')
+  if (mainUnit.barrier_health !== undefined && mainUnit.barrier_health !== 0)
     returnStats.barrier = mainUnit.barrier_health as number;
-  if (mainUnit.can_siege === 'true') returnStats.can_siege = true;
-  if (landUnit.can_skirmish === 'true') returnStats.can_skirmish = true;
-  if (battleEntity.fly_speed !== '0') returnStats.fly_speed = battleEntity.fly_speed as number;
+  if (mainUnit.can_siege) returnStats.can_siege = true;
+  if (landUnit.can_skirmish) returnStats.can_skirmish = true;
+  if (battleEntity.fly_speed !== 0) returnStats.fly_speed = battleEntity.fly_speed as number;
   if ((meleeWeapon.ignition_amount as number) >= 1) returnStats.is_flaming = true;
-  if (meleeWeapon.is_magical === 'true') returnStats.is_magical = true;
+  if (meleeWeapon.is_magical) returnStats.is_magical = true;
   if (meleeWeapon.localRefs?.special_ability_phases !== undefined) {
     returnStats.contact_phase = processPhase(
       folder,
       globalData,
-      { order: '1', target_enemies: 'true', target_self: 'false', target_friends: 'false' },
+      { order: 1, target_enemies: true, target_self: false, target_friends: false },
       meleeWeapon.localRefs?.special_ability_phases,
     );
   }
@@ -61,7 +61,7 @@ const processUnitStats = (folder: string, globalData: GlobalDataInterface, mainU
     returnStats.accuracy = landUnit.accuracy as number;
     returnStats.reload = landUnit.reload as number;
     returnStats.primary_ammo = landUnit.primary_ammo as number;
-    if (landUnit.secondary_ammo !== '0') returnStats.secondary_ammo = landUnit.secondary_ammo as number;
+    if (landUnit.secondary_ammo !== 0) returnStats.secondary_ammo = landUnit.secondary_ammo as number;
     returnStats.fire_arc = battleEntity.fire_arc_close as number;
   }
 
@@ -93,7 +93,7 @@ const processUnitStats = (folder: string, globalData: GlobalDataInterface, mainU
     returnStats.mass = mountEntity.mass as number;
     returnStats.run_speed = mountEntity.run_speed as number;
     returnStats.size = mountEntity.size as string;
-    if (mountEntity.fly_speed !== '0') returnStats.fly_speed = mountEntity.fly_speed as number;
+    if (mountEntity.fly_speed !== 0) returnStats.fly_speed = mountEntity.fly_speed as number;
     if (missileWeapon !== undefined) {
       returnStats.fire_arc = mountEntity.fire_arc_close as number;
     }

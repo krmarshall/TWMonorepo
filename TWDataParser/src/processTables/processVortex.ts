@@ -15,7 +15,7 @@ const processVortex = (folder: string, globalData: GlobalDataInterface, vortex: 
   };
 
   // is_magical
-  if (vortex.is_magical === 'true') returnVortex.is_magical = true;
+  if (vortex.is_magical) returnVortex.is_magical = true;
   // is_flaming
   if ((vortex.ignition_amount as number) >= 1) returnVortex.is_flaming = true;
   // num_vortexes / delay_between_vortexes
@@ -29,9 +29,9 @@ const processVortex = (folder: string, globalData: GlobalDataInterface, vortex: 
       folder,
       globalData,
       {
-        order: '1',
-        target_enemies: 'true',
-        target_self: 'false',
+        order: 1,
+        target_enemies: true,
+        target_self: false,
         target_friends: returnVortex.affects_allies.toString(),
       },
       vortex.localRefs?.special_ability_phases,

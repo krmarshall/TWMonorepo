@@ -71,7 +71,7 @@ const processAgent = (
     if (
       ancillaryAgent?.localRefs?.ancillaries?.category !== undefined &&
       ancillaryAgent?.localRefs?.ancillaries?.category !== 'mount' &&
-      ancillaryAgent?.localRefs?.ancillaries?.transferrable !== 'true'
+      ancillaryAgent?.localRefs?.ancillaries?.transferrable !== true
     ) {
       const findItem = unfilteredItems.find(
         (unfItem) => unfItem.key === ancillaryAgent?.localRefs?.ancillaries?.localRefs?.ancillary_info?.ancillary,
