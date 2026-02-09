@@ -90,6 +90,16 @@ const About = () => {
 
         <div className="flex flex-row place-content-center mt-12">
           <hr className="grow mt-[1.6rem] opacity-50 border-gray-200" />
+          <h1 className="w-max text-center text-5xl mx-2 mb-2 text-gray-200 text-shadow">Disclaimer</h1>
+          <hr className="grow mt-[1.6rem] opacity-50 border-gray-200" />
+        </div>
+        <p className="text-center text-gray-200 text-2xl">
+          This site is not affiliated with Creative Assembly or any mod authors. All assets are the property of Creative
+          Assembly or their respective authors, and are used for informational purposes.
+        </p>
+
+        <div className="flex flex-row place-content-center mt-12">
+          <hr className="grow mt-[1.6rem] opacity-50 border-gray-200" />
           <h1 className="w-max text-center text-5xl mx-2 mb-2 text-gray-200 text-shadow">Known Issues</h1>
           <hr className="grow mt-[1.6rem] opacity-50 border-gray-200" />
         </div>
