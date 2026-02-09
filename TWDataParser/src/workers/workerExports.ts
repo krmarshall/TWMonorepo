@@ -39,8 +39,7 @@ const workerVanilla = (workerData: VanillaWorkerDataInterface) => {
     if (game === 'warhammer_3') {
       exportSitemap();
       exportData();
-      // steamworks.js doesnt seem to be intended for scripts like this, stays open holding the node process running
-      // force close after everything is finished
+      // steamworks.js stays open holding the node process running, force close after everything is finished
       process.exit();
     }
   });

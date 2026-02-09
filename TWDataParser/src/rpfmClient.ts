@@ -3,7 +3,6 @@ import * as CustomRpfmTypes from './@types/CustomRpfmTypes.ts';
 
 export default class RpfmClient {
   private ws: WebSocket;
-  private url: string;
   private nextId = 1;
   private pending = new Map<
     number,
