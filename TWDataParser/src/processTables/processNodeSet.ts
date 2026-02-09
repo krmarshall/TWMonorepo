@@ -15,11 +15,11 @@ const processNodeSet = (
 
   const skillNodeKeys: { [key: string]: boolean } = {};
   if (folder.includes('2')) {
-    nodeSet.foreignRefs?.character_skill_nodes?.forEach((skillNode) => (skillNodeKeys[skillNode.key] = true));
+    nodeSet.foreignRefs?.character_skill_nodes?.forEach((skillNode) => (skillNodeKeys[skillNode.key as string] = true));
   } else {
     nodeSet.foreignRefs?.character_skill_node_set_items?.forEach((nodeSetItem) => {
       if (nodeSetItem?.localRefs?.character_skill_nodes !== undefined) {
-        skillNodeKeys[nodeSetItem?.localRefs?.character_skill_nodes.key] = true;
+        skillNodeKeys[nodeSetItem?.localRefs?.character_skill_nodes.key as string] = true;
       }
     });
   }
@@ -45,7 +45,7 @@ const processNodeSet = (
   } else {
     nodeSet.foreignRefs?.character_skill_node_set_items?.forEach((nodeSetItem) => {
       const skillNode = nodeSetItem.localRefs?.character_skill_nodes;
-      if (nodeSetItem.mod_disabled === 'false' && skillNode !== undefined) {
+      if (nodeSetItem.mod_disabled === false && skillNode !== undefined) {
         const tempNode = processSkillNode(
           folder,
           globalData,

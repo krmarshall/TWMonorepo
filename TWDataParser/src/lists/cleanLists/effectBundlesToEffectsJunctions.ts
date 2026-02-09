@@ -1,3 +1,3 @@
-const effect_bundles_to_effects_junctions_tables = ['advancement_stage'];
+const effect_bundles_to_effects_junctions = ['advancement_stage'];
 
-export default effect_bundles_to_effects_junctions_tables;
+export default effect_bundles_to_effects_junctions;

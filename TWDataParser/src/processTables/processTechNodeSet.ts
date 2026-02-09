@@ -2,7 +2,6 @@ import { Table } from '../generateTables.ts';
 import type { GlobalDataInterface, RefKey, TableRecord } from '../@types/GlobalDataInterface.ts';
 import type { NodeLinkInterface, TechNodeInterface, TechSetInterface } from '../@types/TechInterface.ts';
 import log from '../utils/log.ts';
-import { parseBoolean, parseInteger } from '../utils/parseStringToTypes.ts';
 import collateTechNodes from './collateTechNodes.ts';
 import outputTechNodeSet from './outputTechNodeSet.ts';
 import processTechNode from './processTechNode.ts';
@@ -14,33 +13,35 @@ const processTechNodeSet = (
   tables: { [key in RefKey]?: Table },
 ) => {
   const returnTechNodeSet: TechSetInterface = {
-    key: techNodeSet.key,
-    faction_key: techNodeSet.faction_key,
-    culture: techNodeSet.culture,
+    key: techNodeSet.key as string,
+    faction_key: techNodeSet.faction_key as string,
+    culture: techNodeSet.culture as string,
     tree: [],
     node_links: [],
   };
 
   const techNodeRequiredJuncMap: { [key: string]: Array<{ key: string; name: string }> } = {};
   tables.technology_required_technology_junctions?.records?.forEach((techJunc) => {
-    if (techNodeRequiredJuncMap[techJunc.technology] === undefined) techNodeRequiredJuncMap[techJunc.technology] = [];
-    const reqTech = tables.technologies?.findRecordByKey('key', techJunc.required_technology) as TableRecord;
-    techNodeRequiredJuncMap[techJunc.technology].push({
-      key: techJunc.required_technology,
-      name: reqTech.onscreen_name,
+    const techJuncTech = techJunc.technology as string;
+    if (techNodeRequiredJuncMap[techJuncTech] === undefined) techNodeRequiredJuncMap[techJuncTech] = [];
+    const reqTech = tables.technologies?.findRecordByKey('key', techJunc.required_technology as string) as TableRecord;
+    techNodeRequiredJuncMap[techJuncTech].push({
+      key: techJunc.required_technology as string,
+      name: reqTech.onscreen_name as string,
     });
   });
 
   const nodeLinksMap: { [key: string]: Array<TableRecord> } = {};
   const nodeLinksMapChild: { [key: string]: Array<string> } = {};
   techNodeSet.foreignRefs?.technology_nodes?.forEach((techNode) => {
+    const techNodeKey = techNode.key as string;
     techNode.foreignRefs?.technology_node_links?.forEach((nodeLink) => {
       if (techNode.key === nodeLink.parent_key) {
-        if (nodeLinksMap[techNode.key] === undefined) nodeLinksMap[techNode.key] = [];
-        nodeLinksMap[techNode.key].push(nodeLink);
+        if (nodeLinksMap[techNodeKey] === undefined) nodeLinksMap[techNodeKey] = [];
+        nodeLinksMap[techNodeKey].push(nodeLink);
       } else if (techNode.key === nodeLink.child_key) {
-        if (nodeLinksMapChild[techNode.key] === undefined) nodeLinksMapChild[techNode.key] = [];
-        nodeLinksMapChild[techNode.key].push(nodeLink.parent_key);
+        if (nodeLinksMapChild[techNodeKey] === undefined) nodeLinksMapChild[techNodeKey] = [];
+        nodeLinksMapChild[techNodeKey].push(nodeLink.parent_key as string);
       }
     });
   });
@@ -64,8 +65,8 @@ const processTechNodeSet = (
     }
 
     const nodeJunc = uiGroupRecord.foreignRefs?.technology_ui_groups_to_technology_nodes_junctions?.[0] as TableRecord;
-    const botRightNode = tables.technology_nodes?.findRecordByKey('key', nodeJunc?.bottom_right_node);
-    const topLeftNode = tables.technology_nodes?.findRecordByKey('key', nodeJunc?.top_left_node);
+    const botRightNode = tables.technology_nodes?.findRecordByKey('key', nodeJunc?.bottom_right_node as string);
+    const topLeftNode = tables.technology_nodes?.findRecordByKey('key', nodeJunc?.top_left_node as string);
     // const optTopRightNode = tables.technology_nodes?.findRecordByKey('key', nodeJunc.optional_top_right_node);
     // const optBotLeftNode = tables.technology_nodes?.findRecordByKey('key', nodeJunc.optional_bottom_left_node);
 
@@ -73,10 +74,10 @@ const processTechNodeSet = (
       return;
     }
     // Indent = y, Tier = x
-    const topBound = parseInteger(topLeftNode.indent) + 2;
-    const bottomBound = parseInteger(botRightNode.indent) + 2;
-    const leftBound = parseInteger(topLeftNode.tier);
-    const rightBound = parseInteger(botRightNode.tier);
+    const topBound = (topLeftNode.indent as number) + 2;
+    const bottomBound = (botRightNode.indent as number) + 2;
+    const leftBound = topLeftNode.tier as number;
+    const rightBound = botRightNode.tier as number;
 
     for (let y = topBound; y <= bottomBound; y++) {
       for (let x = leftBound; x <= rightBound; x++) {
@@ -85,7 +86,7 @@ const processTechNodeSet = (
         if (returnTechNodeSet.tree[y][x] === null || returnTechNodeSet.tree[y][x] === undefined)
           returnTechNodeSet.tree[y][x] = { bgFiller: true };
         returnTechNodeSet.tree[y][x].ui_group = uiGroupKey;
-        returnTechNodeSet.tree[y][x].ui_group_colour = uiGroupRecord.colour_hex;
+        returnTechNodeSet.tree[y][x].ui_group_colour = uiGroupRecord.colour_green as string; // Will be colour_hex when frodo outputs a fields_processed list
         returnTechNodeSet.tree[y][x].ui_group_position = '';
 
         if (y === topBound) {
@@ -107,12 +108,12 @@ const processTechNodeSet = (
   Object.values(nodeLinksMap).forEach((nodeLinks) => {
     nodeLinks.forEach((nodeLink) => {
       const returnLink: NodeLinkInterface = {
-        parent_key: nodeLink.parent_key,
-        child_key: nodeLink.child_key,
-        parent_link_position: translatePosition(nodeLink.parent_link_position, nodeLink.parent_key),
-        child_link_position: translatePosition(nodeLink.child_link_position, nodeLink.child_key),
+        parent_key: nodeLink.parent_key as string,
+        child_key: nodeLink.child_key as string,
+        parent_link_position: translatePosition(nodeLink.parent_link_position as number, nodeLink.parent_key as string),
+        child_link_position: translatePosition(nodeLink.child_link_position as number, nodeLink.child_key as string),
       };
-      if (nodeLink.visible_in_ui !== undefined) returnLink.visible_in_ui = parseBoolean(nodeLink.visible_in_ui);
+      if (nodeLink.visible_in_ui !== undefined) returnLink.visible_in_ui = nodeLink.visible_in_ui as boolean;
       returnTechNodeSet.node_links.push(returnLink);
     });
   });
@@ -122,21 +123,21 @@ const processTechNodeSet = (
 
 export default processTechNodeSet;
 
-const translatePosition = (number: string, parent_key: string) => {
+const translatePosition = (number: number, parent_key: string) => {
   switch (number) {
-    case '0': {
+    case 0: {
       return 'auto';
     }
-    case '1': {
+    case 1: {
       return 'top';
     }
-    case '2': {
+    case 2: {
       return 'right';
     }
-    case '3': {
+    case 3: {
       return 'bottom';
     }
-    case '4': {
+    case 4: {
       return 'left';
     }
     default: {

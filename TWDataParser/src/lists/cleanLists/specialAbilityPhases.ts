@@ -1,4 +1,4 @@
-const special_ability_phases_tables = [
+const special_ability_phases = [
   'requested_stance',
   'freeze_fatigue',
   'heal_amount_duplicate',
@@ -9,4 +9,4 @@ const special_ability_phases_tables = [
   'composite_scene_group',
 ];
 
-export default special_ability_phases_tables;
+export default special_ability_phases;

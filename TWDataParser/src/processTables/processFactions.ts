@@ -71,7 +71,7 @@ const processFactions = (
   });
 
   tables.cultures?.records.forEach((culture) => {
-    if (ignoreCultures.includes(culture.key)) {
+    if (ignoreCultures.includes(culture.key as string)) {
       return;
     }
     if (tech) {
@@ -97,26 +97,28 @@ const processFactions = (
         return;
       }
       subculture.foreignRefs?.factions?.forEach((faction) => {
+        const factionKey = faction.key as string;
         if (tech) {
           faction.foreignRefs?.technology_node_sets?.forEach((techNodeSet) => {
             handleTechs(game, pruneVanilla, techNodeSet, folder, globalData, tables, completedTechNodeSets);
           });
         }
         if (
-          faction.is_quest_faction === 'true' ||
-          faction.is_rebel === 'true' ||
-          faction.key.includes('_separatists') ||
-          faction.key.includes('_invasion') ||
-          faction.key.includes('_prologue') ||
-          ignoreFactions.includes(faction.key)
+          faction.is_quest_faction === true ||
+          faction.is_rebel === true ||
+          factionKey.includes('_separatists') ||
+          factionKey.includes('_invasion') ||
+          factionKey.includes('_prologue') ||
+          ignoreFactions.includes(factionKey)
         ) {
           return;
         }
         faction.foreignRefs?.faction_agent_permitted_subtypes?.forEach((factionAgent) => {
+          const factionAgentSubtype = factionAgent.subtype as string;
           if (
             factionAgent.agent === 'colonel' ||
             factionAgent.agent === 'minister' ||
-            factionAgent.mod_disabled === 'true'
+            factionAgent.mod_disabled === true
           ) {
             return;
           }
@@ -131,11 +133,13 @@ const processFactions = (
           ) {
             return;
           }
-          let nodeSetKey = factionAgent?.localRefs?.agent_subtypes?.foreignRefs?.character_skill_node_sets?.[0]?.key;
+          let nodeSetKey = factionAgent?.localRefs?.agent_subtypes?.foreignRefs?.character_skill_node_sets?.[0]
+            ?.key as string;
           // HEFs have a bunch of special node sets that just have diff background traits?
           let n = 1;
           while (nodeSetKey?.endsWith('_affinity')) {
-            nodeSetKey = factionAgent?.localRefs?.agent_subtypes?.foreignRefs?.character_skill_node_sets?.[n]?.key;
+            nodeSetKey = factionAgent?.localRefs?.agent_subtypes?.foreignRefs?.character_skill_node_sets?.[n]
+              ?.key as string;
             n++;
           }
           if (nodeSetKey === undefined) {
@@ -152,13 +156,13 @@ const processFactions = (
             return;
           }
 
-          const remappedSubculture = remapFactions[faction.key] ?? subculture.subculture;
+          const remappedSubculture = remapFactions[factionKey] ?? (subculture.subculture as string);
 
-          if (agentMap[factionAgent.subtype] === undefined) agentMap[factionAgent.subtype] = {};
-          if (agentMap[factionAgent.subtype][remappedSubculture] === undefined) {
-            agentMap[factionAgent.subtype][remappedSubculture] = new Set<string>();
+          if (agentMap[factionAgentSubtype] === undefined) agentMap[factionAgentSubtype] = {};
+          if (agentMap[factionAgentSubtype][remappedSubculture] === undefined) {
+            agentMap[factionAgentSubtype][remappedSubculture] = new Set<string>();
           }
-          agentMap[factionAgent.subtype][remappedSubculture].add(faction.key);
+          agentMap[factionAgentSubtype][remappedSubculture].add(factionKey);
         });
       });
     });
@@ -192,16 +196,17 @@ const handleTechs = (
   tables: { [key in RefKey]?: Table },
   completedTechNodeSets: { [key: string]: boolean },
 ) => {
-  if (completedTechNodeSets[techNodeSet.key] !== undefined) {
+  const techNodeSetKey = techNodeSet.key as string;
+  if (completedTechNodeSets[techNodeSetKey] !== undefined) {
     return;
   }
   const gameTechNodePrune = game === '2' ? techNodeSetsPrune2 : techNodeSetsPrune3;
-  if (gameTechNodePrune.includes(techNodeSet.key)) {
+  if (gameTechNodePrune.includes(techNodeSetKey)) {
     return;
   }
-  if (pruneVanilla && vanilla3TechNodeSets.includes(techNodeSet.key)) {
+  if (pruneVanilla && vanilla3TechNodeSets.includes(techNodeSetKey)) {
     return;
   }
-  completedTechNodeSets[techNodeSet.key] = true;
+  completedTechNodeSets[techNodeSetKey] = true;
   processTechNodeSet(folder, globalData, techNodeSet, tables);
 };

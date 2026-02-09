@@ -20,6 +20,7 @@ When CA adds weird stuff that probably needs new tables (like mounts getting aut
 
 ## Keep any eye on
 
+- twad_key_deletes for deleting vanilla records, probably implement in parser.ts
 - technology_ui_tabs_tables | technology_ui_tabs_to_technology_nodes_junctions_tables
 
 ## How To Use

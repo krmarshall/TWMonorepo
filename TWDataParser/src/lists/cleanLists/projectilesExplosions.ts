@@ -1,4 +1,4 @@
-const projectiles_explosions_tables = [
+const projectiles_explosions = [
   'detonator_type',
   'detonation_type',
   'detonation_duration',
@@ -14,4 +14,4 @@ const projectiles_explosions_tables = [
   'is_spell',
 ];
 
-export default projectiles_explosions_tables;
+export default projectiles_explosions;

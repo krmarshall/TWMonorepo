@@ -7,8 +7,8 @@
     "planner:dev": "concurrently -m 2 -k -n server,front -c #c45f12,#124dc4 yarn:backendDev yarn:frontendDev",
     "planner:test": "yarn workspace backend test",
     "planner:build": "yarn workspace frontend build",
-    "parser:dev": "yarn workspace twdataparser start",
-    "parser:build": "yarn workspace twdataparser fullBuild",
+    "parser:dev": "yarn workspace twdataparser typecheck",
+    "parser:build": "yarn workspace twdataparser start",
     "lint": "yarn workspaces foreach -A run lint",
     "lintFix": "yarn workspaces foreach -A run lintFix"
   },

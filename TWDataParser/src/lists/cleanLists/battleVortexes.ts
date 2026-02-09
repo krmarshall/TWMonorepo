@@ -1,4 +1,4 @@
-const battle_vortexs_tables = [
+const battle_vortexs = [
   'start_radius',
   'move_change_freq',
   'change_max_angle',
@@ -19,4 +19,4 @@ const battle_vortexs_tables = [
   'expansion_speed',
 ];
 
-export default battle_vortexs_tables;
+export default battle_vortexs;

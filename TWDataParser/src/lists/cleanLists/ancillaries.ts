@@ -1,4 +1,4 @@
-const ancillaries_tables = [
+const ancillaries = [
   'applies_to',
   'transferrable',
   'unique_to_world',
@@ -26,4 +26,4 @@ const ancillaries_tables = [
   'faction_set',
 ];
 
-export default ancillaries_tables;
+export default ancillaries;

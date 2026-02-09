@@ -1,4 +1,4 @@
-const projectile_bombardments_tables = [
+const projectile_bombardments = [
   'launch_source',
   'launch_vfx',
   'launch_height',
@@ -7,4 +7,4 @@ const projectile_bombardments_tables = [
   'randomise_launch',
 ];
 
-export default projectile_bombardments_tables;
+export default projectile_bombardments;

@@ -8,6 +8,20 @@ import log from '../utils/log.ts';
 import exportData from '../utils/exportData.ts';
 import exportSitemap from '../utils/exportSitemap.ts';
 
+const workerRpfmServer = async (): Promise<void> => {
+  return new Promise((resolve, reject) => {
+    const workerRpfmServer = new Worker('./src/workers/workerRpfmServer.ts', { name: 'RpfmServer' });
+    workerRpfmServer.on('error', (error) => {
+      reject(error);
+    });
+    workerRpfmServer.on('message', (message) => {
+      if (message === 'ready') {
+        resolve();
+      }
+    });
+  });
+};
+
 const workerVanilla = (workerData: VanillaWorkerDataInterface) => {
   const { game, folder } = workerData;
   console.time(`${game} total`);
@@ -16,7 +30,8 @@ const workerVanilla = (workerData: VanillaWorkerDataInterface) => {
     workerData,
     name: folder,
   });
-  workerVanilla.on('error', (error) => {
+  workerVanilla.on('error', (error: Error) => {
+    console.error(error.stack);
     throw error;
   });
   workerVanilla.on('exit', () => {
@@ -24,8 +39,7 @@ const workerVanilla = (workerData: VanillaWorkerDataInterface) => {
     if (game === 'warhammer_3') {
       exportSitemap();
       exportData();
-      // steamworks.js doesnt seem to be intended for scripts like this, stays open holding the node process running
-      // force close after everything is finished
+      // steamworks.js stays open holding the node process running, force close after everything is finished
       process.exit();
     }
   });
@@ -39,7 +53,7 @@ const workerMod = (workerData: ModWorkerDataInterface) => {
     workerData,
     name: folder,
   });
-  workerMod.on('error', (error) => {
+  workerMod.on('error', (error: Error) => {
     log(`${folder} failed`, 'red');
     throw error;
   });
@@ -55,7 +69,7 @@ const workerModMulti = (workerData: MultiModWorkerDataInterface) => {
     workerData,
     name: folder,
   });
-  workerModMulti.on('error', (error) => {
+  workerModMulti.on('error', (error: Error) => {
     log(`${folder} failed`, 'red');
     throw error;
   });
@@ -64,4 +78,4 @@ const workerModMulti = (workerData: MultiModWorkerDataInterface) => {
   });
 };
 
-export { workerVanilla, workerMod, workerModMulti };
+export { workerRpfmServer, workerVanilla, workerMod, workerModMulti };

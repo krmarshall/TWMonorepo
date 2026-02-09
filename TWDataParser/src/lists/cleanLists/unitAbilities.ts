@@ -1,4 +1,4 @@
-const unit_abilities_tables = [
+const unit_abilities = [
   'superseded_abilities_set',
   'video',
   'uniqueness',
@@ -7,4 +7,4 @@ const unit_abilities_tables = [
   'is_hidden_in_ui_for_enemy',
 ];
 
-export default unit_abilities_tables;
+export default unit_abilities;

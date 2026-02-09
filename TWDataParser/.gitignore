@@ -134,6 +134,4 @@ dist
 /output_img/*
 /output_portraits/*
 /bins/nScripts/*
-/bins/jsonSchemas/*
-/bins/rpfm_cli.exe
 .vscode/launch.json

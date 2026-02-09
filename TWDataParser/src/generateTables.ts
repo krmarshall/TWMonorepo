@@ -1,23 +1,21 @@
+import type { Definition } from './@types/CustomRpfmTypes.ts';
 import type { GlobalDataInterface, RefKey, TableRecord } from './@types/GlobalDataInterface.ts';
-import type { SchemaInterface, TableInterface } from './@types/SchemaInterfaces.ts';
 import cleanList from './lists/cleanLists/index.ts';
-import findHighestVersionDB from './utils/findHighestVersionDB.ts';
+import type RpfmClient from './rpfmClient.ts';
 
-const generateTables = (
+const generateTables = async (
   folder: string,
   globalData: GlobalDataInterface,
   dbList: Array<RefKey>,
-  schema: SchemaInterface,
+  rpfmClient: RpfmClient,
 ) => {
   const tables: { [key in RefKey]?: Table } = {};
-  dbList.forEach((db) => {
-    tables[db] = new Table(
-      db,
-      findHighestVersionDB(schema.definitions[db + '_tables'], db),
-      globalData.parsedData[folder].db[db + '_tables'],
-      globalData.parsedData[folder].text,
-    );
+  const tablePromises = dbList.map(async (db) => {
+    const definition = await rpfmClient.getTableDefinition(db);
+    tables[db] = new Table(db, definition, globalData.parsedData[folder].db[db], globalData.parsedData[folder].text);
   });
+
+  await Promise.all(tablePromises);
 
   const missingTablesSet = new Set<string>();
   Object.keys(tables).forEach((tableKey) => tables[tableKey as RefKey]?.linkTables(tables, missingTablesSet));
@@ -28,26 +26,26 @@ export default generateTables;
 
 export class Table {
   tableName: RefKey;
-  tableSchema: TableInterface;
+  definition: Definition;
   records: Array<TableRecord>;
   indexedKeys: { [key: string]: { [key: string]: number } };
 
-  constructor(tableName: RefKey, tableSchema: TableInterface, tableData: Array<TableRecord>, tableLoc: TableRecord) {
+  constructor(tableName: RefKey, definition: Definition, tableData: Array<TableRecord>, tableLoc: TableRecord) {
     this.tableName = tableName;
-    this.tableSchema = tableSchema;
+    this.definition = definition;
     this.records = tableData;
     this.indexedKeys = {};
 
     // Grab keys for fields we want to index, and locs we want to link
     const tablePKeys: Array<string> = [];
-    tableSchema.fields.forEach((field) => {
+    definition.fields.forEach((field) => {
       if (field.is_key) {
         tablePKeys.push(field.name);
         this.indexedKeys[field.name] = {};
       }
     });
     const tableLocFields: { [key: string]: string } = {};
-    tableSchema.localised_fields.forEach((field) => {
+    definition.localised_fields.forEach((field) => {
       if (field.description === 'Deprecated - do not fill in') {
         // Do nothing
       } else {
@@ -79,14 +77,14 @@ export class Table {
     });
   }
 
-  findRecordByKey = (keyName: string, keyValue: string) => {
+  findRecordByKey = (keyName: string, keyValue: string | number) => {
     const recordIndex = this.indexedKeys[keyName][keyValue];
     return this.records[recordIndex];
   };
 
   linkTables = (tables: { [key in RefKey]?: Table }, missingTablesSet: Set<string>) => {
     const referenceFields: Array<{ fieldName: string; refTable: RefKey; refKey: string }> = [];
-    this.tableSchema.fields.forEach((field) => {
+    this.definition.fields.forEach((field) => {
       if (field.is_reference !== null) {
         referenceFields.push({
           fieldName: field.name,
@@ -103,10 +101,10 @@ export class Table {
         } else if (record[refField.fieldName] === undefined) {
           // Ref field was deleted by cleanColumn
         } else {
-          if (typeof record[refField.fieldName] !== 'string') {
+          if (!['string', 'number', 'boolean'].includes(typeof record[refField.fieldName])) {
             throw `Table already linked: ${this.tableName}`;
           }
-          const fieldCurValue = record[refField.fieldName] as string;
+          const fieldCurValue = record[refField.fieldName] as string | number;
           const refRecord = tables[refField.refTable]?.findRecordByKey(refField.refKey, fieldCurValue);
           if (refRecord !== undefined) {
             // Local Reference

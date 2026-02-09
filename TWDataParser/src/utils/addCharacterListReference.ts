@@ -14,7 +14,8 @@ const addCharacterListReference = (
   const characterListEntry: CharacterInterface = { name: '', portrait: '' };
 
   characterListEntry.name = stringInterpolator(
-    agent.localRefs?.main_units?.localRefs?.land_units?.onscreen_name ?? agent.onscreen_name_override,
+    (agent.localRefs?.main_units?.localRefs?.land_units?.onscreen_name as string) ??
+      (agent.onscreen_name_override as string),
     globalData.parsedData[folder].text,
   );
 
@@ -22,12 +23,12 @@ const addCharacterListReference = (
   if (artSetKeys !== undefined) {
     artSetKeys?.sort();
 
-    let portraitPath = globalData.portraitPaths[folder][artSetKeys[0].art_set_id];
+    let portraitPath = globalData.portraitPaths[folder][artSetKeys[0].art_set_id as string];
     if (portraitPath !== undefined) {
       const portraitSplit = portraitPath.split('/');
       characterListEntry.portrait = `${folder}/${portraitSplit[portraitSplit.length - 1].replace('.png', '.webp')}`;
     } else {
-      portraitPath = globalData.portraitPaths.vanilla3[artSetKeys[0].art_set_id];
+      portraitPath = globalData.portraitPaths.vanilla3[artSetKeys[0].art_set_id as string];
       if (portraitPath !== undefined) {
         const vanillaPortraitSplit = portraitPath.split('/');
         characterListEntry.portrait = `vanilla3/${vanillaPortraitSplit[vanillaPortraitSplit.length - 1].replace('.png', '.webp')}`;
@@ -37,14 +38,14 @@ const addCharacterListReference = (
     }
   }
 
-  if (agent.recruitment_category === 'legendary_lords' || agent.contributes_to_agent_cap === 'false') {
+  if (agent.recruitment_category === 'legendary_lords' || agent.contributes_to_agent_cap === false) {
     characterListEntry.priority = true;
   }
   if (characterList[subcultureMap[subcultureKey]] !== undefined) {
     if (nodeSet.agent_key === 'general') {
-      characterList[subcultureMap[subcultureKey]].lords[nodeSet.key] = characterListEntry;
+      characterList[subcultureMap[subcultureKey]].lords[nodeSet.key as string] = characterListEntry;
     } else {
-      characterList[subcultureMap[subcultureKey]].heroes[nodeSet.key] = characterListEntry;
+      characterList[subcultureMap[subcultureKey]].heroes[nodeSet.key as string] = characterListEntry;
     }
   }
 };

@@ -2,7 +2,6 @@ import type { GlobalDataInterface, TableRecord } from '../@types/GlobalDataInter
 import type { ItemInterface, SkillInterface, SkillLevelInterface } from '../@types/CharacterInterface.ts';
 import findImage from '../utils/findImage.ts';
 import log from '../utils/log.ts';
-import { parseBoolean, parseInteger } from '../utils/parseStringToTypes.ts';
 import stringInterpolator from '../utils/stringInterpolator.ts';
 import processAncillary from './processAncillary.ts';
 import processEffect from './processEffect.ts';
@@ -29,34 +28,37 @@ const processSkillNode = (
     return;
   }
   const returnSkill: SkillInterface = {
-    key: skillNode.key,
-    image_path: findSkillImage(folder, globalData, skill.image_path),
-    character_skill_key: skillNode.character_skill_key,
-    tier: parseInteger(skillNode.tier),
-    indent: parseInteger(skillNode.indent),
-    points_on_creation: parseInteger(skillNode.points_on_creation),
-    required_num_parents: parseInteger(skillNode.required_num_parents),
-    visible_in_ui: parseBoolean(skillNode.visible_in_ui),
-    is_background_skill: parseBoolean(skill.is_background_skill),
-    localised_name: stringInterpolator(skill.localised_name, globalData.parsedData[folder].text),
-    localised_description: stringInterpolator(skill.localised_description, globalData.parsedData[folder].text),
+    key: skillNode.key as string,
+    image_path: findSkillImage(folder, globalData, skill.image_path as string),
+    character_skill_key: skillNode.character_skill_key as string,
+    tier: skillNode.tier as number,
+    indent: skillNode.indent as number,
+    points_on_creation: skillNode.points_on_creation as number,
+    required_num_parents: skillNode.required_num_parents as number,
+    visible_in_ui: skillNode.visible_in_ui as boolean,
+    is_background_skill: skill.is_background_skill as boolean,
+    localised_name: stringInterpolator(skill.localised_name as string, globalData.parsedData[folder].text),
+    localised_description: stringInterpolator(
+      skill.localised_description as string,
+      globalData.parsedData[folder].text,
+    ),
   };
 
-  if (skillNode.subculture !== '') returnSkill.subculture = skillNode.subculture;
-  if (skillNode.faction_key !== '') returnSkill.faction = skillNode.faction_key;
+  if (skillNode.subculture !== '') returnSkill.subculture = skillNode.subculture as string;
+  if (skillNode.faction_key !== '') returnSkill.faction = skillNode.faction_key as string;
 
   // character_skill_level_to_effects_junctions
   skill.foreignRefs?.character_skill_level_to_effects_junctions?.forEach((effectJunc) => {
     // Most skills have a hidden effect that increases or decreases agent action chances, dont add these
     if (
       (effectJunc.effect_key === 'wh_main_effect_agent_action_success_chance_enemy_skill' &&
-        effectJunc.localRefs?.effects?.priority === '0') ||
+        effectJunc.localRefs?.effects?.priority === 0) ||
       (effectJunc.effect_key === 'wh_main_effect_agent_action_success_chance_skill' &&
-        effectJunc.localRefs?.effects?.priority === '0')
+        effectJunc.localRefs?.effects?.priority === 0)
     ) {
       return;
     }
-    const skillLevel = parseInteger(effectJunc.level) - 1;
+    const skillLevel = (effectJunc.level as number) - 1;
     returnSkill.levels = checkSkillLevelExists(returnSkill.levels, skillLevel);
     returnSkill.levels[skillLevel]?.effects?.push(processEffect(folder, globalData, effectJunc as TableRecord));
   });
@@ -64,7 +66,7 @@ const processSkillNode = (
   skill.foreignRefs?.character_skill_level_to_ancillaries_junctions?.forEach((ancillaryJunc) => {
     const ancillaryEffects =
       ancillaryJunc.localRefs?.ancillaries?.localRefs?.ancillary_info?.foreignRefs?.ancillary_to_effects;
-    const skillLevel = parseInteger(ancillaryJunc.level) - 1;
+    const skillLevel = (ancillaryJunc.level as number) - 1;
     if (ancillaryEffects !== undefined) {
       ancillaryEffects.forEach((effectJunc) => {
         returnSkill.levels = checkSkillLevelExists(returnSkill.levels, skillLevel);
@@ -81,50 +83,50 @@ const processSkillNode = (
   });
   // character_skills_to_quest_ancillaries
   skill.foreignRefs?.character_skills_to_quest_ancillaries?.forEach((quest) => {
-    returnSkill.use_quest_for_prefix = parseBoolean(quest.use_quest_for_prefix);
+    returnSkill.use_quest_for_prefix = quest.use_quest_for_prefix as boolean;
     if (quest?.localRefs?.ancillaries?.category !== undefined && quest?.localRefs?.ancillaries?.category !== 'mount') {
       items.push(processAncillary(folder, globalData, quest, undefined));
     }
   });
   // character_skill_level_details
   skill.foreignRefs?.character_skill_level_details?.forEach((skillLevelDetails) => {
-    const skillLevel = parseInteger(skillLevelDetails.level) - 1;
+    const skillLevel = (skillLevelDetails.level as number) - 1;
     const item = items.find((item) => item.character_skill === skillLevelDetails.skill_key);
     if (item !== undefined) {
-      item.unlocked_at_rank = parseInteger(skillLevelDetails.unlocked_at_rank) + 1;
+      item.unlocked_at_rank = (skillLevelDetails.unlocked_at_rank as number) + 1;
     } else {
       if (returnSkill.levels === undefined) returnSkill.levels = [];
       if (returnSkill.levels[skillLevel] === undefined) returnSkill.levels[skillLevel] = {};
-      returnSkill.levels[skillLevel].unlocked_at_rank = parseInteger(skillLevelDetails.unlocked_at_rank) + 1;
+      returnSkill.levels[skillLevel].unlocked_at_rank = (skillLevelDetails.unlocked_at_rank as number) + 1;
     }
   });
   // character_skills_to_level_reached_criterias WH3
   skill.foreignRefs?.character_skills_to_level_reached_criterias?.forEach((levelReached) => {
-    if (levelReached.character_level === '0') {
+    if (levelReached.character_level === 0) {
       returnSkill.points_on_creation = 1;
     } else {
-      const upgradeToSkillLevel = parseInteger(levelReached.upgrade_to_skill_level) - 1;
+      const upgradeToSkillLevel = (levelReached.upgrade_to_skill_level as number) - 1;
       const item = items.find((item) => item.character_skill === levelReached.character_skill);
       if (item !== undefined) {
-        item.unlocked_at_rank = parseInteger(levelReached.character_level) + 1;
+        item.unlocked_at_rank = (levelReached.character_level as number) + 1;
       } else {
         if (returnSkill.levels === undefined) returnSkill.levels = [];
         if (returnSkill.levels[upgradeToSkillLevel] === undefined) returnSkill.levels[upgradeToSkillLevel] = {};
-        returnSkill.levels[upgradeToSkillLevel].auto_unlock_at_rank = parseInteger(levelReached.character_level) + 1;
+        returnSkill.levels[upgradeToSkillLevel].auto_unlock_at_rank = (levelReached.character_level as number) + 1;
         delete returnSkill.levels?.[upgradeToSkillLevel].unlocked_at_rank;
       }
     }
   });
   // character_skill_nodes_skill_locks
   skill.foreignRefs?.character_skill_nodes_skill_locks?.forEach((lock) => {
-    const skillLevel = parseInteger(lock.level) - 1;
+    const skillLevel = (lock.level as number) - 1;
     if (returnSkill.levels?.[skillLevel] === undefined) {
       log(`Skill node lock missing its skill level: ${returnSkill.key}`, 'red');
-    } else if (skillNodeKeys[lock.character_skill_node] === true) {
+    } else if (skillNodeKeys[lock.character_skill_node as string] === true) {
       if (returnSkill.levels[skillLevel].blocks_skill_node_keys === undefined)
         returnSkill.levels[skillLevel].blocks_skill_node_keys = [];
-      if (!returnSkill.levels[skillLevel].blocks_skill_node_keys?.includes(lock.character_skill_node)) {
-        returnSkill.levels[skillLevel].blocks_skill_node_keys?.push(lock.character_skill_node);
+      if (!returnSkill.levels[skillLevel].blocks_skill_node_keys?.includes(lock.character_skill_node as string)) {
+        returnSkill.levels[skillLevel].blocks_skill_node_keys?.push(lock.character_skill_node as string);
       }
     }
   });
@@ -132,7 +134,9 @@ const processSkillNode = (
   const parent_required: Array<string> = [];
   const parent_subset_required: Array<string> = [];
   skillNode.foreignRefs?.character_skill_node_links?.forEach((link) => {
-    if (skillNodeKeys[link.parent_key] === undefined || skillNodeKeys[link.child_key] === undefined) {
+    const linkParentKey = link.parent_key as string;
+    const linkChildKey = link.child_key as string;
+    if (skillNodeKeys[linkParentKey] === undefined || skillNodeKeys[linkChildKey] === undefined) {
       // If one of the nodes the links refer to isnt in the node set then ignore it
     } else {
       if (skillNode.key === link.parent_key) {
@@ -140,18 +144,18 @@ const processSkillNode = (
           returnSkill.right_arrow = true;
         }
         if (link.link_type === 'SUBSET_REQUIRED') {
-          if (subsetRequiredMap[link.child_key] === undefined) subsetRequiredMap[link.child_key] = [];
-          subsetRequiredMap[link.child_key].push(returnSkill);
+          if (subsetRequiredMap[linkChildKey] === undefined) subsetRequiredMap[linkChildKey] = [];
+          subsetRequiredMap[linkChildKey].push(returnSkill);
         }
       }
       if (skillNode.key === link.child_key) {
         if (link.link_type === 'REQUIRED') {
-          parent_required.push(link.parent_key);
-          if (requiredMap[link.parent_key] === undefined) requiredMap[link.parent_key] = [];
-          requiredMap[link.parent_key].push(returnSkill);
+          parent_required.push(linkParentKey);
+          if (requiredMap[linkParentKey] === undefined) requiredMap[linkParentKey] = [];
+          requiredMap[linkParentKey].push(returnSkill);
         }
         if (link.link_type === 'SUBSET_REQUIRED') {
-          parent_subset_required.push(link.parent_key);
+          parent_subset_required.push(linkParentKey);
         }
       }
     }

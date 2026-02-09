@@ -2,7 +2,6 @@ import type { GlobalDataInterface, TableRecord } from '../@types/GlobalDataInter
 import type { EffectInterface } from '../@types/CharacterInterface.ts';
 import type { TechNodeInterface } from '../@types/TechInterface.ts';
 import findImage from '../utils/findImage.ts';
-import { parseInteger } from '../utils/parseStringToTypes.ts';
 import stringInterpolator from '../utils/stringInterpolator.ts';
 import processAncillary from './processAncillary.ts';
 import processEffect from './processEffect.ts';
@@ -26,31 +25,31 @@ const processTechNode = (
   effects.sort((a, b) => (a.priority as number) - (b.priority as number)).forEach((effect) => delete effect.priority);
 
   const returnTechNode: TechNodeInterface = {
-    key: techNode.key,
-    tier: parseInteger(techNode.tier),
-    indent: parseInteger(techNode.indent) + 2, // Indents start at -2 for some reason
-    research_points_required: parseInteger(techNode.research_points_required),
+    key: techNode.key as string,
+    tier: techNode.tier as number,
+    indent: (techNode.indent as number) + 2, // Indents start at -2 for some reason
+    research_points_required: techNode.research_points_required as number,
     technology: {
-      key: tech.key,
-      icon_name: findTechImage(folder, globalData, tech.icon_name),
-      onscreen_name: stringInterpolator(tech.onscreen_name, globalData.parsedData[folder].text),
-      short_description: stringInterpolator(tech.short_description, globalData.parsedData[folder].text),
+      key: tech.key as string,
+      icon_name: findTechImage(folder, globalData, tech.icon_name as string),
+      onscreen_name: stringInterpolator(tech.onscreen_name as string, globalData.parsedData[folder].text),
+      short_description: stringInterpolator(tech.short_description as string, globalData.parsedData[folder].text),
       effects: effects,
     },
   };
 
-  if (techNode.cost_per_round !== '0') returnTechNode.cost_per_round = parseInteger(techNode.cost_per_round);
-  if (techNode.required_parents !== '0' && techNode.required_parents !== undefined) {
-    returnTechNode.required_parents = parseInteger(techNode.required_parents);
+  if (techNode.cost_per_round !== 0) returnTechNode.cost_per_round = techNode.cost_per_round as number;
+  if (techNode.required_parents !== 0 && techNode.required_parents !== undefined) {
+    returnTechNode.required_parents = techNode.required_parents as number;
   }
   const uiGroup = techNode.localRefs?.technology_ui_groups?.key;
-  if (uiGroup !== undefined) returnTechNode.ui_group = uiGroup;
+  if (uiGroup !== undefined) returnTechNode.ui_group = uiGroup as string;
 
   const required_buildings: Array<string> = [];
   tech.foreignRefs?.technology_required_building_levels_junctions?.forEach((buildingJunc) => {
     const buildingName = buildingJunc.localRefs?.building_levels?.foreignRefs?.building_culture_variants?.[0]?.name;
     if (buildingName !== undefined) {
-      required_buildings.push(buildingName);
+      required_buildings.push(buildingName as string);
     }
   });
   if (required_buildings.length > 0) returnTechNode.technology.required_buildings = required_buildings;

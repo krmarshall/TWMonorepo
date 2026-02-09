@@ -1,7 +1,7 @@
-import { v3DbList } from '../lists/extractLists/vanilla3.ts';
+import { v3DbList } from '../lists/extractLists/dbLists.ts';
 
 interface TableRecordNoRefs {
-  [key: string]: string;
+  [key: string]: string | number | boolean;
 }
 
 // AK Tables we dont extract with rpfm, but have schemas for now
