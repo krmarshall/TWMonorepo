@@ -56,7 +56,6 @@ const workerMod = (workerData: ModWorkerDataInterface) => {
   });
   workerMod.on('error', (error: Error) => {
     log(`${folder} failed`, 'red');
-    console.error(error.stack);
     throw error;
   });
   workerMod.on('exit', () => {
@@ -73,7 +72,6 @@ const workerModMulti = (workerData: MultiModWorkerDataInterface) => {
   });
   workerModMulti.on('error', (error: Error) => {
     log(`${folder} failed`, 'red');
-    console.error(error.stack);
     throw error;
   });
   workerModMulti.on('exit', () => {

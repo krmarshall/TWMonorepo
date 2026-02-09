@@ -10,6 +10,8 @@ export default class RpfmClient {
     {
       resolve: (resp: unknown) => void;
       reject: (err: Error) => void;
+      callStack: string;
+      command: string;
     }
   >();
   public sessionId: number | null = null;
@@ -36,7 +38,9 @@ export default class RpfmClient {
         if (handler) {
           this.pending.delete(msg.id);
           if (typeof msg.data === 'object' && 'Error' in msg.data) {
-            handler.reject(new Error(msg.data.Error as string));
+            handler.reject(
+              new Error(`${msg.data.Error as string}\nCommand: ${handler.command}\nCall Stack: ${handler.callStack}`),
+            );
           } else {
             handler.resolve(msg.data);
           }
@@ -48,7 +52,9 @@ export default class RpfmClient {
   send(command: RpfmTypes.Command): Promise<unknown> {
     return new Promise((resolve, reject) => {
       const id = this.nextId++;
-      this.pending.set(id, { resolve, reject });
+      const callStack = new Error().stack;
+      const commandString = JSON.stringify(command);
+      this.pending.set(id, { resolve, reject, callStack, command: commandString });
       this.ws.send(JSON.stringify({ id, data: command }));
     });
   }
@@ -88,10 +94,11 @@ export default class RpfmClient {
   }
 
   async extractFiles(
-    paths: Record<RpfmTypes.DataSource, RpfmTypes.ContainerPath[]>,
+    paths: Partial<Record<RpfmTypes.DataSource, RpfmTypes.ContainerPath[]>>,
     destPath: string,
     asTsv = false,
   ): Promise<[string, string[]]> {
+    // @ts-expect-error ts(2322) Dont need to fill out every datasource, can just send the datasources we actually want files from
     const resp = (await this.send({ ExtractPackedFiles: [paths, destPath, asTsv] })) as {
       StringVecPathBuf: [string, string[]];
     };

@@ -86,7 +86,7 @@ const processTechNodeSet = (
         if (returnTechNodeSet.tree[y][x] === null || returnTechNodeSet.tree[y][x] === undefined)
           returnTechNodeSet.tree[y][x] = { bgFiller: true };
         returnTechNodeSet.tree[y][x].ui_group = uiGroupKey;
-        returnTechNodeSet.tree[y][x].ui_group_colour = uiGroupRecord.colour_green as string;
+        returnTechNodeSet.tree[y][x].ui_group_colour = uiGroupRecord.colour_green as string; // Will be colour_hex when frodo outputs a fields_processed list
         returnTechNodeSet.tree[y][x].ui_group_position = '';
 
         if (y === topBound) {

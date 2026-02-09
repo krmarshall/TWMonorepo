@@ -75,16 +75,7 @@ export default class Extractor {
     const containerPaths = imgFolders.map((imgFolderPath) => {
       return { Folder: imgFolderPath };
     });
-    await this.rpfmClient.extractFiles(
-      {
-        PackFile: containerPaths,
-        AssKitFiles: undefined,
-        ExternalFile: undefined,
-        GameFiles: undefined,
-        ParentFiles: undefined,
-      },
-      `./extracted_files/${this.folder}/`,
-    );
+    await this.rpfmClient.extractFiles({ PackFile: containerPaths }, `./extracted_files/${this.folder}/`);
     outputJson(`./extracted_files/${this.folder}/timestamp.json`, {
       packs: this.packPaths,
       newestTimestamp: latestPackTimestamp,
