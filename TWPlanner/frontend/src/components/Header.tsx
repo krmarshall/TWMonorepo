@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import headerImg from '../imgs/header.webp';
+import headerDevImg from '../imgs/header_dev.webp';
 import useBulkMediaQueries from '../hooks/useBulkMediaQueries.tsx';
 import { Fragment } from 'react/jsx-runtime';
 import { Ref, useRef } from 'react';
@@ -21,12 +22,22 @@ const Header = () => {
     <div className="bg-gray-900 flex flex-row flex-nowrap justify-between h-16 px-4 border-b border-gray-500">
       <div className="w-1/3 flex flex-row flex-nowrap justify-start">
         <Link to={'/'} className="text-slate-100 text-4xl flex flex-row flex-nowrap">
-          <img
-            src={headerImg}
-            alt="header diplomacy icon"
-            className="w-16 h-16 my-auto drop-shadow-[0.1rem_0.1rem_0.5rem_rgba(0,0,0,0.7)]"
-            draggable={false}
-          />
+          {location.hostname === 'localhost' || location.hostname === '127.0.0.1' ? (
+            <img
+              src={headerDevImg}
+              alt="header diplomacy icon"
+              className="w-16 h-16 my-auto drop-shadow-[0.1rem_0.1rem_0.5rem_rgba(0,0,0,0.7)]"
+              draggable={false}
+            />
+          ) : (
+            <img
+              src={headerImg}
+              alt="header diplomacy icon"
+              className="w-16 h-16 my-auto drop-shadow-[0.1rem_0.1rem_0.5rem_rgba(0,0,0,0.7)]"
+              draggable={false}
+            />
+          )}
+
           <h1 className="my-auto text-shadow-md">{title}</h1>
         </Link>
       </div>
