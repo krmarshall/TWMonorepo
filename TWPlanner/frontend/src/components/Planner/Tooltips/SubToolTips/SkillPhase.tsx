@@ -23,15 +23,11 @@ const SkillPhase = ({ index, phase, random, header = false }: SkillPhaseProps) =
   const type = phase.effect_type === 'positive' ? 'Buff' : 'Debuff';
   const imbueBoth = phase.imbue_magical && phase.imbue_ignition ? true : false;
   let targets = '';
-  if (phase.target_self) targets += 'Self';
-  if (phase.target_friends) {
-    if (targets.length !== 0) targets += ', ';
-    targets += 'Allies';
-  }
-  if (phase.target_enemies) {
-    if (targets.length !== 0) targets += ', ';
-    targets += 'Enemies';
-  }
+  targets += phase.target_self ? 'Self ' : '';
+  targets += phase.target_friends ? 'Allies ' : '';
+  targets += phase.target_enemies ? 'Enemies ' : '';
+  targets = targets.trim();
+  targets = targets.replace(' ', ', ');
 
   let randImgSrc = '';
   if (random) {

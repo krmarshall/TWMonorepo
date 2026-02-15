@@ -29,6 +29,8 @@ const SkillAbilityTooltip = ({ ability }: SkillAbilityTooltipPropInterface) => {
   target += unitAbility.target_ground ? 'Ground ' : '';
   target += unitAbility.target_self ? 'Self ' : '';
   const doesTarget = target.length > 0 ? true : false;
+  target = target.trim();
+  target = target.replace(' ', ', ');
 
   const abilitySrcList = [
     `/imgs/${unitAbility.icon_name}.webp`,

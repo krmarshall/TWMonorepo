@@ -107,34 +107,36 @@ const processAbility = (
   // enabled_if
   const enabled_if: Array<string> = [];
   unitSpecialAbility.foreignRefs?.special_ability_to_auto_deactivate_flags?.forEach((enable) => {
-    enabled_if.push(
-      stringInterpolator(
-        lookupKillThresholds(
-          enable.localRefs?.special_ability_invalid_usage_flags?.flag_key as string,
-          enable.localRefs?.special_ability_invalid_usage_flags?.alt_description as string,
-          folder,
-          globalData,
-        ),
-        globalData.parsedData[folder].text,
+    const enableString = stringInterpolator(
+      lookupKillThresholds(
+        enable.localRefs?.special_ability_invalid_usage_flags?.flag_key as string,
+        enable.localRefs?.special_ability_invalid_usage_flags?.alt_description as string,
+        folder,
+        globalData,
       ),
+      globalData.parsedData[folder].text,
     );
+    if (enableString !== '') {
+      enabled_if.push(enableString);
+    }
   });
   if (enabled_if.length > 0) returnAbility.unit_ability.enabled_if = enabled_if;
 
   // target_if
   const target_if: Array<string> = [];
   unitSpecialAbility.foreignRefs?.special_ability_to_invalid_target_flags?.forEach((target) => {
-    target_if.push(
-      stringInterpolator(
-        lookupKillThresholds(
-          target.localRefs?.special_ability_invalid_usage_flags?.flag_key as string,
-          target.localRefs?.special_ability_invalid_usage_flags?.alt_description as string,
-          folder,
-          globalData,
-        ),
-        globalData.parsedData[folder].text,
+    const targetString = stringInterpolator(
+      lookupKillThresholds(
+        target.localRefs?.special_ability_invalid_usage_flags?.flag_key as string,
+        target.localRefs?.special_ability_invalid_usage_flags?.alt_description as string,
+        folder,
+        globalData,
       ),
+      globalData.parsedData[folder].text,
     );
+    if (targetString !== '') {
+      target_if.push(targetString);
+    }
   });
   if (target_if.length > 0) returnAbility.unit_ability.target_if = target_if;
 
