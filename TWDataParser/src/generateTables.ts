@@ -1,4 +1,4 @@
-import type { Definition } from './@types/CustomRpfmTypes.ts';
+import type { Definition, Field } from './@types/rpfm_ipc_protocol.ts';
 import type { GlobalDataInterface, RefKey, TableRecord } from './@types/GlobalDataInterface.ts';
 import cleanList from './lists/cleanLists/index.ts';
 import type RpfmClient from './rpfmClient.ts';
@@ -12,7 +12,14 @@ const generateTables = async (
   const tables: { [key in RefKey]?: Table } = {};
   const tablePromises = dbList.map(async (db) => {
     const definition = await rpfmClient.getTableDefinition(db);
-    tables[db] = new Table(db, definition, globalData.parsedData[folder].db[db], globalData.parsedData[folder].text);
+    const processedDefinition = await rpfmClient.getProcessedDefinition(definition);
+    tables[db] = new Table(
+      db,
+      definition,
+      processedDefinition,
+      globalData.parsedData[folder].db[db],
+      globalData.parsedData[folder].text,
+    );
   });
 
   await Promise.all(tablePromises);
@@ -27,18 +34,26 @@ export default generateTables;
 export class Table {
   tableName: RefKey;
   definition: Definition;
+  processedDefinition: Array<Field>;
   records: Array<TableRecord>;
   indexedKeys: { [key: string]: { [key: string]: number } };
 
-  constructor(tableName: RefKey, definition: Definition, tableData: Array<TableRecord>, tableLoc: TableRecord) {
+  constructor(
+    tableName: RefKey,
+    definition: Definition,
+    processedDefinition: Array<Field>,
+    tableData: Array<TableRecord>,
+    tableLoc: TableRecord,
+  ) {
     this.tableName = tableName;
     this.definition = definition;
+    this.processedDefinition = processedDefinition;
     this.records = tableData;
     this.indexedKeys = {};
 
     // Grab keys for fields we want to index, and locs we want to link
     const tablePKeys: Array<string> = [];
-    definition.fields.forEach((field) => {
+    processedDefinition.forEach((field) => {
       if (field.is_key) {
         tablePKeys.push(field.name);
         this.indexedKeys[field.name] = {};
@@ -84,7 +99,7 @@ export class Table {
 
   linkTables = (tables: { [key in RefKey]?: Table }, missingTablesSet: Set<string>) => {
     const referenceFields: Array<{ fieldName: string; refTable: RefKey; refKey: string }> = [];
-    this.definition.fields.forEach((field) => {
+    this.processedDefinition.forEach((field) => {
       if (field.is_reference !== null) {
         referenceFields.push({
           fieldName: field.name,

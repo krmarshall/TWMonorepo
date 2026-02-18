@@ -2,7 +2,7 @@ import { basename } from 'node:path';
 import type { GlobalDataInterface, RefKey, TableRecord } from './@types/GlobalDataInterface.ts';
 import { vanillaFolders } from './lists/vanillaFolders.ts';
 import type RpfmClient from './rpfmClient.ts';
-import type { Definition } from './@types/CustomRpfmTypes.ts';
+import type { Field } from './@types/rpfm_ipc_protocol.ts';
 
 export const parser = async (
   folder: string,
@@ -21,6 +21,7 @@ export const parser = async (
     const tablePromises = tablePaths.map(async (subTablePath) => {
       let subTableName = basename(subTablePath);
       const { definition, table_data } = await rpfmClient.decodeDbTable(subTablePath);
+      const processedDefinition = await rpfmClient.getProcessedDefinition(definition);
 
       const parsedSubTable: Array<TableRecord> = table_data.map((row) => {
         const parsedRow: { [key: string]: string | number | boolean } = {};
@@ -30,7 +31,7 @@ export const parser = async (
           if (typeof value === 'number') {
             value = parseFloat(value.toFixed(4));
           }
-          const key = definition.fields[index].name;
+          const key = processedDefinition[index].name;
           parsedRow[key] = value;
         });
         return parsedRow;
@@ -44,8 +45,9 @@ export const parser = async (
     });
 
     const tableDefinition = await rpfmClient.getTableDefinition(dbTable);
+    const processedDefinition = await rpfmClient.getProcessedDefinition(tableDefinition);
     await Promise.all(tablePromises);
-    addSortedSubTablesToGlobalData(folder, globalData, parsedSubTables, tableDefinition, dbTable);
+    addSortedSubTablesToGlobalData(folder, globalData, parsedSubTables, processedDefinition, dbTable);
     return;
   });
 
@@ -59,7 +61,7 @@ const addSortedSubTablesToGlobalData = (
   folder: string,
   globalData: GlobalDataInterface,
   parsedSubTables: { [key: string]: Array<TableRecord> },
-  tableDefinition: Definition,
+  processedDefinition: Array<Field>,
   dbTable: RefKey,
 ) => {
   // Vanilla should only have the data__ sub tables
@@ -72,7 +74,7 @@ const addSortedSubTablesToGlobalData = (
   let mergedMap: { [key: string]: TableRecord } = {};
   // Find the primary/composite keys for the dbTable
   const tableKeys: Array<string> = [];
-  tableDefinition.fields.forEach((field) => {
+  processedDefinition.forEach((field) => {
     if (field.is_key) tableKeys.push(field.name);
   });
 
@@ -113,9 +115,9 @@ const addLocsToGlobalData = async (folder: string, globalData: GlobalDataInterfa
       return;
     }
     const { table_data } = await rpfmClient.decodeLoc(locPath);
-    const parsedLocTable = table_data.map((row) => {
-      const key = row[0].StringU16 as string;
-      const text = row[1].StringU16 as string;
+    const parsedLocTable = table_data.map((row: Array<{ StringU16: string }>) => {
+      const key = row[0].StringU16;
+      const text = row[1].StringU16;
       return { [key]: text };
     });
     parsedLocTables[locPath] = parsedLocTable;

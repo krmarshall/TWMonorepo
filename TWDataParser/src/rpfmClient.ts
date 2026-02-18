@@ -1,5 +1,16 @@
-import * as RpfmTypes from './@types/rpfm_ipc_protocol.ts';
 import * as CustomRpfmTypes from './@types/CustomRpfmTypes.ts';
+import type {
+  Command,
+  ContainerInfo,
+  ContainerPath,
+  DataSource,
+  DB,
+  Definition,
+  Field,
+  Loc,
+  Message,
+  RFileInfo,
+} from './@types/rpfm_ipc_protocol.ts';
 
 export default class RpfmClient {
   private ws: WebSocket;
@@ -25,7 +36,7 @@ export default class RpfmClient {
       }
       this.ws = new WebSocket(process.env.RPFM_SERVER_URL) as unknown as WebSocket;
       this.ws.onmessage = (event) => {
-        const msg: RpfmTypes.Message<unknown> = JSON.parse(event.data);
+        const msg: Message<unknown> = JSON.parse(event.data);
 
         // Handle SessionConnected (unsolicited, id=0)
         if (typeof msg.data === 'object' && 'SessionConnected' in msg.data) {
@@ -48,7 +59,7 @@ export default class RpfmClient {
     });
   }
 
-  send(command: RpfmTypes.Command): Promise<unknown> {
+  send(command: Command): Promise<unknown> {
     return new Promise((resolve, reject) => {
       const id = this.nextId++;
       const callStack = new Error().stack;
@@ -87,13 +98,13 @@ export default class RpfmClient {
     return resp;
   }
 
-  async openPacks(paths: string[]): Promise<RpfmTypes.ContainerInfo> {
-    const resp = (await this.send({ OpenPackFiles: paths })) as { ContainerInfo: RpfmTypes.ContainerInfo };
+  async openPacks(paths: string[]): Promise<ContainerInfo> {
+    const resp = (await this.send({ OpenPackFiles: paths })) as { ContainerInfo: ContainerInfo };
     return resp.ContainerInfo;
   }
 
   async extractFiles(
-    paths: Partial<Record<RpfmTypes.DataSource, RpfmTypes.ContainerPath[]>>,
+    paths: Partial<Record<DataSource, ContainerPath[]>>,
     destPath: string,
     asTsv = false,
   ): Promise<[string, string[]]> {
@@ -118,16 +129,16 @@ export default class RpfmClient {
   }
 
   async decodeDbTable(tablePath: string) {
-    const resp = (await this.decodeFile(tablePath)) as { DBRFileInfo: [CustomRpfmTypes.DB, RpfmTypes.RFileInfo] };
+    const resp = (await this.decodeFile(tablePath)) as { DBRFileInfo: [DB, RFileInfo] };
     return resp.DBRFileInfo[0].table;
   }
 
-  async getTableDefinition(tableName: string): Promise<CustomRpfmTypes.Definition> {
+  async getTableDefinition(tableName: string): Promise<Definition> {
     if (!tableName.endsWith('_tables')) {
       tableName += '_tables';
     }
     const resp = (await this.send({ DefinitionsByTableName: tableName })) as {
-      VecDefinition: Array<CustomRpfmTypes.Definition>;
+      VecDefinition: Array<Definition>;
     };
     if (resp.VecDefinition.length === 0) {
       throw `Table missing schema definitions: ${tableName}`;
@@ -146,7 +157,7 @@ export default class RpfmClient {
 
   async getLocPaths() {
     type LocPathsResp = {
-      HashMapDataSourceHashSetContainerPath: Record<RpfmTypes.DataSource, Array<RpfmTypes.ContainerPath>>;
+      HashMapDataSourceHashSetContainerPath: Record<DataSource, Array<ContainerPath>>;
     };
     const resp = await this.send({ GetPackedFilesNamesStartingWitPathFromAllSources: { Folder: 'text/' } });
     const paths = (resp as LocPathsResp).HashMapDataSourceHashSetContainerPath.PackFile.map((path) => {
@@ -156,14 +167,19 @@ export default class RpfmClient {
   }
 
   async decodeLoc(locPath: string) {
-    const resp = (await this.decodeFile(locPath)) as { LocRFileInfo: [CustomRpfmTypes.Loc, RpfmTypes.RFileInfo] };
+    const resp = (await this.decodeFile(locPath)) as { LocRFileInfo: [Loc, RFileInfo] };
     return resp.LocRFileInfo[0].table;
   }
 
   async decodePortraitBin(binPath: string) {
     const resp = (await this.decodeFile(binPath)) as {
-      PortraitSettingsRFileInfo: [CustomRpfmTypes.PortraitSettings, RpfmTypes.RFileInfo];
+      PortraitSettingsRFileInfo: [CustomRpfmTypes.PortraitSettings, RFileInfo];
     };
     return resp.PortraitSettingsRFileInfo[0];
+  }
+
+  async getProcessedDefinition(definition: Definition) {
+    const resp = (await this.send({ FieldsProcessed: definition })) as { VecField: Array<Field> };
+    return resp.VecField;
   }
 }
