@@ -128,9 +128,10 @@ const About = () => {
           take a lot of time, but I&apos;ve at least thought about them.
         </p>
         <ul className="list-disc list-inside text-gray-200 text-2xl">
+          <li>Ancillaries unlocked via Technologies</li>
           <li>Character stats mount comparison</li>
           <li>Character stats skill integration</li>
-          <li>Banner ancillary details</li>
+          <li>Boons of Chaos (Initiatives)</li>
         </ul>
       </div>
     </div>

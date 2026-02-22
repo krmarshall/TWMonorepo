@@ -18,10 +18,8 @@ npm run start - Installs and builds the frontend into the backend ./public/ fold
 
 ## To Do
 
-- Transition to eslint flat config (or biome at some point)
-- Work on overall page style
-- Affected unit cards
-- Boons of Chaos System
+- Items unlocked by techs (data is already there, just need to display it)
+- Boons of Chaos System (Initiatives / Campaign Groups)
 - Radial Selector for Agent Variants?
 
 ## Adding A Mod

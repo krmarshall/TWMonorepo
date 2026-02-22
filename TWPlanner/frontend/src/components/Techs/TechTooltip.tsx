@@ -65,7 +65,7 @@ const TechTooltip = ({ tech, ctrCounter, setCtrCounter, setTooltipScrollable, to
           className="max-h-[98vh] text-center flex flex-row overflow-y-auto scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-700"
         >
           <div className="flex flex-col">
-            <div className="h-fit p-2 rounded border border-gray-400 shadow-lg text-gray-50 bg-gray-600">
+            <div className="h-fit p-2 mb-2 rounded border border-gray-400 shadow-lg text-gray-50 bg-gray-600">
               <h3
                 className="text-gray-50 text-2xl"
                 dangerouslySetInnerHTML={{
