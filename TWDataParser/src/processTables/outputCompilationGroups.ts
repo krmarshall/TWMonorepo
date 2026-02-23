@@ -30,6 +30,7 @@ const outputCompilationGroups = async (
       const skillNodeSets = await rpfmClient.decodeDbTable(subTablePath);
       skillNodeSets.table_data.forEach((tableRow) => {
         // Key is at index 3
+        // @ts-expect-error ts(2339)
         compGroups.nodeSets[tableRow[3].StringU8 as string] = modInfo.name;
       });
     });
