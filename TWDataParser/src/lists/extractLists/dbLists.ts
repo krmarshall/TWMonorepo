@@ -83,6 +83,14 @@ const v2DbList = [
   'technology_ui_groups_to_technology_nodes_junctions',
   'building_levels',
   'building_culture_variants',
+
+  // Items
+  'ancillaries_categories',
+  'ancillaries_subcategories',
+  'ancillary_to_included_agents',
+  'ancillary_uniqueness_groupings',
+  'faction_sets',
+  'faction_set_items',
 ] as const;
 
 const v3DbList = [
