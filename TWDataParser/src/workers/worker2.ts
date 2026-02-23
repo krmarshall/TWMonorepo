@@ -1,6 +1,6 @@
 import { workerData } from 'worker_threads';
 import { ensureDirSync } from 'fs-extra/esm';
-import type { VanillaWorkerDataInterface } from '../@types/WorkerDataInterfaces.ts';
+import type { WorkerVanillaDataInterface } from '../@types/WorkerDataInterfaces.ts';
 import initializeGlobalData from '../utils/initializeGlobalData.ts';
 import generateTables from '../generateTables.ts';
 import processFactions from '../processTables/processFactions.ts';
@@ -8,8 +8,9 @@ import { modPackInfo, vanillaPackInfo } from '../lists/packInfo.ts';
 import Extractor from '../extractor.ts';
 import RpfmClient from '../rpfmClient.ts';
 import { parser } from '../parser.ts';
+import { workerItem } from './workerExports.ts';
 
-const { folder, packs, dbList, game }: VanillaWorkerDataInterface = workerData;
+const { folder, packs, dbList, game }: WorkerVanillaDataInterface = workerData;
 
 const packPaths = packs.map((pack) => `${process.env.WH2_DATA_PATH}/${pack}.pack`);
 
@@ -36,6 +37,7 @@ const extractor = new Extractor({
 await extractor.extractAndParseImages();
 
 const tables = await generateTables(folder, globalData, dbList, rpfmClient);
+workerItem({ folder, globalData, tables, pruneVanilla: false });
 processFactions(folder, globalData, tables, false, true);
 
 console.timeEnd(folder);

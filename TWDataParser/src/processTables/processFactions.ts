@@ -12,7 +12,7 @@ import {
 } from '../lists/processFactionsLists.ts';
 import { techNodeSetsPrune2, techNodeSetsPrune3, vanilla3TechNodeSets } from '../lists/processFactionsTechLists.ts';
 import subcultureMap from '../lists/subcultureMap.ts';
-import vanillaCharacters from '../lists/vanillaCharacters.ts';
+import vanillaCharacters from '../lists/vanillaLists/vanillaCharacters.ts';
 import processAgent from './processAgent.ts';
 import processTechNodeSet from './processTechNodeSet.ts';
 import { outputJSONSync } from 'fs-extra/esm';

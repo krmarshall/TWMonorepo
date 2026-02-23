@@ -1,5 +1,5 @@
 import type { GlobalDataInterface, RefKey, TableRecord } from '../@types/GlobalDataInterface.ts';
-import type { ItemInterface, CharacterInterface } from '../@types/CharacterInterface.ts';
+import type { CharacterInterface } from '../@types/CharacterInterface.ts';
 import findImage from '../utils/findImage.ts';
 import outputAgent from './outputAgent.ts';
 import processEffect from './processEffect.ts';
@@ -11,6 +11,7 @@ import processUnitStats from './processUnitStats.ts';
 import addCharacterListReference from '../utils/addCharacterListReference.ts';
 import processStartPosTraits from './processStartPosTraits.ts';
 import { Table } from '../generateTables.ts';
+import type { ItemInterface } from '../@types/ItemInterface.ts';
 
 const processAgent = (
   folder: string,

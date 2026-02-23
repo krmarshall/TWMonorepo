@@ -1,19 +1,19 @@
 import { workerData } from 'worker_threads';
 import { ensureDirSync } from 'fs-extra/esm';
-import type { VanillaWorkerDataInterface } from '../@types/WorkerDataInterfaces.ts';
+import type { WorkerVanillaDataInterface } from '../@types/WorkerDataInterfaces.ts';
 import Extractor from '../extractor.ts';
 import initializeGlobalData from '../utils/initializeGlobalData.ts';
 import akData from '../akData.ts';
 import generateTables from '../generateTables.ts';
 import processFactions from '../processTables/processFactions.ts';
-import { workerMod, workerModMulti } from './workerExports.ts';
+import { workerItem, workerMod, workerModMulti } from './workerExports.ts';
 import { modPackInfo, vanillaPackInfo } from '../lists/packInfo.ts';
 import { v3AssKitList } from '../lists/extractLists/dbLists.ts';
 import type { RefKey } from '../@types/GlobalDataInterface.ts';
 import RpfmClient from '../rpfmClient.ts';
 import { parser } from '../parser.ts';
 
-const { folder, packs, dbList, game }: VanillaWorkerDataInterface = workerData;
+const { folder, packs, dbList, game }: WorkerVanillaDataInterface = workerData;
 
 const packPaths = packs.map((pack) => `${process.env.WH3_DATA_PATH}/${pack}.pack`);
 
@@ -149,6 +149,7 @@ workerModMulti(modData.hol3WorkerData);
 
 dbList.push(...(v3AssKitList as Array<RefKey>));
 const tables = await generateTables(folder, globalData, dbList, rpfmClient);
+workerItem({ folder, globalData, tables, pruneVanilla: false });
 processFactions(folder, globalData, tables, false, true);
 
 console.timeEnd(folder);

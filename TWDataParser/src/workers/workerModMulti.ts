@@ -1,6 +1,6 @@
 import { workerData } from 'worker_threads';
 import { ensureDirSync } from 'fs-extra/esm';
-import type { MultiModWorkerDataInterface } from '../@types/WorkerDataInterfaces.ts';
+import type { WorkerMultiModDataInterface } from '../@types/WorkerDataInterfaces.ts';
 import generateTables from '../generateTables.ts';
 import processFactions from '../processTables/processFactions.ts';
 import outputCompilationGroups from '../processTables/outputCompilationGroups.ts';
@@ -8,7 +8,7 @@ import Extractor from '../extractor.ts';
 import RpfmClient from '../rpfmClient.ts';
 import { parser } from '../parser.ts';
 
-const { folder, dbList, game, globalData, modInfoArray, pruneVanilla, tech }: MultiModWorkerDataInterface = workerData;
+const { folder, dbList, game, globalData, modInfoArray, pruneVanilla, tech }: WorkerMultiModDataInterface = workerData;
 
 if (globalData === undefined) {
   throw `${folder} missing globalData`;

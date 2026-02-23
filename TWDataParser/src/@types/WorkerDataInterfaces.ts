@@ -1,14 +1,15 @@
+import type { Table } from '../generateTables.ts';
 import type { ModInfoInterface } from '../lists/packInfo.ts';
 import type { GlobalDataInterface, RefKey } from './GlobalDataInterface.ts';
 
-export interface VanillaWorkerDataInterface {
+export interface WorkerVanillaDataInterface {
   folder: string;
   packs: Array<string>;
   dbList: Array<RefKey>;
   game: string;
 }
 
-export interface ModWorkerDataInterface {
+export interface WorkerModDataInterface {
   folder: string;
   dbList: Array<RefKey>;
   game: string;
@@ -18,7 +19,7 @@ export interface ModWorkerDataInterface {
   tech: boolean;
 }
 
-export interface MultiModWorkerDataInterface {
+export interface WorkerMultiModDataInterface {
   folder: string;
   dbList: Array<RefKey>;
   game: string;
@@ -26,4 +27,11 @@ export interface MultiModWorkerDataInterface {
   modInfoArray: Array<ModInfoInterface>;
   pruneVanilla: boolean;
   tech: boolean;
+}
+
+export interface WorkerItemDataInterface {
+  folder: string;
+  globalData: GlobalDataInterface;
+  tables: { [key in RefKey]?: Table };
+  pruneVanilla: boolean;
 }

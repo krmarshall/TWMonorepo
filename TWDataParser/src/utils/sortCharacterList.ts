@@ -1,7 +1,7 @@
 import { readJSONSync } from 'fs-extra/esm';
 import type { CharacterInterface, CharacterListInterface } from '../@types/CharacterListInterface.ts';
 import subcultureMap from '../lists/subcultureMap.ts';
-import vanillaCharacters from '../lists/vanillaCharacters.ts';
+import vanillaCharacters from '../lists/vanillaLists/vanillaCharacters.ts';
 import type { CompilationGroupsInterface } from '../@types/CompilationGroupsInterface.ts';
 
 export const sortCharacterList = (characterList: CharacterListInterface, folder: string) => {

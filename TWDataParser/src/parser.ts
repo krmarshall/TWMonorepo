@@ -1,6 +1,6 @@
 import { basename } from 'node:path';
 import type { GlobalDataInterface, RefKey, TableRecord } from './@types/GlobalDataInterface.ts';
-import { vanillaFolders } from './lists/vanillaFolders.ts';
+import { vanillaFolders } from './lists/vanillaLists/vanillaFolders.ts';
 import type RpfmClient from './rpfmClient.ts';
 import type { Field } from './@types/rpfm_ipc_protocol.ts';
 
