@@ -3,12 +3,14 @@
   "scripts": {
     "lint": "eslint ./src",
     "lintFix": "eslint ./src --fix",
-    "start": "set NODE_OPTIONS='--max-old-space-size=8192' && node ./src/index.ts",
-    "profile": "set NODE_OPTIONS='--max-old-space-size=8192' && node --prof ./src/index.ts",
+    "start": "set NODE_OPTIONS='--max-old-space-size=4096' && node ./src/index.ts",
+    "profile": "set NODE_OPTIONS='--max-old-space-size=4096' && node --prof ./src/index.ts",
     "typecheck": "tsc"
   },
   "type": "module",
   "dependencies": {
+    "@types/ungap__structured-clone": "^1.2.0",
+    "@ungap/structured-clone": "^1.3.0",
     "dotenv": "^17.2.3",
     "fast-glob": "^3.3.3",
     "fast-xml-parser": "^5.3.3",

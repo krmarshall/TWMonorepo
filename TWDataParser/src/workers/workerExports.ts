@@ -1,8 +1,10 @@
 import { Worker } from 'worker_threads';
+import { serialize } from '@ungap/structured-clone';
 import type {
-  ModWorkerDataInterface,
-  MultiModWorkerDataInterface,
-  VanillaWorkerDataInterface,
+  WorkerItemDataInterface,
+  WorkerModDataInterface,
+  WorkerMultiModDataInterface,
+  WorkerVanillaDataInterface,
 } from '../@types/WorkerDataInterfaces.ts';
 import log from '../utils/log.ts';
 import exportData from '../utils/exportData.ts';
@@ -22,13 +24,14 @@ const workerRpfmServer = async (): Promise<void> => {
   });
 };
 
-const workerVanilla = (workerData: VanillaWorkerDataInterface) => {
+const workerVanilla = (workerData: WorkerVanillaDataInterface) => {
   const { game, folder } = workerData;
   console.time(`${game} total`);
   const workerScript = game === 'warhammer_2' ? './src/workers/worker2.ts' : './src/workers/worker3.ts';
   const workerVanilla = new Worker(workerScript, {
     workerData,
     name: folder,
+    resourceLimits: { stackSizeMb: 512 },
   });
   workerVanilla.on('error', (error: Error) => {
     console.error(error.stack);
@@ -46,7 +49,7 @@ const workerVanilla = (workerData: VanillaWorkerDataInterface) => {
   return workerVanilla;
 };
 
-const workerMod = (workerData: ModWorkerDataInterface) => {
+const workerMod = (workerData: WorkerModDataInterface) => {
   const { folder } = workerData;
   console.time(folder);
   const workerMod = new Worker('./src/workers/workerMod.ts', {
@@ -62,7 +65,7 @@ const workerMod = (workerData: ModWorkerDataInterface) => {
   });
 };
 
-const workerModMulti = (workerData: MultiModWorkerDataInterface) => {
+const workerModMulti = (workerData: WorkerMultiModDataInterface) => {
   const { folder } = workerData;
   console.time(folder);
   const workerModMulti = new Worker('./src/workers/workerModMulti.ts', {
@@ -78,4 +81,25 @@ const workerModMulti = (workerData: MultiModWorkerDataInterface) => {
   });
 };
 
-export { workerRpfmServer, workerVanilla, workerMod, workerModMulti };
+const workerItem = (workerDataParam: WorkerItemDataInterface) => {
+  const { folder, tables } = workerDataParam;
+  // tables contains classes with functions, and circular references. Have to serialize separately to not throw
+  const serializedTables = serialize(tables, { lossy: true });
+  const workerData: any = workerDataParam;
+  workerData.tables = serializedTables;
+  console.time(`${folder} items`);
+  const workerItem = new Worker('./src/workers/workerItem.ts', {
+    workerData,
+    name: `${folder} items`,
+    resourceLimits: { stackSizeMb: 512 },
+  });
+  workerItem.on('error', (error: Error) => {
+    log(`${folder} item failed`, 'red');
+    throw error;
+  });
+  workerItem.on('exit', () => {
+    console.timeEnd(`${folder} items`);
+  });
+};
+
+export { workerRpfmServer, workerVanilla, workerMod, workerModMulti, workerItem };
