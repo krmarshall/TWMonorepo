@@ -31,15 +31,27 @@ export const ItemRarityEnum = {
 } as const;
 export type ItemRarityEnum = (typeof ItemRarityEnum)[keyof typeof ItemRarityEnum];
 
+export interface FactionDataInterface {
+  name: string;
+  img: string;
+}
+
 export interface ExtendedItemInterface extends ItemInterface {
   rarity: keyof typeof ItemRarityEnum;
   category: string; // Armour / Arcane Item / Mount / Banner / etc.
   subcategory?: string; // Banner / Rune / Follower
   agent_subtypes?: Array<string>; // Agents that can use the item, eg Karl Franz
   agent_types?: Array<string>; // Agent types that can use the item, eg, wizards
-  faction?: string;
-  subculture?: string;
-  culture?: string;
+  available?: {
+    factions?: Record<string, FactionDataInterface>;
+    subcultures?: Record<string, FactionDataInterface>;
+    cultures?: Record<string, FactionDataInterface>;
+  };
+  unavailable?: {
+    factions?: Record<string, FactionDataInterface>;
+    subcultures?: Record<string, FactionDataInterface>;
+    cultures?: Record<string, FactionDataInterface>;
+  };
   remove?: boolean; // If true, the ancillary is available to NOT the faction/culture above
   randomly_dropped?: boolean;
   can_be_destroyed?: boolean; // Destroyed for scrap or fused.
