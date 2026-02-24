@@ -82,6 +82,24 @@ export default class Extractor {
     return;
   };
 
+  // Want flag imgs, but only want 64x64 versions, whole folder is much larger
+  private extractFlags = async () => {
+    const latestPackTimestamp = this.getLatestPackTimestamp();
+    if (this.checkCacheValid(latestPackTimestamp)) {
+      return;
+    }
+    const flagPaths = await this.rpfmClient.getFilePathsFromPath('ui/flags/');
+    const mediumFlags = [];
+    flagPaths.PackFile?.forEach((flagPath) => {
+      if ('File' in flagPath) {
+        if (flagPath.File.endsWith('64.png')) {
+          mediumFlags.push(flagPath);
+        }
+      }
+    });
+    await this.rpfmClient.extractFiles({ PackFile: mediumFlags }, `extracted_files/${this.folder}/`);
+  };
+
   private convertImages = async (): Promise<void> => {
     const imageDirs = fastGlob.sync(`./extracted_files/${this.folder}/ui/**/`, {
       markDirectories: true,
@@ -174,6 +192,7 @@ export default class Extractor {
 
   extractAndParseImages = async () => {
     await this.extractImages();
+    await this.extractFlags();
     await this.convertImages();
     await this.parsePortraitBins();
     await this.convertPortraits();

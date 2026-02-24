@@ -182,4 +182,11 @@ export default class RpfmClient {
     const resp = (await this.send({ FieldsProcessed: definition })) as { VecField: Array<Field> };
     return resp.VecField;
   }
+
+  async getFilePathsFromPath(searchPath: string) {
+    const resp = (await this.send({ GetPackedFilesNamesStartingWitPathFromAllSources: { Folder: searchPath } })) as {
+      HashMapDataSourceHashSetContainerPath: Record<DataSource, ContainerPath[]>;
+    };
+    return resp.HashMapDataSourceHashSetContainerPath;
+  }
 }
