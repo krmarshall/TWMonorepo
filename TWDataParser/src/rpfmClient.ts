@@ -25,6 +25,8 @@ export default class RpfmClient {
     }
   >();
   public sessionId: number | null = null;
+  // Maps table name (unit_abilities) to the highest definition version used (42)
+  private definitionMap: Map<string, Definition> = new Map();
 
   constructor() {}
 
@@ -130,13 +132,32 @@ export default class RpfmClient {
 
   async decodeDbTable(tablePath: string) {
     const resp = (await this.decodeFile(tablePath)) as { DBRFileInfo: [DB, RFileInfo] };
-    return resp.DBRFileInfo[0].table;
+    const respTable = resp.DBRFileInfo[0].table;
+    const respTableVersion = respTable.definition.version;
+    const tableName = respTable.table_name;
+    const storedTableVersion = this.definitionMap.get(tableName)?.version;
+
+    if (storedTableVersion === undefined) {
+      this.definitionMap.set(tableName, respTable.definition);
+    } else if (storedTableVersion < respTableVersion) {
+      this.definitionMap.set(tableName, respTable.definition);
+    }
+
+    return respTable;
   }
 
   async getTableDefinition(tableName: string): Promise<Definition> {
     if (!tableName.endsWith('_tables')) {
       tableName += '_tables';
     }
+
+    // If we already decoded the table grab the definition from the map.
+    const storedTable = this.definitionMap.get(tableName);
+    if (storedTable !== undefined) {
+      return storedTable;
+    }
+
+    // Else fallback to the highest version definition (not perfect, some vanilla tables have versions in schema, but use 0 z.z)
     const resp = (await this.send({ DefinitionsByTableName: tableName })) as {
       VecDefinition: Array<Definition>;
     };
@@ -152,6 +173,7 @@ export default class RpfmClient {
         highestVersionIndex = index;
       }
     });
+
     return resp.VecDefinition[highestVersionIndex];
   }
 
