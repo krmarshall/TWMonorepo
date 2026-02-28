@@ -403,6 +403,9 @@ const addAgents = [
   // OvN Grudgebringers
   { agent: 'ludwig_uberdorf_agent_subtype', subculture: 'wh_main_sc_emp_empire', game: '3' },
 
+  // OvN Araby
+  { agent: 'arb_wizard_caliph', subculture: 'ovn_sc_arb_araby', game: '3' },
+
   // Heroes of Legend
   { agent: 'augustine_de_chegney', subculture: 'wh_main_sc_brt_bretonnia', game: '3' },
   { agent: 'balkrag_grimgorson', subculture: 'wh_main_sc_dwf_dwarfs', game: '3' },
