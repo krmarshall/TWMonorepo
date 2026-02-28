@@ -89,7 +89,7 @@ const ancillaries = tables.ancillaries.records.map((ancillary) => {
     if (faction !== undefined) {
       const facData = {
         name: faction.screen_name as string,
-        img: faction.flags_path as string,
+        img: (faction.flags_path as string).replaceAll('\\', '/'),
       };
       if (remove) {
         returnAncillary.unavailable.factions[faction.key as string] = facData;
