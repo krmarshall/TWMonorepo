@@ -10,6 +10,7 @@ import { outputJsonSync } from 'fs-extra/esm';
 import stringInterpolator from '../utils/stringInterpolator.ts';
 import { rarityGroupPriority } from '../utils/rarityGroupPriority.ts';
 import { rarityLookup } from '../utils/rarityLookup.ts';
+import { cultureMap, subcultureMap } from '../lists/cultureMaps.ts';
 
 // tables no longer have access to methods from class Table (findRecordByKey), but data structure is the same.
 const tables: { [key in RefKey]?: Table } = deserialize(workerData.tables);
@@ -74,6 +75,70 @@ const ancillaries = tables.ancillaries.records.map((ancillary) => {
   if (ancillary.can_be_destroyed) returnAncillary.can_be_destroyed = true;
   // Transferrable
   if (ancillary.transferrable) returnAncillary.transferrable = true;
+  // Faction Sets
+  let availableCount = 0;
+  let unavailableCount = 0;
+  ancillary.localRefs?.faction_sets?.foreignRefs?.faction_set_items?.forEach((factionSet) => {
+    returnAncillary.available = { factions: {}, subcultures: {}, cultures: {} };
+    returnAncillary.unavailable = { factions: {}, subcultures: {}, cultures: {} };
+    const remove = factionSet.remove as boolean;
+    const faction = factionSet.localRefs?.factions;
+    const subculture = factionSet.localRefs.cultures_subcultures;
+    const culture = factionSet.localRefs?.cultures;
+    // Faction
+    if (faction !== undefined) {
+      const facData = {
+        name: faction.screen_name as string,
+        img: faction.flags_path as string,
+      };
+      if (remove) {
+        returnAncillary.unavailable.factions[faction.key as string] = facData;
+        unavailableCount++;
+      } else {
+        returnAncillary.available.factions[faction.key as string] = facData;
+        availableCount++;
+      }
+    }
+
+    // Subculture
+    if (subculture !== undefined) {
+      const subData = {
+        name: subculture.name as string,
+        img: subcultureMap[`${subculture.subculture}`],
+      };
+      if (remove) {
+        returnAncillary.unavailable.subcultures[subculture.subculture as string] = subData;
+        unavailableCount++;
+      } else {
+        returnAncillary.available.subcultures[subculture.subculture as string] = subData;
+        availableCount++;
+      }
+    }
+
+    // Culture
+    if (culture !== undefined) {
+      const culData = {
+        name: culture.name as string,
+        img: cultureMap[`${culture.key}`],
+      };
+      if (remove) {
+        returnAncillary.unavailable.cultures[culture.key as string] = culData;
+        unavailableCount++;
+      } else {
+        returnAncillary.available.cultures[culture.key as string] = culData;
+        availableCount++;
+      }
+    }
+
+    // All
+    if (factionSet.set === 'all') {
+      returnAncillary.available.all = true;
+    }
+  });
+  // If the item didnt add any faction sets and only removed them it is available for everything except those
+  if (availableCount === 0 && unavailableCount > 0) {
+    returnAncillary.available.all = true;
+  }
 
   return returnAncillary;
 });

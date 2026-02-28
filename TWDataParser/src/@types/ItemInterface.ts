@@ -33,7 +33,7 @@ export type ItemRarityEnum = (typeof ItemRarityEnum)[keyof typeof ItemRarityEnum
 
 export interface FactionDataInterface {
   name: string;
-  img: string;
+  img: string; // factions have a proper img path, (sub)cultures have the key for factionImages.ts on the frontend
 }
 
 export interface ExtendedItemInterface extends ItemInterface {
@@ -43,14 +43,15 @@ export interface ExtendedItemInterface extends ItemInterface {
   agent_subtypes?: Array<string>; // Agents that can use the item, eg Karl Franz
   agent_types?: Array<string>; // Agent types that can use the item, eg, wizards
   available?: {
-    factions?: Record<string, FactionDataInterface>;
-    subcultures?: Record<string, FactionDataInterface>;
-    cultures?: Record<string, FactionDataInterface>;
+    all?: boolean;
+    factions: Record<string, FactionDataInterface>;
+    subcultures: Record<string, FactionDataInterface>;
+    cultures: Record<string, FactionDataInterface>;
   };
   unavailable?: {
-    factions?: Record<string, FactionDataInterface>;
-    subcultures?: Record<string, FactionDataInterface>;
-    cultures?: Record<string, FactionDataInterface>;
+    factions: Record<string, FactionDataInterface>;
+    subcultures: Record<string, FactionDataInterface>;
+    cultures: Record<string, FactionDataInterface>;
   };
   remove?: boolean; // If true, the ancillary is available to NOT the faction/culture above
   randomly_dropped?: boolean;
