@@ -54,6 +54,9 @@ const Header = () => {
           </div>
 
           <div className={'w-1/3 flex flex-row justify-end text-2xl text-slate-50 my-auto'}>
+            <Link className={buttonClass + ' mr-4'} to={'/items'} draggable={false}>
+              Items
+            </Link>
             <Link className={buttonClass + ' mr-4'} to={'/about'} draggable={false}>
               About
             </Link>
@@ -89,6 +92,9 @@ const Header = () => {
                 onClick={() => closePopover()}
               >
                 Techs
+              </Link>
+              <Link className={buttonClass + ' mr-4'} to={'/items'} draggable={false} onClick={() => closePopover()}>
+                Items
               </Link>
               <Link className={buttonClass + ' mx-auto'} to={'/about'} draggable={false} onClick={() => closePopover()}>
                 About

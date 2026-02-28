@@ -10,6 +10,7 @@ const Home = lazy(() => import('./pages/Home.tsx'));
 const Planner = lazy(() => import('./pages/Planner.tsx'));
 const TechHome = lazy(() => import('./pages/TechHome.tsx'));
 const Tech = lazy(() => import('./pages/Tech.tsx'));
+const Items = lazy(() => import('./pages/Items.tsx'));
 const About = lazy(() => import('./pages/About.tsx'));
 const NotFound = lazy(() => import('./pages/NotFound.tsx'));
 
@@ -42,6 +43,8 @@ const App = () => {
 
               <Route path="/techHome" element={<TechHome />} />
               <Route path="/tech/:mod/:techTree" element={<Tech />} />
+
+              <Route path="/items" element={<Items />} />
 
               <Route path="/about" element={<About />} />
               <Route path="/issues" element={<About />} />
