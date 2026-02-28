@@ -9,10 +9,11 @@ import TopBarTech from '../components/Techs/TopBarTech.tsx';
 import { AppContext, AppContextActions } from '../contexts/AppContext.tsx';
 import useBulkMediaQueries from '../hooks/useBulkMediaQueries.tsx';
 import SearchBox from '../components/Planner/SearchBox.tsx';
+import techGameData from '../data/techGameData.ts';
 
 const Tech = () => {
   const { state, dispatch } = useContext(AppContext);
-  const { techData } = state;
+  const { techData, selectedModTech } = state;
   const { mod, techTree } = useParams();
   const { isMobile } = useBulkMediaQueries();
 
@@ -36,7 +37,7 @@ const Tech = () => {
   }, [techData]);
 
   useEffect(() => {
-    document.title = 'Total Warhammer Planner';
+    document.title = `TWP - ${techGameData[selectedModTech].techTrees[techTree as string].name}`;
   }, []);
   return (
     <div className="w-full h-full mt-1 flex flex-col rounded-md p-2 overflow-y-hidden overflow-x-hidden">

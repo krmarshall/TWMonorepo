@@ -6,7 +6,7 @@ const About = () => {
   const marginThickness = isMobileWidth ? ' mx-2' : ' mx-32';
 
   useEffect(() => {
-    document.title = 'Total Warhammer Planner - About';
+    document.title = 'TWP - About';
   }, []);
   return (
     <div className="grow w-full h-full px-2 py-2 overflow-y-auto overflow-x-hidden scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-600">
