@@ -1,5 +1,5 @@
 import type { Request, Response } from 'express';
-import { skillData, techData } from './initializeData.ts';
+import { skillData, techData, itemData } from './initializeData.ts';
 import { usageData } from './usageLog.ts';
 // import { readFile } from 'fs/promises';
 
@@ -52,4 +52,15 @@ const techListener = (req: Request, res: Response) => {
   return res.status(200).json(selectedTech);
 };
 
-export { skillListener, techListener };
+const itemListener = (req: Request, res: Response) => {
+  const selectedItem = itemData[req.params.itemKey];
+
+  if (selectedItem === undefined) {
+    return res.sendStatus(404);
+  }
+
+  usageData.itemHits++;
+  return res.status(200).json(selectedItem);
+};
+
+export { skillListener, techListener, itemListener };
