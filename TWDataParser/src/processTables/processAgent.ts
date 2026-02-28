@@ -4,7 +4,7 @@ import findImage from '../utils/findImage.ts';
 import outputAgent from './outputAgent.ts';
 import processEffect from './processEffect.ts';
 import processNodeSet from './processNodeSet.ts';
-import subcultureMap from '../lists/subcultureMap.ts';
+import { subcultureMap } from '../lists/cultureMaps.ts';
 import type { CharacterListInterface } from '../@types/CharacterListInterface.ts';
 import processAncillary from './processAncillary.ts';
 import processUnitStats from './processUnitStats.ts';

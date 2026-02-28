@@ -11,7 +11,7 @@ import {
   skipVanillaAgentPrune,
 } from '../lists/processFactionsLists.ts';
 import { techNodeSetsPrune2, techNodeSetsPrune3, vanilla3TechNodeSets } from '../lists/processFactionsTechLists.ts';
-import subcultureMap from '../lists/subcultureMap.ts';
+import { subcultureMap } from '../lists/cultureMaps.ts';
 import vanillaCharacters from '../lists/vanillaLists/vanillaCharacters.ts';
 import processAgent from './processAgent.ts';
 import processTechNodeSet from './processTechNodeSet.ts';
