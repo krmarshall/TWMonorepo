@@ -139,6 +139,9 @@ const ancillaries = tables.ancillaries.records.map((ancillary) => {
   if (availableCount === 0 && unavailableCount > 0) {
     returnAncillary.available.all = true;
   }
+  if (unavailableCount === 0) {
+    delete returnAncillary.unavailable;
+  }
 
   return returnAncillary;
 });
