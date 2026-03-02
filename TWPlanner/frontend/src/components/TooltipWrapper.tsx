@@ -37,7 +37,7 @@ const TooltipWrapper = ({ children, tooltip, placement = 'right', skillClickHand
     middleware: [
       offset(20),
       autoPlacement({ padding: 8 }),
-      shift({ padding: 8, crossAxis: true, limiter: limitShift() }),
+      shift({ padding: 6, crossAxis: true, limiter: limitShift() }),
     ],
   });
 

@@ -53,7 +53,7 @@ const SkillAbilityTooltip = ({ ability }: SkillAbilityTooltipPropInterface) => {
             h="48"
           />
           <h3
-            className="text-left whitespace-nowrap text-2xl pr-6 mr-auto"
+            className="text-left whitespace-nowrap text-2xl pr-4 mr-auto"
             dangerouslySetInnerHTML={{
               __html: DOMPurify.sanitize(replaceKeepCaps(unitAbility.onscreen_name, searchString)),
             }}
@@ -71,7 +71,7 @@ const SkillAbilityTooltip = ({ ability }: SkillAbilityTooltipPropInterface) => {
             </div>
           )}
           {unitAbility.recharge_time !== undefined && unitAbility.recharge_time > 0 && (
-            <div className="flex flex-row mr-3">
+            <div className="flex flex-row mr-1">
               <img className="w-6 h-6" src={cooldownImg} alt="cooldown icon" width="24" height="24" />
               <p className="ml-1 text-center">{unitAbility.recharge_time}s</p>
             </div>
@@ -232,7 +232,7 @@ const SkillAbilityTooltip = ({ ability }: SkillAbilityTooltipPropInterface) => {
             return (
               <p
                 key={index}
-                className="text-lg whitespace-pre-wrap ml-6 text-yellow-200"
+                className="max-w-100 text-lg whitespace-pre-wrap ml-6 text-yellow-200"
                 dangerouslySetInnerHTML={{
                   __html: DOMPurify.sanitize(replaceKeepCaps(skillEffect.localised_text, searchString)),
                 }}

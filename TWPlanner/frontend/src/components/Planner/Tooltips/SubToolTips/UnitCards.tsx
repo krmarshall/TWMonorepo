@@ -12,7 +12,7 @@ const UnitCards = ({ relatedUnitCards }: PropInterface) => {
   const { selectedMod } = state;
   const { isMobile } = useBulkMediaQueries();
 
-  const contextWidth = isMobile ? '' : ' max-w-[26vw]';
+  const contextWidth = isMobile ? '' : ' max-w-122';
 
   const unitCardsArray = Array.from(relatedUnitCards);
   return (
