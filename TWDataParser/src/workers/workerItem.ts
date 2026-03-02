@@ -16,7 +16,8 @@ import { cultureMap, subcultureMap } from '../lists/cultureMaps.ts';
 const tables: { [key in RefKey]?: Table } = deserialize(workerData.tables);
 const { folder, globalData, pruneVanilla }: WorkerItemDataInterface = workerData;
 
-const ancillaries = tables.ancillaries.records.map((ancillary) => {
+const ancillaries: Array<ExtendedItemInterface> = [];
+tables.ancillaries.records.forEach((ancillary) => {
   // Skip Mounts
   if (ancillary.category === 'mount') {
     return;
@@ -143,7 +144,7 @@ const ancillaries = tables.ancillaries.records.map((ancillary) => {
     delete returnAncillary.unavailable;
   }
 
-  return returnAncillary;
+  ancillaries.push(returnAncillary);
 });
 
 outputJsonSync(`./output/items/${folder}.json`, ancillaries, { spaces: 2 });
