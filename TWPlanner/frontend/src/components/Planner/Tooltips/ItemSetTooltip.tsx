@@ -1,5 +1,5 @@
 import TooltipWrapper from '../../TooltipWrapper.tsx';
-import { ItemSetInterface } from '../../../@types/CharacterInterfaceRef.ts';
+import { ItemSetInterface } from '../../../@types/ItemInterfaceRef.ts';
 import { useContext, useEffect } from 'react';
 import { AppContext } from '../../../contexts/AppContext.tsx';
 import useBulkMediaQueries from '../../../hooks/useBulkMediaQueries.tsx';

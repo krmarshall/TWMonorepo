@@ -4,12 +4,11 @@ import {
   CharacterInterface,
   EffectInterface,
   FactionEffectsInterface,
-  ItemInterface,
-  ItemSetInterface,
   PhaseInterface,
   SkillInterface,
   UnitStatsInterface,
 } from '../@types/CharacterInterfaceRef.ts';
+import { ItemInterface, ItemSetInterface } from '../@types/ItemInterfaceRef.ts';
 import { TechNodeInterface, TechSetInterface } from '../@types/TechInterface.ts';
 
 interface HighlightArrayInterface {

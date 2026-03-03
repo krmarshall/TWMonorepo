@@ -19,6 +19,7 @@ const Header = () => {
   const buttonClass = 'button hover-scale bg-gray-600 w-fit text-gray-100';
 
   return (
+    // If the header height ever changes, have to fix the height calc on the Items.tsx page
     <div className="bg-gray-900 flex flex-row flex-nowrap justify-between h-16 px-4 border-b border-gray-500">
       <div className="w-1/3 flex flex-row flex-nowrap justify-start">
         <Link to={'/'} className="text-slate-100 text-4xl flex flex-row flex-nowrap">

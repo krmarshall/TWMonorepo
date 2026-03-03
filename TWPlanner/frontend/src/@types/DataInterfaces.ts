@@ -26,4 +26,12 @@ interface TechDataInterface {
   };
 }
 
-export type { GameDataInterface, TechDataInterface };
+interface ItemDataInterface {
+  text: string;
+  image: string;
+  updated: string;
+  category: string;
+  workshopLink?: string;
+}
+
+export type { GameDataInterface, TechDataInterface, ItemDataInterface };

@@ -9,14 +9,17 @@ import {
   saveStatsDrawerOpenToStorage,
 } from '../utils/storageFunctions.ts';
 import { HighlightArrayInterface } from '../utils/searchFunctions.ts';
+import { ExtendedItemInterface } from '../@types/ItemInterfaceRef.ts';
 
 interface ContextStateInterface {
   selectedMod: string;
   selectedModTech: string;
+  selectedItem: string;
   selectedFaction: string;
   characterData: CharacterInterface | null;
   characterBuild: BuildInterface | null;
   techData: TechSetInterface | null;
+  itemData: Array<ExtendedItemInterface> | null;
   localStorageBuildKeys: Array<string>;
   selectedCompGroups: Array<string>;
   showedHomeToast: boolean;
@@ -34,10 +37,12 @@ interface ContextStateInterface {
 const initialState: ContextStateInterface = {
   selectedMod: 'vanilla3',
   selectedModTech: 'vanilla3',
+  selectedItem: 'vanilla3',
   selectedFaction: 'bst_beastmen',
   characterData: null,
   characterBuild: null,
   techData: null,
+  itemData: null,
   localStorageBuildKeys: [],
   selectedCompGroups: [],
   showedHomeToast: false,
@@ -57,10 +62,12 @@ interface ActionInterface {
   payload: {
     selectedMod?: string;
     selectedModTech?: string;
+    selectedItem?: string;
     selectedFaction?: string;
     characterData?: CharacterInterface | null;
     characterBuild?: BuildInterface | null;
     techData?: TechSetInterface | null;
+    itemData?: Array<ExtendedItemInterface> | null;
     localStorageBuildKeys?: Array<string>;
     selectedCompGroups?: Array<string>;
     showedHomeToast?: boolean;
@@ -80,10 +87,12 @@ enum AppContextActions {
   changeGame = 'changeGame',
   changeMod = 'changeMod',
   changeModTech = 'changeModTech',
+  changeItem = 'changeItem',
   changeFaction = 'changeFaction',
   changeCharacterData = 'changeCharacterData',
   changeCharacterBuild = 'changeCharacterBuild',
   changeTechData = 'changeTechData',
+  changeItemData = 'changeItemData',
   changeLocalStorageBuildKeys = 'changeLocalStorageBuildKeys',
   changeModFaction = 'changeModFaction',
   changeSelectedCompGroups = 'changeSelectedCompGroups',
@@ -115,6 +124,15 @@ const reducer = (state: ContextStateInterface, action: ActionInterface) => {
         return state;
       }
       newState.selectedModTech = action.payload.selectedModTech;
+      return newState;
+    }
+
+    case AppContextActions.changeItem: {
+      const newState = { ...state };
+      if (action.payload.selectedItem === undefined) {
+        return state;
+      }
+      newState.selectedItem = action.payload.selectedItem;
       return newState;
     }
 
@@ -167,6 +185,15 @@ const reducer = (state: ContextStateInterface, action: ActionInterface) => {
         return state;
       }
       newState.techData = action.payload.techData;
+      return newState;
+    }
+
+    case AppContextActions.changeItemData: {
+      const newState = { ...state };
+      if (action.payload.itemData === undefined) {
+        return state;
+      }
+      newState.itemData = action.payload.itemData;
       return newState;
     }
 

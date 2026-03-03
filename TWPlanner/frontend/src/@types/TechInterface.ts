@@ -1,4 +1,5 @@
-import { EffectInterface, ItemInterface } from './CharacterInterfaceRef.ts';
+import { EffectInterface } from './CharacterInterfaceRef.ts';
+import { ItemInterface } from './ItemInterfaceRef.ts';
 
 interface NodeLinkInterface {
   parent_key: string;

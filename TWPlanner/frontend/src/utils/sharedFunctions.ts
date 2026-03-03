@@ -10,7 +10,7 @@ import {
 } from '../@types/CharacterInterfaceRef.ts';
 import { splitCharacterKey } from './urlFunctions.ts';
 
-const createEmptyCharacterBuild = (
+export const createEmptyCharacterBuild = (
   characterData: CharacterInterface,
   gameKey: string,
   factionKey: string,
@@ -55,7 +55,7 @@ const createEmptyCharacterBuild = (
 };
 
 // Skills can be quest items that dont cost a rank (use_quest_for_prefix), or start with skill points already assigned (points_on_creation)
-const createCharacterBuildFromArray = (
+export const createCharacterBuildFromArray = (
   arrayBuild: Array<Array<number>>,
   characterData: CharacterInterface,
   game: string,
@@ -116,7 +116,7 @@ const createCharacterBuildFromArray = (
   return newCharacterBuild;
 };
 
-const trimString = (string: string, length = 75) => {
+export const trimString = (string: string, length = 75) => {
   let trimmedString = string;
   if (trimmedString.length > length) {
     trimmedString = trimmedString.substring(0, length);
@@ -125,7 +125,7 @@ const trimString = (string: string, length = 75) => {
   return trimmedString;
 };
 
-const getRelatedAbilities = (effectsArray: Array<EffectInterface> | undefined) => {
+export const getRelatedAbilities = (effectsArray: Array<EffectInterface> | undefined) => {
   const relatedAbilities: Array<AbilityInterface> = [];
   const relatedAbilitiesKeys: Array<string> = [];
 
@@ -147,7 +147,7 @@ const getRelatedAbilities = (effectsArray: Array<EffectInterface> | undefined) =
   return relatedAbilities;
 };
 
-const getRelatedContactPhases = (ability: AbilityInterface | undefined, effects?: Array<EffectInterface>) => {
+export const getRelatedContactPhases = (ability: AbilityInterface | undefined, effects?: Array<EffectInterface>) => {
   const relatedPhases: Array<PhaseInterface> = [];
   const relatedPhaseKeys: Array<string> = [];
 
@@ -209,7 +209,7 @@ const getRelatedContactPhases = (ability: AbilityInterface | undefined, effects?
   return relatedPhases;
 };
 
-const getRelatedAttributes = (ability: AbilityInterface | undefined, effects?: Array<EffectInterface>) => {
+export const getRelatedAttributes = (ability: AbilityInterface | undefined, effects?: Array<EffectInterface>) => {
   const relatedAttributes: Array<AttributeInterface> = [];
   const relatedAttributeKeys: Array<string> = [];
 
@@ -252,7 +252,7 @@ const getRelatedAttributes = (ability: AbilityInterface | undefined, effects?: A
   return relatedAttributes;
 };
 
-const getUnitStatSets = (characterData: CharacterInterface | null) => {
+export const getUnitStatSets = (characterData: CharacterInterface | null) => {
   const unitStatSets: Array<{ name: string; stats: UnitStatsInterface }> = [];
   const unitStatNames: Array<string> = [];
 
@@ -282,7 +282,7 @@ const getUnitStatSets = (characterData: CharacterInterface | null) => {
   return unitStatSets;
 };
 
-const addFactionVariantNodes = (factionNodes: Array<SkillInterface>, characterData: CharacterInterface) => {
+export const addFactionVariantNodes = (factionNodes: Array<SkillInterface>, characterData: CharacterInterface) => {
   const derefCharacterData: CharacterInterface = JSON.parse(JSON.stringify(characterData));
   const sortIndents = new Set<number>();
   factionNodes.forEach((node) => {
@@ -301,7 +301,7 @@ const addFactionVariantNodes = (factionNodes: Array<SkillInterface>, characterDa
   return derefCharacterData;
 };
 
-const setFontSize = (string: string) => {
+export const setFontSize = (string: string) => {
   let fontSize;
   if (string.length > 52) {
     fontSize = 'text-xs';
@@ -316,12 +316,12 @@ const setFontSize = (string: string) => {
   return fontSize;
 };
 
-const replaceKeepCaps = (string: string, search: string | null = '') => {
+export const replaceKeepCaps = (string: string, search: string | null = '') => {
   return string.replace(new RegExp('(' + search + ')', 'ig'), '<span class="searchHighlight">$1</span>');
 };
 
 // Really verbose way of doing this, but tailwind needs the whole class present to generate it
-const getBgUrl = (selectedFaction: string | undefined) => {
+export const getBgUrl = (selectedFaction: string | undefined) => {
   let returnUrl = ' bg-[url(/imgs/other/bgs/default/bg.webp)]';
   switch (selectedFaction) {
     case 'brt_bretonnia':
@@ -385,16 +385,22 @@ const getBgUrl = (selectedFaction: string | undefined) => {
   return returnUrl;
 };
 
-export {
-  createEmptyCharacterBuild,
-  createCharacterBuildFromArray,
-  trimString,
-  getRelatedAbilities,
-  getRelatedContactPhases,
-  getRelatedAttributes,
-  getUnitStatSets,
-  setFontSize,
-  getBgUrl,
-  addFactionVariantNodes,
-  replaceKeepCaps,
+export const getCategoryDescription = (category: string) => {
+  switch (category) {
+    case 'Base': {
+      return 'The vanilla game with no mods. All characters are displayed with few exceptions.';
+    }
+    case 'Overhaul': {
+      return 'A total overhaul mod. Both new and vanilla characters are displayed whether they have been modified or not.';
+    }
+    case 'Character Mod': {
+      return 'A mod that adds new characters. Vanilla characters have been pruned, only new characters added by the mod are displayed.';
+    }
+    case 'Character Mod Compilation': {
+      return 'A compilation of mods that add new characters. Vanilla characters have been pruned, only new characters added by the mods are displayed.';
+    }
+    default: {
+      return 'MISSING';
+    }
+  }
 };

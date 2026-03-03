@@ -1,4 +1,4 @@
-import { TechDataInterface } from '../@types/GameInterface.ts';
+import { TechDataInterface } from '../@types/DataInterfaces.ts';
 import gameData from './gameData.ts';
 import vanilla2Techs from './techs/vanilla2Techs.ts';
 import vanilla3Techs from './techs/vanilla3Techs.ts';

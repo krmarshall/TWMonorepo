@@ -1,5 +1,6 @@
 import { findSkill } from '../../../utils/skillVerification.ts';
-import { FactionEffectsInterface, ItemInterface, SkillInterface } from '../../../@types/CharacterInterfaceRef.ts';
+import { FactionEffectsInterface, SkillInterface } from '../../../@types/CharacterInterfaceRef.ts';
+import { ItemInterface } from '../../../@types/ItemInterfaceRef.ts';
 import SkillEffect from './SubToolTips/SkillEffect.tsx';
 import { useContext, useEffect } from 'react';
 import { AppContext } from '../../../contexts/AppContext.tsx';
