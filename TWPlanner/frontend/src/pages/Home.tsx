@@ -40,14 +40,16 @@ const Home = () => {
   // }, []);
 
   useEffect(() => {
+    document.title = 'Total Warhammer Planner';
+  }, []);
+
+  useEffect(() => {
     if (mod !== undefined && faction !== undefined) {
       dispatch({
         type: AppContextActions.changeModFaction,
         payload: { selectedMod: mod, selectedFaction: faction },
       });
     }
-
-    document.title = 'Total Warhammer Planner';
   }, []);
 
   useEffect(() => {
