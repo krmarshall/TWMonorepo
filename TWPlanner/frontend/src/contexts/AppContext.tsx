@@ -84,7 +84,6 @@ interface ActionInterface {
 }
 
 enum AppContextActions {
-  changeGame = 'changeGame',
   changeMod = 'changeMod',
   changeModTech = 'changeModTech',
   changeItem = 'changeItem',
