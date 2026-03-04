@@ -53,7 +53,6 @@ export interface ExtendedItemInterface extends ItemInterface {
     subcultures: Record<string, FactionDataInterface>;
     cultures: Record<string, FactionDataInterface>;
   };
-  remove?: boolean; // If true, the ancillary is available to NOT the faction/culture above
   randomly_dropped?: boolean;
   can_be_destroyed?: boolean; // Destroyed for scrap or fused.
   transferrable?: boolean;
