@@ -5,7 +5,6 @@
     "frontendDev": "yarn workspace frontend dev",
     "backendDev": "yarn workspace backend dev",
     "planner:dev": "concurrently -m 2 -k -n server,front -c #c45f12,#124dc4 yarn:backendDev yarn:frontendDev",
-    "planner:test": "yarn workspace backend test",
     "planner:build": "yarn workspace frontend build",
     "parser:dev": "yarn workspace twdataparser typecheck",
     "parser:build": "yarn workspace twdataparser start",

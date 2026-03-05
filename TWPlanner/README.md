@@ -24,18 +24,10 @@ npm run start - Installs and builds the frontend into the backend ./public/ fold
 
 ## Adding A Mod
 
-- Copy over json data to TWPData repo
-- Copy over auto extracted and manually extracted images to respective frontend ./src/imgs or ./public/imgs
-- Make sure to set up characterImgs export in ./src/imgs/characters/<mod>
-- Create appropriate mod character list in frontend ./src/data, may have to look around rpfm for actual character names
 - Find/create an icon for the mod, put into ./src/imgs/games and link with gameImage.ts
-- Create appropriate entry in frontend ./src/data/gameData
-- Create appropriate entry in backend ./__tests__/characterApi.js gameList to add it to the test suite
+- Create appropriate entry in frontend ./src/data/gameData.ts
 - Create appropriate entry in backend ./src/usageLog.ts gameList to add it to the usage logs
 
 ## Adding Base Game Characters
 
-- Copy over json data to TWPData repo
-- Copy over portrait to ./src/imgs/characters/<gameFolder>, be sure to crop and mask portrait to 164x164
-- Update characterImgs export in ./src/imgs/characters/<gameFolder>
-- Update character list in ./src/data/characters/<gameFile>, may have to look around rpfm for actual character names
+- All automated now :-) just remember to add their nodeset key to TWDataParser/src/lists/vanillaLists/vanillaCharacter.ts so mods get pruned correctly.
