@@ -7,6 +7,7 @@ import TooltipWrapper from '../TooltipWrapper.tsx';
 import { AppContext } from '../../contexts/AppContext.tsx';
 
 import itemSetIcon from '../../imgs/other/icon_item_set.webp';
+import FactionAvailability from './FactionAvailability.tsx';
 
 interface PropsInterface {
   item?: ExtendedItemInterface;
@@ -91,20 +92,35 @@ const ItemCell = ({ item }: PropsInterface) => {
         </div>
       )}
 
-      <h4 className="mx-auto text-lg opacity-70">{item?.colour_text}</h4>
+      <h4 className="mx-auto my-0.5 text-lg opacity-70">{item?.colour_text}</h4>
 
-      {item?.subcategory !== undefined && <p className="text-left text-lg">Subcategory: {item?.subcategory}</p>}
-      {item?.unlocked_at_rank !== undefined && (
-        <div>
-          <p className="text-lg">{item.agent_subtypes}</p>
-          <p className="text-yellow-300 text-lg">Unlocked at Rank: {item?.unlocked_at_rank}</p>
-        </div>
+      {item?.agent_subtypes !== undefined && (
+        <p className="text-xl">
+          {item?.agent_subtypes.map((agent, index) => {
+            let agentString = agent;
+            if (item?.agent_subtypes?.[index + 1] !== undefined) {
+              agentString += ', ';
+            }
+            return agentString;
+          })}
+        </p>
       )}
+      {item?.unlocked_at_rank !== undefined && (
+        <p className="text-yellow-300 text-lg">Unlocked at Rank: {item?.unlocked_at_rank}</p>
+      )}
+
       <ul>
         {item?.effects?.map((effect, index) => {
           return <SkillEffect key={index} skillEffect={effect} />;
         })}
       </ul>
+
+      {(item?.subcategory !== undefined ||
+        item?.agent_types !== undefined ||
+        item?.randomly_dropped ||
+        item?.unavailable !== undefined ||
+        // If all is true then the rest of available is empty, so only display when all is undefined
+        item?.available?.all === undefined) && <FactionAvailability item={item} />}
     </li>
   );
 };
