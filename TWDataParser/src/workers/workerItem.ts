@@ -76,6 +76,24 @@ tables.ancillaries.records.forEach((ancillary) => {
   if (ancillary.can_be_destroyed) returnAncillary.can_be_destroyed = true;
   // Transferrable
   if (ancillary.transferrable) returnAncillary.transferrable = true;
+  // Agent Subtypes
+  ancillary.foreignRefs?.ancillaries_included_agent_subtypes?.forEach((agentJunc) => {
+    const agent = agentJunc.localRefs?.agent_subtypes;
+    const name =
+      (agent.localRefs?.main_units?.localRefs?.land_units?.onscreen_name as string) ??
+      (agent.onscreen_name_override as string);
+    const processedName = stringInterpolator(name, globalData.parsedData[folder].text);
+    if (returnAncillary.agent_subtypes === undefined) returnAncillary.agent_subtypes = [];
+    if (!returnAncillary.agent_subtypes.includes(processedName)) {
+      returnAncillary.agent_subtypes.push(processedName);
+    }
+  });
+  // Agent Types
+  ancillary.localRefs?.ancillary_info.foreignRefs?.ancillary_to_included_agents?.forEach((agentJunc) => {
+    if (returnAncillary.agent_types === undefined) returnAncillary.agent_types = [];
+    returnAncillary.agent_types.push(agentJunc.agent as string);
+  });
+
   // Faction Sets
   let availableCount = 0;
   let unavailableCount = 0;

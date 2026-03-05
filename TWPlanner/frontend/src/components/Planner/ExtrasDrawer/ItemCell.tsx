@@ -1,12 +1,13 @@
-import { RefObject, useContext, useEffect, useRef, useState } from 'react';
+import { useContext, useRef } from 'react';
 import { ItemInterface } from '../../../@types/ItemInterfaceRef.ts';
 import BaseCell from '../BaseCell.tsx';
 import { AppContext } from '../../../contexts/AppContext.tsx';
 import TooltipWrapper from '../../TooltipWrapper.tsx';
 import ItemSetTooltip from '../Tooltips/ItemSetTooltip.tsx';
+import useBulkMediaQueries from '../../../hooks/useBulkMediaQueries.tsx';
 
 import questBattle from '../../../imgs/other/icon_quest_battle.webp';
-import useBulkMediaQueries from '../../../hooks/useBulkMediaQueries.tsx';
+import itemSetIcon from '../../../imgs/other/icon_item_set.webp';
 
 interface PropInterface {
   item: ItemInterface;
@@ -18,42 +19,21 @@ const ItemCell = ({ item, index }: PropInterface) => {
   const { selectedMod, highlightArray } = state;
   const { isMobile } = useBulkMediaQueries();
 
-  const [tooltipScrollable, setTooltipScrollable] = useState(false);
-  const [ctrCounter, setCtrCounter] = useState(0);
-  const tooltipRef = useRef<HTMLSpanElement>(null);
-  const cellRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const passScrollEvent = (event: WheelEvent) => {
-      event.preventDefault();
-      event.stopPropagation();
-      if (tooltipRef.current !== null) {
-        const tooltipScrollPosition = tooltipRef.current.scrollTop ?? 0;
-        tooltipRef.current.scrollTo({
-          top: tooltipScrollPosition + event.deltaY,
-        });
-      }
-    };
-
-    if (tooltipScrollable && cellRef.current !== null) {
-      cellRef.current.addEventListener('wheel', passScrollEvent);
-    }
-
-    return () => {
-      if (cellRef.current !== null) {
-        cellRef.current.removeEventListener('wheel', passScrollEvent);
-      }
-    };
-  }, [tooltipScrollable]);
+  const itemSetParentRef = useRef<HTMLDivElement>(null);
 
   let divClassName = 'm-auto relative';
   if (highlightArray?.items?.[index].item) {
     divClassName += ' rounded searchOutline m-auto';
   }
 
+  let setImgClassName = 'absolute w-6 h-6 bottom-1 right-0 z-10 hover-scale-large';
+  if (highlightArray?.items?.[index].set) {
+    setImgClassName += ' rounded-full outline outline-offset-2 outline-yellow-400';
+  }
+
   const tooltipLayoutContext = isMobile ? 'w-full max-h-full my-auto' : 'w-max';
   return (
-    <div key={item.key} className={divClassName} ref={cellRef}>
+    <div key={item.key} className={divClassName}>
       <BaseCell
         item={item}
         srcList={[
@@ -87,15 +67,25 @@ const ItemCell = ({ item, index }: PropInterface) => {
           ></img>
         </TooltipWrapper>
       )}
+
       {item.item_set !== undefined && (
-        <ItemSetTooltip
-          itemSet={item.item_set}
-          index={index}
-          ctrCounter={ctrCounter}
-          setCtrCounter={setCtrCounter}
-          setTooltipScrollable={setTooltipScrollable}
-          tooltipRef={tooltipRef as RefObject<HTMLSpanElement>}
-        />
+        <div ref={itemSetParentRef}>
+          <TooltipWrapper
+            noSkillRanks={true}
+            tooltip={
+              <ItemSetTooltip itemSet={item.item_set} parentRef={itemSetParentRef as React.RefObject<HTMLDivElement>} />
+            }
+          >
+            <img
+              className={setImgClassName}
+              src={itemSetIcon}
+              draggable={false}
+              alt="questBattleIcon"
+              width="32"
+              height="32"
+            />
+          </TooltipWrapper>
+        </div>
       )}
     </div>
   );
