@@ -25,12 +25,12 @@ const getErrorMessage = (status: number) => {
 
 const api = {
   getCharacterSkillTree: (
-    gameKey: string,
+    modKey: string,
     factionKey: string,
     characterKey: string,
     hasBuild: boolean,
   ): Promise<CharacterInterface> => {
-    return fetch(`${path}/skills/${gameKey}.${factionKey}.${characterKey}.${hasBuild}`, {
+    return fetch(`${path}/skills/${modKey}.${factionKey}.${characterKey}.${hasBuild}`, {
       method: 'GET',
     }).then((response) => {
       if (response.status === 200) {
@@ -43,8 +43,8 @@ const api = {
     });
   },
 
-  getTechTree: (gameKey: string, techTreeKey: string): Promise<TechSetInterface> => {
-    return fetch(`${path}/techs/${gameKey}.${techTreeKey}`, { method: 'GET' }).then((response) => {
+  getTechTree: (modKey: string, techTreeKey: string): Promise<TechSetInterface> => {
+    return fetch(`${path}/techs/${modKey}.${techTreeKey}`, { method: 'GET' }).then((response) => {
       if (response.status === 200) {
         return response.json();
       } else {
@@ -55,8 +55,19 @@ const api = {
     });
   },
 
-  getItem: (itemKey: string): Promise<Array<ExtendedItemInterface>> => {
-    return fetch(`${path}/items/${itemKey}`, { method: 'GET' }).then((response) => {
+  getBulkItems: (modKey: string): Promise<Array<ExtendedItemInterface>> => {
+    return fetch(`${path}/bulkItems/${modKey}`, { method: 'GET' }).then((response) => {
+      if (response.status === 200) {
+        return response.json();
+      } else {
+        const errorMessage = getErrorMessage(response.status);
+        throw new Error(errorMessage);
+      }
+    });
+  },
+
+  getItem: (modKey: string, itemKey: string) => {
+    return fetch(`${path}/item/${modKey}.${itemKey}`, { method: 'GET' }).then((response) => {
       if (response.status === 200) {
         return response.json();
       } else {

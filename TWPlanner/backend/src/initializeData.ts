@@ -65,25 +65,44 @@ const initializeTechData = () => {
   });
 };
 
-interface ItemDataInterface {
-  [key: string]: unknown;
+interface BulkItemDataInterface {
+  [key: string]: Array<unknown>;
 }
 
-const itemData: ItemDataInterface = {};
+const bulkItemData: BulkItemDataInterface = {};
 
-const initializeItemData = () => {
+const initializeBulkItemData = () => {
   const itemPaths = fg.sync('../TWPData/items/*.json');
 
   itemPaths.forEach((itemPath) => {
-    const itemName = basename(itemPath, '.json');
-    itemData[itemName] = JSON.parse(readFileSync(itemPath, 'utf-8'));
+    const modKey = basename(itemPath, '.json');
+    bulkItemData[modKey] = JSON.parse(readFileSync(itemPath, 'utf-8'));
+  });
+};
+
+interface ItemDataInterface {
+  // Game / Mod
+  [key: string]: {
+    // Item key
+    [key: string]: unknown;
+  };
+}
+const itemData: ItemDataInterface = {};
+const initializeItemData = () => {
+  Object.keys(bulkItemData).forEach((modKey) => {
+    itemData[modKey] = {};
+    bulkItemData[modKey].forEach((item) => {
+      // @ts-expect-error ts(2339)
+      itemData[modKey][item?.key] = item;
+    });
   });
 };
 
 const initializeData = () => {
   initializeSkillData();
   initializeTechData();
+  initializeBulkItemData();
   initializeItemData();
 };
 
-export { initializeData, skillData, techData, itemData };
+export { initializeData, skillData, techData, bulkItemData, itemData };

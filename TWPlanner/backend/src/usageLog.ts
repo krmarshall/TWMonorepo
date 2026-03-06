@@ -6,6 +6,7 @@ interface LogInterface {
   misses: number;
   missList: Set<string>;
   techHits: number;
+  itemPageHits: number;
   itemHits: number;
   buildCode: number;
 }
@@ -29,6 +30,7 @@ const usageData: LogInterface = {
   misses: 0,
   missList: new Set(),
   techHits: 0,
+  itemPageHits: 0,
   itemHits: 0,
   buildCode: 0,
 };
@@ -43,13 +45,14 @@ const usageLog = (hoursInterval: number) => {
 const outputLog = () => {
   console.log('--------------------------------------');
   console.log(
-    `Skill Hits: ${usageData.hits} | Build Codes: ${usageData.buildCode} | Tech Hits: ${usageData.techHits} | Item Hits: ${usageData.itemHits}`,
+    `Skill Hits: ${usageData.hits} | Build Codes: ${usageData.buildCode} | Tech Hits: ${usageData.techHits} | Item Hits: ${usageData.itemPageHits}`,
   );
+  console.log(`Item Page Hits: ${usageData.itemPageHits} | Item Hits: ${usageData.itemHits}`);
   console.log(`Vanilla2: ${usageData.modHits.vanilla2} | Vanilla3: ${usageData.modHits.vanilla3}
 SFO3: ${usageData.modHits.sfo3} | Rad3: ${usageData.modHits.radious3} | Mixu3: ${usageData.modHits.mixu3} | Lege3: ${usageData.modHits.lege3} | SCM3: ${usageData.modHits.scm3} | Cat3: ${usageData.modHits.cat3} | OVN3: ${usageData.modHits.ovn3} | HoL3: ${usageData.modHits.hol3}
 Other: ${usageData.modHits.other}`);
   console.log(`Skill Misses: ${usageData.misses}`);
-  console.log(`API Missed Links: ${Array.from(usageData.missList)}`);
+  // console.log(`API Missed Links: ${Array.from(usageData.missList)}`);
 
   usageData.hits = 0;
   usageData.modHits = {
@@ -69,6 +72,7 @@ Other: ${usageData.modHits.other}`);
   usageData.misses = 0;
   usageData.missList = new Set();
   usageData.techHits = 0;
+  usageData.itemPageHits = 0;
   usageData.itemHits = 0;
   usageData.buildCode = 0;
 };

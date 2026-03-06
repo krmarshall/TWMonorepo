@@ -42,7 +42,7 @@ const ItemBrowser = () => {
 
   useEffect(() => {
     api
-      .getItem(selectedItem)
+      .getBulkItems(selectedItem)
       .then((response) => {
         dispatch({ type: AppContextActions.changeItemData, payload: { itemData: response } });
       })

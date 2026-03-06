@@ -5,7 +5,7 @@ import helmet from 'helmet';
 import compression from 'compression';
 import fs from 'fs-extra';
 
-import { itemListener, skillListener, techListener } from './api.ts';
+import { bulkItemListener, itemListener, skillListener, techListener } from './api.ts';
 import setCustomCacheControl from './setCustomCacheControl.ts';
 import { initializeData } from './initializeData.ts';
 
@@ -26,13 +26,16 @@ app.use(compression());
 
 app.set('trust proxy', true);
 // Serve rest api
-app.get('/api/skills/:gameKey.:factionKey.:characterKey.:hasBuild', (req, res) => {
+app.get('/api/skills/:modKey.:factionKey.:characterKey.:hasBuild', (req, res) => {
   skillListener(req, res, nodeSetMap);
 });
-app.get('/api/techs/:gameKey.:techTreeKey', (req, res) => {
+app.get('/api/techs/:modKey.:techTreeKey', (req, res) => {
   techListener(req, res);
 });
-app.get('/api/items/:itemKey', (req, res) => {
+app.get('/api/bulkItems/:modKey', (req, res) => {
+  bulkItemListener(req, res);
+});
+app.get('/api/item/:modKey.:itemKey', (req, res) => {
   itemListener(req, res);
 });
 

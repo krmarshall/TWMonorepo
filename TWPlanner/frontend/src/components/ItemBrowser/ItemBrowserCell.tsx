@@ -120,7 +120,7 @@ const ItemCell = ({ item }: PropsInterface) => {
         item?.randomly_dropped ||
         item?.unavailable !== undefined ||
         // If all is true then the rest of available is empty, so only display when all is undefined
-        item?.available?.all === undefined) && <FactionAvailability item={item} />}
+        (item?.available !== undefined && item?.available?.all === undefined)) && <FactionAvailability item={item} />}
     </li>
   );
 };
