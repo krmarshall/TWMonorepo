@@ -12,6 +12,8 @@ import TooltipAbilityCycler from '../Planner/Tooltips/TooltipAbiltyCycler.tsx';
 import TooltipAbilityMap from '../Planner/Tooltips/TooltipAbilityMap.tsx';
 import { AppContext } from '../../contexts/AppContext.tsx';
 import DOMPurify from 'dompurify';
+import ItemBrowserCell from '../ItemBrowser/ItemBrowserCell.tsx';
+import { ExtendedItemInterface } from '../../@types/ItemInterfaceRef.ts';
 
 interface PropInterface {
   tech: TechNodeInterface | undefined;
@@ -57,6 +59,7 @@ const TechTooltip = ({ tech, ctrCounter, setCtrCounter, setTooltipScrollable, to
   const relatedAbilities = getRelatedAbilities(tech?.technology.effects);
   const relatedPhases = getRelatedContactPhases(relatedAbilities[ctrCounter], tech?.technology.effects);
   const relatedAttributes = getRelatedAttributes(relatedAbilities[ctrCounter], tech?.technology.effects);
+  const relatedItemNames = tech?.items?.map((item) => item.onscreen_name);
   return (
     <>
       {!isMobile && (
@@ -107,6 +110,11 @@ const TechTooltip = ({ tech, ctrCounter, setCtrCounter, setTooltipScrollable, to
                   return <SkillEffect key={index} skillEffect={techEffect} />;
                 })}
               </div>
+              <div>
+                {tech?.items !== undefined && (
+                  <p className="text-lg text-left">Adds Item(s): {relatedItemNames?.join(', ')}</p>
+                )}
+              </div>
             </div>
             {relatedAbilities.length > 1 && (
               <TooltipAbilityCycler
@@ -124,6 +132,14 @@ const TechTooltip = ({ tech, ctrCounter, setCtrCounter, setTooltipScrollable, to
               relatedAttributes={relatedAttributes}
               ctrCounter={ctrCounter}
             />
+          )}
+
+          {tech?.items !== undefined && (
+            <ul className="ml-2">
+              {tech.items.map((item) => {
+                return <ItemBrowserCell item={item as ExtendedItemInterface} key={item.key} />;
+              })}
+            </ul>
           )}
         </span>
       )}

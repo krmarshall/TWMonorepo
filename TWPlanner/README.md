@@ -18,7 +18,6 @@ npm run start - Installs and builds the frontend into the backend ./public/ fold
 
 ## To Do
 
-- Items unlocked by techs (data is already there, just need to display it)
 - Boons of Chaos System (Initiatives / Campaign Groups)
 - Radial Selector for Agent Variants?
 
