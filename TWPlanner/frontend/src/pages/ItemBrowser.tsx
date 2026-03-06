@@ -17,10 +17,14 @@ const ItemBrowser = () => {
 
   const parentRef = useRef(null);
 
+  const res3 = useMediaQuery({ minWidth: 1164 });
+  const res4 = useMediaQuery({ minWidth: 1530 });
   const res1080 = useMediaQuery({ minWidth: 1920 });
   const res1440 = useMediaQuery({ minWidth: 2560 });
   const res2160 = useMediaQuery({ minWidth: 3840 });
-  let lanes = 4;
+  let lanes = 2;
+  if (res3) lanes = 3;
+  if (res4) lanes = 4;
   if (res1080) lanes = 5;
   if (res1440) lanes = 6;
   if (res2160) lanes = 9;
