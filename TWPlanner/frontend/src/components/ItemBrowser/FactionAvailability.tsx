@@ -51,18 +51,7 @@ const FactionAvailability = ({ item }: PropsInterface) => {
       tooltip={
         <div className="flex flex-col flex-nowrap gap-1 text-xl rounded border border-gray-400 shadow-lg bg-gray-600 text-gray-50 p-2">
           {item?.subcategory !== undefined && <p className="text-left">Subcategory: {item?.subcategory}</p>}
-          {item?.agent_types !== undefined && (
-            <p>
-              Agent Types:&nbsp;
-              {item?.agent_types.map((agent, index) => {
-                let agentString = agent;
-                if (item?.agent_types?.[index + 1] !== undefined) {
-                  agentString += ', ';
-                }
-                return agentString;
-              })}
-            </p>
-          )}
+          {item?.agent_types !== undefined && <p>Agent Types: {item?.agent_types.join(', ')}</p>}
 
           {item?.available?.all && (
             <p>

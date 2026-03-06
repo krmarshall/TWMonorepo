@@ -13,7 +13,7 @@ interface PropsInterface {
   item?: ExtendedItemInterface;
 }
 
-const ItemCell = ({ item }: PropsInterface) => {
+const ItemBrowserCell = ({ item }: PropsInterface) => {
   const { state } = useContext(AppContext);
   const { selectedItem } = state;
 
@@ -94,17 +94,7 @@ const ItemCell = ({ item }: PropsInterface) => {
 
       <h4 className="mx-auto my-0.5 text-lg opacity-70">{item?.colour_text}</h4>
 
-      {item?.agent_subtypes !== undefined && (
-        <p className="text-xl">
-          {item?.agent_subtypes.map((agent, index) => {
-            let agentString = agent;
-            if (item?.agent_subtypes?.[index + 1] !== undefined) {
-              agentString += ', ';
-            }
-            return agentString;
-          })}
-        </p>
-      )}
+      {item?.agent_subtypes !== undefined && <p className="text-xl">{item?.agent_subtypes.join(', ')}</p>}
       {item?.unlocked_at_rank !== undefined && (
         <p className="text-yellow-300 text-lg">Unlocked at Rank: {item?.unlocked_at_rank}</p>
       )}
@@ -125,4 +115,4 @@ const ItemCell = ({ item }: PropsInterface) => {
   );
 };
 
-export default ItemCell;
+export default ItemBrowserCell;

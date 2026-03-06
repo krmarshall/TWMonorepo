@@ -158,29 +158,13 @@ const SkillAbilityTooltip = ({ ability }: SkillAbilityTooltipPropInterface) => {
       {unitAbility.enabled_if !== undefined && unitAbility.enabled_if.length > 0 && (
         <div className="flex flex-row">
           <h5 className="text-left w-24">Enabled If:</h5>
-          <p className="my-auto ml-1">
-            {unitAbility.enabled_if.map((string, index) => {
-              let returnString = string;
-              if (unitAbility.enabled_if !== undefined && unitAbility.enabled_if.length - 1 > index) {
-                returnString += ', ';
-              }
-              return returnString;
-            })}
-          </p>
+          <p className="my-auto ml-1">{unitAbility.enabled_if.join(', ')}</p>
         </div>
       )}
       {unitAbility.target_if !== undefined && unitAbility.target_if.length > 0 && (
         <div className="flex flex-row">
           <h5 className="text-left w-24">Target If:</h5>
-          <p className="my-auto ml-1">
-            {unitAbility.target_if.map((string, index) => {
-              let returnString = string;
-              if (unitAbility.target_if !== undefined && unitAbility.target_if.length - 1 > index) {
-                returnString += ', ';
-              }
-              return returnString;
-            })}
-          </p>
+          <p className="my-auto ml-1">{unitAbility.target_if.join(', ')}</p>
         </div>
       )}
       {unitAbility.num_effected_friendly_units !== undefined && unitAbility.num_effected_friendly_units > 0 && (

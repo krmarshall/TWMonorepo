@@ -5,7 +5,7 @@ import ItemFilter from '../components/ItemBrowser/ItemFilter.tsx';
 import api from '../api/api.ts';
 import { AppContext, AppContextActions } from '../contexts/AppContext.tsx';
 import toast from 'react-hot-toast';
-import ItemCell from '../components/ItemBrowser/ItemBrowserCell.tsx';
+import ItemBrowserCell from '../components/ItemBrowser/ItemBrowserCell.tsx';
 import LoadingSpinner from '../components/LoadingSpinner.tsx';
 import { useVirtualizer } from '@tanstack/react-virtual';
 import { useMediaQuery } from 'react-responsive';
@@ -90,7 +90,7 @@ const ItemBrowser = () => {
                       transform: `translateY(${virtualRow.start}px)`,
                     }}
                   >
-                    <ItemCell item={itemData?.[virtualRow.index]} />
+                    <ItemBrowserCell item={itemData?.[virtualRow.index]} />
                   </div>
                 ))}
               </ul>
