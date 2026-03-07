@@ -84,7 +84,7 @@ const UnitStats = () => {
             saveAdvancedToggleToStorage(newAdvanced);
             setAdvanced(newAdvanced);
           }}
-          className="ml-2 cursor-pointer"
+          className="ml-2 cursor-pointer accent-blue-500"
         />
       </div>
       {unitStatSets.length > 1 && (

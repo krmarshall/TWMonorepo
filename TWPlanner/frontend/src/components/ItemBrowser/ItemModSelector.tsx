@@ -7,10 +7,10 @@ import placeholderImg from '../../imgs/other/0placeholder.webp';
 
 const ItemModSelector = () => {
   const { state, dispatch } = useContext(AppContext);
-  const { selectedItem } = state;
+  const { selectedModItem } = state;
   const { isMobile } = useBulkMediaQueries();
 
-  const itemKeys = Object.keys(itemGameData);
+  const modKeys = Object.keys(itemGameData);
 
   const layoutType = isMobile
     ? 'w-fit mb-2'
@@ -24,22 +24,22 @@ const ItemModSelector = () => {
         <hr className="grow mt-5 opacity-50 border-gray-200" />
       </div>
       <ul className="flex flex-row flex-wrap justify-center py-1">
-        {itemKeys.map((itemKey) => {
-          const item = itemGameData[itemKey];
+        {modKeys.map((modKey) => {
+          const item = itemGameData[modKey];
           let liClassName =
             'flex flex-col justify-around m-1 px-1.5 py-1 border border-gray-500 shadow-lg shadow-gray-800/60 rounded-lg hover-scale';
 
-          if (itemKey === selectedItem) {
+          if (modKey === selectedModItem) {
             liClassName += ' bg-gray-600 hover:bg-gray-500/80 scale-105';
           } else {
             liClassName += ' hover:bg-gray-600';
           }
           return (
             <li
-              key={itemKey}
+              key={modKey}
               className={liClassName}
               onClick={() => {
-                dispatch({ type: AppContextActions.changeItem, payload: { selectedItem: itemKey } });
+                dispatch({ type: AppContextActions.changeItem, payload: { selectedModItem: modKey } });
               }}
             >
               <h2 className="w-36 text-center mx-auto text-gray-200 text-2xl text-shadow mb-1">{item.text}</h2>

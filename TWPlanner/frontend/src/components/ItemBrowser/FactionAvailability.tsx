@@ -14,7 +14,7 @@ interface PropsInterface {
 
 const FactionAvailability = ({ item }: PropsInterface) => {
   const { state } = useContext(AppContext);
-  const { selectedItem } = state;
+  const { selectedModItem } = state;
 
   let availableFactions,
     availableSubcultures,
@@ -39,11 +39,6 @@ const FactionAvailability = ({ item }: PropsInterface) => {
       unavailableCultures = Object.entries(item?.unavailable?.cultures);
   }
 
-  if (availableFactions !== undefined && availableFactions.length > 0) {
-    console.log(item?.key);
-    console.log(availableFactions);
-  }
-
   const flagImgClassname = 'inline w-8 h-8 m-auto';
   return (
     <TooltipWrapper
@@ -64,7 +59,7 @@ const FactionAvailability = ({ item }: PropsInterface) => {
               <div>
                 {availableFactions.map((factionEntry) => {
                   const [factionKey, { name, img }] = factionEntry;
-                  const srcList = [`/imgs/vanilla3/${img}/mon_64.webp`, `/imgs/${selectedItem}/${img}/mon_64.webp`];
+                  const srcList = [`/imgs/vanilla3/${img}/mon_64.webp`, `/imgs/${selectedModItem}/${img}/mon_64.webp`];
                   return (
                     <p key={factionKey} className="text-green-400">
                       <ReactImage srcList={srcList} className={flagImgClassname} w="64" h="64" alt="factionFlag" />
@@ -78,7 +73,7 @@ const FactionAvailability = ({ item }: PropsInterface) => {
               <div>
                 {unavailableFactions.map((factionEntry) => {
                   const [factionKey, { name, img }] = factionEntry;
-                  const srcList = [`/imgs/vanilla3/${img}/mon_64.webp`, `/imgs/${selectedItem}/${img}/mon_64.webp`];
+                  const srcList = [`/imgs/vanilla3/${img}/mon_64.webp`, `/imgs/${selectedModItem}/${img}/mon_64.webp`];
                   return (
                     <p key={factionKey} className="text-red-400">
                       <ReactImage srcList={srcList} className={flagImgClassname} w="64" h="64" alt="factionFlag" />
@@ -179,7 +174,7 @@ const FactionAvailability = ({ item }: PropsInterface) => {
         </div>
       }
     >
-      <p className="text-lg -mb-1 opacity-80 underline decoration-dashed">More...</p>
+      <p className="text-lg w-fit mx-auto -mb-1 opacity-80 underline decoration-dashed">More...</p>
     </TooltipWrapper>
   );
 };

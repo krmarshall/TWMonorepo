@@ -148,7 +148,7 @@ const TopBar = () => {
                   payload: { statsDrawerOpen: !statsDrawerOpen },
                 });
               }}
-              className="ml-2 w-4 cursor-pointer"
+              className="ml-2 w-4 cursor-pointer accent-blue-500"
             />
           </div>
           <div className="ml-auto mb-1 flex flex-row flex-nowrap w-fit">
@@ -165,7 +165,7 @@ const TopBar = () => {
                   payload: { extrasDrawerOpen: !extrasDrawerOpen },
                 });
               }}
-              className="ml-2 w-4 cursor-pointer"
+              className="ml-2 w-4 cursor-pointer accent-blue-500"
             />
           </div>
         </div>

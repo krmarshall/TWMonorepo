@@ -15,15 +15,15 @@ interface PropsInterface {
 
 const ItemBrowserCell = ({ item }: PropsInterface) => {
   const { state } = useContext(AppContext);
-  const { selectedItem } = state;
+  const { selectedModItem } = state;
 
   const itemSetParentRef = useRef<HTMLDivElement>(null);
 
   const srcList = [
     `/imgs/vanilla3/${item?.ui_icon}.webp`,
     `/imgs/vanilla3/${item?.ui_icon.toLowerCase()}.webp`,
-    `/imgs/${selectedItem}/${item?.ui_icon}.webp`,
-    `/imgs/${selectedItem}/${item?.ui_icon.toLowerCase()}.webp`,
+    `/imgs/${selectedModItem}/${item?.ui_icon}.webp`,
+    `/imgs/${selectedModItem}/${item?.ui_icon.toLowerCase()}.webp`,
     `/imgs/vanilla3/campaign_ui/skills/0_placeholder_skill.webp`,
   ];
   let bgColor = '';

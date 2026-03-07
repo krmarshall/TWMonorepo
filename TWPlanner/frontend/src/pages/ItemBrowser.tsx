@@ -12,7 +12,7 @@ import { useMediaQuery } from 'react-responsive';
 
 const ItemBrowser = () => {
   const { state, dispatch } = useContext(AppContext);
-  const { selectedItem, itemData } = state;
+  const { selectedModItem, filteredItemData } = state;
   const { isMobile } = useBulkMediaQueries();
 
   const parentRef = useRef(null);
@@ -30,7 +30,7 @@ const ItemBrowser = () => {
   if (res2160) lanes = 9;
 
   const rowVirtualizer = useVirtualizer({
-    count: itemData?.length ?? 1000,
+    count: filteredItemData?.length ?? 2000,
     getScrollElement: () => parentRef.current,
     estimateSize: () => 300,
     overscan: 5,
@@ -46,14 +46,14 @@ const ItemBrowser = () => {
 
   useEffect(() => {
     api
-      .getBulkItems(selectedItem)
+      .getBulkItems(selectedModItem)
       .then((response) => {
         dispatch({ type: AppContextActions.changeItemData, payload: { itemData: response } });
       })
       .catch((err) => {
         toast.error(`${err}`, { id: 'err api call' });
       });
-  }, [selectedItem]);
+  }, [selectedModItem]);
 
   return (
     <div className="w-full p-2 overflow-hidden">
@@ -64,7 +64,7 @@ const ItemBrowser = () => {
             <ItemModSelector />
             <ItemFilter />
           </div>
-          {itemData === null && <LoadingSpinner />}
+          {filteredItemData === null && <LoadingSpinner />}
           {/* <ul
             className="flex flex-row flex-wrap justify-between gap-2 w-full h-full p-2 my-2 bg-gray-700 border rounded-md border-gray-500 overflow-y-auto overflow-x-hidden scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-600"
           >
@@ -72,7 +72,7 @@ const ItemBrowser = () => {
               return <ItemCell key={item.key} item={item} />;
             })}
           </ul> */}
-          {itemData !== null && (
+          {filteredItemData !== null && (
             <div
               ref={parentRef}
               className="w-full h-full p-2 my-2 bg-gray-700 border rounded-md border-gray-500 overflow-y-auto overflow-x-hidden scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-600"
@@ -83,14 +83,14 @@ const ItemBrowser = () => {
                     ref={rowVirtualizer.measureElement}
                     data-index={virtualRow.index}
                     key={virtualRow.index}
-                    className="absolute top-0 h-fit"
+                    className="absolute top-0 h-fit hover-scale"
                     style={{
                       left: `${virtualRow.lane * (100 / lanes)}%`,
                       width: `${100 / lanes}%`,
-                      transform: `translateY(${virtualRow.start}px)`,
+                      translate: `0px ${virtualRow.start}px`,
                     }}
                   >
-                    <ItemBrowserCell item={itemData?.[virtualRow.index]} />
+                    <ItemBrowserCell item={filteredItemData?.[virtualRow.index]} />
                   </div>
                 ))}
               </ul>

@@ -29,7 +29,36 @@ export const ItemRarityEnum = {
   Crafted: 'Crafted',
   Rune: 'Rune',
 } as const;
-export type ItemRarityEnum = (typeof ItemRarityEnum)[keyof typeof ItemRarityEnum];
+export type ItemRarityEnumType = (typeof ItemRarityEnum)[keyof typeof ItemRarityEnum];
+
+// ancillaries_categories_tables, follow sort order as placement order here
+export const ItemCategoryEnum = {
+  armour: 'Armour',
+  weapon: 'Weapon',
+  mount: 'Mount',
+  talisman: 'Talisman',
+  enchanted_item: 'Enchanted Item',
+  arcane_item: 'Arcane Item',
+  general: 'General', // Stuff like banners
+  form: 'Form', // Placeholder
+} as const;
+export type ItemCategoryEnumType = (typeof ItemCategoryEnum)[keyof typeof ItemCategoryEnum];
+
+// ancillaries_subcategories_tables
+export const ItemSubcategoryEnum = {
+  armour_rune: 'Armour Rune',
+  banner: 'Banner',
+  banner_rune: 'Banner Rune',
+  character_rune: 'Character Rune',
+  engineering_rune: 'Engineering Rune',
+  follower: 'Follower',
+  gift: 'Gift of Chaos',
+  mark: 'Mark of Chaos',
+  poison: 'Poison',
+  rune: 'Rune',
+  spell_fragment: 'Spell Fragment',
+} as const;
+export type ItemSubcategoryEnumType = (typeof ItemSubcategoryEnum)[keyof typeof ItemSubcategoryEnum];
 
 export interface FactionDataInterface {
   name: string;
@@ -37,9 +66,9 @@ export interface FactionDataInterface {
 }
 
 export interface ExtendedItemInterface extends ItemInterface {
-  rarity: keyof typeof ItemRarityEnum;
-  category: string; // Armour / Arcane Item / Mount / Banner / etc.
-  subcategory?: string; // Banner / Rune / Follower
+  rarity: ItemRarityEnumType;
+  category: ItemCategoryEnumType;
+  subcategory?: ItemSubcategoryEnumType;
   agent_subtypes?: Array<string>; // Agents that can use the item, eg Karl Franz
   agent_types?: Array<string>; // Agent types that can use the item, eg, wizards
   available?: {

@@ -13,96 +13,116 @@ import { ExtendedItemInterface } from '../@types/ItemInterfaceRef.ts';
 
 interface ContextStateInterface {
   selectedMod: string;
-  selectedModTech: string;
-  selectedItem: string;
   selectedFaction: string;
-  characterData: CharacterInterface | null;
-  characterBuild: BuildInterface | null;
-  techData: TechSetInterface | null;
-  itemData: Array<ExtendedItemInterface> | null;
-  localStorageBuildKeys: Array<string>;
   selectedCompGroups: Array<string>;
-  showedHomeToast: boolean;
-  showedTechToast: boolean;
+  characterData: CharacterInterface | null;
   cleanCharacterData: CharacterInterface | null;
+  characterBuild: BuildInterface | null;
+  localStorageBuildKeys: Array<string>;
   selectedAltFactionNodeSet: string;
   selectedStartPosTrait: string;
   extrasDrawerOpen: boolean;
   statsDrawerOpen: boolean;
   highlightArray?: HighlightArrayInterface | null;
+
+  selectedModTech: string;
+  techData: TechSetInterface | null;
   highlightArrayTech?: Array<Array<boolean>> | null;
+
+  selectedModItem: string;
+  itemData: Array<ExtendedItemInterface> | null;
+  filteredItemData: Array<ExtendedItemInterface> | null;
+
   searchString: string | null;
+
+  showedHomeToast: boolean;
+  showedTechToast: boolean;
 }
 
 const initialState: ContextStateInterface = {
   selectedMod: 'vanilla3',
-  selectedModTech: 'vanilla3',
-  selectedItem: 'vanilla3',
   selectedFaction: 'bst_beastmen',
-  characterData: null,
-  characterBuild: null,
-  techData: null,
-  itemData: null,
-  localStorageBuildKeys: [],
   selectedCompGroups: [],
-  showedHomeToast: false,
-  showedTechToast: false,
+  characterData: null,
   cleanCharacterData: null,
+  characterBuild: null,
+  localStorageBuildKeys: [],
   selectedAltFactionNodeSet: '',
   selectedStartPosTrait: '',
   extrasDrawerOpen: loadExtrasDrawerOpenFromStorage(),
   statsDrawerOpen: loadStatsDrawerOpenFromStorage(),
   highlightArray: null,
+
+  selectedModTech: 'vanilla3',
+  techData: null,
   highlightArrayTech: null,
+
+  selectedModItem: 'vanilla3',
+  itemData: null,
+  filteredItemData: null,
+
   searchString: null,
+
+  showedHomeToast: false,
+  showedTechToast: false,
 };
 
 interface ActionInterface {
   type: string;
   payload: {
     selectedMod?: string;
-    selectedModTech?: string;
-    selectedItem?: string;
     selectedFaction?: string;
-    characterData?: CharacterInterface | null;
-    characterBuild?: BuildInterface | null;
-    techData?: TechSetInterface | null;
-    itemData?: Array<ExtendedItemInterface> | null;
-    localStorageBuildKeys?: Array<string>;
     selectedCompGroups?: Array<string>;
-    showedHomeToast?: boolean;
-    showedTechToast?: boolean;
+    characterData?: CharacterInterface | null;
     cleanCharacterData?: CharacterInterface | null;
+    characterBuild?: BuildInterface | null;
+    localStorageBuildKeys?: Array<string>;
     selectedAltFactionNodeSet?: string;
     selectedStartPosTrait?: string;
     extrasDrawerOpen?: boolean;
     statsDrawerOpen?: boolean;
     highlightArray?: HighlightArrayInterface | null;
+
+    selectedModTech?: string;
+    techData?: TechSetInterface | null;
     highlightArrayTech?: Array<Array<boolean>> | null;
+
+    selectedModItem?: string;
+    itemData?: Array<ExtendedItemInterface> | null;
+    filteredItemData?: Array<ExtendedItemInterface> | null;
+
     searchString?: string | null;
+
+    showedHomeToast?: boolean;
+    showedTechToast?: boolean;
   };
 }
 
 enum AppContextActions {
   changeMod = 'changeMod',
-  changeModTech = 'changeModTech',
-  changeItem = 'changeItem',
   changeFaction = 'changeFaction',
-  changeCharacterData = 'changeCharacterData',
-  changeCharacterBuild = 'changeCharacterBuild',
-  changeTechData = 'changeTechData',
-  changeItemData = 'changeItemData',
-  changeLocalStorageBuildKeys = 'changeLocalStorageBuildKeys',
   changeModFaction = 'changeModFaction',
   changeSelectedCompGroups = 'changeSelectedCompGroups',
-  changeShowedHomeToast = 'changeShowedHomeToast',
-  changeShowedTechToast = 'changeShowedTechToast',
+  changeCharacterData = 'changeCharacterData',
   changeCleanCharacterData = 'changeCleanCharacterData',
+  changeCharacterBuild = 'changeCharacterBuild',
+  changeLocalStorageBuildKeys = 'changeLocalStorageBuildKeys',
   changeSelectedAltFactionNodeSet = 'changeSelectedAltFactionNodeSet',
   changeSelectedStartPosTrait = 'changeSelectedStartPosTrait',
   changeExtrasDrawerOpen = 'changeExtrasDrawerOpen',
   changeStatsDrawerOpen = 'changeStatsDrawerOpen',
+
+  changeModTech = 'changeModTech',
+  changeTechData = 'changeTechData',
+
+  changeItem = 'changeItem',
+  changeItemData = 'changeItemData',
+  changeFilteredItemData = 'changeFilteredItemData',
+
   changeSearchString = 'changeSearchString',
+
+  changeShowedHomeToast = 'changeShowedHomeToast',
+  changeShowedTechToast = 'changeShowedTechToast',
 }
 
 const reducer = (state: ContextStateInterface, action: ActionInterface) => {
@@ -128,10 +148,10 @@ const reducer = (state: ContextStateInterface, action: ActionInterface) => {
 
     case AppContextActions.changeItem: {
       const newState = { ...state };
-      if (action.payload.selectedItem === undefined) {
+      if (action.payload.selectedModItem === undefined) {
         return state;
       }
-      newState.selectedItem = action.payload.selectedItem;
+      newState.selectedModItem = action.payload.selectedModItem;
       return newState;
     }
 
@@ -193,6 +213,15 @@ const reducer = (state: ContextStateInterface, action: ActionInterface) => {
         return state;
       }
       newState.itemData = action.payload.itemData;
+      return newState;
+    }
+
+    case AppContextActions.changeFilteredItemData: {
+      const newState = { ...state };
+      if (action.payload.filteredItemData === undefined) {
+        return state;
+      }
+      newState.filteredItemData = action.payload.filteredItemData;
       return newState;
     }
 

@@ -5,12 +5,11 @@ import type { RefKey, TableRecord } from '../@types/GlobalDataInterface.ts';
 import type { Table } from '../generateTables.ts';
 import processAncillary from '../processTables/processAncillary.ts';
 import { vanillaAncillaries } from '../lists/vanillaLists/vanillaAncillaries.ts';
-import type { ExtendedItemInterface } from '../@types/ItemInterface.ts';
+import { ItemCategoryEnum, ItemSubcategoryEnum, type ExtendedItemInterface } from '../@types/ItemInterface.ts';
 import { outputJsonSync } from 'fs-extra/esm';
 import stringInterpolator from '../utils/stringInterpolator.ts';
-import { rarityGroupPriority } from '../utils/rarityGroupPriority.ts';
-import { rarityLookup } from '../utils/rarityLookup.ts';
 import { cultureMap, subcultureMap } from '../lists/cultureMaps.ts';
+import { rarityGroupPriority, rarityLookup } from '../utils/itemUtils.ts';
 
 // tables no longer have access to methods from class Table (findRecordByKey), but data structure is the same.
 const tables: { [key in RefKey]?: Table } = deserialize(workerData.tables);
@@ -58,17 +57,15 @@ tables.ancillaries.records.forEach((ancillary) => {
   const rarity = rarityLookup(highestGroup, ancillary.uniqueness_score as number);
 
   // Category
-  const category = stringInterpolator(
-    ancillary.localRefs.ancillaries_categories.onscreen_name as string,
-    globalData.parsedData[folder].text,
-  );
+  const category = ItemCategoryEnum[ancillary.localRefs.ancillaries_categories.category as string];
 
   const returnAncillary: ExtendedItemInterface = { ...baseAncillary, rarity, category };
 
   // Optional details
   // Subcategory
   if (ancillary.localRefs?.ancillaries_subcategories !== undefined) {
-    returnAncillary.subcategory = ancillary.localRefs?.ancillaries_subcategories?.onscreen_name as string;
+    returnAncillary.subcategory =
+      ItemSubcategoryEnum[ancillary.localRefs?.ancillaries_subcategories.subcategory as string];
   }
   // Randomly Dropped
   if (ancillary.randomly_dropped) returnAncillary.randomly_dropped = true;
