@@ -41,7 +41,11 @@ const processAncillary = (
     if (ancSet !== undefined) {
       const contains = ancSet.foreignRefs?.ancillary_set_ancillary_junctions?.map((ancJunc) => {
         return {
-          name: (ancJunc?.localRefs?.ancillaries?.onscreen_name as string) ?? 'Unknown',
+          name:
+            stringInterpolator(
+              ancJunc?.localRefs?.ancillaries?.onscreen_name as string,
+              globalData.parsedData[folder].text,
+            ) ?? 'Unknown',
           icon: ancillaryImage(ancJunc?.localRefs?.ancillaries),
         };
       });
