@@ -8,8 +8,11 @@ interface PropsInterface {
 const TextSearch = ({ searchValues, setSearchValues }: PropsInterface) => {
   const [searchValue, setSearchValue] = useState('');
   const addSearchValue = () => {
+    if (searchValue === '') {
+      return;
+    }
     const newSearchValues = structuredClone(searchValues);
-    newSearchValues.push(searchValue);
+    newSearchValues.push(searchValue.toLowerCase());
     setSearchValues(newSearchValues);
     setSearchValue('');
   };
@@ -36,17 +39,25 @@ const TextSearch = ({ searchValues, setSearchValues }: PropsInterface) => {
             }
           }}
         />
-        <button className="button py-0 px-2 bg-green-600 cursor-pointer" onClick={addSearchValue}>
+        <button className="button text-2xl py-0 px-2 bg-green-600 cursor-pointer hover-scale" onClick={addSearchValue}>
           +
         </button>
       </div>
 
-      <ul className="">
+      <ul className="max-h-44 flex flex-col gap-1 text-xl overflow-y-auto scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-600">
         {searchValues.map((value, index) => {
           return (
-            <li key={index} className="flex flex-row flex-nowrap">
-              <p>{value}</p>
-              <button onClick={() => removeSearchValue(index)}>X</button>
+            <li
+              key={index}
+              className="flex flex-row flex-nowrap place-content-between w-full bg-gray-600 rounded py-0.5 px-2"
+            >
+              <p className="text-gray-50">{value}</p>
+              <button
+                onClick={() => removeSearchValue(index)}
+                className="text-red-500 font-sans hover:bg-gray-500 px-1 rounded text-center"
+              >
+                X
+              </button>
             </li>
           );
         })}

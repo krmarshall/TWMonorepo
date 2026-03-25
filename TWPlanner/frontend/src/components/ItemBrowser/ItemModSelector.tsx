@@ -14,7 +14,7 @@ const ItemModSelector = () => {
 
   const layoutType = isMobile
     ? 'w-fit mb-2'
-    : 'w-140 max-h-112 overflow-y-scroll scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-600';
+    : 'w-140 max-h-68 overflow-y-scroll scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-600';
 
   return (
     <div className={layoutType + ' bg-gray-700 border rounded-md border-gray-500 justify-self-center p-1'}>

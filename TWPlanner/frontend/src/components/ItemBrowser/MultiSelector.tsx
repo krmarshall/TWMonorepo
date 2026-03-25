@@ -43,10 +43,11 @@ const MultiSelector = ({
   });
   const checkBoxClass = 'cursor-pointer';
   return (
-    <div className={checkedColor + ' text-xl flex flex-row h-52'}>
+    <div className={checkedColor + ' text-xl flex flex-row h-54 p-2 border border-gray-400 rounded-md'}>
       <p className="mr-2">{name}</p>
-      <div className="flex flex-col flex-wrap">
-        <div>
+      {/* Writing mode shenanigans to deal with a firefox flexbox bug */}
+      <div className="flex flex-row flex-wrap gap-y-2" style={{ writingMode: 'vertical-lr' }}>
+        <div style={{ writingMode: 'horizontal-tb' }}>
           <input
             className={checkBoxClass}
             type="checkbox"
@@ -59,11 +60,11 @@ const MultiSelector = ({
             All
           </label>
         </div>
-        {optionsArray.map((option, index) => {
+        {optionsArray.map((option) => {
           const checked = selectedValues.includes(option);
 
           return (
-            <div key={option}>
+            <div key={option} style={{ writingMode: 'horizontal-tb' }}>
               <input
                 className={checkBoxClass}
                 type="checkbox"
