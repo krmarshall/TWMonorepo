@@ -114,9 +114,13 @@ export const searchExtendedItemForKeyword = (item: ExtendedItemInterface, search
   if (searchItem.item || searchItem.set) {
     return true;
   }
-  if (item.agent_subtypes?.includes(searchString)) {
-    return true;
-  }
+  let agentFound = false;
+  item.agent_subtypes?.forEach((agent) => {
+    if (agent.toLowerCase().includes(searchString)) {
+      agentFound = true;
+    }
+  });
+  if (agentFound) return true;
   return false;
 };
 
