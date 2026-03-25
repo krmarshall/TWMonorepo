@@ -32,16 +32,7 @@ const About = () => {
           <hr className="grow mt-[1.6rem] opacity-50 border-gray-200" />
         </div>
         <p className="text-center text-gray-200 text-2xl">
-          You can message me on{' '}
-          <a
-            href="https://www.reddit.com/message/compose?to=Fearhorn&subject=&message="
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-blue-500"
-          >
-            Reddit
-          </a>{' '}
-          or whitehelm on Discord for any questions or comments.
+          You can message me on Discord (whitehelm) for any questions/comments/bug reports.
         </p>
 
         <div className="flex flex-row place-content-center mt-12">
@@ -105,6 +96,7 @@ const About = () => {
         </div>
 
         <ul className="list-disc list-inside text-gray-200 text-2xl">
+          <li>The item browser is a very early WIP, dont worry about reporting anything for now.</li>
           <li>Skill nodes that overlap indent and tier with another node have inconsistent behavior</li>
           <li>
             Tooltips that cant find horizontal space to fit in the viewport without conflicting with the cursor

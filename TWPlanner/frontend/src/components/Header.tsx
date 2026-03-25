@@ -57,6 +57,7 @@ const Header = () => {
           <div className={'w-1/3 flex flex-row justify-end text-2xl text-slate-50 my-auto'}>
             <Link className={buttonClass + ' mr-4'} to={'/items'} draggable={false}>
               Items
+              <span className="align-super text-sm">WIP</span>
             </Link>
             <Link className={buttonClass + ' mr-4'} to={'/about'} draggable={false}>
               About
@@ -94,9 +95,10 @@ const Header = () => {
               >
                 Techs
               </Link>
-              <Link className={buttonClass + ' mr-4'} to={'/items'} draggable={false} onClick={() => closePopover()}>
+              {/* <Link className={buttonClass + ' mx-auto'} to={'/items'} draggable={false} onClick={() => closePopover()}>
                 Items
-              </Link>
+                <span className="align-super text-sm">WIP</span>
+              </Link> */}
               <Link className={buttonClass + ' mx-auto'} to={'/about'} draggable={false} onClick={() => closePopover()}>
                 About
               </Link>
