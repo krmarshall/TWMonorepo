@@ -83,7 +83,7 @@ const ItemBrowser = () => {
                     ref={rowVirtualizer.measureElement}
                     data-index={virtualRow.index}
                     key={virtualRow.index}
-                    className="absolute top-0 h-fit hover-scale"
+                    className="absolute top-0 h-fit hover-scale-small"
                     style={{
                       left: `${virtualRow.lane * (100 / lanes)}%`,
                       width: `${100 / lanes}%`,
@@ -99,7 +99,7 @@ const ItemBrowser = () => {
         </div>
       )}
 
-      {isMobile && <div></div>}
+      {isMobile && <div className="text-gray-50 text-center text-4xl mt-12">No mobile UI yet sorry!</div>}
     </div>
   );
 };

@@ -96,6 +96,13 @@
     opacity: 1;
   }
 
+  .hover-scale-small { 
+    transition: all .05s ease-in-out; 
+  }
+  .hover-scale-small:hover { 
+    transform: scale(1.025); 
+  }
+
   .hover-scale { 
     transition: all .05s ease-in-out; 
   }

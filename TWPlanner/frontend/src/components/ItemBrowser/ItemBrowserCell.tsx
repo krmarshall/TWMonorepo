@@ -1,13 +1,15 @@
-import { useContext, useRef } from 'react';
+import { RefObject, useContext, useEffect, useRef, useState } from 'react';
 import { ExtendedItemInterface } from '../../@types/ItemInterfaceRef.ts';
 import ItemSetTooltip from '../Planner/Tooltips/ItemSetTooltip.tsx';
-import SkillEffect from '../Planner/Tooltips/SubToolTips/SkillEffect.tsx';
 import ReactImage from '../ReactImage.tsx';
 import TooltipWrapper from '../TooltipWrapper.tsx';
 import { AppContext } from '../../contexts/AppContext.tsx';
 
 import itemSetIcon from '../../imgs/other/icon_item_set.webp';
 import FactionAvailability from './FactionAvailability.tsx';
+import SkillEffect from '../Planner/Tooltips/SubToolTips/SkillEffect.tsx';
+import ItemBrowserCellTooltip from './ItemBrowserCellTooltip.tsx';
+import { EffectInterface } from '../../@types/CharacterInterfaceRef.ts';
 
 interface PropsInterface {
   item?: ExtendedItemInterface;
@@ -16,8 +18,34 @@ interface PropsInterface {
 const ItemBrowserCell = ({ item }: PropsInterface) => {
   const { state } = useContext(AppContext);
   const { selectedModItem } = state;
+  const [tooltipScrollable, setTooltipScrollable] = useState(false);
 
   const itemSetParentRef = useRef<HTMLDivElement>(null);
+  const tooltipRef = useRef<HTMLDivElement>(null);
+  const cellRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const passScrollEvent = (event: WheelEvent) => {
+      event.preventDefault();
+      event.stopPropagation();
+      if (tooltipRef.current !== null) {
+        const tooltipScrollPosition = tooltipRef.current.scrollTop ?? 0;
+        tooltipRef.current.scrollTo({
+          top: tooltipScrollPosition + event.deltaY,
+        });
+      }
+    };
+
+    if (tooltipScrollable && cellRef.current !== null) {
+      cellRef.current.addEventListener('wheel', passScrollEvent);
+    }
+
+    return () => {
+      if (cellRef.current !== null) {
+        cellRef.current.removeEventListener('wheel', passScrollEvent);
+      }
+    };
+  }, [tooltipScrollable]);
 
   const srcList = [
     `/imgs/vanilla3/${item?.ui_icon}.webp`,
@@ -46,72 +74,81 @@ const ItemBrowserCell = ({ item }: PropsInterface) => {
   //   setImgClassName += ' rounded-full outline outline-offset-2 outline-yellow-400';
   // }
   return (
-    <li
-      key={item?.key}
-      className="w-92 mx-auto h-fit p-2 rounded border border-gray-400 shadow-lg bg-gray-600 text-gray-50 text-center relative"
-    >
+    <div ref={cellRef}>
       <TooltipWrapper
+        noSkillRanks={true}
         tooltip={
-          <div className="rounded border border-gray-400 shadow-lg bg-gray-600 text-gray-50 p-2">
-            <p className="text-left text-lg">Rarity: {item?.rarity}</p>
-            <p className="text-left text-lg">Category: {item?.category}</p>
-          </div>
+          <ItemBrowserCellTooltip
+            effects={item?.effects as Array<EffectInterface>}
+            setTooltipScrollable={setTooltipScrollable}
+            tooltipRef={tooltipRef as RefObject<HTMLDivElement>}
+          />
         }
       >
-        <div className="flex flex-row -my-2 relative">
-          <ReactImage
-            srcList={srcList}
-            className="w-14 h-14 my-auto -ml-3 -mr-1 drop-shadow-lg z-20"
-            alt="itemIcon"
-            w="64"
-            h="64"
-          />
-
-          <div className={bgColor + ' w-10 h-10 absolute rounded-full z-10 mt-2 -ml-1'}></div>
-          <h3 className="text-2xl text-left my-auto mr-auto">{item?.onscreen_name}</h3>
-        </div>
-      </TooltipWrapper>
-
-      {item?.item_set !== undefined && (
-        <div ref={itemSetParentRef}>
-          <TooltipWrapper
-            noSkillRanks={true}
-            tooltip={
-              <ItemSetTooltip itemSet={item.item_set} parentRef={itemSetParentRef as React.RefObject<HTMLDivElement>} />
-            }
-          >
-            <img
-              className={setImgClassName}
-              src={itemSetIcon}
-              draggable={false}
-              alt="questBattleIcon"
-              width="32"
-              height="32"
+        <li
+          key={item?.key}
+          className="w-92 mx-auto h-fit p-2 rounded border border-gray-400 shadow-lg bg-gray-600 text-gray-50 text-center relative"
+        >
+          <div className="flex flex-row -my-2 relative">
+            <ReactImage
+              srcList={srcList}
+              className="w-14 h-14 my-auto -ml-3 -mr-1 drop-shadow-lg z-20"
+              alt="itemIcon"
+              w="64"
+              h="64"
             />
-          </TooltipWrapper>
-        </div>
-      )}
 
-      <h4 className="mx-auto my-0.5 text-lg opacity-70">{item?.colour_text}</h4>
+            <div className={bgColor + ' w-10 h-10 absolute rounded-full z-10 mt-2 -ml-1'}></div>
+            <h3 className="text-2xl text-left my-auto mr-auto">{item?.onscreen_name}</h3>
+          </div>
 
-      {item?.agent_subtypes !== undefined && <p className="text-xl">{item?.agent_subtypes.join(', ')}</p>}
-      {item?.unlocked_at_rank !== undefined && (
-        <p className="text-yellow-300 text-lg">Unlocked at Rank: {item?.unlocked_at_rank}</p>
-      )}
+          {item?.item_set !== undefined && (
+            <div ref={itemSetParentRef}>
+              <TooltipWrapper
+                noSkillRanks={true}
+                tooltip={
+                  <ItemSetTooltip
+                    itemSet={item.item_set}
+                    parentRef={itemSetParentRef as React.RefObject<HTMLDivElement>}
+                  />
+                }
+              >
+                <img
+                  className={setImgClassName}
+                  src={itemSetIcon}
+                  draggable={false}
+                  alt="questBattleIcon"
+                  width="32"
+                  height="32"
+                />
+              </TooltipWrapper>
+            </div>
+          )}
 
-      <ul>
-        {item?.effects?.map((effect, index) => {
-          return <SkillEffect key={index} skillEffect={effect} />;
-        })}
-      </ul>
+          <h4 className="mx-auto my-0.5 text-lg opacity-70">{item?.colour_text}</h4>
 
-      {(item?.subcategory !== undefined ||
-        item?.agent_types !== undefined ||
-        item?.randomly_dropped ||
-        item?.unavailable !== undefined ||
-        // If all is true then the rest of available is empty, so only display when all is undefined
-        (item?.available !== undefined && item?.available?.all === undefined)) && <FactionAvailability item={item} />}
-    </li>
+          {item?.agent_subtypes !== undefined && <p className="text-xl">{item?.agent_subtypes.join(', ')}</p>}
+          {item?.unlocked_at_rank !== undefined && (
+            <p className="text-yellow-300 text-lg">Unlocked at Rank: {item?.unlocked_at_rank}</p>
+          )}
+
+          <ul>
+            {item?.effects?.map((effect, index) => {
+              return <SkillEffect key={index} skillEffect={effect} />;
+            })}
+          </ul>
+
+          {(item?.subcategory !== undefined ||
+            item?.agent_types !== undefined ||
+            item?.randomly_dropped ||
+            item?.unavailable !== undefined ||
+            // If all is true then the rest of available is empty, so only display when all is undefined
+            (item?.available !== undefined && item?.available?.all === undefined)) && (
+            <FactionAvailability item={item} />
+          )}
+        </li>
+      </TooltipWrapper>
+    </div>
   );
 };
 
