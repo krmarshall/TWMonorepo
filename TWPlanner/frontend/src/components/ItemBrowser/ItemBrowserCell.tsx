@@ -56,15 +56,15 @@ const ItemBrowserCell = ({ item }: PropsInterface) => {
   ];
   let bgColor = '';
   if (item?.rarity === 'Unique') {
-    bgColor = 'bg-[#831C9F]';
+    bgColor = 'bg-purple-800';
   } else if (item?.rarity === 'Rare') {
-    bgColor = 'bg-[#202BC1]';
+    bgColor = 'bg-blue-800';
   } else if (item?.rarity === 'Uncommon') {
-    bgColor = 'bg-[#370D2D]';
+    bgColor = 'bg-green-700';
   } else if (item?.rarity === 'Common') {
     bgColor = 'bg-[#C8C8C8]';
   } else if (item?.rarity === 'Crafted') {
-    bgColor = 'bg-[#808000]';
+    bgColor = 'bg-yellow-500';
   } else if (item?.rarity === 'Rune') {
     bgColor = 'bg-[#00FAFA]';
   }

@@ -9,11 +9,12 @@ import { ItemCategoryEnum, ItemSubcategoryEnum, type ExtendedItemInterface } fro
 import { outputJsonSync } from 'fs-extra/esm';
 import stringInterpolator from '../utils/stringInterpolator.ts';
 import { cultureMap, subcultureMap } from '../lists/cultureMaps.ts';
-import { rarityGroupPriority, rarityLookup } from '../utils/itemUtils.ts';
+import { rarityLookup } from '../utils/itemUtils.ts';
 
 // tables no longer have access to methods from class Table (findRecordByKey), but data structure is the same.
 const tables: { [key in RefKey]?: Table } = deserialize(workerData.tables);
 const { folder, globalData, pruneVanilla }: WorkerItemDataInterface = workerData;
+const game = folder.includes('3') ? 'warhammer_3' : 'warhammer_2';
 
 const ancillaries: Array<ExtendedItemInterface> = [];
 tables.ancillaries.records.forEach((ancillary) => {
@@ -51,10 +52,8 @@ tables.ancillaries.records.forEach((ancillary) => {
     const group = ability.localRefs?.ancillary_uniqueness_groupings?.group_key;
     rarityGroups.push(group);
   });
-  // Find the highest group key of all the ancillaries effects
-  const highestGroup = rarityGroupPriority(rarityGroups);
-  // Find rarity between either the uniqueness group of an ability, or fallback to the uniqueness score of the ancillary
-  const rarity = rarityLookup(highestGroup, ancillary.uniqueness_score as number);
+  // Find rarity from the uniqueness score of the ancillary
+  const rarity = rarityLookup(ancillary.uniqueness_score as number, game);
 
   // Category
   const category = ItemCategoryEnum[ancillary.localRefs.ancillaries_categories.category as string];
