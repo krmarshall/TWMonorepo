@@ -1,4 +1,3 @@
-import * as CustomRpfmTypes from './@types/CustomRpfmTypes.ts';
 import type {
   Command,
   ContainerInfo,
@@ -9,6 +8,7 @@ import type {
   Field,
   Loc,
   Message,
+  PortraitSettings,
   RFileInfo,
 } from './@types/rpfm_ipc_protocol.ts';
 
@@ -25,8 +25,8 @@ export default class RpfmClient {
     }
   >();
   public sessionId: number | null = null;
-  // Maps table name (unit_abilities) to the highest definition version used (42)
-  private definitionMap: Map<string, Definition> = new Map();
+  private packKey: string; // Server can handle multiple open packs, we only ever care about a single one.
+  private definitionMap: Map<string, Definition> = new Map(); // Maps table name (unit_abilities) to the highest definition version used (42)
 
   constructor() {}
 
@@ -101,8 +101,9 @@ export default class RpfmClient {
   }
 
   async openPacks(paths: string[]): Promise<ContainerInfo> {
-    const resp = (await this.send({ OpenPackFiles: paths })) as { ContainerInfo: ContainerInfo };
-    return resp.ContainerInfo;
+    const resp = (await this.send({ OpenPackFiles: paths })) as { StringContainerInfo: [string, ContainerInfo] };
+    this.packKey = resp.StringContainerInfo[0];
+    return resp.StringContainerInfo[1];
   }
 
   async extractFiles(
@@ -111,14 +112,14 @@ export default class RpfmClient {
     asTsv = false,
   ): Promise<[string, string[]]> {
     // @ts-expect-error ts(2322) Dont need to fill out every datasource, can just send the datasources we actually want files from
-    const resp = (await this.send({ ExtractPackedFiles: [paths, destPath, asTsv] })) as {
+    const resp = (await this.send({ ExtractPackedFiles: [this.packKey, paths, destPath, asTsv] })) as {
       StringVecPathBuf: [string, string[]];
     };
     return resp.StringVecPathBuf;
   }
 
   async decodeFile(path: string) {
-    const resp = await this.send({ DecodePackedFile: [path, 'PackFile'] });
+    const resp = await this.send({ DecodePackedFile: [this.packKey, path, 'PackFile'] });
     return resp;
   }
 
@@ -126,7 +127,7 @@ export default class RpfmClient {
     if (!tableName.endsWith('_tables')) {
       tableName += '_tables';
     }
-    const resp = (await this.send({ GetTablesByTableName: tableName })) as { VecString: Array<string> };
+    const resp = (await this.send({ GetTablesByTableName: [this.packKey, tableName] })) as { VecString: Array<string> };
     return resp.VecString;
   }
 
@@ -195,7 +196,7 @@ export default class RpfmClient {
 
   async decodePortraitBin(binPath: string) {
     const resp = (await this.decodeFile(binPath)) as {
-      PortraitSettingsRFileInfo: [CustomRpfmTypes.PortraitSettings, RFileInfo];
+      PortraitSettingsRFileInfo: [PortraitSettings, RFileInfo];
     };
     return resp.PortraitSettingsRFileInfo[0];
   }
