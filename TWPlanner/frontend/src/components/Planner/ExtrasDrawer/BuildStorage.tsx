@@ -86,7 +86,7 @@ const BuildStorage = () => {
               saveClickHandler();
             }
           }}
-          className="w-32 rounded m-1 px-1 text-xl text-center focus:outline-none placeholder-opacity-60 placeholder-black bg-gray-200"
+          className="w-32 rounded m-1 px-1 text-xl text-center focus:outline-none placeholder-gray-700 bg-gray-200"
         />
         <button
           className="flex flex-row place-content-center w-18 h-min my-auto py-0.5 pl-1 pr-2 bg-green-800 hover:bg-green-700 rounded-xl hover-scale"

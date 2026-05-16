@@ -26,7 +26,7 @@ const TextSearch = ({ searchValues, setSearchValues }: PropsInterface) => {
     <div>
       <div className="flex flex-row flex-nowrap">
         <input
-          className="w-32 rounded m-1 px-1 text-xl text-center text-black caret-black focus:outline-none placeholder-opacity-60 placeholder-black bg-gray-200"
+          className="w-32 rounded m-1 px-1 text-xl text-center text-black caret-black focus:outline-none placeholder-gray-700 bg-gray-200"
           type="text"
           placeholder="Search"
           value={searchValue}
