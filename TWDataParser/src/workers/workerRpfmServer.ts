@@ -3,7 +3,7 @@ import { parentPort } from 'worker_threads';
 import RpfmClient from '../rpfmClient.ts';
 
 const serverIp = process.env.RPFM_SERVER_IP;
-const rpfmServer = spawn(process.env.RPFM_PATH);
+const rpfmServer = spawn(process.env.RPFM_PATH as string);
 
 let errBuffer = '';
 let init = false;
@@ -22,7 +22,7 @@ rpfmServer.stderr.on('data', async (data) => {
       console.log(schemaResponse);
 
       // Tell main process the server is ready
-      parentPort.postMessage('ready');
+      parentPort?.postMessage('ready');
     }
   }
 });
@@ -31,7 +31,7 @@ rpfmServer.stderr.on('data', async (data) => {
 // rpfmServer.stdout.on('data', (data) => console.log(data.toString()));
 // rpfmServer.stderr.on('data', (data) => console.error(data.toString()));
 
-parentPort.on('message', (message) => {
+parentPort?.on('message', (message) => {
   if (message === 'kill') {
     rpfmServer.kill();
   }

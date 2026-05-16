@@ -6,14 +6,14 @@ import type {
   DB,
   Definition,
   Field,
+  GitResponse,
   Loc,
-  Message,
   PortraitSettings,
   RFileInfo,
 } from './@types/rpfm_ipc_protocol.ts';
 
 export default class RpfmClient {
-  private ws: WebSocket;
+  private ws!: WebSocket;
   private nextId = 1;
   private pending = new Map<
     number,
@@ -25,7 +25,7 @@ export default class RpfmClient {
     }
   >();
   public sessionId: number | null = null;
-  private packKey: string; // Server can handle multiple open packs, we only ever care about a single one.
+  private packKey!: string; // Server can handle multiple open packs, we only ever care about a single one.
   private definitionMap: Map<string, Definition> = new Map(); // Maps table name (unit_abilities) to the highest definition version used (42)
 
   constructor() {}
@@ -36,9 +36,9 @@ export default class RpfmClient {
         console.error('WS Already Initialized');
         return reject();
       }
-      this.ws = new WebSocket(process.env.RPFM_SERVER_URL) as unknown as WebSocket;
+      this.ws = new WebSocket(process.env.RPFM_SERVER_URL as string);
       this.ws.onmessage = (event) => {
-        const msg: Message<unknown> = JSON.parse(event.data);
+        const msg = JSON.parse(event.data);
 
         // Handle SessionConnected (unsolicited, id=0)
         if (typeof msg.data === 'object' && 'SessionConnected' in msg.data) {
@@ -61,10 +61,10 @@ export default class RpfmClient {
     });
   }
 
-  send(command: Command): Promise<unknown> {
+  send(command: Command): Promise<any> {
     return new Promise((resolve, reject) => {
       const id = this.nextId++;
-      const callStack = new Error().stack;
+      const callStack = new Error().stack as string;
       const commandString = JSON.stringify(command);
       this.pending.set(id, { resolve, reject, callStack, command: commandString });
       this.ws.send(JSON.stringify({ id, data: command }));
@@ -77,14 +77,14 @@ export default class RpfmClient {
   }
 
   async updateSchemas(): Promise<string> {
-    const checkResp: { APIResponseGit?: 'NewUpdate' | 'NoUpdate' } = await this.send('CheckSchemaUpdates');
+    const checkResp: { APIResponseGit: GitResponse } = await this.send('CheckSchemaUpdates');
     if (checkResp.APIResponseGit !== 'NewUpdate') {
       return 'No Schema Update';
     }
 
-    const updateResp: string | { Error?: string } = await this.send('UpdateSchemas');
-    if (updateResp.Error !== undefined) {
-      return updateResp.Error;
+    const updateResp: string = await this.send('UpdateSchemas');
+    if (updateResp !== 'Success') {
+      throw `Schemas failed to update: ${updateResp}`;
     } else {
       return 'Schema Updated';
     }

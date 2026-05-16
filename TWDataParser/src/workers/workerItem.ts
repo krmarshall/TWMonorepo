@@ -13,14 +13,14 @@ const { folder, globalData, pruneVanilla }: WorkerItemDataInterface = workerData
 const game = folder.includes('3') ? 'warhammer_3' : 'warhammer_2';
 
 const ancillaries: Array<ExtendedItemInterface> = [];
-tables.ancillaries.records.forEach((ancillary) => {
+tables.ancillaries?.records.forEach((ancillary) => {
   const processedAncillary = processAncillaryExtended(ancillary, tables, folder, globalData, pruneVanilla, game);
   if (processedAncillary !== undefined) {
     ancillaries.push(processedAncillary);
   }
 });
 
-const vanillaAncillaryKeyMap = {};
+const vanillaAncillaryKeyMap: { [key: string]: string } = {};
 ancillaries.map((ancillaries) => {
   vanillaAncillaryKeyMap[ancillaries.key] = ancillaries.key;
 });

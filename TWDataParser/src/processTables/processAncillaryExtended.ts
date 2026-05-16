@@ -1,4 +1,10 @@
-import { ItemCategoryEnum, ItemSubcategoryEnum, type ExtendedItemInterface } from '../@types/ItemInterface.ts';
+import {
+  ItemCategoryEnum,
+  ItemSubcategoryEnum,
+  type ExtendedItemInterface,
+  type ItemCategoryEnumKey,
+  type ItemSubcategoryEnumKey,
+} from '../@types/ItemInterface.ts';
 import { vanillaAncillaries } from '../lists/vanillaLists/vanillaAncillaries.ts';
 import processAncillary from '../processTables/processAncillary.ts';
 import { cultureMap, subcultureMap } from '../lists/cultureMaps.ts';
@@ -37,15 +43,15 @@ const processAncillaryExtended = (
   // Get extra ancillary details, mostly for filtering
   // Rarity
   // Grab each effects related ability keys
-  const abilityKeys = [];
+  const abilityKeys: Array<string> = [];
   baseAncillary.effects?.forEach((effect) =>
     effect.related_abilities?.forEach((ability) => abilityKeys.push(ability.unit_ability.key)),
   );
   // For each ability key, find its ability record, and grab that abilities uniqueness group key
   const rarityGroups = [];
   abilityKeys.forEach((abilityKey) => {
-    const recordIndex = tables.unit_abilities.indexedKeys.key[abilityKey];
-    const ability = tables.unit_abilities.records[recordIndex];
+    const recordIndex = (tables.unit_abilities as Table).indexedKeys.key[abilityKey];
+    const ability = (tables.unit_abilities as Table).records[recordIndex];
     const group = ability.localRefs?.ancillary_uniqueness_groupings?.group_key;
     rarityGroups.push(group);
   });
@@ -53,7 +59,7 @@ const processAncillaryExtended = (
   const rarity = rarityLookup(ancillary.uniqueness_score as number, game);
 
   // Category
-  const category = ItemCategoryEnum[ancillary.localRefs.ancillaries_categories.category as string];
+  const category = ItemCategoryEnum[ancillary.localRefs?.ancillaries_categories?.category as ItemCategoryEnumKey];
 
   const returnAncillary: ExtendedItemInterface = { ...baseAncillary, rarity, category };
 
@@ -61,7 +67,7 @@ const processAncillaryExtended = (
   // Subcategory
   if (ancillary.localRefs?.ancillaries_subcategories !== undefined) {
     returnAncillary.subcategory =
-      ItemSubcategoryEnum[ancillary.localRefs?.ancillaries_subcategories.subcategory as string];
+      ItemSubcategoryEnum[ancillary.localRefs?.ancillaries_subcategories.subcategory as ItemSubcategoryEnumKey];
   }
   // Randomly Dropped
   if (ancillary.randomly_dropped) returnAncillary.randomly_dropped = true;
@@ -73,8 +79,8 @@ const processAncillaryExtended = (
   ancillary.foreignRefs?.ancillaries_included_agent_subtypes?.forEach((agentJunc) => {
     const agent = agentJunc.localRefs?.agent_subtypes;
     const name =
-      (agent.localRefs?.main_units?.localRefs?.land_units?.onscreen_name as string) ??
-      (agent.onscreen_name_override as string);
+      (agent?.localRefs?.main_units?.localRefs?.land_units?.onscreen_name as string) ??
+      (agent?.onscreen_name_override as string);
     const processedName = stringInterpolator(name, globalData.parsedData[folder].text);
     if (returnAncillary.agent_subtypes === undefined) returnAncillary.agent_subtypes = [];
     if (!returnAncillary.agent_subtypes.includes(processedName)) {
@@ -82,7 +88,7 @@ const processAncillaryExtended = (
     }
   });
   // Agent Types
-  ancillary.localRefs?.ancillary_info.foreignRefs?.ancillary_to_included_agents?.forEach((agentJunc) => {
+  ancillary.localRefs?.ancillary_info?.foreignRefs?.ancillary_to_included_agents?.forEach((agentJunc) => {
     if (returnAncillary.agent_types === undefined) returnAncillary.agent_types = [];
     returnAncillary.agent_types.push(agentJunc.agent as string);
   });
@@ -95,7 +101,7 @@ const processAncillaryExtended = (
     returnAncillary.unavailable = { factions: {}, subcultures: {}, cultures: {} };
     const remove = factionSet.remove as boolean;
     const faction = factionSet.localRefs?.factions;
-    const subculture = factionSet.localRefs.cultures_subcultures;
+    const subculture = factionSet.localRefs?.cultures_subcultures;
     const culture = factionSet.localRefs?.cultures;
     // Faction
     if (faction !== undefined) {
@@ -149,6 +155,7 @@ const processAncillaryExtended = (
   });
   // If the item didnt add any faction sets and only removed them it is available for everything except those
   if (availableCount === 0 && unavailableCount > 0) {
+    // @ts-expect-error 18048
     returnAncillary.available.all = true;
   }
   if (unavailableCount === 0) {

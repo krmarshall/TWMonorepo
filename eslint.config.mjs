@@ -60,6 +60,7 @@ export default [
       "@typescript-eslint/no-explicit-any": "warn",
       "promise/param-names": "off",
       "import-x/no-named-as-default": "off",
+      "import-x/no-named-as-default-member": "off",
       "import-x/extensions": ["error", "ignorePackages", { "fix": true }],
       "import-x/order": [
         "warn",

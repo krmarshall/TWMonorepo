@@ -24,7 +24,7 @@ const outputCompilationGroups = async (
     await rpfmClient.setGame(game, true);
     compGroups.mods.push(modInfo.name);
     const packPath = packPaths.find((path) => path.includes(modInfo.pack));
-    await rpfmClient.openPacks([packPath]);
+    await rpfmClient.openPacks([packPath as string]);
     const subTablePaths = await rpfmClient.getTablePathsByTableName('character_skill_node_sets_tables');
     const subTablePromises = subTablePaths.map(async (subTablePath) => {
       const skillNodeSets = await rpfmClient.decodeDbTable(subTablePath);

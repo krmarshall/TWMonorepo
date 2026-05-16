@@ -36,7 +36,7 @@ await extractor.extractAndParseImages();
 
 const tables = await generateTables(folder, globalData, dbList, rpfmClient);
 const ancillaries: Array<ExtendedItemInterface> = [];
-tables.ancillaries.records.forEach((ancillary) => {
+tables.ancillaries?.records.forEach((ancillary) => {
   const processedAncillary = processAncillaryExtended(ancillary, tables, folder, globalData, pruneVanilla, game);
   if (processedAncillary !== undefined) {
     ancillaries.push(processedAncillary);

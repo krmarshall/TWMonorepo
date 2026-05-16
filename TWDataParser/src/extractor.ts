@@ -3,13 +3,13 @@ import { statSync } from 'fs';
 import { basename } from 'path';
 import { promisify } from 'util';
 import { outputFileSync, outputJson, readJSONSync } from 'fs-extra/esm';
-/* eslint-disable import-x/no-named-as-default-member */
 import fastGlob from 'fast-glob';
 import { hardcodePortraitData } from './utils/hardcodeCharList.ts';
 import RpfmClient from './rpfmClient.ts';
 import { imgFolders } from './lists/extractLists/imgFolders.ts';
 import log from './utils/log.ts';
 import type { GlobalDataInterface } from './@types/GlobalDataInterface.ts';
+import type { ContainerPath } from './@types/rpfm_ipc_protocol.ts';
 
 const execPromise = promisify(exec);
 
@@ -90,7 +90,7 @@ export default class Extractor {
       return;
     }
     const flagPaths = await this.rpfmClient.getFilePathsFromPath('ui/flags/');
-    const mediumFlags = [];
+    const mediumFlags: ContainerPath[] = [];
     flagPaths.PackFile?.forEach((flagPath) => {
       if ('File' in flagPath) {
         if (flagPath.File.endsWith('64.png')) {

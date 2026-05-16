@@ -1,6 +1,6 @@
 import SpellLores from '../@types/SpellLores.ts';
 import type { CharacterListInterface } from '../@types/CharacterListInterface.ts';
-import type { SpellLoresT } from '../@types/SpellLores.ts';
+import type { SpellLoresKey, SpellLoresT } from '../@types/SpellLores.ts';
 
 const regexp = /\((?<loreName>[a-zA-Z]*)\)/;
 export const hardcodeCharListData = (characterList: CharacterListInterface) => {
@@ -26,8 +26,8 @@ export const hardcodeCharListData = (characterList: CharacterListInterface) => {
         characterList[subcultureKey].lords[lordKey].spellLore = hardcodeSpellLoreData[lordKey];
       } else {
         const loreName = characterList[subcultureKey].lords[lordKey].name.match(regexp)?.groups?.loreName.toLowerCase();
-        if (loreName !== undefined && SpellLores[loreName] !== undefined)
-          characterList[subcultureKey].lords[lordKey].spellLore = SpellLores[loreName];
+        if (loreName !== undefined && SpellLores[loreName as SpellLoresKey] !== undefined)
+          characterList[subcultureKey].lords[lordKey].spellLore = SpellLores[loreName as SpellLoresKey];
       }
     });
     Object.keys(characterList[subcultureKey].heroes).forEach((heroKey) => {
@@ -53,8 +53,8 @@ export const hardcodeCharListData = (characterList: CharacterListInterface) => {
         const loreName = characterList[subcultureKey].heroes[heroKey].name
           .match(regexp)
           ?.groups?.loreName.toLowerCase();
-        if (loreName !== undefined && SpellLores[loreName] !== undefined)
-          characterList[subcultureKey].heroes[heroKey].spellLore = SpellLores[loreName];
+        if (loreName !== undefined && SpellLores[loreName as SpellLoresKey] !== undefined)
+          characterList[subcultureKey].heroes[heroKey].spellLore = SpellLores[loreName as SpellLoresKey];
       }
     });
   });

@@ -2,7 +2,7 @@ import stringInterpolator from '../utils/stringInterpolator.ts';
 import processEffect from './processEffect.ts';
 import type { GlobalDataInterface, TableRecord } from '../@types/GlobalDataInterface.ts';
 import type { EffectInterface } from '../@types/CharacterInterface.ts';
-import type { ItemInterface } from '../@types/ItemInterface.ts';
+import type { ItemInterface, ItemSetInterface } from '../@types/ItemInterface.ts';
 
 const processAncillary = (
   folder: string,
@@ -76,7 +76,8 @@ const processAncillary = (
     effect.related_unit_cards_PARSER_ONLY?.forEach((card) => set_related_unit_cards.add(card));
     delete effect.related_unit_cards_PARSER_ONLY;
   });
-  if (set_related_unit_cards.size > 0) returnItem.item_set.related_unit_cards = Array.from(set_related_unit_cards);
+  if (set_related_unit_cards.size > 0)
+    (returnItem.item_set as ItemSetInterface).related_unit_cards = Array.from(set_related_unit_cards);
 
   return returnItem;
 };

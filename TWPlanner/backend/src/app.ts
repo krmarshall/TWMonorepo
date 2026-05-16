@@ -4,8 +4,6 @@ import express from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
 import compression from 'compression';
-/* eslint-disable import-x/no-named-as-default-member */
-
 import fs from 'fs-extra';
 
 import { bulkItemListener, itemListener, skillListener, techListener } from './api.ts';

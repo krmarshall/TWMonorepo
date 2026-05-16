@@ -43,6 +43,7 @@ export const ItemCategoryEnum = {
   form: 'Form', // Placeholder
 } as const;
 export type ItemCategoryEnumType = (typeof ItemCategoryEnum)[keyof typeof ItemCategoryEnum];
+export type ItemCategoryEnumKey = keyof typeof ItemCategoryEnum;
 
 // ancillaries_subcategories_tables
 export const ItemSubcategoryEnum = {
@@ -59,6 +60,7 @@ export const ItemSubcategoryEnum = {
   spell_fragment: 'Spell Fragment',
 } as const;
 export type ItemSubcategoryEnumType = (typeof ItemSubcategoryEnum)[keyof typeof ItemSubcategoryEnum];
+export type ItemSubcategoryEnumKey = keyof typeof ItemSubcategoryEnum;
 
 export interface FactionDataInterface {
   name: string;
