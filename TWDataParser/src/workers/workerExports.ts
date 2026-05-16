@@ -3,6 +3,7 @@ import { serialize } from '@ungap/structured-clone';
 import type {
   WorkerItemDataInterface,
   WorkerModDataInterface,
+  WorkerModItemDataInterface,
   WorkerMultiModDataInterface,
   WorkerVanillaDataInterface,
 } from '../@types/WorkerDataInterfaces.ts';
@@ -84,6 +85,7 @@ const workerModMulti = (workerData: WorkerMultiModDataInterface) => {
 const workerItem = (workerDataParam: WorkerItemDataInterface) => {
   const { folder, tables } = workerDataParam;
   // tables contains classes with functions, and circular references. Have to serialize separately to not throw
+  // serializing does mean they lose their class functions, but data structure is passed correctly
   const serializedTables = serialize(tables, { lossy: true });
   const workerData: any = workerDataParam;
   workerData.tables = serializedTables;
@@ -102,4 +104,20 @@ const workerItem = (workerDataParam: WorkerItemDataInterface) => {
   });
 };
 
-export { workerRpfmServer, workerVanilla, workerMod, workerModMulti, workerItem };
+const workerModItem = (workerData: WorkerModItemDataInterface) => {
+  const { folder } = workerData;
+  console.time(`${folder} items`);
+  const workerMod = new Worker('./src/workers/workerModItem.ts', {
+    workerData,
+    name: `${folder} items`,
+  });
+  workerMod.on('error', (error: Error) => {
+    log(`${folder} failed`, 'red');
+    throw error;
+  });
+  workerMod.on('exit', () => {
+    console.timeEnd(`${folder} items`);
+  });
+};
+
+export { workerRpfmServer, workerVanilla, workerMod, workerModMulti, workerItem, workerModItem };

@@ -6,7 +6,7 @@ import initializeGlobalData from '../utils/initializeGlobalData.ts';
 import akData from '../akData.ts';
 import generateTables from '../generateTables.ts';
 import processFactions from '../processTables/processFactions.ts';
-import { workerItem, workerMod, workerModMulti } from './workerExports.ts';
+import { workerItem, workerMod, workerModItem, workerModMulti } from './workerExports.ts';
 import { modPackInfo, vanillaPackInfo } from '../lists/packInfo.ts';
 import { v3AssKitList } from '../lists/extractLists/dbLists.ts';
 import type { RefKey } from '../@types/GlobalDataInterface.ts';
@@ -113,6 +113,15 @@ const modData = {
     pruneVanilla: true,
     tech: false,
   },
+
+  s5a3WorkerData: {
+    folder: 's5a3',
+    dbList,
+    game: 'warhammer_3',
+    globalData,
+    modInfo: modPackInfo.s5a3[0],
+    pruneVanilla: true,
+  },
 };
 
 ensureDirSync(`./extracted_files/${folder}/`);
@@ -146,10 +155,14 @@ workerModMulti(modData.scmWorkerData);
 workerModMulti(modData.cat3WorkerData);
 workerModMulti(modData.ovn3WorkerData);
 workerModMulti(modData.hol3WorkerData);
+// Item Mods
+workerModItem(modData.s5a3WorkerData);
 
 dbList.push(...(v3AssKitList as Array<RefKey>));
 const tables = await generateTables(folder, globalData, dbList, rpfmClient);
+
 workerItem({ folder, globalData, tables, pruneVanilla: false });
+
 processFactions(folder, globalData, tables, false, true);
 
 console.timeEnd(folder);

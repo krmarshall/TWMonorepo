@@ -96,7 +96,10 @@ const About = () => {
         </div>
 
         <ul className="list-disc list-inside text-gray-200 text-2xl">
-          <li>The item browser is a very early WIP, dont worry about reporting anything for now.</li>
+          <li>
+            The item browser is a very early WIP. Features like sorting and better filtering/styling are already
+            planned.
+          </li>
           <li>Skill nodes that overlap indent and tier with another node have inconsistent behavior</li>
           <li>
             Tooltips that cant find horizontal space to fit in the viewport without conflicting with the cursor

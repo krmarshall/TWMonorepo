@@ -35,3 +35,12 @@ export interface WorkerItemDataInterface {
   tables: { [key in RefKey]?: Table };
   pruneVanilla: boolean;
 }
+
+export interface WorkerModItemDataInterface {
+  folder: string;
+  dbList: Array<RefKey>;
+  game: string;
+  globalData: GlobalDataInterface;
+  modInfo: ModInfoInterface;
+  pruneVanilla: boolean;
+}

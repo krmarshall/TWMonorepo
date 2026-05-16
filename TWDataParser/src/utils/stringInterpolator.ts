@@ -109,6 +109,10 @@ const stringInterpolator = (string: string, loc: TableRecord): string => {
         /\[\[(?<tagName>[a-zA-Z_]*)[:=]?(?<tagAttribute>[a-zA-Z0-9_./ ]*)\]\s\](?<innerText>.*)\[\[\/\k<tagName>\]\]/,
       );
     }
+    // S5A3 has a bunch of closing [[/img]] tags with no opening tag
+    if (element === null) {
+      element = string.match(/\[\[\/img\]\]/);
+    }
 
     if (element === null) {
       log(`Invalid [[]] loc: ${string}`, 'red');

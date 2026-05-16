@@ -30,7 +30,6 @@ interface ItemDataInterface {
   text: string;
   image: string;
   updated: string;
-  category: string;
   workshopLink?: string;
 }
 

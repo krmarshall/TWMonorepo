@@ -46,7 +46,7 @@ const ItemModSelector = () => {
               <ReactImage
                 srcList={[item.image, placeholderImg]}
                 alt={`${item.text} icon`}
-                className="m-auto w-auto max-w-36 max-h-24 drop-shadow-[0.1rem_0.1rem_0.5rem_rgba(0,0,0,0.7)]"
+                className="m-auto w-auto max-w-36 max-h-18 drop-shadow-[0.1rem_0.1rem_0.5rem_rgba(0,0,0,0.7)]"
                 h="128"
                 w="128"
               />

@@ -17,6 +17,7 @@ const ItemBrowser = () => {
 
   const parentRef = useRef(null);
 
+  // Virtualized list is broken into vertical lanes, need to hardcode of lanes based on page width z.z
   const res3 = useMediaQuery({ minWidth: 1164 });
   const res4 = useMediaQuery({ minWidth: 1530 });
   const res1080 = useMediaQuery({ minWidth: 1920 });
