@@ -1,5 +1,8 @@
 import { Worker } from 'worker_threads';
 import { serialize } from '@ungap/structured-clone';
+import log from '../utils/log.ts';
+import exportData from '../utils/exportData.ts';
+import exportSitemap from '../utils/exportSitemap.ts';
 import type {
   WorkerItemDataInterface,
   WorkerModDataInterface,
@@ -7,9 +10,6 @@ import type {
   WorkerMultiModDataInterface,
   WorkerVanillaDataInterface,
 } from '../@types/WorkerDataInterfaces.ts';
-import log from '../utils/log.ts';
-import exportData from '../utils/exportData.ts';
-import exportSitemap from '../utils/exportSitemap.ts';
 
 const workerRpfmServer = async (): Promise<void> => {
   return new Promise((resolve, reject) => {

@@ -1,13 +1,13 @@
 import eslint from "@eslint/js";
 import reactPlugin from "eslint-plugin-react";
 import reactHooksPlugin from "eslint-plugin-react-hooks";
-// eslint-disable-next-line import/no-unresolved
 import tseslint from "typescript-eslint";
 import promisePlugin from "eslint-plugin-promise";
-import importPlugin from "eslint-plugin-import";
+import { importX } from 'eslint-plugin-import-x'
+// eslint-disable-next-line import-x/default
+import tsParser from '@typescript-eslint/parser'
 import prettierPlugin from "eslint-plugin-prettier";
 import prettierConfigPlugin from "eslint-config-prettier";
-import jestPlugin from "eslint-plugin-jest";
 import globals from "globals";
 
 export default [
@@ -15,13 +15,14 @@ export default [
   reactPlugin.configs.flat.recommended,
   reactPlugin.configs.flat["jsx-runtime"],
   ...tseslint.configs.recommended,
+  importX.flatConfigs.recommended,
+  importX.flatConfigs.typescript,
   promisePlugin.configs["flat/recommended"],
-  importPlugin.flatConfigs.recommended,
-  jestPlugin.configs["flat/recommended"],
   {
     files: ["**/*.ts", "**/*.tsx"],
     ignores: ["**/node_modules/", "**/TWPData/"],
     languageOptions: {
+      parser: tsParser,
       ecmaVersion: "latest",
       sourceType: "module",
       globals: {
@@ -37,14 +38,11 @@ export default [
       react: {
         version: "detect",
       },
-      jest: {
-        version: 29,
-      },
-      "import/resolver": {
-        typescript: {
-          alwaysTryTypes: true,
-        },
-      },
+      // "import/resolver": {
+      //   typescript: {
+      //     alwaysTryTypes: true,
+      //   },
+      // },
     },
     rules: {
       ...reactHooksPlugin.configs.recommended.rules,
@@ -61,7 +59,14 @@ export default [
       "no-console": "off",
       "@typescript-eslint/no-explicit-any": "warn",
       "promise/param-names": "off",
-      "import/extensions": ['error', 'ignorePackages'],
+      "import-x/no-named-as-default": "off",
+      "import-x/extensions": ["error", "ignorePackages", { "fix": true }],
+      "import-x/order": [
+        "warn",
+        {
+          "groups": ["builtin", "external", "parent", "sibling", "index", "type"]
+        }
+      ],
       "prettier/prettier": [
         "warn",
         {

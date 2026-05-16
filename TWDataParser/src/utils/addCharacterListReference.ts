@@ -1,7 +1,7 @@
-import type { CharacterInterface, CharacterListInterface } from '../@types/CharacterListInterface.ts';
-import type { GlobalDataInterface, TableRecord } from '../@types/GlobalDataInterface.ts';
 import { subcultureMap } from '../lists/cultureMaps.ts';
 import stringInterpolator from './stringInterpolator.ts';
+import type { CharacterInterface, CharacterListInterface } from '../@types/CharacterListInterface.ts';
+import type { GlobalDataInterface, TableRecord } from '../@types/GlobalDataInterface.ts';
 
 const addCharacterListReference = (
   folder: string,

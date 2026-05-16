@@ -2,9 +2,9 @@ import 'dotenv/config';
 import { emptyDirSync } from 'fs-extra/esm';
 import { v2DbList, v3DbList } from './lists/extractLists/dbLists.ts';
 import { workerRpfmServer, workerVanilla } from './workers/workerExports.ts';
-import type { RefKey } from './@types/GlobalDataInterface.ts';
 import modTimestamps from './utils/modTimestamps.ts';
 import { vanillaPackInfo } from './lists/packInfo.ts';
+import type { RefKey } from './@types/GlobalDataInterface.ts';
 
 process.chdir(process.env.CWD as string);
 

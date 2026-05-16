@@ -1,8 +1,8 @@
+import { useParams } from 'react-router-dom';
+import { useContext, useEffect } from 'react';
 import ModSelector from '../components/CharacterSelect/ModSelector.tsx';
 import FactionSelector from '../components/CharacterSelect/FactionSelector.tsx';
 import CharacterSelector from '../components/CharacterSelect/CharacterSelector.tsx';
-import { useParams } from 'react-router-dom';
-import { useContext, useEffect } from 'react';
 import { AppContext, AppContextActions } from '../contexts/AppContext.tsx';
 import gameData from '../data/gameData.ts';
 import CompilationFilter from '../components/CharacterSelect/CompilationFilter.tsx';

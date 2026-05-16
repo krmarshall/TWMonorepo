@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom';
+import { Fragment } from 'react/jsx-runtime';
+import { Ref, useRef } from 'react';
 import headerImg from '../imgs/header.webp';
 import headerDevImg from '../imgs/header_dev.webp';
 import useBulkMediaQueries from '../hooks/useBulkMediaQueries.tsx';
-import { Fragment } from 'react/jsx-runtime';
-import { Ref, useRef } from 'react';
 
 const Header = () => {
   const { isNarrow, shortenHeaderTitle, isMobileWidth } = useBulkMediaQueries();

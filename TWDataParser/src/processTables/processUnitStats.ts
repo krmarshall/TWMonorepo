@@ -1,9 +1,9 @@
-import type { GlobalDataInterface, TableRecord } from '../@types/GlobalDataInterface.ts';
-import type { AbilityInterface, AttributeInterface, UnitStatsInterface } from '../@types/CharacterInterface.ts';
 import processAbility from './processAbility.ts';
 import processAttribute from './processAttribute.ts';
 import processPhase from './processPhase.ts';
 import processProjectile from './processProjectile.ts';
+import type { AbilityInterface, AttributeInterface, UnitStatsInterface } from '../@types/CharacterInterface.ts';
+import type { GlobalDataInterface, TableRecord } from '../@types/GlobalDataInterface.ts';
 
 const processUnitStats = (folder: string, globalData: GlobalDataInterface, mainUnit: TableRecord) => {
   const landUnit = mainUnit.localRefs?.land_units as TableRecord;

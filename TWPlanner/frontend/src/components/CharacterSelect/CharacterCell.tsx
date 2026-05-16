@@ -1,7 +1,7 @@
-import ReactImage from '../ReactImage.tsx';
-import placeholderImg from '../../imgs/other/0placeholderInvis.webp';
 import { useContext } from 'react';
 import { motion } from 'motion/react';
+import ReactImage from '../ReactImage.tsx';
+import placeholderImg from '../../imgs/other/0placeholderInvis.webp';
 import { AppContext } from '../../contexts/AppContext.tsx';
 
 interface CharacterCellProps {

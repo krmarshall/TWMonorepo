@@ -1,11 +1,11 @@
 import { workerData } from 'worker_threads';
-import type { WorkerItemDataInterface } from '../@types/WorkerDataInterfaces.ts';
 import { deserialize } from '@ungap/structured-clone';
+import { outputJsonSync } from 'fs-extra/esm';
+import processAncillaryExtended from '../processTables/processAncillaryExtended.ts';
+import type { WorkerItemDataInterface } from '../@types/WorkerDataInterfaces.ts';
 import type { RefKey } from '../@types/GlobalDataInterface.ts';
 import type { Table } from '../generateTables.ts';
 import type { ExtendedItemInterface } from '../@types/ItemInterface.ts';
-import { outputJsonSync } from 'fs-extra/esm';
-import processAncillaryExtended from '../processTables/processAncillaryExtended.ts';
 
 // tables no longer have access to methods from class Table (findRecordByKey), but data structure is the same.
 const tables: { [key in RefKey]?: Table } = deserialize(workerData.tables);

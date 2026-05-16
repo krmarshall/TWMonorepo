@@ -1,5 +1,5 @@
-import app from './app.ts';
 import ON_DEATH from 'death';
+import app from './app.ts';
 import { usageLog, outputLog } from './usageLog.ts';
 
 const port = process.env.PORT || 5000;

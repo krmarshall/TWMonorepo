@@ -1,10 +1,10 @@
-import type { GlobalDataInterface, TableRecord } from '../@types/GlobalDataInterface.ts';
-import type { EffectInterface } from '../@types/CharacterInterface.ts';
-import type { TechNodeInterface } from '../@types/TechInterface.ts';
 import findImage from '../utils/findImage.ts';
 import stringInterpolator from '../utils/stringInterpolator.ts';
 import processAncillary from './processAncillary.ts';
 import processEffect from './processEffect.ts';
+import type { TechNodeInterface } from '../@types/TechInterface.ts';
+import type { EffectInterface } from '../@types/CharacterInterface.ts';
+import type { GlobalDataInterface, TableRecord } from '../@types/GlobalDataInterface.ts';
 
 const processTechNode = (
   folder: string,

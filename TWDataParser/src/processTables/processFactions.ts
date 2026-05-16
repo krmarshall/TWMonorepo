@@ -1,6 +1,5 @@
+import { outputJSONSync } from 'fs-extra/esm';
 import { Table } from '../generateTables.ts';
-import type { CharacterListInterface } from '../@types/CharacterListInterface.ts';
-import type { GlobalDataInterface, RefKey, TableRecord } from '../@types/GlobalDataInterface.ts';
 import {
   addAgents,
   ignoreAgents,
@@ -13,11 +12,12 @@ import {
 import { techNodeSetsPrune2, techNodeSetsPrune3, vanilla3TechNodeSets } from '../lists/processFactionsTechLists.ts';
 import { subcultureMap } from '../lists/cultureMaps.ts';
 import vanillaCharacters from '../lists/vanillaLists/vanillaCharacters.ts';
-import processAgent from './processAgent.ts';
-import processTechNodeSet from './processTechNodeSet.ts';
-import { outputJSONSync } from 'fs-extra/esm';
 import { sortCharacterList } from '../utils/sortCharacterList.ts';
 import { hardcodeCharListData } from '../utils/hardcodeCharList.ts';
+import processAgent from './processAgent.ts';
+import processTechNodeSet from './processTechNodeSet.ts';
+import type { GlobalDataInterface, RefKey, TableRecord } from '../@types/GlobalDataInterface.ts';
+import type { CharacterListInterface } from '../@types/CharacterListInterface.ts';
 
 const processFactions = (
   folder: string,

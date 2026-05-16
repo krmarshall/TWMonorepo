@@ -1,8 +1,8 @@
-import { skipVanillaAgentPrune } from '../lists/processFactionsLists.ts';
 import { ensureDirSync, writeJSONSync } from 'fs-extra/esm';
+import { skipVanillaAgentPrune } from '../lists/processFactionsLists.ts';
+import RpfmClient from '../rpfmClient.ts';
 import type { ModInfoInterface } from '../lists/packInfo.ts';
 import type { CompilationGroupsInterface } from '../@types/CompilationGroupsInterface.ts';
-import RpfmClient from '../rpfmClient.ts';
 
 const outputCompilationGroups = async (
   folder: string,

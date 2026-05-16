@@ -5,12 +5,12 @@ import smallEntityIcon from '../../../imgs/other/icon_entity_small.webp';
 import largeEntityIcon from '../../../imgs/other/icon_entity_large.webp';
 import { loadAdvancedToggleFromStorage, saveAdvancedToggleToStorage } from '../../../utils/storageFunctions.ts';
 import SkillPhase from '../Tooltips/SubToolTips/SkillPhase.tsx';
-import UnitStatLine from './UnitStatLine.tsx';
 import { getRelatedAttributes, getRelatedContactPhases, getUnitStatSets } from '../../../utils/sharedFunctions.ts';
 import AttributeTooltip from '../Tooltips/AttributeTooltip.tsx';
 import TooltipAbilityMap from '../Tooltips/TooltipAbilityMap.tsx';
 import ReactImage from '../../ReactImage.tsx';
 import useBulkMediaQueries from '../../../hooks/useBulkMediaQueries.tsx';
+import UnitStatLine from './UnitStatLine.tsx';
 
 const UnitStats = () => {
   const { state } = useContext(AppContext);

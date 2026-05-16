@@ -1,6 +1,6 @@
+import { useContext } from 'react';
 import { ExtendedItemInterface } from '../../@types/ItemInterfaceRef.ts';
 import TooltipWrapper from '../TooltipWrapper.tsx';
-import { useContext } from 'react';
 import { AppContext } from '../../contexts/AppContext.tsx';
 import ReactImage from '../ReactImage.tsx';
 import factionImages from '../../imgs/factions/factionImages.ts';

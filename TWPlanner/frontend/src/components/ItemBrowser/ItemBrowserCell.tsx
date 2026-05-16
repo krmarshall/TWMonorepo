@@ -6,10 +6,10 @@ import TooltipWrapper from '../TooltipWrapper.tsx';
 import { AppContext } from '../../contexts/AppContext.tsx';
 
 import itemSetIcon from '../../imgs/other/icon_item_set.webp';
-import FactionAvailability from './FactionAvailability.tsx';
 import SkillEffect from '../Planner/Tooltips/SubToolTips/SkillEffect.tsx';
-import ItemBrowserCellTooltip from './ItemBrowserCellTooltip.tsx';
 import { EffectInterface } from '../../@types/CharacterInterfaceRef.ts';
+import FactionAvailability from './FactionAvailability.tsx';
+import ItemBrowserCellTooltip from './ItemBrowserCellTooltip.tsx';
 
 interface PropsInterface {
   item?: ExtendedItemInterface;

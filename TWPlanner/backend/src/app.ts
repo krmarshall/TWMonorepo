@@ -1,15 +1,16 @@
+import path, { dirname } from 'path';
+import { fileURLToPath } from 'url';
 import express from 'express';
 import cors from 'cors';
-import path, { dirname } from 'path';
 import helmet from 'helmet';
 import compression from 'compression';
+/* eslint-disable import-x/no-named-as-default-member */
+
 import fs from 'fs-extra';
 
 import { bulkItemListener, itemListener, skillListener, techListener } from './api.ts';
 import setCustomCacheControl from './setCustomCacheControl.ts';
 import { initializeData } from './initializeData.ts';
-
-import { fileURLToPath } from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);

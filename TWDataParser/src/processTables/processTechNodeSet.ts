@@ -1,10 +1,10 @@
 import { Table } from '../generateTables.ts';
-import type { GlobalDataInterface, RefKey, TableRecord } from '../@types/GlobalDataInterface.ts';
-import type { NodeLinkInterface, TechNodeInterface, TechSetInterface } from '../@types/TechInterface.ts';
 import log from '../utils/log.ts';
 import collateTechNodes from './collateTechNodes.ts';
 import outputTechNodeSet from './outputTechNodeSet.ts';
 import processTechNode from './processTechNode.ts';
+import type { NodeLinkInterface, TechNodeInterface, TechSetInterface } from '../@types/TechInterface.ts';
+import type { GlobalDataInterface, RefKey, TableRecord } from '../@types/GlobalDataInterface.ts';
 
 const processTechNodeSet = (
   folder: string,

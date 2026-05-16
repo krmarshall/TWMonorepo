@@ -1,6 +1,7 @@
-import fg from 'fast-glob';
 import { readFileSync } from 'fs';
 import { basename } from 'path';
+/* eslint-disable import-x/no-named-as-default-member */
+import fg from 'fast-glob';
 
 interface SkillDataInterface {
   // Game/Mod

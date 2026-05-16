@@ -6,11 +6,11 @@ import {
   ItemRarityEnum,
   ItemSubcategoryEnum,
 } from '../../@types/ItemInterfaceRef.ts';
+import { searchExtendedItemForKeyword } from '../../utils/searchFunctions.ts';
+import factionImages from '../../imgs/factions/factionImages.ts';
 import TripleToggle from './TripleToggle.tsx';
 import MultiSelector from './MultiSelector.tsx';
 import TextSearch from './TextSearch.tsx';
-import { searchExtendedItemForKeyword } from '../../utils/searchFunctions.ts';
-import factionImages from '../../imgs/factions/factionImages.ts';
 
 const ItemFilter = () => {
   const { state, dispatch } = useContext(AppContext);

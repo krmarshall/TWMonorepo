@@ -1,11 +1,11 @@
-import type { GlobalDataInterface, RefKey, TableRecord } from '../@types/GlobalDataInterface.ts';
-import type { Table } from '../generateTables.ts';
 import { ItemCategoryEnum, ItemSubcategoryEnum, type ExtendedItemInterface } from '../@types/ItemInterface.ts';
 import { vanillaAncillaries } from '../lists/vanillaLists/vanillaAncillaries.ts';
 import processAncillary from '../processTables/processAncillary.ts';
 import { cultureMap, subcultureMap } from '../lists/cultureMaps.ts';
 import { rarityLookup } from '../utils/itemUtils.ts';
 import stringInterpolator from '../utils/stringInterpolator.ts';
+import type { Table } from '../generateTables.ts';
+import type { GlobalDataInterface, RefKey, TableRecord } from '../@types/GlobalDataInterface.ts';
 
 const processAncillaryExtended = (
   ancillary: TableRecord,

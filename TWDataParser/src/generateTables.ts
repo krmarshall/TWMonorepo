@@ -1,6 +1,6 @@
+import cleanList from './lists/cleanLists/index.ts';
 import type { Definition, Field } from './@types/rpfm_ipc_protocol.ts';
 import type { GlobalDataInterface, RefKey, TableRecord } from './@types/GlobalDataInterface.ts';
-import cleanList from './lists/cleanLists/index.ts';
 import type RpfmClient from './rpfmClient.ts';
 
 const generateTables = async (

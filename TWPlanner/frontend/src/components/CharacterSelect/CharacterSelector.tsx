@@ -1,4 +1,4 @@
-import { Fragment, useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { toast } from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import { AnimatePresence } from 'motion/react';
@@ -20,50 +20,8 @@ const CharacterSelector = () => {
   const [lordKeys, setLordKeys] = useState<Array<string>>();
   const [heroKeys, setHeroKeys] = useState<Array<string>>();
 
-  // Whenever the faction/characters change refresh the lord/hero keys
-  useEffect(() => {
-    if (checkFactionUndefined()) {
-      const factionCharKeys = Object.keys(gameCharacters);
-      const firstFactionKey = factionCharKeys[0];
-      dispatch({ type: AppContextActions.changeFaction, payload: { selectedFaction: firstFactionKey } });
-    } else {
-      if (gameData[selectedMod].compilationGroups !== undefined && selectedCompGroups.length > 0) {
-        const { filteredLords, filteredHeroes } = filterCharLists();
-        setLordKeys(Object.keys(filteredLords));
-        setHeroKeys(Object.keys(filteredHeroes));
-      } else {
-        setLordKeys(Object.keys(gameCharacters[selectedFaction].lords));
-        setHeroKeys(Object.keys(gameCharacters[selectedFaction].heroes));
-      }
-    }
-  }, [selectedMod, selectedFaction, selectedCompGroups]);
-
   const checkFactionUndefined = () => {
     return gameCharacters[selectedFaction] === undefined;
-  };
-
-  const handleCharacterSelect = (event: React.MouseEvent, characterKey: string) => {
-    if (event.button === 0 && !event.ctrlKey && !event.shiftKey) {
-      event.preventDefault();
-
-      const apiPromise = api
-        .getCharacterSkillTree(selectedMod, selectedFaction, characterKey, false)
-        .then((response) => {
-          dispatch({ type: AppContextActions.changeCharacterData, payload: { characterData: response } });
-          const emptyCharacterBuild = createEmptyCharacterBuild(response, selectedMod, selectedFaction, characterKey);
-          dispatch({ type: AppContextActions.changeCharacterBuild, payload: { characterBuild: emptyCharacterBuild } });
-          navigate(`/planner/${selectedMod}/${selectedFaction}/${characterKey}`);
-        });
-      toast.promise(
-        apiPromise,
-        {
-          loading: 'Loading',
-          success: 'Success',
-          error: (err) => `${err}`,
-        },
-        { loading: { duration: 5000 } },
-      );
-    }
   };
 
   const filterCharLists = () => {
@@ -94,6 +52,48 @@ const CharacterSelector = () => {
     });
 
     return { filteredLords, filteredHeroes };
+  };
+
+  // Whenever the faction/characters change refresh the lord/hero keys
+  useEffect(() => {
+    if (checkFactionUndefined()) {
+      const factionCharKeys = Object.keys(gameCharacters);
+      const firstFactionKey = factionCharKeys[0];
+      dispatch({ type: AppContextActions.changeFaction, payload: { selectedFaction: firstFactionKey } });
+    } else {
+      if (gameData[selectedMod].compilationGroups !== undefined && selectedCompGroups.length > 0) {
+        const { filteredLords, filteredHeroes } = filterCharLists();
+        setLordKeys(Object.keys(filteredLords));
+        setHeroKeys(Object.keys(filteredHeroes));
+      } else {
+        setLordKeys(Object.keys(gameCharacters[selectedFaction].lords));
+        setHeroKeys(Object.keys(gameCharacters[selectedFaction].heroes));
+      }
+    }
+  }, [selectedMod, selectedFaction, selectedCompGroups]);
+
+  const handleCharacterSelect = (event: React.MouseEvent, characterKey: string) => {
+    if (event.button === 0 && !event.ctrlKey && !event.shiftKey) {
+      event.preventDefault();
+
+      const apiPromise = api
+        .getCharacterSkillTree(selectedMod, selectedFaction, characterKey, false)
+        .then((response) => {
+          dispatch({ type: AppContextActions.changeCharacterData, payload: { characterData: response } });
+          const emptyCharacterBuild = createEmptyCharacterBuild(response, selectedMod, selectedFaction, characterKey);
+          dispatch({ type: AppContextActions.changeCharacterBuild, payload: { characterBuild: emptyCharacterBuild } });
+          navigate(`/planner/${selectedMod}/${selectedFaction}/${characterKey}`);
+        });
+      toast.promise(
+        apiPromise,
+        {
+          loading: 'Loading',
+          success: 'Success',
+          error: (err) => `${err}`,
+        },
+        { loading: { duration: 5000 } },
+      );
+    }
   };
 
   return (

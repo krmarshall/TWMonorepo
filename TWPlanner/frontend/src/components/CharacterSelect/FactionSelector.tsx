@@ -1,13 +1,13 @@
 import { useContext, useEffect, useState } from 'react';
+import { AnimatePresence, motion } from 'motion/react';
+import { toast } from 'react-hot-toast';
 import { AppContext, AppContextActions } from '../../contexts/AppContext.tsx';
 import gameData from '../../data/gameData.ts';
 import factionImages from '../../imgs/factions/factionImages.ts';
 import ReactImage from '../ReactImage.tsx';
-import { AnimatePresence, motion } from 'motion/react';
 import placeholderImg from '../../imgs/other/0placeholder.webp';
 import shareIcon from '../../imgs/other/icon_button_external_link.webp';
 import TooltipWrapper from '../TooltipWrapper.tsx';
-import { toast } from 'react-hot-toast';
 import useBulkMediaQueries from '../../hooks/useBulkMediaQueries.tsx';
 
 const FactionSelector = () => {
@@ -15,18 +15,6 @@ const FactionSelector = () => {
   const { selectedMod, selectedFaction, selectedCompGroups } = state;
   const [currentModFactions, setCurrentModFactions] = useState(Object.keys(gameData[selectedMod].factions));
   const { isMobile } = useBulkMediaQueries();
-
-  useEffect(() => {
-    if (gameData[selectedMod].compilationGroups !== undefined && selectedCompGroups.length > 0) {
-      const filteredFactionKeys = Object.keys(filterCurrentModFactions());
-      setCurrentModFactions(filteredFactionKeys);
-      if (!filteredFactionKeys.includes(selectedFaction)) {
-        dispatch({ type: AppContextActions.changeFaction, payload: { selectedFaction: filteredFactionKeys[0] } });
-      }
-    } else {
-      setCurrentModFactions(Object.keys(gameData[selectedMod].factions));
-    }
-  }, [selectedMod, selectedCompGroups]);
 
   const filterCurrentModFactions = () => {
     const gameCompGroups = gameData[selectedMod].compilationGroups;
@@ -53,6 +41,18 @@ const FactionSelector = () => {
       return cloneFaction;
     }
   };
+
+  useEffect(() => {
+    if (gameData[selectedMod].compilationGroups !== undefined && selectedCompGroups.length > 0) {
+      const filteredFactionKeys = Object.keys(filterCurrentModFactions());
+      setCurrentModFactions(filteredFactionKeys);
+      if (!filteredFactionKeys.includes(selectedFaction)) {
+        dispatch({ type: AppContextActions.changeFaction, payload: { selectedFaction: filteredFactionKeys[0] } });
+      }
+    } else {
+      setCurrentModFactions(Object.keys(gameData[selectedMod].factions));
+    }
+  }, [selectedMod, selectedCompGroups]);
 
   const shareHandler = () => {
     let url = import.meta.env.DEV ? 'http://localhost:5173/' : 'https://totalwarhammerplanner.com/';

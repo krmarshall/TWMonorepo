@@ -1,14 +1,14 @@
 import { RefObject, useContext, useEffect, useRef, useState, MouseEvent } from 'react';
+import DOMPurify from 'dompurify';
 import { replaceKeepCaps, setFontSize, trimString } from '../../utils/sharedFunctions.ts';
 import ReactImage from '../ReactImage.tsx';
 import TooltipWrapper from '../TooltipWrapper.tsx';
-import SkillPointSelector from './SkillPointSelector.tsx';
-import SkillTooltip from './Tooltips/SkillTooltip.tsx';
 import { FactionEffectsInterface, SkillInterface } from '../../@types/CharacterInterfaceRef.ts';
 import { ItemInterface } from '../../@types/ItemInterfaceRef.ts';
 import blockedSkillOverlay from '../../imgs/other/skill_locked_rank.webp';
 import { AppContext } from '../../contexts/AppContext.tsx';
-import DOMPurify from 'dompurify';
+import SkillTooltip from './Tooltips/SkillTooltip.tsx';
+import SkillPointSelector from './SkillPointSelector.tsx';
 
 interface PropInterface {
   skill?: SkillInterface;

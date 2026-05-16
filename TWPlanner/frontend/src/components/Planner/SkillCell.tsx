@@ -7,8 +7,8 @@ import { CharacterInterface, SkillInterface } from '../../@types/CharacterInterf
 import TooltipWrapper from '../TooltipWrapper.tsx';
 
 import autoSkillIcon from '../../imgs/other/skill_auto_unlock_rank.webp';
-import BaseCell from './BaseCell.tsx';
 import useBulkMediaQueries from '../../hooks/useBulkMediaQueries.tsx';
+import BaseCell from './BaseCell.tsx';
 
 interface SkillCellPropsInterface {
   skill: SkillInterface;
@@ -62,35 +62,6 @@ const SkillCell = ({ skill, skillKey, yIndex, xIndex, boxedType }: SkillCellProp
       setBlocked(false);
     }
   }, [characterBuild?.blockedSkills]);
-
-  useEffect(() => {
-    skill.levels?.forEach((skillLevel, index) => {
-      if (skill.points_on_creation - 1 >= index) {
-        // Ignore points on creation skills
-      } else {
-        if (
-          characterBuild?.rank !== undefined &&
-          characterBuild?.startingSkillPoints !== undefined &&
-          characterBuild?.autoUnlockSkillPoints !== undefined &&
-          skillLevel.auto_unlock_at_rank !== undefined
-        ) {
-          if (
-            characterBuild.buildData[yIndex][xIndex] === index &&
-            skillLevel.auto_unlock_at_rank <=
-              characterBuild?.rank - characterBuild?.startingSkillPoints - characterBuild?.autoUnlockSkillPoints
-          ) {
-            rankUpSkill(true);
-          } else if (
-            characterBuild.buildData[yIndex][xIndex] > index &&
-            skillLevel.auto_unlock_at_rank >
-              characterBuild?.rank - characterBuild?.startingSkillPoints - characterBuild?.autoUnlockSkillPoints
-          ) {
-            rankDownSkill(true);
-          }
-        }
-      }
-    });
-  }, [characterBuild?.rank]);
 
   const rankUpSkill = (autoRankSkill: boolean) => {
     if (!autoRankSkill) {
@@ -186,6 +157,35 @@ const SkillCell = ({ skill, skillKey, yIndex, xIndex, boxedType }: SkillCellProp
       payload: { characterBuild: testCharacterBuild as BuildInterface },
     });
   };
+
+  useEffect(() => {
+    skill.levels?.forEach((skillLevel, index) => {
+      if (skill.points_on_creation - 1 >= index) {
+        // Ignore points on creation skills
+      } else {
+        if (
+          characterBuild?.rank !== undefined &&
+          characterBuild?.startingSkillPoints !== undefined &&
+          characterBuild?.autoUnlockSkillPoints !== undefined &&
+          skillLevel.auto_unlock_at_rank !== undefined
+        ) {
+          if (
+            characterBuild.buildData[yIndex][xIndex] === index &&
+            skillLevel.auto_unlock_at_rank <=
+              characterBuild?.rank - characterBuild?.startingSkillPoints - characterBuild?.autoUnlockSkillPoints
+          ) {
+            rankUpSkill(true);
+          } else if (
+            characterBuild.buildData[yIndex][xIndex] > index &&
+            skillLevel.auto_unlock_at_rank >
+              characterBuild?.rank - characterBuild?.startingSkillPoints - characterBuild?.autoUnlockSkillPoints
+          ) {
+            rankDownSkill(true);
+          }
+        }
+      }
+    });
+  }, [characterBuild?.rank]);
 
   const skillClickHandler = (event: MouseEvent) => {
     // 0 = LMB, 2 = RMB

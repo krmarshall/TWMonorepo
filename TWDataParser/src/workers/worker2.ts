@@ -1,6 +1,5 @@
 import { workerData } from 'worker_threads';
 import { ensureDirSync } from 'fs-extra/esm';
-import type { WorkerVanillaDataInterface } from '../@types/WorkerDataInterfaces.ts';
 import initializeGlobalData from '../utils/initializeGlobalData.ts';
 import generateTables from '../generateTables.ts';
 import processFactions from '../processTables/processFactions.ts';
@@ -9,6 +8,7 @@ import Extractor from '../extractor.ts';
 import RpfmClient from '../rpfmClient.ts';
 import { parser } from '../parser.ts';
 import { workerItem } from './workerExports.ts';
+import type { WorkerVanillaDataInterface } from '../@types/WorkerDataInterfaces.ts';
 
 const { folder, packs, dbList, game }: WorkerVanillaDataInterface = workerData;
 

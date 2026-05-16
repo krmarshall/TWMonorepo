@@ -1,12 +1,12 @@
 import { workerData } from 'worker_threads';
 import { ensureDirSync } from 'fs-extra/esm';
-import type { WorkerMultiModDataInterface } from '../@types/WorkerDataInterfaces.ts';
 import generateTables from '../generateTables.ts';
 import processFactions from '../processTables/processFactions.ts';
 import outputCompilationGroups from '../processTables/outputCompilationGroups.ts';
 import Extractor from '../extractor.ts';
 import RpfmClient from '../rpfmClient.ts';
 import { parser } from '../parser.ts';
+import type { WorkerMultiModDataInterface } from '../@types/WorkerDataInterfaces.ts';
 
 const { folder, dbList, game, globalData, modInfoArray, pruneVanilla, tech }: WorkerMultiModDataInterface = workerData;
 

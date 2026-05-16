@@ -1,14 +1,15 @@
 import { exec } from 'child_process';
-import { outputFileSync, outputJson, readJSONSync } from 'fs-extra/esm';
 import { statSync } from 'fs';
 import { basename } from 'path';
 import { promisify } from 'util';
-import type { GlobalDataInterface } from './@types/GlobalDataInterface.ts';
+import { outputFileSync, outputJson, readJSONSync } from 'fs-extra/esm';
+/* eslint-disable import-x/no-named-as-default-member */
 import fastGlob from 'fast-glob';
 import { hardcodePortraitData } from './utils/hardcodeCharList.ts';
 import RpfmClient from './rpfmClient.ts';
 import { imgFolders } from './lists/extractLists/imgFolders.ts';
 import log from './utils/log.ts';
+import type { GlobalDataInterface } from './@types/GlobalDataInterface.ts';
 
 const execPromise = promisify(exec);
 

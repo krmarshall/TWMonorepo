@@ -1,6 +1,6 @@
+import processProjectile from './processProjectile.ts';
 import type { GlobalDataInterface, TableRecord } from '../@types/GlobalDataInterface.ts';
 import type { ProjectileBombardmentInterface } from '../@types/CharacterInterface.ts';
-import processProjectile from './processProjectile.ts';
 
 const processBombardment = (folder: string, globalData: GlobalDataInterface, bombardment: TableRecord) => {
   const returnBombardment: ProjectileBombardmentInterface = {

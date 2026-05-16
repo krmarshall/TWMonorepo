@@ -1,17 +1,17 @@
 import { workerData } from 'worker_threads';
 import { ensureDirSync } from 'fs-extra/esm';
-import type { WorkerVanillaDataInterface } from '../@types/WorkerDataInterfaces.ts';
 import Extractor from '../extractor.ts';
 import initializeGlobalData from '../utils/initializeGlobalData.ts';
 import akData from '../akData.ts';
 import generateTables from '../generateTables.ts';
 import processFactions from '../processTables/processFactions.ts';
-import { workerItem, workerMod, workerModItem, workerModMulti } from './workerExports.ts';
 import { modPackInfo, vanillaPackInfo } from '../lists/packInfo.ts';
 import { v3AssKitList } from '../lists/extractLists/dbLists.ts';
-import type { RefKey } from '../@types/GlobalDataInterface.ts';
 import RpfmClient from '../rpfmClient.ts';
 import { parser } from '../parser.ts';
+import { workerItem, workerMod, workerModItem, workerModMulti } from './workerExports.ts';
+import type { RefKey } from '../@types/GlobalDataInterface.ts';
+import type { WorkerVanillaDataInterface } from '../@types/WorkerDataInterfaces.ts';
 
 const { folder, packs, dbList, game }: WorkerVanillaDataInterface = workerData;
 

@@ -1,17 +1,17 @@
+import { useContext } from 'react';
+import DOMPurify from 'dompurify';
 import { AbilityInterface } from '../../../@types/CharacterInterfaceRef.ts';
 import cooldownImg from '../../../imgs/other/icon_cooldown_26.webp';
 import windsImg from '../../../imgs/other/winds_ui_replenish_battle_ph.webp';
 import chargesImg from '../../../imgs/other/icon_uses.webp';
-import SkillPhase from './SubToolTips/SkillPhase.tsx';
 import ReactImage from '../../ReactImage.tsx';
+import { AppContext } from '../../../contexts/AppContext.tsx';
+import { replaceKeepCaps } from '../../../utils/sharedFunctions.ts';
+import useBulkMediaQueries from '../../../hooks/useBulkMediaQueries.tsx';
+import SkillPhase from './SubToolTips/SkillPhase.tsx';
 import SkillAbilityVortex from './SubToolTips/SkillAbilityVortex.tsx';
 import SkillAbilityProjectile from './SubToolTips/SkillAbilityProjectile.tsx';
 import SkillAbilityBombardment from './SubToolTips/SkillAbilityBombardment.tsx';
-import { useContext } from 'react';
-import { AppContext } from '../../../contexts/AppContext.tsx';
-import DOMPurify from 'dompurify';
-import { replaceKeepCaps } from '../../../utils/sharedFunctions.ts';
-import useBulkMediaQueries from '../../../hooks/useBulkMediaQueries.tsx';
 
 interface SkillAbilityTooltipPropInterface {
   ability: AbilityInterface;

@@ -1,9 +1,9 @@
+import { toParsedDateString } from '../utils/dateFunctions.ts';
 import { ItemDataInterface } from '../@types/DataInterfaces.ts';
 import gameImages from '../imgs/games/gameImages.ts';
-import gameData from './gameData.ts';
 
 import modTimestamps from '../../../TWPData/modTimestamps.json';
-import { toParsedDateString } from '../utils/dateFunctions.ts';
+import gameData from './gameData.ts';
 
 const itemGameData: Record<string, ItemDataInterface> = {
   vanilla2: {

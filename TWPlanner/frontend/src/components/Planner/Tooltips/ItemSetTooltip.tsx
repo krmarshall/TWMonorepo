@@ -1,18 +1,18 @@
-import { ItemSetInterface } from '../../../@types/ItemInterfaceRef.ts';
 import { useContext, useEffect, useRef, useState } from 'react';
+import DOMPurify from 'dompurify';
+import { ItemSetInterface } from '../../../@types/ItemInterfaceRef.ts';
 import { AppContext } from '../../../contexts/AppContext.tsx';
 import useBulkMediaQueries from '../../../hooks/useBulkMediaQueries.tsx';
-import DOMPurify from 'dompurify';
 import {
   getRelatedAbilities,
   getRelatedAttributes,
   getRelatedContactPhases,
   replaceKeepCaps,
 } from '../../../utils/sharedFunctions.ts';
+import ReactImage from '../../ReactImage.tsx';
 import SkillEffect from './SubToolTips/SkillEffect.tsx';
 import TooltipAbilityCycler from './TooltipAbiltyCycler.tsx';
 import TooltipAbilityMap from './TooltipAbilityMap.tsx';
-import ReactImage from '../../ReactImage.tsx';
 import UnitCards from './SubToolTips/UnitCards.tsx';
 
 interface PropInterface {

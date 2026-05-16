@@ -1,14 +1,14 @@
 import { useContext, useEffect, useRef } from 'react';
+import toast from 'react-hot-toast';
+import { useVirtualizer } from '@tanstack/react-virtual';
+import { useMediaQuery } from 'react-responsive';
 import useBulkMediaQueries from '../hooks/useBulkMediaQueries.tsx';
 import ItemModSelector from '../components/ItemBrowser/ItemModSelector.tsx';
 import ItemFilter from '../components/ItemBrowser/ItemFilter.tsx';
 import api from '../api/api.ts';
 import { AppContext, AppContextActions } from '../contexts/AppContext.tsx';
-import toast from 'react-hot-toast';
 import ItemBrowserCell from '../components/ItemBrowser/ItemBrowserCell.tsx';
 import LoadingSpinner from '../components/LoadingSpinner.tsx';
-import { useVirtualizer } from '@tanstack/react-virtual';
-import { useMediaQuery } from 'react-responsive';
 
 const ItemBrowser = () => {
   const { state, dispatch } = useContext(AppContext);

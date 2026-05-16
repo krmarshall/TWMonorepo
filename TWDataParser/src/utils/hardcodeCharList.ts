@@ -1,6 +1,6 @@
+import SpellLores from '../@types/SpellLores.ts';
 import type { CharacterListInterface } from '../@types/CharacterListInterface.ts';
 import type { SpellLoresT } from '../@types/SpellLores.ts';
-import SpellLores from '../@types/SpellLores.ts';
 
 const regexp = /\((?<loreName>[a-zA-Z]*)\)/;
 export const hardcodeCharListData = (characterList: CharacterListInterface) => {

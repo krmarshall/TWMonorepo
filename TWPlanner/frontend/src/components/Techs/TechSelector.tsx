@@ -4,8 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import { AnimatePresence } from 'motion/react';
 import api from '../../api/api.ts';
 import { AppContext, AppContextActions } from '../../contexts/AppContext.tsx';
-import TechSelectorCell from './TechSelectorCell.tsx';
 import techGameData from '../../data/techGameData.ts';
+import TechSelectorCell from './TechSelectorCell.tsx';
 
 const TechSelector = () => {
   const { state, dispatch } = useContext(AppContext);

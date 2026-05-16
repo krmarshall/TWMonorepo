@@ -1,4 +1,5 @@
 import { useContext, useEffect } from 'react';
+import DOMPurify from 'dompurify';
 import useBulkMediaQueries from '../../hooks/useBulkMediaQueries.tsx';
 import { TechNodeInterface } from '../../@types/TechInterface.ts';
 import {
@@ -11,7 +12,6 @@ import SkillEffect from '../Planner/Tooltips/SubToolTips/SkillEffect.tsx';
 import TooltipAbilityCycler from '../Planner/Tooltips/TooltipAbiltyCycler.tsx';
 import TooltipAbilityMap from '../Planner/Tooltips/TooltipAbilityMap.tsx';
 import { AppContext } from '../../contexts/AppContext.tsx';
-import DOMPurify from 'dompurify';
 import ItemBrowserCell from '../ItemBrowser/ItemBrowserCell.tsx';
 import { ExtendedItemInterface } from '../../@types/ItemInterfaceRef.ts';
 
