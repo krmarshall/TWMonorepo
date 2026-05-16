@@ -17,6 +17,10 @@ const exportSitemap = () => {
 <loc>${siteAddress}/about</loc>
 <changefreq>monthly</changefreq>
 </url>
+<url>
+<loc>${siteAddress}/items</loc>
+<changefreq>monthly</changefreq>
+</url>
 `;
 
   const skillPaths = fg.sync(process.env.CWD + '/output/skills/**/*.json', { onlyFiles: true });

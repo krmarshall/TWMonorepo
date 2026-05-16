@@ -13,6 +13,10 @@
 <changefreq>monthly</changefreq>
 </url>
 <url>
+<loc>https://www.totalwarhammerplanner.com/items</loc>
+<changefreq>monthly</changefreq>
+</url>
+<url>
 <loc>https://www.totalwarhammerplanner.com/planner/cat3/dwf_dwarfs/kraka_cromson</loc>
 <changefreq>monthly</changefreq>
 </url><url>
@@ -3272,6 +3276,12 @@
 <changefreq>monthly</changefreq>
 </url><url>
 <loc>https://www.totalwarhammerplanner.com/planner/scm3/ogr_ogre_kingdoms/skill_node_set_hkrul_hroth</loc>
+<changefreq>monthly</changefreq>
+</url><url>
+<loc>https://www.totalwarhammerplanner.com/planner/scm3/skv_skaven/20kr_haematoma_assassin</loc>
+<changefreq>monthly</changefreq>
+</url><url>
+<loc>https://www.totalwarhammerplanner.com/planner/scm3/skv_skaven/20kr_haematoma_bloodreaper</loc>
 <changefreq>monthly</changefreq>
 </url><url>
 <loc>https://www.totalwarhammerplanner.com/planner/scm3/skv_skaven/bc_blistrox</loc>
