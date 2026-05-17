@@ -14,7 +14,7 @@ const AttributeTooltip = ({ attribute }: PropInterface) => {
   const { isMobile } = useBulkMediaQueries();
   const { searchString } = state;
 
-  const layoutContext = isMobile ? 'w-full max-h-full my-auto' : 'w-fit max-w-[24rem]';
+  const layoutContext = isMobile ? 'w-full max-h-full my-auto' : 'w-fit max-w-[24rem] mx-auto';
   return (
     <div className={layoutContext + ' rounded-lg border border-gray-400 p-2 shadow-lg bg-gray-600 text-gray-50'}>
       <div className="flex flex-row flex-nowrap">
