@@ -45,7 +45,7 @@ const ItemBrowser = () => {
     document.title = 'TWP - Items';
     document
       .querySelector('meta[name="description"]')
-      ?.setAttribute('content', 'Explore All the Items/Ancillaries in Total War Warhammer 2/3 and Various Mods.');
+      ?.setAttribute('content', 'Explore all of the Items/Ancillaries in Total War Warhammer 2/3 and Various Mods.');
   }, []);
 
   useEffect(() => {

@@ -42,7 +42,7 @@ const Tech = () => {
       .querySelector('meta[name="description"]')
       ?.setAttribute(
         'content',
-        `Explore the Technology Tree of ${techGameData[selectedModTech].techTrees[techTree as string].name} in Total War Warhammer ${techGameData[selectedModTech]?.text}`,
+        `Explore the Technology Tree for ${techGameData[selectedModTech].techTrees[techTree as string].name} in Total War Warhammer ${techGameData[selectedModTech]?.text}`,
       );
   }, []);
   return (
