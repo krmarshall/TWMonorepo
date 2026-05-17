@@ -5,7 +5,7 @@ const factions = {
   dae_daemons: 'Daemons of Chaos',
   def_dark_elves: 'Dark Elves',
   dwf_dwarfs: 'Dwarfs',
-  emp_empire: 'The Empire',
+  emp_empire: 'Empire',
   cth_cathay: 'Grand Cathay',
   grn_greenskins: 'Greenskins',
   hef_high_elves: 'High Elves',

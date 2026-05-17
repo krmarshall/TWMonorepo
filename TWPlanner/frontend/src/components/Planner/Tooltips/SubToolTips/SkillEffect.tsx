@@ -1,9 +1,9 @@
 import { useContext } from 'react';
+import DOMPurify from 'dompurify';
 import { EffectInterface } from '../../../../@types/CharacterInterfaceRef.ts';
 import ReactImage from '../../../ReactImage.tsx';
 import { AppContext } from '../../../../contexts/AppContext.tsx';
 import { replaceKeepCaps } from '../../../../utils/sharedFunctions.ts';
-import DOMPurify from 'dompurify';
 import useBulkMediaQueries from '../../../../hooks/useBulkMediaQueries.tsx';
 
 interface SkillEffectPropsInterface {

@@ -1,9 +1,13 @@
-import fg from 'fast-glob';
 import { readFileSync } from 'fs';
+import { basename } from 'path';
+import fg from 'fast-glob';
 
-interface skillDataInterface {
+interface SkillDataInterface {
+  // Game/Mod
   [key: string]: {
+    // Faction
     [key: string]: {
+      // Character
       [key: string]: {
         skillTree: unknown;
       };
@@ -11,7 +15,7 @@ interface skillDataInterface {
   };
 }
 
-const skillData: skillDataInterface = {};
+const skillData: SkillDataInterface = {};
 
 const initializeSkillData = () => {
   const gamePaths = fg.sync('../TWPData/skills/*/', { markDirectories: true, onlyDirectories: true });
@@ -34,15 +38,17 @@ const initializeSkillData = () => {
   });
 };
 
-interface techDataInterface {
+interface TechDataInterface {
+  // Game/Mod
   [key: string]: {
+    // Faction
     [key: string]: {
       techTree: unknown;
     };
   };
 }
 
-const techData: techDataInterface = {};
+const techData: TechDataInterface = {};
 
 const initializeTechData = () => {
   const gamePaths = fg.sync('../TWPData/techs/*/', { markDirectories: true, onlyDirectories: true });
@@ -59,9 +65,44 @@ const initializeTechData = () => {
   });
 };
 
+interface BulkItemDataInterface {
+  [key: string]: Array<unknown>;
+}
+
+const bulkItemData: BulkItemDataInterface = {};
+
+const initializeBulkItemData = () => {
+  const itemPaths = fg.sync('../TWPData/items/*.json');
+
+  itemPaths.forEach((itemPath) => {
+    const modKey = basename(itemPath, '.json');
+    bulkItemData[modKey] = JSON.parse(readFileSync(itemPath, 'utf-8'));
+  });
+};
+
+interface ItemDataInterface {
+  // Game / Mod
+  [key: string]: {
+    // Item key
+    [key: string]: unknown;
+  };
+}
+const itemData: ItemDataInterface = {};
+const initializeItemData = () => {
+  Object.keys(bulkItemData).forEach((modKey) => {
+    itemData[modKey] = {};
+    bulkItemData[modKey].forEach((item) => {
+      // @ts-expect-error ts(2339)
+      itemData[modKey][item?.key] = item;
+    });
+  });
+};
+
 const initializeData = () => {
   initializeSkillData();
   initializeTechData();
+  initializeBulkItemData();
+  initializeItemData();
 };
 
-export { initializeData, skillData, techData };
+export { initializeData, skillData, techData, bulkItemData, itemData };

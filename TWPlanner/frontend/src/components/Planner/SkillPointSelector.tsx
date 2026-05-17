@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { SkillInterface } from '../../@types/CharacterInterfaceRef.ts';
-import SkillTooltip from './Tooltips/SkillTooltip.tsx';
 import TooltipWrapper from '../TooltipWrapper.tsx';
+import SkillTooltip from './Tooltips/SkillTooltip.tsx';
 
 interface SkillPointSelectorPropInterface {
   key: number;

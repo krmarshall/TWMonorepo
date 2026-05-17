@@ -1,6 +1,6 @@
+import processPhase from './processPhase.ts';
 import type { GlobalDataInterface, TableRecord } from '../@types/GlobalDataInterface.ts';
 import type { VortexInterface } from '../@types/CharacterInterface.ts';
-import processPhase from './processPhase.ts';
 
 const processVortex = (folder: string, globalData: GlobalDataInterface, vortex: TableRecord) => {
   const returnVortex: VortexInterface = {

@@ -4,12 +4,11 @@ import {
   CharacterInterface,
   EffectInterface,
   FactionEffectsInterface,
-  ItemInterface,
-  ItemSetInterface,
   PhaseInterface,
   SkillInterface,
   UnitStatsInterface,
 } from '../@types/CharacterInterfaceRef.ts';
+import { ExtendedItemInterface, ItemInterface, ItemSetInterface } from '../@types/ItemInterfaceRef.ts';
 import { TechNodeInterface, TechSetInterface } from '../@types/TechInterface.ts';
 
 interface HighlightArrayInterface {
@@ -20,7 +19,7 @@ interface HighlightArrayInterface {
   unitStats: { attributes?: Array<boolean>; abilities?: Array<boolean> };
 }
 
-const searchDataForKeyword = (characterData: CharacterInterface, searchStringArg: string) => {
+export const searchDataForKeyword = (characterData: CharacterInterface, searchStringArg: string) => {
   const searchString = searchStringArg.toLowerCase();
   const highlightArray: HighlightArrayInterface = { skillTree: [], unitStats: {} };
 
@@ -51,7 +50,7 @@ const searchDataForKeyword = (characterData: CharacterInterface, searchStringArg
   return highlightArray;
 };
 
-const searchTechDataForKeyword = (techData: TechSetInterface, searchStringArg: string) => {
+export const searchTechDataForKeyword = (techData: TechSetInterface, searchStringArg: string) => {
   const searchString = searchStringArg.toLowerCase();
   const highlightArray: Array<Array<boolean>> = [];
 
@@ -85,11 +84,11 @@ const searchTechNodeForKeyword = (techNode: TechNodeInterface, searchString: str
       return true;
     }
   }
-  // for (const item of techNode.items ?? []) {
-  //   if (searchItemForKeyword(item, searchString)) {
-  //     return true;
-  //   }
-  // }
+  for (const item of techNode.items ?? []) {
+    if (searchItemForKeyword(item, searchString)) {
+      return true;
+    }
+  }
   return false;
 };
 
@@ -107,6 +106,21 @@ const searchSkillForKeyword = (skill: SkillInterface, searchString: string): boo
       }
     }
   }
+  return false;
+};
+
+export const searchExtendedItemForKeyword = (item: ExtendedItemInterface, searchString: string) => {
+  const searchItem = searchItemForKeyword(item, searchString);
+  if (searchItem.item || searchItem.set) {
+    return true;
+  }
+  let agentFound = false;
+  item.agent_subtypes?.forEach((agent) => {
+    if (agent.toLowerCase().includes(searchString)) {
+      agentFound = true;
+    }
+  });
+  if (agentFound) return true;
   return false;
 };
 
@@ -289,5 +303,4 @@ const searchPhaseForKeyword = (phase: PhaseInterface | undefined, searchString: 
   return false;
 };
 
-export { searchDataForKeyword, searchTechDataForKeyword };
 export type { HighlightArrayInterface };

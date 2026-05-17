@@ -1,9 +1,9 @@
-import type { GlobalDataInterface, TableRecord } from '../@types/GlobalDataInterface.ts';
-import type { AttributeInterface, PhaseInterface, StatEffectInterface } from '../@types/CharacterInterface.ts';
 import findImage from '../utils/findImage.ts';
 import numberPrepend from '../utils/numberPrepend.ts';
 import stringInterpolator from '../utils/stringInterpolator.ts';
 import processAttribute from './processAttribute.ts';
+import type { AttributeInterface, PhaseInterface, StatEffectInterface } from '../@types/CharacterInterface.ts';
+import type { GlobalDataInterface, TableRecord } from '../@types/GlobalDataInterface.ts';
 
 const processPhase = (folder: string, globalData: GlobalDataInterface, phaseJunc: TableRecord, phase: TableRecord) => {
   const returnPhase: PhaseInterface = {

@@ -5,10 +5,10 @@ import { TechNodeInterface } from '../../@types/TechInterface.ts';
 import { setFontSize, trimString } from '../../utils/sharedFunctions.ts';
 import TooltipWrapper from '../TooltipWrapper.tsx';
 import ReactImage from '../ReactImage.tsx';
-import TechTooltip from './TechTooltip.tsx';
 
 import buildingRequired from '../../imgs/other/building_required.webp';
 import timerFrame from '../../imgs/other/timer_frame.webp';
+import TechTooltip from './TechTooltip.tsx';
 
 interface PropInterface {
   tech: TechNodeInterface;

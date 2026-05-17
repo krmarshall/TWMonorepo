@@ -9,6 +9,7 @@ import sfo3 from './sfo3.webp';
 import cat3 from './cat3.webp';
 import ovn3 from './ovn3.webp';
 import hol3 from './hol3.webp';
+import s5a3 from './s5a3.webp';
 
 const gameImages = {
   vanilla2,
@@ -22,6 +23,7 @@ const gameImages = {
   cat3,
   ovn3,
   hol3,
+  s5a3,
 };
 
 export default gameImages;

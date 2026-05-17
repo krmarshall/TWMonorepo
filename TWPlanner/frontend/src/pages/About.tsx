@@ -6,7 +6,13 @@ const About = () => {
   const marginThickness = isMobileWidth ? ' mx-2' : ' mx-32';
 
   useEffect(() => {
-    document.title = 'Total Warhammer Planner - About';
+    document.title = 'TWP - About';
+    document
+      .querySelector('meta[name="description"]')
+      ?.setAttribute(
+        'content',
+        'Explore and Share Skill Trees for Lords and Heroes in Total War Warhammer 2/3 and Various Mods.',
+      );
   }, []);
   return (
     <div className="grow w-full h-full px-2 py-2 overflow-y-auto overflow-x-hidden scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-600">
@@ -32,16 +38,7 @@ const About = () => {
           <hr className="grow mt-[1.6rem] opacity-50 border-gray-200" />
         </div>
         <p className="text-center text-gray-200 text-2xl">
-          You can message me on{' '}
-          <a
-            href="https://www.reddit.com/message/compose?to=Fearhorn&subject=&message="
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-blue-500"
-          >
-            Reddit
-          </a>{' '}
-          or whitehelm on Discord for any questions or comments.
+          You can message me on Discord (whitehelm) for any questions/comments/bug reports.
         </p>
 
         <div className="flex flex-row place-content-center mt-12">
@@ -105,6 +102,10 @@ const About = () => {
         </div>
 
         <ul className="list-disc list-inside text-gray-200 text-2xl">
+          <li>
+            The item browser is a very early WIP. Features like sorting and better filtering/styling are already
+            planned.
+          </li>
           <li>Skill nodes that overlap indent and tier with another node have inconsistent behavior</li>
           <li>
             Tooltips that cant find horizontal space to fit in the viewport without conflicting with the cursor
@@ -128,7 +129,6 @@ const About = () => {
           take a lot of time, but I&apos;ve at least thought about them.
         </p>
         <ul className="list-disc list-inside text-gray-200 text-2xl">
-          <li>Ancillaries unlocked via Technologies</li>
           <li>Character stats mount comparison</li>
           <li>Character stats skill integration</li>
           <li>Boons of Chaos (Initiatives)</li>

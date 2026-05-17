@@ -8,6 +8,9 @@ const TechHome = () => {
   const { techData } = state;
   useEffect(() => {
     document.title = 'Total Warhammer Planner';
+    document
+      .querySelector('meta[name="description"]')
+      ?.setAttribute('content', 'Explore Tech Trees for Total War Warhammer 2/3 and Various Mods.');
   }, []);
 
   useEffect(() => {

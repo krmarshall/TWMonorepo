@@ -1,7 +1,7 @@
-import type { GlobalDataInterface, TableRecord } from '../@types/GlobalDataInterface.ts';
-import type { ProjectileInterface } from '../@types/CharacterInterface.ts';
 import processPhase from './processPhase.ts';
 import processVortex from './processVortex.ts';
+import type { GlobalDataInterface, TableRecord } from '../@types/GlobalDataInterface.ts';
+import type { ProjectileInterface } from '../@types/CharacterInterface.ts';
 
 const processProjectile = (folder: string, globalData: GlobalDataInterface, projectile: TableRecord) => {
   const returnProjectile: ProjectileInterface = {

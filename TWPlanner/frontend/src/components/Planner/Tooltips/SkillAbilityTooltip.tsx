@@ -1,17 +1,17 @@
+import { useContext } from 'react';
+import DOMPurify from 'dompurify';
 import { AbilityInterface } from '../../../@types/CharacterInterfaceRef.ts';
 import cooldownImg from '../../../imgs/other/icon_cooldown_26.webp';
 import windsImg from '../../../imgs/other/winds_ui_replenish_battle_ph.webp';
 import chargesImg from '../../../imgs/other/icon_uses.webp';
-import SkillPhase from './SubToolTips/SkillPhase.tsx';
 import ReactImage from '../../ReactImage.tsx';
+import { AppContext } from '../../../contexts/AppContext.tsx';
+import { replaceKeepCaps } from '../../../utils/sharedFunctions.ts';
+import useBulkMediaQueries from '../../../hooks/useBulkMediaQueries.tsx';
+import SkillPhase from './SubToolTips/SkillPhase.tsx';
 import SkillAbilityVortex from './SubToolTips/SkillAbilityVortex.tsx';
 import SkillAbilityProjectile from './SubToolTips/SkillAbilityProjectile.tsx';
 import SkillAbilityBombardment from './SubToolTips/SkillAbilityBombardment.tsx';
-import { useContext } from 'react';
-import { AppContext } from '../../../contexts/AppContext.tsx';
-import DOMPurify from 'dompurify';
-import { replaceKeepCaps } from '../../../utils/sharedFunctions.ts';
-import useBulkMediaQueries from '../../../hooks/useBulkMediaQueries.tsx';
 
 interface SkillAbilityTooltipPropInterface {
   ability: AbilityInterface;
@@ -158,29 +158,13 @@ const SkillAbilityTooltip = ({ ability }: SkillAbilityTooltipPropInterface) => {
       {unitAbility.enabled_if !== undefined && unitAbility.enabled_if.length > 0 && (
         <div className="flex flex-row">
           <h5 className="text-left w-24">Enabled If:</h5>
-          <p className="my-auto ml-1">
-            {unitAbility.enabled_if.map((string, index) => {
-              let returnString = string;
-              if (unitAbility.enabled_if !== undefined && unitAbility.enabled_if.length - 1 > index) {
-                returnString += ', ';
-              }
-              return returnString;
-            })}
-          </p>
+          <p className="my-auto ml-1">{unitAbility.enabled_if.join(', ')}</p>
         </div>
       )}
       {unitAbility.target_if !== undefined && unitAbility.target_if.length > 0 && (
         <div className="flex flex-row">
           <h5 className="text-left w-24">Target If:</h5>
-          <p className="my-auto ml-1">
-            {unitAbility.target_if.map((string, index) => {
-              let returnString = string;
-              if (unitAbility.target_if !== undefined && unitAbility.target_if.length - 1 > index) {
-                returnString += ', ';
-              }
-              return returnString;
-            })}
-          </p>
+          <p className="my-auto ml-1">{unitAbility.target_if.join(', ')}</p>
         </div>
       )}
       {unitAbility.num_effected_friendly_units !== undefined && unitAbility.num_effected_friendly_units > 0 && (

@@ -34,6 +34,7 @@ const SpellLores = {
 } as const;
 
 type SpellLoresT = (typeof SpellLores)[keyof typeof SpellLores];
+type SpellLoresKey = keyof typeof SpellLores;
 
 export default SpellLores;
-export type { SpellLoresT };
+export type { SpellLoresT, SpellLoresKey };

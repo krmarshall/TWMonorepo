@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom';
+import { Fragment } from 'react/jsx-runtime';
+import { Ref, useRef } from 'react';
 import headerImg from '../imgs/header.webp';
 import headerDevImg from '../imgs/header_dev.webp';
 import useBulkMediaQueries from '../hooks/useBulkMediaQueries.tsx';
-import { Fragment } from 'react/jsx-runtime';
-import { Ref, useRef } from 'react';
 
 const Header = () => {
   const { isNarrow, shortenHeaderTitle, isMobileWidth } = useBulkMediaQueries();
@@ -19,6 +19,7 @@ const Header = () => {
   const buttonClass = 'button hover-scale bg-gray-600 w-fit text-gray-100';
 
   return (
+    // If the header height ever changes, have to fix the height calc on the Items.tsx page
     <div className="bg-gray-900 flex flex-row flex-nowrap justify-between h-16 px-4 border-b border-gray-500">
       <div className="w-1/3 flex flex-row flex-nowrap justify-start">
         <Link to={'/'} className="text-slate-100 text-4xl flex flex-row flex-nowrap">
@@ -54,6 +55,10 @@ const Header = () => {
           </div>
 
           <div className={'w-1/3 flex flex-row justify-end text-2xl text-slate-50 my-auto'}>
+            <Link className={buttonClass + ' mr-4'} to={'/items'} draggable={false}>
+              Items
+              <span className="align-super text-sm">WIP</span>
+            </Link>
             <Link className={buttonClass + ' mr-4'} to={'/about'} draggable={false}>
               About
             </Link>
@@ -90,6 +95,10 @@ const Header = () => {
               >
                 Techs
               </Link>
+              {/* <Link className={buttonClass + ' mx-auto'} to={'/items'} draggable={false} onClick={() => closePopover()}>
+                Items
+                <span className="align-super text-sm">WIP</span>
+              </Link> */}
               <Link className={buttonClass + ' mx-auto'} to={'/about'} draggable={false} onClick={() => closePopover()}>
                 About
               </Link>

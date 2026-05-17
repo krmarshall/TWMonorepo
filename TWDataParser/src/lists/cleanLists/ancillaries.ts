@@ -1,6 +1,5 @@
 const ancillaries = [
   'applies_to',
-  'transferrable',
   'unique_to_world',
   'unique_to_faction',
   'precedence',
@@ -16,14 +15,7 @@ const ancillaries = [
   'min_expiry_age',
   'max_expiry_age',
   'immortal',
-  'uniqueness_score',
   'turns_before_swap_allowed',
-  'subcategory',
-  'randomly_dropped',
-  'can_be_stolen',
-  'can_be_destroyed',
-
-  'faction_set',
 ];
 
 export default ancillaries;

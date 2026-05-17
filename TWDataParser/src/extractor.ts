@@ -1,14 +1,15 @@
 import { exec } from 'child_process';
-import { outputFileSync, outputJson, readJSONSync } from 'fs-extra/esm';
 import { statSync } from 'fs';
 import { basename } from 'path';
 import { promisify } from 'util';
-import type { GlobalDataInterface } from './@types/GlobalDataInterface.ts';
+import { outputFileSync, outputJson, readJSONSync } from 'fs-extra/esm';
 import fastGlob from 'fast-glob';
 import { hardcodePortraitData } from './utils/hardcodeCharList.ts';
 import RpfmClient from './rpfmClient.ts';
 import { imgFolders } from './lists/extractLists/imgFolders.ts';
 import log from './utils/log.ts';
+import type { GlobalDataInterface } from './@types/GlobalDataInterface.ts';
+import type { ContainerPath } from './@types/rpfm_ipc_protocol.ts';
 
 const execPromise = promisify(exec);
 
@@ -80,6 +81,24 @@ export default class Extractor {
       newestTimestamp: latestPackTimestamp,
     });
     return;
+  };
+
+  // Want flag imgs, but only want 64x64 versions, whole folder is much larger
+  private extractFlags = async () => {
+    const latestPackTimestamp = this.getLatestPackTimestamp();
+    if (this.checkCacheValid(latestPackTimestamp)) {
+      return;
+    }
+    const flagPaths = await this.rpfmClient.getFilePathsFromPath('ui/flags/');
+    const mediumFlags: ContainerPath[] = [];
+    flagPaths.PackFile?.forEach((flagPath) => {
+      if ('File' in flagPath) {
+        if (flagPath.File.endsWith('64.png')) {
+          mediumFlags.push(flagPath);
+        }
+      }
+    });
+    await this.rpfmClient.extractFiles({ PackFile: mediumFlags }, `extracted_files/${this.folder}/`);
   };
 
   private convertImages = async (): Promise<void> => {
@@ -174,6 +193,7 @@ export default class Extractor {
 
   extractAndParseImages = async () => {
     await this.extractImages();
+    await this.extractFlags();
     await this.convertImages();
     await this.parsePortraitBins();
     await this.convertPortraits();

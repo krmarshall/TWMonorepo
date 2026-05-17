@@ -1,72 +1,5 @@
-/**
- * RPFM IPC Protocol — TypeScript Reference
- *
- * This file documents the WebSocket-based IPC protocol used to communicate
- * with the RPFM server (rpfm_server). All messages are JSON-serialized and
- * sent/received over a WebSocket connection to ws://127.0.0.1:45127.
- *
- * Every request is wrapped in a {@link Message} with a unique `id` field.
- * The server responds with a {@link Message} carrying the same `id`, allowing
- * the client to correlate responses to requests even when multiple requests
- * are in flight simultaneously.
- *
- * ## Quick Start
- *
- * ```ts
- * const ws = new WebSocket("ws://127.0.0.1:45127");
- *
- * let nextId = 1;
- * let currentSessionId: number | null = null;
- *
- * function send(command: Command): number {
- *   const id = nextId++;
- *   ws.send(JSON.stringify({ id, data: command }));
- *   return id;
- * }
- *
- * // Listen for responses
- * ws.onmessage = (event) => {
- *   const msg: Message<Response> = JSON.parse(event.data);
- *
- *   // Handle the SessionConnected message sent immediately after connection
- *   if (typeof msg.data === "object" && "SessionConnected" in msg.data) {
- *     currentSessionId = msg.data.SessionConnected;
- *     console.log(`Connected to session ${currentSessionId}`);
- *     return;
- *   }
- *
- *   console.log(`Response for request ${msg.id}:`, msg.data);
- * };
- *
- * // Open a pack file
- * ws.onopen = () => {
- *   send({ OpenPackFiles: [["/path/to/my_mod.pack"]] });
- * };
- * ```
- *
- * ## REST Endpoints
- *
- * In addition to the WebSocket protocol, the server exposes REST endpoints:
- *
- * - `GET /sessions` - Returns a JSON array of {@link SessionInfo} objects
- *   describing all active sessions. Useful for session management UIs.
- *
- * ## Session Reconnection
- *
- * To reconnect to an existing session, append `?session_id=<id>` to the WebSocket URL:
- * ```ts
- * const ws = new WebSocket("ws://127.0.0.1:45127/ws?session_id=123");
- * ```
- *
- * ## Serialization Convention
- *
- * Rust enums are serialized by serde as follows:
- * - Unit variants:    `"VariantName"`
- * - Newtype variants: `{ "VariantName": value }`
- * - Tuple variants:   `{ "VariantName": [v1, v2, ...] }`
- *
- * Generated from: rpfm_ipc/src/messages.rs and rpfm_ipc/src/helpers.rs
- */
+// Mostly from an early rpfm_server beta, could be outdated, check server docs for updates if something isnt working
+// https://frodo45127.github.io/rpfm/chapter_server_0.html
 
 // ---------------------------------------------------------------------------
 // Message Wrapper
@@ -909,12 +842,30 @@ export interface MatchedCombat {
   entries: unknown[];
 }
 
+export interface PortraitEntry {
+  id: string;
+  camera_settings_body: unknown;
+  camera_settings_head: unknown;
+  variants: Array<{
+    age: number;
+    faction_leader: boolean;
+    file_diffuse: string; // Base portrait png
+    file_mask_1: string; // Masks layered over the base portrait for stuff like faction colors
+    file_mask_2: string;
+    file_mask_3: string;
+    filename: string;
+    level: number;
+    politician: boolean;
+    season: string;
+  }>;
+}
+
 /** Decoded PortraitSettings file. */
 export interface PortraitSettings {
   /** Format version (1 or 4). */
   version: number;
   /** Portrait entries, one per art set. */
-  entries: unknown[];
+  entries: Array<PortraitEntry>;
 }
 
 /** Decoded UIC (UI Component) file. */
@@ -1278,13 +1229,13 @@ export type Command =
   /**
    * Decode a packed file for display in the UI.
    *
-   * @param params — `[internal_path, data_source]`
+   * @param params — `[pack_key, internal_path, data_source]`
    * Response: Type-specific (e.g., `{ DBRFileInfo: [DB, RFileInfo] }`,
    *   `{ LocRFileInfo: [Loc, RFileInfo] }`, `{ TextRFileInfo: [Text, RFileInfo] }`,
    *   `{ ImageRFileInfo: [Image, RFileInfo] }`, `{ RigidModelRFileInfo: [RigidModel, RFileInfo] }`,
    *   `"Unknown"`, etc.) | `{ Error: string }`
    */
-  | { DecodePackedFile: [string, DataSource] }
+  | { DecodePackedFile: [string, string, DataSource] }
 
   /**
    * Save an edited packed file back to the Pack.
@@ -1337,14 +1288,14 @@ export type Command =
   /**
    * Extract packed files from the Pack to the filesystem.
    *
-   * @param params — `[paths_by_source, extraction_path, export_tables_as_tsv]`
+   * @param params — `[pack_key, paths_by_source, extraction_path, export_tables_as_tsv]`
    *
-   * The first parameter is a map of DataSource → ContainerPath[].
+   * The second parameter is a map of DataSource → ContainerPath[].
    * In JSON: `{ "PackFile": [...], "GameFiles": [...] }`
    *
    * Response: `{ StringVecPathBuf: [string, string[]] }` | `{ Error: string }`
    */
-  | { ExtractPackedFiles: [Record<DataSource, ContainerPath[]>, string, boolean] }
+  | { ExtractPackedFiles: [string, Record<DataSource, ContainerPath[]>, string, boolean] }
 
   /**
    * Rename packed files in the Pack.
@@ -1941,10 +1892,10 @@ export type Command =
   /**
    * Get table paths by name from the current Pack.
    *
-   * @param table_name — Name of the table.
+   * @param params — [pack_key, table_name]
    * Response: `{ VecString: string[] }`
    */
-  | { GetTablesByTableName: string }
+  | { GetTablesByTableName: [string, string] }
 
   /**
    * Add keys to the key_deletes table.
@@ -2366,122 +2317,4 @@ export type Response =
    */
   | { SettingsAll: [Record<string, boolean>, Record<string, number>, Record<string, number>, Record<string, string>] };
 
-// ---------------------------------------------------------------------------
-// Usage Examples
-// ---------------------------------------------------------------------------
-
-/**
- * ## Example: Full client implementation
- *
- * ```ts
- * class RpfmClient {
- *   private ws: WebSocket;
- *   private nextId = 1;
- *   private pending = new Map<number, {
- *     resolve: (resp: Response) => void;
- *     reject: (err: Error) => void;
- *   }>();
- *   public sessionId: number | null = null;
- *
- *   constructor(url = "ws://127.0.0.1:45127/ws") {
- *     this.ws = new WebSocket(url);
- *     this.ws.onmessage = (event) => {
- *       const msg: Message<Response> = JSON.parse(event.data);
- *
- *       // Handle SessionConnected (unsolicited, id=0)
- *       if (typeof msg.data === "object" && "SessionConnected" in msg.data) {
- *         this.sessionId = msg.data.SessionConnected;
- *         console.log(`Connected to session ${this.sessionId}`);
- *         return;
- *       }
- *
- *       const handler = this.pending.get(msg.id);
- *       if (handler) {
- *         this.pending.delete(msg.id);
- *         if (typeof msg.data === "object" && "Error" in msg.data) {
- *           handler.reject(new Error(msg.data.Error));
- *         } else {
- *           handler.resolve(msg.data);
- *         }
- *       }
- *     };
- *   }
- *
- *   send(command: Command): Promise<Response> {
- *     return new Promise((resolve, reject) => {
- *       const id = this.nextId++;
- *       this.pending.set(id, { resolve, reject });
- *       this.ws.send(JSON.stringify({ id, data: command }));
- *     });
- *   }
- *
- *   // --- Typed convenience methods ---
- *
- *   async openPack(paths: string[]): Promise<ContainerInfo> {
- *     const resp = await this.send({ OpenPackFiles: paths });
- *     return (resp as { ContainerInfo: ContainerInfo }).ContainerInfo;
- *   }
- *
- *   async savePack(): Promise<ContainerInfo> {
- *     const resp = await this.send("SavePack");
- *     return (resp as { ContainerInfo: ContainerInfo }).ContainerInfo;
- *   }
- *
- *   async savePackAs(path: string): Promise<ContainerInfo> {
- *     const resp = await this.send({ SavePackAs: path });
- *     return (resp as { ContainerInfo: ContainerInfo }).ContainerInfo;
- *   }
- *
- *   async getTreeView(): Promise<[ContainerInfo, RFileInfo[]]> {
- *     const resp = await this.send("GetPackFileDataForTreeView");
- *     return (resp as { ContainerInfoVecRFileInfo: [ContainerInfo, RFileInfo[]] }).ContainerInfoVecRFileInfo;
- *   }
- *
- *   async setGame(gameKey: string, rebuildDeps: boolean): Promise<void> {
- *     await this.send({ SetGameSelected: [gameKey, rebuildDeps] });
- *   }
- *
- *   async decodeFile(path: string, source: DataSource = "PackFile"): Promise<Response> {
- *     return this.send({ DecodePackedFile: [path, source] });
- *   }
- *
- *   async deleteFiles(paths: ContainerPath[]): Promise<ContainerPath[]> {
- *     const resp = await this.send({ DeletePackedFiles: paths });
- *     return (resp as { VecContainerPath: ContainerPath[] }).VecContainerPath;
- *   }
- *
- *   async extractFiles(
- *     paths: Record<DataSource, ContainerPath[]>,
- *     destPath: string,
- *     asTsv = false,
- *   ): Promise<[string, string[]]> {
- *     const resp = await this.send({ ExtractPackedFiles: [paths, destPath, asTsv] });
- *     return (resp as { StringVecPathBuf: [string, string[]] }).StringVecPathBuf;
- *   }
- *
- *   async getSetting(key: string): Promise<string> {
- *     const resp = await this.send({ SettingsGetString: key });
- *     return (resp as { String: string }).String;
- *   }
- *
- *   async getAllSettings(): Promise<{
- *     bools: Record<string, boolean>;
- *     ints: Record<string, number>;
- *     floats: Record<string, number>;
- *     strings: Record<string, string>;
- *   }> {
- *     const resp = await this.send("SettingsGetAll");
- *     const [bools, ints, floats, strings] = (resp as {
- *       SettingsAll: [Record<string, boolean>, Record<string, number>, Record<string, number>, Record<string, string>]
- *     }).SettingsAll;
- *     return { bools, ints, floats, strings };
- *   }
- *
- *   async disconnect(): Promise<void> {
- *     await this.send("ClientDisconnecting");
- *     this.ws.close();
- *   }
- * }
- * ```
- */
 export {};

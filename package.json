@@ -5,7 +5,6 @@
     "frontendDev": "yarn workspace frontend dev",
     "backendDev": "yarn workspace backend dev",
     "planner:dev": "concurrently -m 2 -k -n server,front -c #c45f12,#124dc4 yarn:backendDev yarn:frontendDev",
-    "planner:test": "yarn workspace backend test",
     "planner:build": "yarn workspace frontend build",
     "parser:dev": "yarn workspace twdataparser typecheck",
     "parser:build": "yarn workspace twdataparser start",
@@ -26,16 +25,15 @@
     "eslint": "^9.39.2",
     "eslint-config-prettier": "^10.1.8",
     "eslint-import-resolver-typescript": "^4.4.4",
-    "eslint-plugin-import": "^2.32.0",
-    "eslint-plugin-jest": "^29.12.1",
-    "eslint-plugin-prettier": "^5.5.4",
-    "eslint-plugin-promise": "^7.2.1",
+    "eslint-plugin-import-x": "^4.16.2",
+    "eslint-plugin-prettier": "^5.5.5",
+    "eslint-plugin-promise": "^7.3.0",
     "eslint-plugin-react": "^7.37.5",
-    "eslint-plugin-react-hooks": "^7.0.1",
-    "globals": "^17.0.0",
-    "prettier": "^3.7.4",
-    "typescript": "^5.9.3",
-    "typescript-eslint": "^8.52.0"
+    "eslint-plugin-react-hooks": "^7.1.1",
+    "globals": "^17.6.0",
+    "prettier": "^3.8.3",
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.59.3"
   },
   "packageManager": "yarn@4.12.0"
 }

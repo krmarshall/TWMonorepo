@@ -1,9 +1,7 @@
 import factions from '../data/factionData.ts';
-import { GameDataInterface } from '../@types/GameInterface.ts';
+import { GameDataInterface } from '../@types/DataInterfaces.ts';
 import gameImages from '../imgs/games/gameImages.ts';
 
-import { vanilla2CharactersMemes } from './characters/vanilla2Characters.ts';
-import { vanilla3CharactersMemes } from './characters/vanilla3Characters.ts';
 import sfo3Characters from '../../../TWPData/charLists/sfo3.json';
 import radious3Characters from '../../../TWPData/charLists/radious3.json';
 import mixu3Characters from '../../../TWPData/charLists/mixu3.json';
@@ -22,6 +20,8 @@ import ovn3CompGroups from '../../../TWPData/compGroups/ovn3.json';
 import modTimestamps from '../../../TWPData/modTimestamps.json';
 import { mostRecentDateString, toParsedDateString } from '../utils/dateFunctions.ts';
 import { CharacterListInterface } from '../@types/CharacterListInterfaceRef.ts';
+import { vanilla3CharactersMemes } from './characters/vanilla3Characters.ts';
+import { vanilla2CharactersMemes } from './characters/vanilla2Characters.ts';
 
 const gameData: { [key: string]: GameDataInterface } = {
   vanilla2: {
@@ -37,7 +37,7 @@ const gameData: { [key: string]: GameDataInterface } = {
     image: gameImages['vanilla3'],
     factions: factions,
     characters: vanilla3CharactersMemes,
-    updated: 'Mar 19 2026 (7.2.0)',
+    updated: 'May 7 2026 (7.2.2)',
     category: 'Base',
   },
   sfo3: {

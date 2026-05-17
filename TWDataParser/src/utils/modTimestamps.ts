@@ -1,7 +1,7 @@
 import { readJSONSync, writeJSON } from 'fs-extra/esm';
+import { init } from 'steamworks.js';
 import { modPackInfo } from '../lists/packInfo.ts';
 import log from './log.ts';
-import { init } from 'steamworks.js';
 
 interface TimeStampInterface {
   [modHeader: string]: { [subMod: string]: number };

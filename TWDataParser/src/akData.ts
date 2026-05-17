@@ -1,6 +1,6 @@
+import { readFileSync } from 'fs';
 import { XMLParser } from 'fast-xml-parser';
 import type { GlobalDataInterface, TableRecord } from './@types/GlobalDataInterface.ts';
-import { readFileSync } from 'fs';
 
 const akData = (folder: string, globalData: GlobalDataInterface, wh3Path: string) => {
   const assemblyKitPath = wh3Path?.replace(/data$/, 'assembly_kit/raw_data/db');

@@ -1,8 +1,8 @@
+import { useParams } from 'react-router-dom';
+import { useContext, useEffect } from 'react';
 import ModSelector from '../components/CharacterSelect/ModSelector.tsx';
 import FactionSelector from '../components/CharacterSelect/FactionSelector.tsx';
 import CharacterSelector from '../components/CharacterSelect/CharacterSelector.tsx';
-import { useParams } from 'react-router-dom';
-import { useContext, useEffect } from 'react';
 import { AppContext, AppContextActions } from '../contexts/AppContext.tsx';
 import gameData from '../data/gameData.ts';
 import CompilationFilter from '../components/CharacterSelect/CompilationFilter.tsx';
@@ -40,14 +40,22 @@ const Home = () => {
   // }, []);
 
   useEffect(() => {
+    document.title = 'Total Warhammer Planner';
+    document
+      .querySelector('meta[name="description"]')
+      ?.setAttribute(
+        'content',
+        'Explore and Share Skill Trees for Lords and Heroes in Total War Warhammer 2/3 and Various Mods.',
+      );
+  }, []);
+
+  useEffect(() => {
     if (mod !== undefined && faction !== undefined) {
       dispatch({
         type: AppContextActions.changeModFaction,
         payload: { selectedMod: mod, selectedFaction: faction },
       });
     }
-
-    document.title = 'Total Warhammer Planner';
   }, []);
 
   useEffect(() => {

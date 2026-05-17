@@ -1,7 +1,7 @@
 import { Table } from '../generateTables.ts';
+import processEffect from './processEffect.ts';
 import type { GlobalDataInterface, RefKey, TableRecord } from '../@types/GlobalDataInterface.ts';
 import type { EffectInterface, StartPosTraitInterface } from '../@types/CharacterInterface.ts';
-import processEffect from './processEffect.ts';
 
 const processStartPosTraits = (
   folder: string,

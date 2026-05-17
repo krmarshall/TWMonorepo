@@ -1,6 +1,6 @@
 import { basename } from 'node:path';
+import { vanillaFolders } from './lists/vanillaLists/vanillaFolders.ts';
 import type { GlobalDataInterface, RefKey, TableRecord } from './@types/GlobalDataInterface.ts';
-import { vanillaFolders } from './lists/vanillaFolders.ts';
 import type RpfmClient from './rpfmClient.ts';
 import type { Field } from './@types/rpfm_ipc_protocol.ts';
 
@@ -111,14 +111,22 @@ const addLocsToGlobalData = async (folder: string, globalData: GlobalDataInterfa
   const parsedLocTables: { [key: string]: Array<{ [key: string]: string }> } = {};
   const locPaths = await rpfmClient.getLocPaths();
   const locPromises = locPaths.map(async (locPath) => {
+    if (locPath === undefined) {
+      return;
+    }
     if (!locPath.endsWith('.loc')) {
       return;
     }
     const { table_data } = await rpfmClient.decodeLoc(locPath);
-    const parsedLocTable = table_data.map((row: Array<{ StringU16: string }>) => {
-      const key = row[0].StringU16;
-      const text = row[1].StringU16;
-      return { [key]: text };
+    const parsedLocTable: Array<{
+      [key: string]: string;
+    }> = [];
+    table_data.forEach((row) => {
+      if ('StringU16' in row[0] && 'StringU16' in row[1]) {
+        const key = row[0].StringU16;
+        const text = row[1].StringU16;
+        parsedLocTable.push({ [key]: text });
+      }
     });
     parsedLocTables[locPath] = parsedLocTable;
     return;

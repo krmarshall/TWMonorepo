@@ -1,8 +1,8 @@
-import { skipVanillaAgentPrune } from '../lists/processFactionsLists.ts';
 import { ensureDirSync, writeJSONSync } from 'fs-extra/esm';
+import { skipVanillaAgentPrune } from '../lists/processFactionsLists.ts';
+import RpfmClient from '../rpfmClient.ts';
 import type { ModInfoInterface } from '../lists/packInfo.ts';
 import type { CompilationGroupsInterface } from '../@types/CompilationGroupsInterface.ts';
-import RpfmClient from '../rpfmClient.ts';
 
 const outputCompilationGroups = async (
   folder: string,
@@ -24,12 +24,13 @@ const outputCompilationGroups = async (
     await rpfmClient.setGame(game, true);
     compGroups.mods.push(modInfo.name);
     const packPath = packPaths.find((path) => path.includes(modInfo.pack));
-    await rpfmClient.openPacks([packPath]);
+    await rpfmClient.openPacks([packPath as string]);
     const subTablePaths = await rpfmClient.getTablePathsByTableName('character_skill_node_sets_tables');
     const subTablePromises = subTablePaths.map(async (subTablePath) => {
       const skillNodeSets = await rpfmClient.decodeDbTable(subTablePath);
       skillNodeSets.table_data.forEach((tableRow) => {
         // Key is at index 3
+        // @ts-expect-error ts(2339)
         compGroups.nodeSets[tableRow[3].StringU8 as string] = modInfo.name;
       });
     });

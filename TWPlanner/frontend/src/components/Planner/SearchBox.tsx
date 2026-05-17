@@ -50,7 +50,7 @@ const SearchBox = ({ skill }: { skill: boolean }) => {
         onChange={(event) => {
           setSearchText(event.target.value);
         }}
-        className="px-1.5 w-32 text-xl text-center rounded focus:outline-none placeholder-opacity-60 placeholder-black bg-gray-200"
+        className="px-1.5 w-32 text-xl text-center rounded focus:outline-none placeholder-gray-700 bg-gray-200"
       ></input>
     </div>
   );

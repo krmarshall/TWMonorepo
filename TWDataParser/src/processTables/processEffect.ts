@@ -1,10 +1,3 @@
-import type { GlobalDataInterface, TableRecord } from '../@types/GlobalDataInterface.ts';
-import type {
-  AbilityInterface,
-  AttributeInterface,
-  EffectInterface,
-  PhaseInterface,
-} from '../@types/CharacterInterface.ts';
 import findImage from '../utils/findImage.ts';
 import numberInsertion from '../utils/numberInsertion.ts';
 import stringInterpolator from '../utils/stringInterpolator.ts';
@@ -12,6 +5,13 @@ import processAbility from './processAbility.ts';
 import processAttribute from './processAttribute.ts';
 import processPhase from './processPhase.ts';
 import processRelatedUnitCards from './processRelatedUnitCards.ts';
+import type {
+  AbilityInterface,
+  AttributeInterface,
+  EffectInterface,
+  PhaseInterface,
+} from '../@types/CharacterInterface.ts';
+import type { GlobalDataInterface, TableRecord } from '../@types/GlobalDataInterface.ts';
 
 const processEffect = (folder: string, globalData: GlobalDataInterface, effectJunc: TableRecord) => {
   const effect = effectJunc.localRefs?.effects as TableRecord;

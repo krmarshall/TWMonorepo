@@ -1,5 +1,4 @@
 import { cloneElement, JSX, useEffect, useState } from 'react';
-import type { MouseEvent } from 'react';
 import {
   Placement,
   offset,
@@ -14,6 +13,7 @@ import {
   useId,
 } from '@floating-ui/react';
 import useBulkMediaQueries from '../hooks/useBulkMediaQueries.tsx';
+import type { MouseEvent } from 'react';
 
 interface Props {
   tooltip: JSX.Element;

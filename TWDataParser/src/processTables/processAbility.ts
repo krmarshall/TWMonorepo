@@ -1,12 +1,12 @@
-import type { GlobalDataInterface, TableRecord } from '../@types/GlobalDataInterface.ts';
-import type { AbilityInterface, PhaseInterface, UiEffectInterface } from '../@types/CharacterInterface.ts';
 import findImage from '../utils/findImage.ts';
 import stringInterpolator from '../utils/stringInterpolator.ts';
+import log from '../utils/log.ts';
 import processBombardment from './processBombardment.ts';
 import processPhase from './processPhase.ts';
 import processProjectile from './processProjectile.ts';
 import processVortex from './processVortex.ts';
-import log from '../utils/log.ts';
+import type { AbilityInterface, PhaseInterface, UiEffectInterface } from '../@types/CharacterInterface.ts';
+import type { GlobalDataInterface, TableRecord } from '../@types/GlobalDataInterface.ts';
 
 const processAbility = (
   folder: string,

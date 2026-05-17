@@ -6,6 +6,7 @@ import TooltipWrapper from '../TooltipWrapper.tsx';
 import ReactImage from '../ReactImage.tsx';
 import placeholderImg from '../../imgs/other/0placeholder.webp';
 import useBulkMediaQueries from '../../hooks/useBulkMediaQueries.tsx';
+import { getCategoryDescription } from '../../utils/sharedFunctions.ts';
 
 const ModSelector = () => {
   const { state, dispatch } = useContext(AppContext);
@@ -37,28 +38,7 @@ const ModSelector = () => {
             liClassName += ' hover:bg-gray-600';
           }
 
-          let categoryDesc = 'Placeholder';
-          switch (game.category) {
-            case 'Base': {
-              categoryDesc = 'The vanilla game with no mods. All characters are displayed with few exceptions.';
-              break;
-            }
-            case 'Overhaul': {
-              categoryDesc =
-                'A total overhaul mod. Both new and vanilla characters are displayed whether they have been modified or not.';
-              break;
-            }
-            case 'Character Mod': {
-              categoryDesc =
-                'A mod that adds new characters. Vanilla characters have been pruned, only new characters added by the mod are displayed.';
-              break;
-            }
-            case 'Character Mod Compilation': {
-              categoryDesc =
-                'A compilation of mods that add new characters. Vanilla characters have been pruned, only new characters added by the mods are displayed.';
-              break;
-            }
-          }
+          const categoryDesc = getCategoryDescription(game.category);
           return (
             <AnimatePresence key={gameKey}>
               <motion.li

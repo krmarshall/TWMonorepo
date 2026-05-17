@@ -1,6 +1,4 @@
-import { useEffect, useState, useTransition } from 'react';
-
-import spinner from '../imgs/other/spinner.webp?inline';
+import { useEffect, useState } from 'react';
 
 interface PropsInterface {
   srcList: Array<string>;
@@ -11,26 +9,23 @@ interface PropsInterface {
 }
 
 const ReactImage = ({ srcList, className, alt, w, h }: PropsInterface) => {
-  const [isPending, startTransition] = useTransition();
   const [imgClass, setImgClass] = useState(className);
   const [srcState, setSrcState] = useState({ src: srcList[0], fallbackIndex: 1 });
 
   const errorHandler = () => {
-    startTransition(() => {
-      if (srcState.fallbackIndex > srcList.length - 1) {
-        return;
-      }
-      if (srcState.src.includes('.webp')) {
-        const checkPng = srcState;
-        checkPng.src = checkPng.src.replace('.webp', '.png');
-        setSrcState(checkPng);
-      } else {
-        setSrcState({
-          src: srcList[srcState.fallbackIndex],
-          fallbackIndex: srcState.fallbackIndex + 1,
-        });
-      }
-    });
+    if (srcState.fallbackIndex > srcList.length - 1) {
+      return;
+    }
+    if (srcState.src.includes('.webp')) {
+      const checkPng = structuredClone(srcState);
+      checkPng.src = checkPng.src.replace('.webp', '.png');
+      setSrcState(checkPng);
+    } else {
+      setSrcState({
+        src: srcList[srcState.fallbackIndex],
+        fallbackIndex: srcState.fallbackIndex + 1,
+      });
+    }
   };
 
   useEffect(() => {
@@ -48,16 +43,7 @@ const ReactImage = ({ srcList, className, alt, w, h }: PropsInterface) => {
     }
   }, [srcState.src]);
 
-  return isPending ? (
-    <img
-      src={spinner}
-      alt="loadingSpinner"
-      width={w}
-      height={h}
-      draggable={false}
-      className={`loading-spinner ${className}`}
-    />
-  ) : (
+  return (
     <img
       src={srcState.src}
       draggable={false}

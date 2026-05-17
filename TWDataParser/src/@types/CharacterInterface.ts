@@ -1,4 +1,6 @@
-interface StatEffectInterface {
+import type { ItemInterface } from './ItemInterface.ts';
+
+export interface StatEffectInterface {
   value: number;
   stat: string;
   how: string;
@@ -7,14 +9,14 @@ interface StatEffectInterface {
   sort_order?: number;
 }
 
-interface AttributeInterface {
+export interface AttributeInterface {
   key: string;
   description: string;
   bullet_text: string;
   icon: string;
 }
 
-interface PhaseInterface {
+export interface PhaseInterface {
   icon: string;
   order: number;
   target_enemies?: boolean;
@@ -49,7 +51,7 @@ interface PhaseInterface {
   attributes?: Array<AttributeInterface>;
 }
 
-interface VortexInterface {
+export interface VortexInterface {
   vortex_key: string;
   duration: number;
   damage: number;
@@ -65,7 +67,7 @@ interface VortexInterface {
   contact_effect?: PhaseInterface;
 }
 
-interface ProjectileExplosionInterface {
+export interface ProjectileExplosionInterface {
   key: string;
   detonation_radius: number;
   detonation_damage: number;
@@ -76,7 +78,7 @@ interface ProjectileExplosionInterface {
   contact_phase_effect?: PhaseInterface;
 }
 
-interface ProjectileInterface {
+export interface ProjectileInterface {
   key: string;
   projectile_number?: number;
   damage: number;
@@ -96,7 +98,7 @@ interface ProjectileInterface {
   spawned_vortex?: VortexInterface;
 }
 
-interface ProjectileBombardmentInterface {
+export interface ProjectileBombardmentInterface {
   bombardment_key: string;
   num_projectiles?: number;
   start_time: number;
@@ -105,14 +107,14 @@ interface ProjectileBombardmentInterface {
   projectile_type: ProjectileInterface;
 }
 
-interface UiEffectInterface {
+export interface UiEffectInterface {
   key: string;
   sort_order?: number;
   localised_text: string;
   effect_state?: string;
 }
 
-interface AbilityInterface {
+export interface AbilityInterface {
   effect: string;
   bonus_value_id: string;
   unit_ability: {
@@ -154,7 +156,7 @@ interface AbilityInterface {
   };
 }
 
-interface EffectInterface {
+export interface EffectInterface {
   key: string;
   description: string;
   icon: string;
@@ -167,7 +169,7 @@ interface EffectInterface {
   related_unit_cards_PARSER_ONLY?: Set<string>;
 }
 
-interface FactionEffectsInterface {
+export interface FactionEffectsInterface {
   effects: Array<EffectInterface>;
   key: string;
   localised_description: string;
@@ -176,28 +178,7 @@ interface FactionEffectsInterface {
   related_unit_cards?: Array<string>;
 }
 
-interface ItemSetInterface {
-  key: string;
-  name: string;
-  description: string;
-  contains?: Array<{ icon: string; name: string }>;
-  effects?: Array<EffectInterface>;
-  related_unit_cards?: Array<string>;
-}
-
-interface ItemInterface {
-  key: string;
-  character_skill?: string;
-  effects?: Array<EffectInterface>;
-  onscreen_name: string;
-  colour_text: string;
-  unlocked_at_rank?: number;
-  ui_icon: string;
-  item_set?: ItemSetInterface;
-  related_unit_cards?: Array<string>;
-}
-
-interface SkillLevelInterface {
+export interface SkillLevelInterface {
   unlocked_at_rank?: number;
   auto_unlock_at_rank?: number;
   blocks_skill_node_keys?: Array<string>;
@@ -206,7 +187,7 @@ interface SkillLevelInterface {
   related_unit_cards?: Array<string>;
 }
 
-interface SkillInterface {
+export interface SkillInterface {
   key: string;
   subculture?: string;
   faction?: string;
@@ -228,7 +209,7 @@ interface SkillInterface {
   levels?: Array<SkillLevelInterface>;
 }
 
-interface UnitStatsInterface {
+export interface UnitStatsInterface {
   run_speed: number;
   fly_speed?: number;
   mass: number;
@@ -273,15 +254,15 @@ interface UnitStatsInterface {
   abilities?: Array<AbilityInterface>;
 }
 
-interface AltFactionNodeSetsInterface {
+export interface AltFactionNodeSetsInterface {
   [key: string]: { factionName: string; nodes: Array<SkillInterface> };
 }
 
-interface StartPosTraitInterface {
+export interface StartPosTraitInterface {
   [key: string]: { name: string; campaign: string; faction: string; trait: SkillInterface };
 }
 
-interface CharacterInterface {
+export interface CharacterInterface {
   key: string;
   skillTree: Array<Array<SkillInterface>>;
   unitStats: UnitStatsInterface;
@@ -291,25 +272,3 @@ interface CharacterInterface {
   altFactionNodeSets?: AltFactionNodeSetsInterface;
   startPosTraits?: StartPosTraitInterface;
 }
-
-export type {
-  EffectInterface,
-  StatEffectInterface,
-  AttributeInterface,
-  PhaseInterface,
-  VortexInterface,
-  ProjectileBombardmentInterface,
-  ProjectileExplosionInterface,
-  ProjectileInterface,
-  UiEffectInterface,
-  AbilityInterface,
-  FactionEffectsInterface,
-  ItemInterface,
-  SkillLevelInterface,
-  SkillInterface,
-  UnitStatsInterface,
-  AltFactionNodeSetsInterface,
-  CharacterInterface,
-  StartPosTraitInterface,
-  ItemSetInterface,
-};

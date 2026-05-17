@@ -1,16 +1,17 @@
-import type { GlobalDataInterface, RefKey, TableRecord } from '../@types/GlobalDataInterface.ts';
-import type { ItemInterface, CharacterInterface } from '../@types/CharacterInterface.ts';
 import findImage from '../utils/findImage.ts';
+import { subcultureMap } from '../lists/cultureMaps.ts';
+import addCharacterListReference from '../utils/addCharacterListReference.ts';
+import { Table } from '../generateTables.ts';
 import outputAgent from './outputAgent.ts';
 import processEffect from './processEffect.ts';
 import processNodeSet from './processNodeSet.ts';
-import subcultureMap from '../lists/subcultureMap.ts';
-import type { CharacterListInterface } from '../@types/CharacterListInterface.ts';
 import processAncillary from './processAncillary.ts';
 import processUnitStats from './processUnitStats.ts';
-import addCharacterListReference from '../utils/addCharacterListReference.ts';
 import processStartPosTraits from './processStartPosTraits.ts';
-import { Table } from '../generateTables.ts';
+import type { CharacterListInterface } from '../@types/CharacterListInterface.ts';
+import type { CharacterInterface } from '../@types/CharacterInterface.ts';
+import type { GlobalDataInterface, RefKey, TableRecord } from '../@types/GlobalDataInterface.ts';
+import type { ItemInterface } from '../@types/ItemInterface.ts';
 
 const processAgent = (
   folder: string,
@@ -70,8 +71,7 @@ const processAgent = (
   agent.foreignRefs?.ancillaries_included_agent_subtypes?.forEach((ancillaryAgent) => {
     if (
       ancillaryAgent?.localRefs?.ancillaries?.category !== undefined &&
-      ancillaryAgent?.localRefs?.ancillaries?.category !== 'mount' &&
-      ancillaryAgent?.localRefs?.ancillaries?.transferrable !== true
+      ancillaryAgent?.localRefs?.ancillaries?.category !== 'mount'
     ) {
       const findItem = unfilteredItems.find(
         (unfItem) => unfItem.key === ancillaryAgent?.localRefs?.ancillaries?.localRefs?.ancillary_info?.ancillary,

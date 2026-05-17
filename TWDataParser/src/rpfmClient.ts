@@ -1,4 +1,3 @@
-import * as CustomRpfmTypes from './@types/CustomRpfmTypes.ts';
 import type {
   Command,
   ContainerInfo,
@@ -7,13 +6,14 @@ import type {
   DB,
   Definition,
   Field,
+  GitResponse,
   Loc,
-  Message,
+  PortraitSettings,
   RFileInfo,
 } from './@types/rpfm_ipc_protocol.ts';
 
 export default class RpfmClient {
-  private ws: WebSocket;
+  private ws!: WebSocket;
   private nextId = 1;
   private pending = new Map<
     number,
@@ -25,6 +25,8 @@ export default class RpfmClient {
     }
   >();
   public sessionId: number | null = null;
+  private packKey!: string; // Server can handle multiple open packs, we only ever care about a single one.
+  private definitionMap: Map<string, Definition> = new Map(); // Maps table name (unit_abilities) to the highest definition version used (42)
 
   constructor() {}
 
@@ -34,9 +36,9 @@ export default class RpfmClient {
         console.error('WS Already Initialized');
         return reject();
       }
-      this.ws = new WebSocket(process.env.RPFM_SERVER_URL) as unknown as WebSocket;
+      this.ws = new WebSocket(process.env.RPFM_SERVER_URL as string);
       this.ws.onmessage = (event) => {
-        const msg: Message<unknown> = JSON.parse(event.data);
+        const msg = JSON.parse(event.data);
 
         // Handle SessionConnected (unsolicited, id=0)
         if (typeof msg.data === 'object' && 'SessionConnected' in msg.data) {
@@ -59,10 +61,10 @@ export default class RpfmClient {
     });
   }
 
-  send(command: Command): Promise<unknown> {
+  send(command: Command): Promise<any> {
     return new Promise((resolve, reject) => {
       const id = this.nextId++;
-      const callStack = new Error().stack;
+      const callStack = new Error().stack as string;
       const commandString = JSON.stringify(command);
       this.pending.set(id, { resolve, reject, callStack, command: commandString });
       this.ws.send(JSON.stringify({ id, data: command }));
@@ -75,14 +77,14 @@ export default class RpfmClient {
   }
 
   async updateSchemas(): Promise<string> {
-    const checkResp: { APIResponseGit?: 'NewUpdate' | 'NoUpdate' } = await this.send('CheckSchemaUpdates');
+    const checkResp: { APIResponseGit: GitResponse } = await this.send('CheckSchemaUpdates');
     if (checkResp.APIResponseGit !== 'NewUpdate') {
       return 'No Schema Update';
     }
 
-    const updateResp: string | { Error?: string } = await this.send('UpdateSchemas');
-    if (updateResp.Error !== undefined) {
-      return updateResp.Error;
+    const updateResp: string = await this.send('UpdateSchemas');
+    if (updateResp !== 'Success') {
+      throw `Schemas failed to update: ${updateResp}`;
     } else {
       return 'Schema Updated';
     }
@@ -99,8 +101,9 @@ export default class RpfmClient {
   }
 
   async openPacks(paths: string[]): Promise<ContainerInfo> {
-    const resp = (await this.send({ OpenPackFiles: paths })) as { ContainerInfo: ContainerInfo };
-    return resp.ContainerInfo;
+    const resp = (await this.send({ OpenPackFiles: paths })) as { StringContainerInfo: [string, ContainerInfo] };
+    this.packKey = resp.StringContainerInfo[0];
+    return resp.StringContainerInfo[1];
   }
 
   async extractFiles(
@@ -109,14 +112,14 @@ export default class RpfmClient {
     asTsv = false,
   ): Promise<[string, string[]]> {
     // @ts-expect-error ts(2322) Dont need to fill out every datasource, can just send the datasources we actually want files from
-    const resp = (await this.send({ ExtractPackedFiles: [paths, destPath, asTsv] })) as {
+    const resp = (await this.send({ ExtractPackedFiles: [this.packKey, paths, destPath, asTsv] })) as {
       StringVecPathBuf: [string, string[]];
     };
     return resp.StringVecPathBuf;
   }
 
   async decodeFile(path: string) {
-    const resp = await this.send({ DecodePackedFile: [path, 'PackFile'] });
+    const resp = await this.send({ DecodePackedFile: [this.packKey, path, 'PackFile'] });
     return resp;
   }
 
@@ -124,19 +127,38 @@ export default class RpfmClient {
     if (!tableName.endsWith('_tables')) {
       tableName += '_tables';
     }
-    const resp = (await this.send({ GetTablesByTableName: tableName })) as { VecString: Array<string> };
+    const resp = (await this.send({ GetTablesByTableName: [this.packKey, tableName] })) as { VecString: Array<string> };
     return resp.VecString;
   }
 
   async decodeDbTable(tablePath: string) {
     const resp = (await this.decodeFile(tablePath)) as { DBRFileInfo: [DB, RFileInfo] };
-    return resp.DBRFileInfo[0].table;
+    const respTable = resp.DBRFileInfo[0].table;
+    const respTableVersion = respTable.definition.version;
+    const tableName = respTable.table_name;
+    const storedTableVersion = this.definitionMap.get(tableName)?.version;
+
+    if (storedTableVersion === undefined) {
+      this.definitionMap.set(tableName, respTable.definition);
+    } else if (storedTableVersion < respTableVersion) {
+      this.definitionMap.set(tableName, respTable.definition);
+    }
+
+    return respTable;
   }
 
   async getTableDefinition(tableName: string): Promise<Definition> {
     if (!tableName.endsWith('_tables')) {
       tableName += '_tables';
     }
+
+    // If we already decoded the table grab the definition from the map.
+    const storedTable = this.definitionMap.get(tableName);
+    if (storedTable !== undefined) {
+      return storedTable;
+    }
+
+    // Else fallback to the highest version definition (not perfect, some vanilla tables have versions in schema, but use 0 z.z)
     const resp = (await this.send({ DefinitionsByTableName: tableName })) as {
       VecDefinition: Array<Definition>;
     };
@@ -152,6 +174,7 @@ export default class RpfmClient {
         highestVersionIndex = index;
       }
     });
+
     return resp.VecDefinition[highestVersionIndex];
   }
 
@@ -173,7 +196,7 @@ export default class RpfmClient {
 
   async decodePortraitBin(binPath: string) {
     const resp = (await this.decodeFile(binPath)) as {
-      PortraitSettingsRFileInfo: [CustomRpfmTypes.PortraitSettings, RFileInfo];
+      PortraitSettingsRFileInfo: [PortraitSettings, RFileInfo];
     };
     return resp.PortraitSettingsRFileInfo[0];
   }
@@ -181,5 +204,12 @@ export default class RpfmClient {
   async getProcessedDefinition(definition: Definition) {
     const resp = (await this.send({ FieldsProcessed: definition })) as { VecField: Array<Field> };
     return resp.VecField;
+  }
+
+  async getFilePathsFromPath(searchPath: string) {
+    const resp = (await this.send({ GetPackedFilesNamesStartingWitPathFromAllSources: { Folder: searchPath } })) as {
+      HashMapDataSourceHashSetContainerPath: Record<DataSource, ContainerPath[]>;
+    };
+    return resp.HashMapDataSourceHashSetContainerPath;
   }
 }

@@ -10,4 +10,8 @@ yarn parser:build
 
 yarn planner:dev
 yarn planner:build
-yarn planner:test
+
+## TWPData
+
+Linked as a submodule in the repo, use below to update
+yarn git:submodule

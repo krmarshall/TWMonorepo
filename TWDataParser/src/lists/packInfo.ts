@@ -14,6 +14,7 @@ interface ModPackInfoInterface {
 }
 
 export const modPackInfo: ModPackInfoInterface = {
+  // Skill Mods
   mixu3: [
     { pack: 'ab_mixu_legendary_lords', id: 2802810577, name: "Mixu's Legendary Lords" },
     { pack: 'ab_mixu_mousillon', id: 2985441419, name: "Mixu's Mousillon" },
@@ -66,4 +67,7 @@ export const modPackInfo: ModPackInfoInterface = {
     { pack: '!ak_teb3', id: 2927296206 },
     { pack: 'inq_lol_hero', id: 2931087074 },
   ],
+
+  // Item Mods
+  s5a3: [{ pack: 'stompies_new_artefacts', id: 2790444477 }],
 };
