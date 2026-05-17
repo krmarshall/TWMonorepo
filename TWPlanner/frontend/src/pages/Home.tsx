@@ -41,6 +41,12 @@ const Home = () => {
 
   useEffect(() => {
     document.title = 'Total Warhammer Planner';
+    document
+      .querySelector('meta[name="description"]')
+      ?.setAttribute(
+        'content',
+        'Explore and Share Skill Trees for Lords and Heroes in Total War Warhammer 2/3 and Various Mods.',
+      );
   }, []);
 
   useEffect(() => {

@@ -22,7 +22,7 @@ import nodeSetMap from '../data/characters/nodeSetMap.json';
 
 const Planner = () => {
   const { state, dispatch } = useContext(AppContext);
-  const { characterData } = state;
+  const { characterData, selectedMod, selectedFaction } = state;
   const { mod, faction, character, code } = useParams();
   const { isMobile } = useBulkMediaQueries();
 
@@ -136,6 +136,12 @@ const Planner = () => {
 
   useEffect(() => {
     document.title = `TWP - ${characterName}`;
+    document
+      .querySelector('meta[name="description"]')
+      ?.setAttribute(
+        'content',
+        `Explore and Share the Skills, Items, Stats and More for ${characterName} of the ${gameData[selectedMod].factions[selectedFaction]} in Total War Warhammer ${gameData[selectedMod]?.text}`,
+      );
   }, []);
 
   const mobileTabButtonClass =

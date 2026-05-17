@@ -37,7 +37,13 @@ const Tech = () => {
   }, [techData]);
 
   useEffect(() => {
-    document.title = `TWP - ${techGameData[selectedModTech].techTrees[techTree as string].name}`;
+    document.title = `TWP - ${techGameData[selectedModTech].techTrees[techTree as string].name} Tech Tree`;
+    document
+      .querySelector('meta[name="description"]')
+      ?.setAttribute(
+        'content',
+        `Explore the Technology Tree of ${techGameData[selectedModTech].techTrees[techTree as string].name} in Total War Warhammer ${techGameData[selectedModTech]?.text}`,
+      );
   }, []);
   return (
     <div className="w-full h-full mt-1 flex flex-col rounded-md p-2 overflow-y-hidden overflow-x-hidden">
