@@ -477,5 +477,12 @@ const vanillaCharacters: { [key: string]: string } = {
   wh3_dlc27_chs_sorcerer_lord_slaanesh_msla: 'wh3_dlc27_chs_sorcerer_lord_slaanesh_msla',
   wh3_dlc27_sla_styrkaar_the_sortsvinaer: 'wh3_dlc27_sla_styrkaar_the_sortsvinaer',
   wh3_dlc27_chs_exalted_hero_msla: 'wh3_dlc27_chs_exalted_hero_msla',
+  wh3_cp1_skill_node_set_cth_bhashiva: 'wh3_cp1_skill_node_set_cth_bhashiva',
+  wh3_cp1_skill_node_set_cth_sawai: 'wh3_cp1_skill_node_set_cth_sawai',
+  wh3_cp1_skill_node_set_cth_sawai_caravan: 'wh3_cp1_skill_node_set_cth_sawai_caravan',
+  wh3_cp1_skill_node_set_cth_taoyan_the_merciless: 'wh3_cp1_skill_node_set_cth_taoyan_the_merciless',
+  wh3_cp1_skill_node_set_cth_clawspeaker_beasts: 'wh3_cp1_skill_node_set_cth_clawspeaker_beasts',
+  wh3_cp1_skill_node_set_cth_clawspeaker_life: 'wh3_cp1_skill_node_set_cth_clawspeaker_life',
+  wh3_cp1_skill_node_set_cth_clawspeaker_shadows: 'wh3_cp1_skill_node_set_cth_clawspeaker_shadows',
 };
 export default vanillaCharacters;
