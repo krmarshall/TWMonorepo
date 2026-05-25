@@ -489,4 +489,8 @@ const hardcodeSpellLoreData: { [nodeSetKey: string]: SpellLoresT } = {
   wolftribe_skill_node_set_alfkael: SpellLores.metal,
   hkrul_skill_node_set_kammler: SpellLores.tzeentch,
   skill_node_set_hkrul_usta: SpellLores.mixed,
+  cst_agent_cha_selene_moonwhimper: SpellLores.mixed,
+  cou_tze_drakenhof_templar_LH_skillset: SpellLores.mixed,
+  cou_sla_seneschal_dame_LH_skillset: SpellLores.mixed,
+  cou_nur_depth_guard_LH_skillset: SpellLores.mixed,
 };

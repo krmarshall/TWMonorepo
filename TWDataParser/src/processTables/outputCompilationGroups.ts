@@ -22,7 +22,10 @@ const outputCompilationGroups = async (
     const rpfmClient = new RpfmClient();
     await rpfmClient.init();
     await rpfmClient.setGame(game, true);
-    compGroups.mods.push(modInfo.name);
+
+    if (!compGroups.mods.includes(modInfo.name)) {
+      compGroups.mods.push(modInfo.name);
+    }
     const packPath = packPaths.find((path) => path.includes(modInfo.pack));
     await rpfmClient.openPacks([packPath as string]);
     const subTablePaths = await rpfmClient.getTablePathsByTableName('character_skill_node_sets_tables');

@@ -37,6 +37,8 @@ export const modPackInfo: ModPackInfoInterface = {
     { pack: 'scm_skaven_clans', id: 3318719948, name: 'Skaven Clans' }, // { pack: 'str_skaven_clans', id: 2986543735, name: 'Skaven Clans' }
     { pack: '!scm_marienburg', id: 3030996759, name: 'Marienburg' },
     { pack: '!!!!!!Champions_of_undeath_merged_fun_tyme', id: 3022054734, name: 'Champions of Undeath' },
+    { pack: '!!!cou_dick_half_mast', id: 3501906896, name: 'Champions of Undeath' },
+    { pack: '!!!cou_blood_knight_heretics_live_build', id: 3357763311, name: 'Champions of Undeath' },
     { pack: 'jade_vamp_pol', id: 2880515805, name: 'Jade Blooded Vampires' },
     { pack: 'jade_vamp_pol_IotM', id: 3032432016, name: 'Jade Blooded Vampires' },
     { pack: 'AAA_dynasty_of_the_damned', id: 2991431203, name: 'Dynasty of the Damned' },
