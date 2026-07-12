@@ -55,6 +55,10 @@ const processUnitStats = (folder: string, globalData: GlobalDataInterface, mainU
       meleeWeapon.localRefs?.special_ability_phases,
     );
   }
+  if (meleeWeapon.localRefs?.special_ability_contact_phase_groups !== undefined) {
+    // Schemas dont link the tables currently?
+    // special_ability_phases Links also seem broken currently
+  }
 
   if (missileWeapon !== undefined) {
     returnStats.projectile = processProjectile(folder, globalData, missileWeapon.localRefs?.projectiles as TableRecord);
