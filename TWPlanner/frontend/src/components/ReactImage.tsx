@@ -29,6 +29,10 @@ const ReactImage = ({ srcList, className, alt, w, h }: PropsInterface) => {
   };
 
   useEffect(() => {
+    if (srcState.src === '/portraits/undefined') {
+      errorHandler();
+    }
+
     if (
       (srcState.src?.includes('/battle_ui/ability_icons/') ||
         srcState.src?.includes('/campaign_ui/ancillaries/') ||
