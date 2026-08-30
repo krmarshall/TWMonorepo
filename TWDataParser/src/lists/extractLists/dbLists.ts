@@ -125,7 +125,7 @@ const v3DbList = [
   'unit_lists',
   'unit_to_unit_list_junctions',
   'effect_bonus_value_unit_record_junctions',
-  'special_ability_contact_phase_groups',
+  // 'special_ability_contact_phase_groups', Added in 8.1, removed in 8.1.1?
 
   // Tech
   // Table empty as of TW3 6.0

@@ -151,6 +151,10 @@ export default class Extractor {
         if (entry.id.match(/0[2-9]$|[1-9][1-9]$/)) {
           return;
         }
+        if (entry.variants[0] === undefined) {
+          log(`Missing Portrait Variant: ${this.folder} ${entry.id}`, 'yellow');
+          return;
+        }
         const imgPath = entry.variants[0].file_diffuse.toLowerCase();
         this.globalData.portraitPaths[this.folder][entry.id] = imgPath;
       });

@@ -55,10 +55,10 @@ const processProjectile = (folder: string, globalData: GlobalDataInterface, proj
       projectile.localRefs?.special_ability_phases,
     );
   }
-  if (projectile.localRefs?.special_ability_contact_phase_groups !== undefined) {
-    // Schemas dont link the tables currently?
-    // special_ability_phases Links also seem broken currently
-  }
+  // if (projectile.localRefs?.special_ability_contact_phase_groups !== undefined) {
+  // Schemas dont link the tables currently?
+  // special_ability_phases Links also seem broken currently
+  // }
 
   // spawned_vortex
   if (projectile.localRefs?.battle_vortexs !== undefined) {
