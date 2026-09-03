@@ -134,6 +134,19 @@ const ignoreAgents: Array<{ agent: string; game?: string; subculture?: string; f
   // Lege3 Disabled
   { agent: 'disabled_ludwig_von_uberdorf_agent_subtype', game: 'ALL' },
 
+  // Lege3 Deprecated
+  { agent: 'str_changeling', game: 'ALL' },
+  { agent: 'str_skarr', game: 'ALL' },
+  { agent: 'str_skulltaker', game: 'ALL' },
+  { agent: 'frob_gorbad_ironclaw', game: 'ALL' },
+  { agent: 'str_naryaska', game: 'ALL' },
+  { agent: 'str_styrkaar', game: 'ALL' },
+  { agent: 'str_masque', game: 'ALL' },
+  { agent: 'str_scyla', game: 'ALL' },
+
+  // LCCP Deprecated
+  { agent: 'hkrul_arbaal', game: 'ALL' },
+
   // Champions of Undeath
   { agent: 'bm_abhorash_2hp', game: '3', subculture: 'wh_main_sc_vmp_vampire_counts' },
   { agent: 'vmp_teb_camp_commandant', game: '3', subculture: 'wh2_dlc11_sc_cst_vampire_coast' },
@@ -292,7 +305,7 @@ const addAgents = [
   { agent: 'grn_gorfang_rotgut', subculture: 'wh_main_sc_grn_greenskins', game: '3' },
 
   { agent: 'hef_belannaer', subculture: 'wh2_main_sc_hef_high_elves', game: '3' },
-  { agent: 'hef_caradryan', subculture: 'wh2_main_sc_hef_high_elves', game: '3' },
+  // { agent: 'hef_caradryan', subculture: 'wh2_main_sc_hef_high_elves', game: '3' },
   { agent: 'hef_korhil', subculture: 'wh2_main_sc_hef_high_elves', game: '3' },
 
   { agent: 'lzd_chakax', subculture: 'wh2_main_sc_lzd_lizardmen', game: '3' },
@@ -333,7 +346,7 @@ const addAgents = [
   { agent: 'str_sven_hasselfriesian', subculture: 'wh_main_sc_dwf_dwarfs', game: '3' },
   { agent: 'str_brokk_ironpick', subculture: 'wh_main_sc_dwf_dwarfs', game: '3' },
   { agent: 'str_hag_queen_malida', subculture: 'wh2_main_sc_def_dark_elves', game: '3' },
-  { agent: 'frob_gorbad_ironclaw', subculture: 'wh_main_sc_grn_greenskins', game: '3' },
+  // { agent: 'frob_gorbad_ironclaw', subculture: 'wh_main_sc_grn_greenskins', game: '3' },
 
   // Mixu 3 Mousillon
   { agent: 'msl_mallobaude', subculture: 'mixu_vmp_mousillon_qb', game: '3' },
