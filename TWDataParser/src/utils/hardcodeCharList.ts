@@ -498,4 +498,8 @@ const hardcodeSpellLoreData: { [nodeSetKey: string]: SpellLoresT } = {
   motm_gusnag: SpellLores.mixed,
   um_ogr_plaguebelly_0: SpellLores.nurgle,
   motm_tainted_skill_node_set_ogr_firebelly: SpellLores.fire,
+  um_ogr_morg: SpellLores.fire,
+  um_ogr_golthog: SpellLores.mixed,
+  motm_frostmaw: SpellLores.ice,
+  um_ogr_rothnogg: SpellLores.mixed,
 };

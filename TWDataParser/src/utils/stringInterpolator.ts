@@ -95,6 +95,10 @@ const stringInterpolator = (string: string, loc: TableRecord): string => {
     if (element === null) {
       element = string.match(/\[\[\/col\]/);
     }
+    // SCM3 similar to above
+    if (element === null) {
+      element = string.match(/\[\[\/col/);
+    }
     // WH3 adds a bunch of col tags that arent closed by anything
     if (element === null) {
       element = string.match(/\[\[col:[a-zA-Z0-9_./ ]*\]\]/);
