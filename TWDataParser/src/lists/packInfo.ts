@@ -51,6 +51,7 @@ export const modPackInfo: ModPackInfoInterface = {
     { pack: 'froeb_dark_land_orcs', id: 2919542060, name: 'Dark Land Orcs' },
     // { pack: 'dead_cult_possessed_unit_V2', id: 2891621259, name: "Dead's Cult of the Possessed" },
     { pack: 'cth_yinyin_pol', id: 2989226363, name: 'RotJS: Yin-Yin, the Sea Dragon' },
+    { pack: '!!scm_motm', id: 3502513595, name: 'Might of the Maw' },
   ],
   cat3: [
     { pack: '!ak_teb3', id: 2927296206, name: "Cataph's Southern Realms (TEB)" },

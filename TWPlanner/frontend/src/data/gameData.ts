@@ -141,6 +141,7 @@ const gameData: { [key: string]: GameDataInterface } = {
       `Dark Land Orcs (${toParsedDateString(modTimestamps.scm3.froeb_dark_land_orcs)})`,
       // `Dead's Cult of the Possessed (${toParsedDateString(modTimestamps.scm3.dead_cult_possessed_unit_V2)})`,
       `RotJS : Yin-Yin, the Sea Dragon (${toParsedDateString(modTimestamps.scm3.cth_yinyin_pol)})`,
+      `Might of the Maw (${toParsedDateString(modTimestamps.scm3['!!scm_motm'])})`,
     ],
     workshopLink: 'https://steamcommunity.com/sharedfiles/filedetails/?id=2920115664',
   },
