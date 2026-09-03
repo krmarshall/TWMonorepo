@@ -97,6 +97,8 @@ const hardCodeNameData: { [nodeSetKey: string]: { name: string; priority?: boole
   rhox_torinubar_skill_node_set_hef_convoy: { name: 'Prince (Convoy)' },
   teb_merc_general_camp: { name: 'Mercenary General (Camp)' },
   hng_skill_node_set_hng_khan_gathering: { name: 'Noyan' },
+  motm_slaver_convoy_skill_node_set: { name: 'Slave Lord (Convoy)' },
+  motm_tainted_skill_node_set_ogr_tyrant_camp: { name: 'Tainted Tyrant (Camp)' },
 };
 
 export const hardcodePortraitData: { [nodeSetKey: string]: string } = {
@@ -493,4 +495,7 @@ const hardcodeSpellLoreData: { [nodeSetKey: string]: SpellLoresT } = {
   cou_tze_drakenhof_templar_LH_skillset: SpellLores.mixed,
   cou_sla_seneschal_dame_LH_skillset: SpellLores.mixed,
   cou_nur_depth_guard_LH_skillset: SpellLores.mixed,
+  motm_gusnag: SpellLores.mixed,
+  um_ogr_plaguebelly_0: SpellLores.nurgle,
+  motm_tainted_skill_node_set_ogr_firebelly: SpellLores.fire,
 };
