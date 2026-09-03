@@ -323,6 +323,8 @@ const addAgents = [
 
   { agent: 'ksl_rastiltin', subculture: 'wh3_main_sc_ksl_kislev', game: '3' },
 
+  { agent: 'sla_slaaulaan', subculture: 'wh3_main_sc_sla_slaanesh', game: '3' },
+
   // Lege 3
   { agent: 'str_rykarth', subculture: 'wh3_dlc23_sc_chd_chaos_dwarfs', game: '3' },
   { agent: 'str_byrrnoth_grundadrakk', subculture: 'wh_main_sc_dwf_dwarfs', game: '3' },
