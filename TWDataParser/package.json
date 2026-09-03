@@ -3,8 +3,8 @@
   "scripts": {
     "lint": "eslint ./src",
     "lintFix": "eslint ./src --fix",
-    "start": "set NODE_OPTIONS='--max-old-space-size=4096' && node ./src/index.ts",
-    "profile": "set NODE_OPTIONS='--max-old-space-size=4096' && node --prof ./src/index.ts",
+    "start": "set NODE_OPTIONS='--max-old-space-size=3072' && node ./src/index.ts",
+    "profile": "set NODE_OPTIONS='--max-old-space-size=3072' && node --prof ./src/index.ts",
     "typecheck": "tsc"
   },
   "type": "module",
