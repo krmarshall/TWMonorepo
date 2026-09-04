@@ -133,6 +133,7 @@ const ignoreAgents: Array<{ agent: string; game?: string; subculture?: string; f
 
   // Lege3 Disabled
   { agent: 'disabled_ludwig_von_uberdorf_agent_subtype', game: 'ALL' },
+  { agent: 'str_anethra', game: 'ALL' },
 
   // Lege3 Deprecated
   { agent: 'str_changeling', game: 'ALL' },
@@ -143,6 +144,7 @@ const ignoreAgents: Array<{ agent: string; game?: string; subculture?: string; f
   { agent: 'str_styrkaar', game: 'ALL' },
   { agent: 'str_masque', game: 'ALL' },
   { agent: 'str_scyla', game: 'ALL' },
+  { agent: 'str_scribes', game: 'ALL' },
 
   // LCCP Deprecated
   { agent: 'hkrul_arbaal', game: 'ALL' },
