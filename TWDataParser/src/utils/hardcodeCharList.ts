@@ -86,6 +86,7 @@ const hardCodeNameData: { [nodeSetKey: string]: { name: string; priority?: boole
   wh_main_skill_node_set_chs_lord_of_change: { name: 'Sarthorael the Everwatcher', priority: false },
   wh3_dlc23_skill_node_set_chd_lord_convoy_overseer: { name: 'Convoy Overseer' },
   wh3_cp1_skill_node_set_cth_sawai_caravan: { name: 'Tiger Warrior Sawai (Caravan)' },
+  wh3_dlc26_skill_node_set_ogr_tyrant_camp: { name: 'Tyrant (Camp)' },
 
   dread_traitor_tomb_king_nebwaneph: { name: 'Traitor King Nebwaneph' },
   dread_traitor_tomb_king_omanhan_iii: { name: 'Traitor King Omanhan III' },
