@@ -489,7 +489,7 @@ const hardcodeSpellLoreData: { [nodeSetKey: string]: SpellLoresT } = {
   hng_skill_node_set_hng_shaman_raging_sky: SpellLores.mixed,
   hng_skill_node_set_hng_shaman_chaos: SpellLores.mixed,
   skill_node_set_hkrul_yngve: SpellLores.mixed,
-  wolftribe_skill_node_set_alfkael: SpellLores.metal,
+  wolftribe_skill_node_set_alfkael: SpellLores.mixed,
   hkrul_skill_node_set_kammler: SpellLores.tzeentch,
   skill_node_set_hkrul_usta: SpellLores.mixed,
   cst_agent_cha_selene_moonwhimper: SpellLores.mixed,
@@ -503,4 +503,5 @@ const hardcodeSpellLoreData: { [nodeSetKey: string]: SpellLoresT } = {
   um_ogr_golthog: SpellLores.mixed,
   motm_frostmaw: SpellLores.ice,
   um_ogr_rothnogg: SpellLores.mixed,
+  rhox_baersonling_daemon_prince_tzeentch: SpellLores.mixed,
 };
