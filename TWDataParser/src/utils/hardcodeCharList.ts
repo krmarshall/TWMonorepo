@@ -87,6 +87,9 @@ const hardCodeNameData: { [nodeSetKey: string]: { name: string; priority?: boole
   wh3_dlc23_skill_node_set_chd_lord_convoy_overseer: { name: 'Convoy Overseer' },
   wh3_cp1_skill_node_set_cth_sawai_caravan: { name: 'Tiger Warrior Sawai (Caravan)' },
   wh3_dlc26_skill_node_set_ogr_tyrant_camp: { name: 'Tyrant (Camp)' },
+  wh3_dlc29_skv_node_set_schemer_master_assassin: { name: 'Master Assassin (Schemer)', priority: false },
+  wh3_dlc29_skv_node_set_schemer_warlock_master: { name: 'Warlock Master (Schemer)', priority: false },
+  wh3_dlc29_skv_node_set_schemer_warlord: { name: 'Warlord (Schemer)', priority: false },
 
   dread_traitor_tomb_king_nebwaneph: { name: 'Traitor King Nebwaneph' },
   dread_traitor_tomb_king_omanhan_iii: { name: 'Traitor King Omanhan III' },
@@ -312,6 +315,16 @@ const hardcodeSpellLoreData: { [nodeSetKey: string]: SpellLoresT } = {
   wh3_dlc29_skill_node_set_nag_lahmian_vampire: SpellLores.mixed,
   wh3_dlc29_skill_node_set_vmp_lahmian_vampire: SpellLores.mixed,
   wh3_dlc29_skill_node_set_nag_dieter_helsnicht: SpellLores.mixed,
+  wh3_dlc29_skill_node_set_nag_nagash: SpellLores.undeath,
+  wh3_dlc29_skill_node_set_vmp_neferata: SpellLores.mixed,
+  wh3_dlc29_skv_node_set_schemer_warlock_master: SpellLores.ruin,
+  wh3_dlc29_skill_node_set_skv_verminlord_corruptor: SpellLores.plague,
+  wh3_dlc29_skill_node_set_skv_verminlord_deceiver: SpellLores.stealth,
+  wh3_dlc29_skill_node_set_skv_verminlord_warbringer: SpellLores.mixed,
+  wh3_dlc29_skill_node_set_skv_verminlord_warpseer: SpellLores.ruin,
+  wh3_dlc29_skill_node_set_skv_skreech_verminking: SpellLores.mixed,
+  wh3_dlc29_skill_node_set_skv_thanquol: SpellLores.mixed,
+  wh3_dlc29_skill_node_set_vmp_walach_harkon: SpellLores.vampires,
 
   skill_node_set_brt_cha_lost: SpellLores.mixed,
   skill_node_set_grn_cha_savageboss: SpellLores.bigWagh,
@@ -511,6 +524,4 @@ const hardcodeSpellLoreData: { [nodeSetKey: string]: SpellLoresT } = {
   motm_frostmaw: SpellLores.ice,
   um_ogr_rothnogg: SpellLores.mixed,
   rhox_baersonling_daemon_prince_tzeentch: SpellLores.mixed,
-  wh3_dlc29_skill_node_set_nag_nagash: SpellLores.undeath,
-  wh3_dlc29_skill_node_set_vmp_neferata: SpellLores.mixed,
 };
