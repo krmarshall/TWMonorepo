@@ -19,6 +19,7 @@ const factions = {
   sla_slaanesh: 'Slaanesh',
   tmb_tomb_kings: 'Tomb Kings',
   tze_tzeentch: 'Tzeentch',
+  nag_undead_legions: 'Undead Legions',
   cst_vampire_coast: 'Vampire Coast',
   vmp_vampire_counts: 'Vampire Counts',
   chs_chaos: 'Warriors of Chaos',

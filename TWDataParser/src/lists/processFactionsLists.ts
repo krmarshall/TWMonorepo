@@ -117,12 +117,30 @@ const ignoreAgents: Array<{ agent: string; game?: string; subculture?: string; f
   { agent: 'wh3_main_tze_cult_magus', game: '3' },
 
   { agent: 'wh_main_chs_lord_of_change', game: '3', subculture: 'wh_main_sc_chs_chaos' },
+  { agent: 'wh3_dlc29_chs_glottkin', game: '3', subculture: 'wh3_main_sc_nur_nurgle' },
 
   { agent: 'wh3_dlc27_hef_dragonship_captain_01', game: '3', subculture: 'wh2_main_sc_hef_high_elves' },
   { agent: 'wh3_dlc27_hef_dragonship_captain_02', game: '3', subculture: 'wh2_main_sc_hef_high_elves' },
   { agent: 'wh3_dlc27_hef_dragonship_captain_03', game: '3', subculture: 'wh2_main_sc_hef_high_elves' },
   { agent: 'wh3_dlc27_hef_dragonship_captain_04', game: '3', subculture: 'wh2_main_sc_hef_high_elves' },
   { agent: 'wh3_dlc27_hef_dragonship_captain_05', game: '3', subculture: 'wh2_main_sc_hef_high_elves' },
+
+  // Archaon confeds most of the monogod faction lords so they have entries under warriors of chaos, technically different
+  // skill trees (blue lines and some top line stuff) but basically the same and pretty niche
+  { agent: 'wh3_dlc26_kho_arbaal_the_undefeated', game: '3', subculture: 'wh_main_sc_chs_chaos' },
+  { agent: 'wh3_dlc27_sla_dechala', game: '3', subculture: 'wh_main_sc_chs_chaos' },
+  { agent: 'wh3_dlc25_nur_epidemius', game: '3', subculture: 'wh_main_sc_chs_chaos' },
+  { agent: 'wh3_main_tze_kairos', game: '3', subculture: 'wh_main_sc_chs_chaos' },
+  { agent: 'wh3_main_nur_kugath', game: '3', subculture: 'wh_main_sc_chs_chaos' },
+  { agent: 'wh3_main_sla_nkari', game: '3', subculture: 'wh_main_sc_chs_chaos' },
+  { agent: 'wh3_main_kho_skarbrand', game: '3', subculture: 'wh_main_sc_chs_chaos' },
+  { agent: 'wh3_dlc26_kho_skulltaker', game: '3', subculture: 'wh_main_sc_chs_chaos' },
+  { agent: 'wh3_dlc25_nur_tamurkhan', game: '3', subculture: 'wh_main_sc_chs_chaos' },
+  { agent: 'wh3_dlc24_tze_the_changeling', game: '3', subculture: 'wh_main_sc_chs_chaos' },
+  { agent: 'wh3_dlc27_sla_masque_of_slaanesh', game: '3', subculture: 'wh_main_sc_chs_chaos' },
+
+  // Mixu3 Deprecated
+  { agent: 'vmp_dieter_helsnicht', game: 'ALL' },
 
   // Marienburg
   { agent: 'rhox_mar_mundvard_criminal', game: '3' },
@@ -145,13 +163,16 @@ const ignoreAgents: Array<{ agent: string; game?: string; subculture?: string; f
   { agent: 'str_masque', game: 'ALL' },
   { agent: 'str_scyla', game: 'ALL' },
   { agent: 'str_scribes', game: 'ALL' },
+  { agent: 'str_gutrot', game: 'ALL' },
 
   // LCCP Deprecated
   { agent: 'hkrul_arbaal', game: 'ALL' },
+  { agent: 'hkrul_orghotts', game: 'ALL' },
 
   // Champions of Undeath
   { agent: 'bm_abhorash_2hp', game: '3', subculture: 'wh_main_sc_vmp_vampire_counts' },
   { agent: 'vmp_teb_camp_commandant', game: '3', subculture: 'wh2_dlc11_sc_cst_vampire_coast' },
+  { agent: 'walach_harkon', game: 'ALL' },
 
   // Skaven Clans
   { agent: 'str_gangrous_stinking_thing_ritual', game: '3', subculture: 'wh2_main_sc_skv_skaven' },
@@ -193,6 +214,25 @@ const ignoreAgents: Array<{ agent: string; game?: string; subculture?: string; f
   { agent: 'teb_merc_captain', game: '3', folder: 'hol3' },
   { agent: 'teb_lorenzo_lupo', game: '3', folder: 'hol3' },
   { agent: 'teb_merc_general_camp', game: '3', folder: 'hol3' },
+];
+
+const ignoreNodeSets: Array<{ nodeSet: string; game?: string; subculture?: string }> = [
+  { nodeSet: 'wh3_dlc29_skill_node_set_nef_handmaiden', game: '3', subculture: 'wh_main_sc_vmp_vampire_counts' },
+  {
+    nodeSet: 'wh3_dlc29_skill_node_set_nef_handmaiden_imentet',
+    game: '3',
+    subculture: 'wh_main_sc_vmp_vampire_counts',
+  },
+  { nodeSet: 'wh3_dlc29_skill_node_set_nag_lahmian_vampire', game: '3', subculture: 'wh_main_sc_vmp_vampire_counts' },
+  { nodeSet: 'wh2_dlc11_skill_node_set_cst_mourngul', game: '3', subculture: 'wh_main_sc_vmp_vampire_counts' },
+  { nodeSet: 'wh3_dlc29_skill_node_set_nag_mourngul', game: '3', subculture: 'wh_main_sc_vmp_vampire_counts' },
+
+  { nodeSet: 'wh3_dlc29_skill_node_set_vmp_lahmian_vampire', game: '3', subculture: 'wh3_dlc29_sc_nag_undead_legions' },
+  { nodeSet: 'wh3_dlc29_skill_node_set_tmb_tomb_herald', game: '3', subculture: 'wh3_dlc29_sc_nag_undead_legions' },
+  { nodeSet: 'wh2_dlc11_skill_node_set_cst_mourngul', game: '3', subculture: 'wh3_dlc29_sc_nag_undead_legions' },
+  { nodeSet: 'wh3_dlc29_skill_node_set_vmp_mourngul', game: '3', subculture: 'wh3_dlc29_sc_nag_undead_legions' },
+
+  { nodeSet: 'wh3_dlc29_skill_node_set_nag_tomb_herald', game: '3', subculture: 'wh2_dlc09_sc_tmb_tomb_kings' },
 ];
 
 const remapFactions: { [key: string]: string } = {
@@ -547,6 +587,7 @@ export {
   ignoreSubcultures,
   ignoreFactions,
   ignoreAgents,
+  ignoreNodeSets,
   addAgents,
   remapFactions,
   skipVanillaAgentPrune,

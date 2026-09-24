@@ -23,6 +23,7 @@ import vampireCounts from './vampireCounts.webp';
 import warriorsOfChaos from './warriorsOfChaos.webp';
 import woodElves from './woodElves.webp';
 import chorfs from './chorfs.webp';
+import undeadLegions from './undeadLegions.webp';
 
 // Mod Factions
 import gnoblars from './gnoblars.webp';
@@ -49,6 +50,8 @@ import puppetsOfMisrule from './puppetsOfMisrule.webp';
 import krakaDrak from './krakaDrak.webp';
 import daughtersOfTheForest from './daughtersOfTheForest.webp';
 import theDeceivers from './theDeceivers.webp';
+import hostOfTripletsGlottkin from './hostOfTripletsGlottkin.webp';
+import sigvald from './sigvald.webp';
 
 const factionImages = {
   tmb_tomb_kings: tombKings,
@@ -75,6 +78,7 @@ const factionImages = {
   grn_greenskins: greenskins,
   vmp_vampire_counts: vampireCounts,
   chd_chaos_dwarfs: chorfs,
+  nag_undead_legions: undeadLegions,
 
   gnb_gnoblars: gnoblars,
   jbv_jade_vampires: jadeVampires,
@@ -99,6 +103,8 @@ const factionImages = {
   dwf_kraka_drak: krakaDrak,
   ksl_daughtersOfTheForest: daughtersOfTheForest,
   tze_theDeceivers: theDeceivers,
+  chs_sigvald: sigvald,
+  chs_glottkin: hostOfTripletsGlottkin,
 };
 
 export default factionImages;

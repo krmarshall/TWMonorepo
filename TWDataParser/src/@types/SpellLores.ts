@@ -31,6 +31,7 @@ const SpellLores = {
   'great maw': 'great maw',
   hashut: 'hashut',
   hag: 'hag',
+  undeath: 'undeath',
 } as const;
 
 type SpellLoresT = (typeof SpellLores)[keyof typeof SpellLores];

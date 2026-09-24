@@ -12,6 +12,7 @@ export const subcultureMap: Record<string, string> = {
   wh3_main_sc_kho_khorne: 'kho_khorne',
   wh3_main_sc_ksl_kislev: 'ksl_kislev',
   wh2_main_sc_lzd_lizardmen: 'lzd_lizardmen',
+  wh3_dlc29_sc_nag_undead_legions: 'nag_undead_legions',
   wh_dlc08_sc_nor_norsca: 'nor_norsca', // WH3
   wh_main_sc_nor_norsca: 'nor_norsca', // WH2
   wh3_main_sc_nur_nurgle: 'nur_nurgle',
@@ -54,6 +55,7 @@ export const cultureMap: Record<string, string> = {
   wh3_main_kho_khorne: 'kho_khorne',
   wh3_main_ksl_kislev: 'ksl_kislev',
   wh2_main_lzd_lizardmen: 'lzd_lizardmen',
+  wh3_dlc29_nag_undead_legions: 'nag_undead_legions',
   wh_dlc08_nor_norsca: 'nor_norsca', // WH3
   wh3_main_nur_nurgle: 'nur_nurgle',
   wh3_main_ogr_ogre_kingdoms: 'ogr_ogre_kingdoms',

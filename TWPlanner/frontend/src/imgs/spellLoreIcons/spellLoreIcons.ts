@@ -29,6 +29,7 @@ import slaanesh from './wh3_main_lore_passive_blissful_rapture.webp';
 import greatMaw from './wh3_main_lore_passive_bloodgruel.webp';
 import hashut from './wh3_dlc23_lore_passive_killing_fire.webp';
 import hag from './wh3_dlc24_lore_passive_fate_of_interlopers.webp';
+import undeath from './wh3_dlc29_lore_passive_raise_the_dead.webp';
 import mixed from './mixedBG.webp';
 
 const spellLoreIcons = {
@@ -134,6 +135,10 @@ const spellLoreIcons = {
   hashut: {
     image: hashut,
     shadow: 'drop-shadow(0.1rem 0.1rem 0.4rem #9e3722) drop-shadow(0.1rem 0.1rem 0.25rem #9e3722)',
+  },
+  undeath: {
+    image: undeath,
+    shadow: 'drop-shadow(0.1rem 0.1rem 0.4rem #379583) drop-shadow(0.1rem 0.1rem 0.25rem #379583)',
   },
   mixed: {
     image: mixed,

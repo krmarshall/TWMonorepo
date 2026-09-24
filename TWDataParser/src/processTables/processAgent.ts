@@ -2,6 +2,7 @@ import findImage from '../utils/findImage.ts';
 import { subcultureMap } from '../lists/cultureMaps.ts';
 import addCharacterListReference from '../utils/addCharacterListReference.ts';
 import { Table } from '../generateTables.ts';
+import { ignoreNodeSets } from '../lists/processFactionsLists.ts';
 import outputAgent from './outputAgent.ts';
 import processEffect from './processEffect.ts';
 import processNodeSet from './processNodeSet.ts';
@@ -106,6 +107,18 @@ const processAgent = (
       ) {
         return;
       }
+    }
+
+    const game = folder.includes('2') ? '2' : '3';
+    if (
+      ignoreNodeSets.some(
+        (ignoreNodeSet) =>
+          ignoreNodeSet.nodeSet === nodeSet.key &&
+          (ignoreNodeSet.game === 'ALL' || game === ignoreNodeSet.game) &&
+          (ignoreNodeSet.subculture === undefined || ignoreNodeSet.subculture === subcultureKey),
+      )
+    ) {
+      return;
     }
 
     addCharacterListReference(folder, globalData, agent, nodeSet, subcultureKey, characterList);

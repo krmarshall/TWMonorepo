@@ -145,6 +145,8 @@ export const hardcodePortraitData: { [nodeSetKey: string]: string } = {
   wh3_dlc25_dwf_lord_mikael_leadstrong: 'vanilla3/dwf_lord_campaign_01_0.webp',
   wh3_cp1_skill_node_set_cth_sawai: 'vanilla3/cth_sawai_campaign_01_0.webp',
   wh3_dlc26_skill_node_set_ogr_paymaster: 'vanilla3/ogr_paymaster_campaign_01_0.webp',
+  wh2_main_skill_node_set_vmp_wight_king: 'vanilla3/vmp_wight_king_sword_campaign_01_0.webp',
+  wh_main_skill_node_set_vmp_vampire: 'vanilla3/vmp_vampire_female_campaign_01_0.webp',
 
   Helgar_longplaits: 'lege3/helgar_longplaits.webp',
   skill_node_set_hkrul_erkstein: 'lege3/hkrul_erkstein.webp',
@@ -305,6 +307,11 @@ const hardcodeSpellLoreData: { [nodeSetKey: string]: SpellLoresT } = {
   wh3_main_skill_node_set_ogr_butcher_great_maw: SpellLores['great maw'],
   wh3_dlc26_skill_node_set_grn_savage_orc_great_shaman: SpellLores.bigWagh,
   wh_main_skill_node_set_chs_lord_of_change: SpellLores.metal,
+  wh3_dlc29_skill_node_set_cst_admiral_female_undeath: SpellLores.undeath,
+  wh3_dlc29_skill_node_set_cst_admiral_undeath: SpellLores.undeath,
+  wh3_dlc29_skill_node_set_nag_lahmian_vampire: SpellLores.mixed,
+  wh3_dlc29_skill_node_set_vmp_lahmian_vampire: SpellLores.mixed,
+  wh3_dlc29_skill_node_set_nag_dieter_helsnicht: SpellLores.mixed,
 
   skill_node_set_brt_cha_lost: SpellLores.mixed,
   skill_node_set_grn_cha_savageboss: SpellLores.bigWagh,
@@ -504,4 +511,6 @@ const hardcodeSpellLoreData: { [nodeSetKey: string]: SpellLoresT } = {
   motm_frostmaw: SpellLores.ice,
   um_ogr_rothnogg: SpellLores.mixed,
   rhox_baersonling_daemon_prince_tzeentch: SpellLores.mixed,
+  wh3_dlc29_skill_node_set_nag_nagash: SpellLores.undeath,
+  wh3_dlc29_skill_node_set_vmp_neferata: SpellLores.mixed,
 };

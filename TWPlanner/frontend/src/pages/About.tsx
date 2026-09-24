@@ -117,6 +117,7 @@ const About = () => {
           <li>Some poorly scaled skill icons depending on file path, mostly affects mods</li>
           <li>Mounts obtained as quest items do not have stats linked</li>
           <li>Faction Effects are not linked for WH2 Legendary Lords</li>
+          <li>Nagash&apos;s tech tree seems to be implemented differently</li>
         </ul>
 
         <div className="flex flex-row place-content-center mt-12">

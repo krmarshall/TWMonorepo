@@ -30,6 +30,8 @@ const vanilla3Techs = {
   chs_mil_azazel: { name: 'Ecstatic Legions (Azazel)', image: factionImages.chs_ecstatic_legions },
   chs_mil_belakor: { name: 'Shadow Legion (Belakor)', image: factionImages.chs_shadowLegion },
   chs_mil_festus: { name: 'Fecundites (Festus)', image: factionImages.chs_fecundites },
+  chs_mil_glottkin: { name: 'Host of Triplets (Glottkin)', image: factionImages.chs_glottkin },
+  chs_mil_sigvald: { name: 'Decadent Host (Sigvald)', image: factionImages.chs_sigvald },
   chs_mil_valkia: {
     name: 'Legion of the Gorequeen (Valkia)',
     image: factionImages.chs_legionOfTheGorequeen,
