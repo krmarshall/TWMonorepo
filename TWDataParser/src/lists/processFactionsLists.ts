@@ -227,6 +227,9 @@ const ignoreNodeSets: Array<{ nodeSet: string; game?: string; subculture?: strin
   { nodeSet: 'wh2_dlc11_skill_node_set_cst_mourngul', game: '3', subculture: 'wh_main_sc_vmp_vampire_counts' },
   { nodeSet: 'wh3_dlc29_skill_node_set_nag_mourngul', game: '3', subculture: 'wh_main_sc_vmp_vampire_counts' },
 
+  { nodeSet: 'wh3_dlc29_skill_node_set_nag_mourngul', game: '3', subculture: 'wh2_dlc11_sc_cst_vampire_coast' },
+  { nodeSet: 'wh3_dlc29_skill_node_set_vmp_mourngul', game: '3', subculture: 'wh2_dlc11_sc_cst_vampire_coast' },
+
   { nodeSet: 'wh3_dlc29_skill_node_set_vmp_lahmian_vampire', game: '3', subculture: 'wh3_dlc29_sc_nag_undead_legions' },
   { nodeSet: 'wh3_dlc29_skill_node_set_tmb_tomb_herald', game: '3', subculture: 'wh3_dlc29_sc_nag_undead_legions' },
   { nodeSet: 'wh2_dlc11_skill_node_set_cst_mourngul', game: '3', subculture: 'wh3_dlc29_sc_nag_undead_legions' },
@@ -300,6 +303,8 @@ const addAgents = [
   { agent: 'wh3_dlc25_neu_gotrek_hero', subculture: 'wh_main_sc_dwf_dwarfs', game: '3' },
   { agent: 'wh2_pro08_neu_felix', subculture: 'wh_main_sc_emp_empire', game: '3' },
   { agent: 'wh3_dlc25_neu_gotrek_hero', subculture: 'wh_main_sc_emp_empire', game: '3' },
+
+  { agent: 'wh3_dlc29_vmp_neferata', subculture: 'wh_main_sc_vmp_vampire_counts', game: '3' },
 
   // Mixu3 LL
   { agent: 'brt_adalhard', subculture: 'wh_main_sc_brt_bretonnia', game: '3' },
