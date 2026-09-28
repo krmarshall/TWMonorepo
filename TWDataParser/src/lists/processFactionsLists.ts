@@ -236,6 +236,8 @@ const ignoreNodeSets: Array<{ nodeSet: string; game?: string; subculture?: strin
   { nodeSet: 'wh3_dlc29_skill_node_set_vmp_mourngul', game: '3', subculture: 'wh3_dlc29_sc_nag_undead_legions' },
 
   { nodeSet: 'wh3_dlc29_skill_node_set_nag_tomb_herald', game: '3', subculture: 'wh2_dlc09_sc_tmb_tomb_kings' },
+
+  { nodeSet: 'wh_main_skill_node_set_vmp_lord', game: '3', subculture: 'wh_main_sc_vmp_vampire_counts' },
 ];
 
 const remapFactions: { [key: string]: string } = {
