@@ -109,7 +109,7 @@ const addSortedSubTablesToGlobalData = (
 const addLocsToGlobalData = async (folder: string, globalData: GlobalDataInterface, rpfmClient: RpfmClient) => {
   // Container for each parsed loc path eg. { 'ancillaries__': { 'ancillary_example_key': 'example_text', 'ancillary_example_key_another': 'example_text' } }
   const parsedLocTables: { [key: string]: Array<{ [key: string]: string }> } = {};
-  const locPaths = await rpfmClient.getLocPaths();
+  const locPaths = await rpfmClient.listFiles('text/', ['Loc']);
   const locPromises = locPaths.map(async (locPath) => {
     if (locPath === undefined) {
       return;

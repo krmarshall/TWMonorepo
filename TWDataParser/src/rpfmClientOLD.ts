@@ -1,0 +1,215 @@
+import type {
+  Command,
+  ContainerInfo,
+  ContainerPath,
+  DataSource,
+  DB,
+  Definition,
+  Field,
+  GitResponse,
+  Loc,
+  PortraitSettings,
+  RFileInfo,
+} from './@types/rpfm_ipc_protocol.ts';
+
+export default class RpfmClient {
+  private ws!: WebSocket;
+  private nextId = 1;
+  private pending = new Map<
+    number,
+    {
+      resolve: (resp: unknown) => void;
+      reject: (err: Error) => void;
+      callStack: string;
+      command: string;
+    }
+  >();
+  public sessionId: number | null = null;
+  private packKey!: string; // Server can handle multiple open packs, we only ever care about a single one.
+  private definitionMap: Map<string, Definition> = new Map(); // Maps table name (unit_abilities) to the highest definition version used (42)
+
+  constructor() {}
+
+  init(): Promise<void> {
+    return new Promise((resolve, reject) => {
+      if (this.ws !== undefined) {
+        console.error('WS Already Initialized');
+        return reject();
+      }
+      this.ws = new WebSocket(process.env.RPFM_SERVER_URL as string);
+      this.ws.onmessage = (event) => {
+        const msg = JSON.parse(event.data);
+
+        // Handle SessionConnected (unsolicited, id=0)
+        if (typeof msg.data === 'object' && 'SessionConnected' in msg.data) {
+          this.sessionId = msg.data.SessionConnected as number;
+          return resolve();
+        }
+
+        const handler = this.pending.get(msg.id);
+        if (handler) {
+          this.pending.delete(msg.id);
+          if (typeof msg.data === 'object' && 'Error' in msg.data) {
+            handler.reject(
+              new Error(`${msg.data.Error as string}\nCommand: ${handler.command}\nCall Stack: ${handler.callStack}`),
+            );
+          } else {
+            handler.resolve(msg.data);
+          }
+        }
+      };
+    });
+  }
+
+  send(command: Command): Promise<any> {
+    return new Promise((resolve, reject) => {
+      const id = this.nextId++;
+      const callStack = new Error().stack as string;
+      const commandString = JSON.stringify(command);
+      this.pending.set(id, { resolve, reject, callStack, command: commandString });
+      this.ws.send(JSON.stringify({ id, data: command }));
+    });
+  }
+
+  async disconnect(): Promise<void> {
+    await this.send('ClientDisconnecting');
+    this.ws.close();
+  }
+
+  async updateSchemas(): Promise<string> {
+    const checkResp: { APIResponseGit: GitResponse } = await this.send('CheckSchemaUpdates');
+    if (checkResp.APIResponseGit !== 'NewUpdate') {
+      return 'No Schema Update';
+    }
+
+    const updateResp: string = await this.send('UpdateSchemas');
+    if (updateResp !== 'Success') {
+      throw `Schemas failed to update: ${updateResp}`;
+    } else {
+      return 'Schema Updated';
+    }
+  }
+
+  async setGame(gameKey: string, rebuildDeps: boolean): Promise<unknown> {
+    const resp = (await this.send({ SetGameSelected: [gameKey, rebuildDeps] })) as
+      | { CompressionFormatDependenciesInfo: Array<unknown> }
+      | { Error: string };
+    if ('Error' in resp) {
+      throw resp.Error;
+    }
+    return resp;
+  }
+
+  async openPacks(paths: string[]): Promise<ContainerInfo> {
+    const resp = (await this.send({ OpenPackFiles: paths })) as { StringContainerInfo: [string, ContainerInfo] };
+    this.packKey = resp.StringContainerInfo[0];
+    return resp.StringContainerInfo[1];
+  }
+
+  async extractFiles(
+    paths: Partial<Record<DataSource, ContainerPath[]>>,
+    destPath: string,
+    asTsv = false,
+  ): Promise<[string, string[]]> {
+    // @ts-expect-error ts(2322) Dont need to fill out every datasource, can just send the datasources we actually want files from
+    const resp = (await this.send({ ExtractPackedFiles: [this.packKey, paths, destPath, asTsv] })) as {
+      StringVecPathBuf: [string, string[]];
+    };
+    return resp.StringVecPathBuf;
+  }
+
+  async decodeFile(path: string) {
+    const resp = await this.send({ DecodePackedFile: [this.packKey, path, 'PackFile'] });
+    return resp;
+  }
+
+  async getTablePathsByTableName(tableName: string) {
+    if (!tableName.endsWith('_tables')) {
+      tableName += '_tables';
+    }
+    const resp = (await this.send({ GetTablesByTableName: [this.packKey, tableName] })) as { VecString: Array<string> };
+    return resp.VecString;
+  }
+
+  async decodeDbTable(tablePath: string) {
+    const resp = (await this.decodeFile(tablePath)) as { DBRFileInfo: [DB, RFileInfo] };
+    const respTable = resp.DBRFileInfo[0].table;
+    const respTableVersion = respTable.definition.version;
+    const tableName = respTable.table_name;
+    const storedTableVersion = this.definitionMap.get(tableName)?.version;
+
+    if (storedTableVersion === undefined) {
+      this.definitionMap.set(tableName, respTable.definition);
+    } else if (storedTableVersion < respTableVersion) {
+      this.definitionMap.set(tableName, respTable.definition);
+    }
+
+    return respTable;
+  }
+
+  async getTableDefinition(tableName: string): Promise<Definition> {
+    if (!tableName.endsWith('_tables')) {
+      tableName += '_tables';
+    }
+
+    // If we already decoded the table grab the definition from the map.
+    const storedTable = this.definitionMap.get(tableName);
+    if (storedTable !== undefined) {
+      return storedTable;
+    }
+
+    // Else fallback to the highest version definition (not perfect, some vanilla tables have versions in schema, but use 0 z.z)
+    const resp = (await this.send({ DefinitionsByTableName: tableName })) as {
+      VecDefinition: Array<Definition>;
+    };
+    if (resp.VecDefinition.length === 0) {
+      throw `Table missing schema definitions: ${tableName}`;
+    }
+
+    let highestVersionIndex = 0;
+    let highestVersion = resp.VecDefinition[0].version;
+    resp.VecDefinition.forEach((definition, index) => {
+      if (definition.version > highestVersion) {
+        highestVersion = definition.version;
+        highestVersionIndex = index;
+      }
+    });
+
+    return resp.VecDefinition[highestVersionIndex];
+  }
+
+  async getLocPaths() {
+    type LocPathsResp = {
+      HashMapDataSourceHashSetContainerPath: Record<DataSource, Array<ContainerPath>>;
+    };
+    const resp = await this.send({ GetPackedFilesNamesStartingWitPathFromAllSources: { Folder: 'text/' } });
+    const paths = (resp as LocPathsResp).HashMapDataSourceHashSetContainerPath.PackFile.map((path) => {
+      if ('File' in path) return path.File;
+    });
+    return paths;
+  }
+
+  async decodeLoc(locPath: string) {
+    const resp = (await this.decodeFile(locPath)) as { LocRFileInfo: [Loc, RFileInfo] };
+    return resp.LocRFileInfo[0].table;
+  }
+
+  async decodePortraitBin(binPath: string) {
+    const resp = (await this.decodeFile(binPath)) as {
+      PortraitSettingsRFileInfo: [PortraitSettings, RFileInfo];
+    };
+    return resp.PortraitSettingsRFileInfo[0];
+  }
+
+  async getProcessedDefinition(definition: Definition) {
+    const resp = (await this.send({ FieldsProcessed: definition })) as { VecField: Array<Field> };
+    return resp.VecField;
+  }
+
+  async getFilePathsFromPath(searchPath: string) {
+    const resp = (await this.send({ GetPackedFilesNamesStartingWitPathFromAllSources: { Folder: searchPath } })) as {
+      HashMapDataSourceHashSetContainerPath: Record<DataSource, ContainerPath[]>;
+    };
+    return resp.HashMapDataSourceHashSetContainerPath;
+  }
+}

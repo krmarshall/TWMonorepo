@@ -89,13 +89,11 @@ export default class Extractor {
     if (this.checkCacheValid(latestPackTimestamp)) {
       return;
     }
-    const flagPaths = await this.rpfmClient.getFilePathsFromPath('ui/flags/');
-    const mediumFlags: ContainerPath[] = [];
-    flagPaths.PackFile?.forEach((flagPath) => {
-      if ('File' in flagPath) {
-        if (flagPath.File.endsWith('64.png')) {
-          mediumFlags.push(flagPath);
-        }
+    const flagPaths = await this.rpfmClient.listFiles('ui/flags/', ['Image']);
+    const mediumFlags: Array<string> = [];
+    flagPaths.forEach((flagPath) => {
+      if (flagPath.endsWith('64.png')) {
+        mediumFlags.push(flagPath);
       }
     });
     await this.rpfmClient.extractFiles({ PackFile: mediumFlags }, `extracted_files/${this.folder}/`);
@@ -139,11 +137,10 @@ export default class Extractor {
   };
 
   private parsePortraitBins = async () => {
-    const portraitSettingsPaths = fastGlob.sync(`./extracted_files/${this.folder}/ui/portraits/portholes/*.bin`);
-    const cleanPortraitSettingPaths = portraitSettingsPaths.map((path) =>
-      path.replace(`./extracted_files/${this.folder}/`, ''),
+    const portraitBinsPaths = (await this.rpfmClient.listFiles('/ui/portraits/portholes/')).filter((path) =>
+      path.endsWith('.bin'),
     );
-    const portraitPromises = cleanPortraitSettingPaths.map(async (binPath) => {
+    const portraitPromises = portraitBinsPaths.map(async (binPath) => {
       const portraitSettings = await this.rpfmClient.decodePortraitBin(binPath);
 
       portraitSettings.entries.forEach((entry) => {
