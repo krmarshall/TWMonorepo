@@ -125,6 +125,13 @@ const ignoreAgents: Array<{ agent: string; game?: string; subculture?: string; f
   { agent: 'wh3_dlc27_hef_dragonship_captain_04', game: '3', subculture: 'wh2_main_sc_hef_high_elves' },
   { agent: 'wh3_dlc27_hef_dragonship_captain_05', game: '3', subculture: 'wh2_main_sc_hef_high_elves' },
 
+  { agent: 'wh2_dlc09_tmb_tomb_king_alkhazzar_ii', game: '3', subculture: 'wh3_dlc29_sc_nag_undead_legions' },
+  { agent: 'wh2_dlc09_tmb_tomb_king_lahmizzash', game: '3', subculture: 'wh3_dlc29_sc_nag_undead_legions' },
+  { agent: 'wh2_dlc09_tmb_tomb_king_rakhash', game: '3', subculture: 'wh3_dlc29_sc_nag_undead_legions' },
+  { agent: 'wh2_dlc09_tmb_tomb_king_setep', game: '3', subculture: 'wh3_dlc29_sc_nag_undead_legions' },
+  { agent: 'wh2_dlc09_tmb_tomb_king_thutep', game: '3', subculture: 'wh3_dlc29_sc_nag_undead_legions' },
+  { agent: 'wh2_dlc09_tmb_tomb_king_wakhaf', game: '3', subculture: 'wh3_dlc29_sc_nag_undead_legions' },
+
   // Archaon confeds most of the monogod faction lords so they have entries under warriors of chaos, technically different
   // skill trees (blue lines and some top line stuff) but basically the same and pretty niche
   { agent: 'wh3_dlc26_kho_arbaal_the_undefeated', game: '3', subculture: 'wh_main_sc_chs_chaos' },
