@@ -1805,6 +1805,9 @@
 <loc>https://www.totalwarhammerplanner.com/planner/radious3/dwf_dwarfs/wh2_pro08_skill_node_neu_gotrek</loc>
 <changefreq>monthly</changefreq>
 </url><url>
+<loc>https://www.totalwarhammerplanner.com/planner/radious3/dwf_dwarfs/wh3_dlc23_skill_node_set_ksl_ulrika</loc>
+<changefreq>monthly</changefreq>
+</url><url>
 <loc>https://www.totalwarhammerplanner.com/planner/radious3/dwf_dwarfs/wh3_dlc25_dwf_lord_mikael_leadstrong</loc>
 <changefreq>monthly</changefreq>
 </url><url>
@@ -2444,6 +2447,9 @@
 <loc>https://www.totalwarhammerplanner.com/planner/radious3/nag_undead_legions/wh_main_skill_node_set_vmp_vampire</loc>
 <changefreq>monthly</changefreq>
 </url><url>
+<loc>https://www.totalwarhammerplanner.com/planner/radious3/nag_undead_legions/wh_pro02_skill_node_set_vmp_isabella_von_carstein</loc>
+<changefreq>monthly</changefreq>
+</url><url>
 <loc>https://www.totalwarhammerplanner.com/planner/radious3/nag_undead_legions/wh_pro02_skill_node_set_vmp_isabella_von_carstein_hero</loc>
 <changefreq>monthly</changefreq>
 </url><url>
@@ -2484,6 +2490,9 @@
 <changefreq>monthly</changefreq>
 </url><url>
 <loc>https://www.totalwarhammerplanner.com/planner/radious3/nor_norsca/wh3_dlc27_skill_node_set_nor_sayl</loc>
+<changefreq>monthly</changefreq>
+</url><url>
+<loc>https://www.totalwarhammerplanner.com/planner/radious3/nor_norsca/wh3_dlc27_sla_styrkaar_the_sortsvinaer</loc>
 <changefreq>monthly</changefreq>
 </url><url>
 <loc>https://www.totalwarhammerplanner.com/planner/radious3/nor_norsca/wh3_dlc29_skill_node_set_chs_gutrot</loc>
@@ -3383,7 +3392,13 @@
 <loc>https://www.totalwarhammerplanner.com/planner/scm3/hef_high_elves/jbv2_hef_magister_nodeset</loc>
 <changefreq>monthly</changefreq>
 </url><url>
+<loc>https://www.totalwarhammerplanner.com/planner/scm3/hef_high_elves/rhox_mar_wavemaster_council_node_set</loc>
+<changefreq>monthly</changefreq>
+</url><url>
 <loc>https://www.totalwarhammerplanner.com/planner/scm3/hef_high_elves/rhox_torinubar_skill_node_set_hef_convoy</loc>
+<changefreq>monthly</changefreq>
+</url><url>
+<loc>https://www.totalwarhammerplanner.com/planner/scm3/hef_high_elves/skill_node_set_mar_caravan_master</loc>
 <changefreq>monthly</changefreq>
 </url><url>
 <loc>https://www.totalwarhammerplanner.com/planner/scm3/hef_high_elves/wh_main_skill_node_set_hef_calith_torinubar</loc>
@@ -3506,6 +3521,9 @@
 <loc>https://www.totalwarhammerplanner.com/planner/scm3/nor_norsca/skill_node_set_hkrul_birna</loc>
 <changefreq>monthly</changefreq>
 </url><url>
+<loc>https://www.totalwarhammerplanner.com/planner/scm3/nor_norsca/skill_node_set_hkrul_boendalf</loc>
+<changefreq>monthly</changefreq>
+</url><url>
 <loc>https://www.totalwarhammerplanner.com/planner/scm3/nor_norsca/skill_node_set_hkrul_dalla</loc>
 <changefreq>monthly</changefreq>
 </url><url>
@@ -3546,6 +3564,9 @@
 <changefreq>monthly</changefreq>
 </url><url>
 <loc>https://www.totalwarhammerplanner.com/planner/scm3/nor_norsca/skill_node_set_hkrul_hildr</loc>
+<changefreq>monthly</changefreq>
+</url><url>
+<loc>https://www.totalwarhammerplanner.com/planner/scm3/nor_norsca/skill_node_set_hkrul_hjordis</loc>
 <changefreq>monthly</changefreq>
 </url><url>
 <loc>https://www.totalwarhammerplanner.com/planner/scm3/nor_norsca/skill_node_set_hkrul_hrothgar</loc>
@@ -3990,6 +4011,9 @@
 <changefreq>monthly</changefreq>
 </url><url>
 <loc>https://www.totalwarhammerplanner.com/planner/scm3/skv_skaven/thom_iron_mask</loc>
+<changefreq>monthly</changefreq>
+</url><url>
+<loc>https://www.totalwarhammerplanner.com/planner/scm3/skv_skaven/wh_main_skill_node_set_gabe_vrrtkin_skv_assassin</loc>
 <changefreq>monthly</changefreq>
 </url><url>
 <loc>https://www.totalwarhammerplanner.com/planner/scm3/sla_slaanesh/cou_sla_seneschal_dame_LH_skillset</loc>
@@ -4892,6 +4916,9 @@
 <loc>https://www.totalwarhammerplanner.com/planner/sfo3/dwf_dwarfs/wh2_pro08_skill_node_neu_gotrek</loc>
 <changefreq>monthly</changefreq>
 </url><url>
+<loc>https://www.totalwarhammerplanner.com/planner/sfo3/dwf_dwarfs/wh3_dlc23_skill_node_set_ksl_ulrika</loc>
+<changefreq>monthly</changefreq>
+</url><url>
 <loc>https://www.totalwarhammerplanner.com/planner/sfo3/dwf_dwarfs/wh3_dlc25_dwf_lord_mikael_leadstrong</loc>
 <changefreq>monthly</changefreq>
 </url><url>
@@ -5528,6 +5555,9 @@
 <loc>https://www.totalwarhammerplanner.com/planner/sfo3/nag_undead_legions/wh_main_skill_node_set_vmp_vampire</loc>
 <changefreq>monthly</changefreq>
 </url><url>
+<loc>https://www.totalwarhammerplanner.com/planner/sfo3/nag_undead_legions/wh_pro02_skill_node_set_vmp_isabella_von_carstein</loc>
+<changefreq>monthly</changefreq>
+</url><url>
 <loc>https://www.totalwarhammerplanner.com/planner/sfo3/nag_undead_legions/wh_pro02_skill_node_set_vmp_isabella_von_carstein_hero</loc>
 <changefreq>monthly</changefreq>
 </url><url>
@@ -5556,6 +5586,9 @@
 <changefreq>monthly</changefreq>
 </url><url>
 <loc>https://www.totalwarhammerplanner.com/planner/sfo3/nor_norsca/wh3_dlc27_skill_node_set_nor_sayl</loc>
+<changefreq>monthly</changefreq>
+</url><url>
+<loc>https://www.totalwarhammerplanner.com/planner/sfo3/nor_norsca/wh3_dlc27_sla_styrkaar_the_sortsvinaer</loc>
 <changefreq>monthly</changefreq>
 </url><url>
 <loc>https://www.totalwarhammerplanner.com/planner/sfo3/nor_norsca/wh3_dlc29_skill_node_set_chs_gutrot</loc>
@@ -7667,6 +7700,9 @@
 <loc>https://www.totalwarhammerplanner.com/planner/vanilla3/dwf_dwarfs/wh2_pro08_skill_node_neu_gotrek</loc>
 <changefreq>monthly</changefreq>
 </url><url>
+<loc>https://www.totalwarhammerplanner.com/planner/vanilla3/dwf_dwarfs/wh3_dlc23_skill_node_set_ksl_ulrika</loc>
+<changefreq>monthly</changefreq>
+</url><url>
 <loc>https://www.totalwarhammerplanner.com/planner/vanilla3/dwf_dwarfs/wh3_dlc25_dwf_lord_mikael_leadstrong</loc>
 <changefreq>monthly</changefreq>
 </url><url>
@@ -8294,6 +8330,9 @@
 <loc>https://www.totalwarhammerplanner.com/planner/vanilla3/nag_undead_legions/wh_main_skill_node_set_vmp_vampire</loc>
 <changefreq>monthly</changefreq>
 </url><url>
+<loc>https://www.totalwarhammerplanner.com/planner/vanilla3/nag_undead_legions/wh_pro02_skill_node_set_vmp_isabella_von_carstein</loc>
+<changefreq>monthly</changefreq>
+</url><url>
 <loc>https://www.totalwarhammerplanner.com/planner/vanilla3/nag_undead_legions/wh_pro02_skill_node_set_vmp_isabella_von_carstein_hero</loc>
 <changefreq>monthly</changefreq>
 </url><url>
@@ -8316,6 +8355,9 @@
 <changefreq>monthly</changefreq>
 </url><url>
 <loc>https://www.totalwarhammerplanner.com/planner/vanilla3/nor_norsca/wh3_dlc27_skill_node_set_nor_sayl</loc>
+<changefreq>monthly</changefreq>
+</url><url>
+<loc>https://www.totalwarhammerplanner.com/planner/vanilla3/nor_norsca/wh3_dlc27_sla_styrkaar_the_sortsvinaer</loc>
 <changefreq>monthly</changefreq>
 </url><url>
 <loc>https://www.totalwarhammerplanner.com/planner/vanilla3/nor_norsca/wh3_dlc29_skill_node_set_chs_gutrot</loc>

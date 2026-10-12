@@ -314,6 +314,7 @@ const addAgents = [
   { agent: 'wh3_dlc25_neu_gotrek_hero', subculture: 'wh_main_sc_emp_empire', game: '3' },
 
   { agent: 'wh3_dlc29_vmp_neferata', subculture: 'wh_main_sc_vmp_vampire_counts', game: '3' },
+  { agent: 'wh_pro02_vmp_isabella_von_carstein', subculture: 'wh3_dlc29_sc_nag_undead_legions', game: '3' },
 
   // Mixu3 LL
   { agent: 'brt_adalhard', subculture: 'wh_main_sc_brt_bretonnia', game: '3' },
