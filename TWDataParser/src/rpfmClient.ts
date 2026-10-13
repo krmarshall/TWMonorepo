@@ -1,17 +1,4 @@
-import type {
-  Command,
-  ContainerInfo,
-  ContainerPath,
-  DataSource,
-  DB,
-  Definition,
-  Field,
-  GitResponse,
-  Loc,
-  PortraitSettings,
-  RFileInfo,
-  TableInMemory,
-} from './@types/rpfm_ipc_protocol.ts';
+import type { DB, Definition, Field, Loc, PortraitSettings, TableInMemory } from './@types/rpfm_ipc_protocol.ts';
 
 type FileTypes = 'DB' | 'Loc' | 'Text' | 'Image' | 'Rigidmodel' | 'PortraitSettings';
 
@@ -248,44 +235,27 @@ export default class RpfmClient {
     if (storedTable !== undefined) {
       return storedTable;
     }
-    // Else fallback to the highest version definition (not perfect, some vanilla tables have versions in schema, but use 0 z.z)
-    const resp = await this.call('schema.definition', { table_name });
-    return resp;
-  }
-
-  async getTableDefinitionOLD(tableName: string): Promise<Definition> {
-    if (!tableName.endsWith('_tables')) {
-      tableName += '_tables';
-    }
-
-    // If we already decoded the table grab the definition from the map.
-    const storedTable = this.definitionMap.get(tableName);
-    if (storedTable !== undefined) {
-      return storedTable;
-    }
 
     // Else fallback to the highest version definition (not perfect, some vanilla tables have versions in schema, but use 0 z.z)
-    const resp = (await this.send({ DefinitionsByTableName: tableName })) as {
-      VecDefinition: Array<Definition>;
-    };
-    if (resp.VecDefinition.length === 0) {
-      throw `Table missing schema definitions: ${tableName}`;
+    const rawDefs: { definitions: Array<Definition> } = await this.call('schema.raw_definitions', { table_name });
+    const processedFields: { columns: Array<Field> } = await this.call('schema.definition', { table_name });
+    if (rawDefs.definitions.length === 0) {
+      throw `Table missing schema definitions: ${table_name}`;
     }
-
     let highestVersionIndex = 0;
-    let highestVersion = resp.VecDefinition[0].version;
-    resp.VecDefinition.forEach((definition, index) => {
+    let highestVersion = rawDefs.definitions[0].version;
+    rawDefs.definitions.forEach((definition, index) => {
       if (definition.version > highestVersion) {
         highestVersion = definition.version;
         highestVersionIndex = index;
       }
     });
+    const newDef = {
+      ...rawDefs.definitions[highestVersionIndex],
+      fields_processed: processedFields.columns,
+    };
 
-    return resp.VecDefinition[highestVersionIndex];
-  }
-
-  async getProcessedDefinition(definition: Definition) {
-    const resp = (await this.send({ FieldsProcessed: definition })) as { VecField: Array<Field> };
-    return resp.VecField;
+    this.definitionMap.set(table_name, newDef);
+    return newDef;
   }
 }

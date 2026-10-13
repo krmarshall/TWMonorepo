@@ -8,6 +8,8 @@
     "planner:build": "yarn workspace frontend build",
     "parser:dev": "yarn workspace twdataparser typecheck",
     "parser:build": "yarn workspace twdataparser start",
+    "parser:lint": "yarn workspace twdataparser lint",
+    "parser:typecheck": "yarn workspace twdataparser typecheck",
     "lint": "yarn workspaces foreach -A run lint",
     "lintFix": "yarn workspaces foreach -A run lintFix"
   },
