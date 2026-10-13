@@ -524,4 +524,5 @@ const hardcodeSpellLoreData: { [nodeSetKey: string]: SpellLoresT } = {
   motm_frostmaw: SpellLores.ice,
   um_ogr_rothnogg: SpellLores.mixed,
   rhox_baersonling_daemon_prince_tzeentch: SpellLores.mixed,
+  hng_skill_node_set_hng_arataam: SpellLores.mixed,
 };
