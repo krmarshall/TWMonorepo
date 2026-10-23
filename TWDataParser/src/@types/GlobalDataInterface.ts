@@ -49,6 +49,10 @@ interface GlobalDataInterface {
       text: TableRecordNoRefs;
     };
   };
+  agentDefeatTraitMap?: {
+    // Only for vanilla3 defeat traits
+    [key: string /*agentKey*/]: string; // traitKey
+  };
 }
 
 export type { RefKey, GlobalDataInterface, TableRecord };

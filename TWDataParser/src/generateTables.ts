@@ -86,9 +86,6 @@ export class Table {
   linkTables = (tables: { [key in RefKey]?: Table }, missingTablesSet: Set<string>) => {
     const referenceFields: Array<{ fieldName: string; refTable: RefKey; refKey: string }> = [];
     this.definition.fields_processed.forEach((field) => {
-      if (this.tableName === 'ancillaries') {
-        let temp;
-      }
       if (field.is_reference !== null) {
         referenceFields.push({
           fieldName: field.name,

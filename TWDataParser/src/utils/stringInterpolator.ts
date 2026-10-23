@@ -35,6 +35,11 @@ const stringInterpolator = (string: string, loc: TableRecord): string => {
   string = string.replaceAll(/\[\[b\]\]/g, '');
   string = string.replaceAll(/\[\[\/b\]\]/g, '');
 
+  // Mods can do some weird text replace shit with a function call in a string?
+  if (string.includes('{{CcoEffect')) {
+    string = '!CcoEffect Lookups Not Handled!';
+  }
+
   if (string.includes('{{')) {
     const tagR = string.match(/\{\{[a-zA-Z0-9:_./\- ]*\}\}/);
     if (tagR === null) {

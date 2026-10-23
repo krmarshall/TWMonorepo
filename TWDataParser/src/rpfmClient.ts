@@ -1,4 +1,4 @@
-import type { DB, Definition, Field, Loc, PortraitSettings, TableInMemory } from './@types/rpfm_ipc_protocol.ts';
+import type { DB, Definition, Field, Loc, Text, PortraitSettings, TableInMemory } from './@types/rpfm_ipc_protocol.ts';
 
 type FileTypes = 'DB' | 'Loc' | 'Text' | 'Image' | 'Rigidmodel' | 'PortraitSettings';
 
@@ -9,6 +9,7 @@ interface DecodedFile {
       DB?: DB;
       Loc?: Loc;
       PortraitSettings?: PortraitSettings;
+      Text?: Text;
     };
     kind: 'decoded' | 'text' | 'raw' | string; // ? Guess from ipc src
   };
