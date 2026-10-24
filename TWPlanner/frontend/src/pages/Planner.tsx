@@ -142,7 +142,7 @@ const Planner = () => {
         'content',
         `Explore and Share the Skills, Items, Stats and More for ${characterName} of the ${gameData[selectedMod].factions[selectedFaction]} in Total War Warhammer ${gameData[selectedMod]?.text}`,
       );
-  }, []);
+  }, [characterName, selectedMod, selectedFaction]);
 
   const mobileTabButtonClass =
     'rounded-lg rounded-b-none py-1 px-3 my-auto text-slate-50 text-xl shadow-md shadow-gray-900 hover-scale';
