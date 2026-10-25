@@ -135,7 +135,7 @@ const Planner = () => {
   }, [code, characterData]);
 
   useEffect(() => {
-    document.title = `TWP - ${characterName}`;
+    document.title = `${characterName} Skill Tree - ${gameData[selectedMod].factions[selectedFaction]} - Total War Warhammer 3`;
     document
       .querySelector('meta[name="description"]')
       ?.setAttribute(

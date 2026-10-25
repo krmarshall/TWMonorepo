@@ -6,7 +6,7 @@ const About = () => {
   const marginThickness = isMobileWidth ? ' mx-2' : ' mx-32';
 
   useEffect(() => {
-    document.title = 'TWP - About';
+    document.title = 'About - Total Warhammer Planner';
     document
       .querySelector('meta[name="description"]')
       ?.setAttribute(

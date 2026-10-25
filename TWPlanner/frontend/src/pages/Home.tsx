@@ -40,7 +40,7 @@ const Home = () => {
   // }, []);
 
   useEffect(() => {
-    document.title = 'Total Warhammer Planner';
+    document.title = 'Skill Trees - Total Warhammer Planner';
     document
       .querySelector('meta[name="description"]')
       ?.setAttribute(
