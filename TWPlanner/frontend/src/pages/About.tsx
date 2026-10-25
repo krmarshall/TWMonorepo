@@ -18,11 +18,11 @@ const About = () => {
     <div className="grow w-full h-full px-2 py-2 overflow-y-auto overflow-x-hidden scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-600">
       <div className={'flex flex-col place-content-center mt-4 select-text font-[Helvetica]' + marginThickness}>
         <div className="flex flex-row place-content-center">
-          <hr className="grow mt-[1.6rem] opacity-50 border-gray-200" />
-          <h1 className="w-max text-center text-5xl mx-2 mb-2 text-gray-200 text-shadow">About</h1>
-          <hr className="grow mt-[1.6rem] opacity-50 border-gray-200" />
+          <hr className="grow mt-[1.3rem] opacity-50 border-gray-200" />
+          <h1 className="w-max text-center text-3xl mx-2 mb-2 text-gray-200 text-shadow">About</h1>
+          <hr className="grow mt-[1.3rem] opacity-50 border-gray-200" />
         </div>
-        <p className="text-center text-gray-200 text-2xl">
+        <p className="text-center text-gray-200 text-xl">
           Total Warhammer Planner is a tool for exploring, building, and sharing character skill trees in Total
           Warhammer 2/3 and various mods.
           <br /> Want to figure out what all the various lords and heroes actually do without recruiting each of them?
@@ -32,21 +32,21 @@ const About = () => {
           <br /> These are some of the things I wanted to address with this tool and hopefully you find it useful!
         </p>
 
-        <div className="flex flex-row place-content-center mt-12">
-          <hr className="grow mt-[1.6rem] opacity-50 border-gray-200" />
-          <h1 className="w-max text-center text-5xl mx-2 mb-2 text-gray-200 text-shadow">Contact Me</h1>
-          <hr className="grow mt-[1.6rem] opacity-50 border-gray-200" />
+        <div className="flex flex-row place-content-center mt-8">
+          <hr className="grow mt-[1.3rem] opacity-50 border-gray-200" />
+          <h1 className="w-max text-center text-3xl mx-2 mb-2 text-gray-200 text-shadow">Contact Me</h1>
+          <hr className="grow mt-[1.3rem] opacity-50 border-gray-200" />
         </div>
-        <p className="text-center text-gray-200 text-2xl">
+        <p className="text-center text-gray-200 text-xl">
           You can message me on Discord (whitehelm) for any questions/comments/bug reports.
         </p>
 
-        <div className="flex flex-row place-content-center mt-12">
-          <hr className="grow mt-[1.6rem] opacity-50 border-gray-200" />
-          <h1 className="w-max text-center text-5xl mx-2 mb-2 text-gray-200 text-shadow">RPFM</h1>
-          <hr className="grow mt-[1.6rem] opacity-50 border-gray-200" />
+        <div className="flex flex-row place-content-center mt-8">
+          <hr className="grow mt-[1.3rem] opacity-50 border-gray-200" />
+          <h1 className="w-max text-center text-3xl mx-2 mb-2 text-gray-200 text-shadow">RPFM</h1>
+          <hr className="grow mt-[1.3rem] opacity-50 border-gray-200" />
         </div>
-        <p className="text-center text-gray-200 text-2xl">
+        <p className="text-center text-gray-200 text-xl">
           Consider supporting Frodo the developer of RPFM. Without his tools this site and countless mods likely
           wouldn&apos;t exist!
         </p>
@@ -63,15 +63,15 @@ const About = () => {
             />
             <path d="m23.333335 153.93333178v-127.86666388h23.46666576v127.8666639z" fill="#052a49" />
           </svg>
-          <p className="text-gray-50 text-center pt-1">Frodo&apos;s Patreon</p>
+          <p className="text-gray-50 text-center pt-1 text-sm">Frodo&apos;s Patreon</p>
         </a>
 
-        <div className="flex flex-row place-content-center mt-12">
-          <hr className="grow mt-[1.6rem] opacity-50 border-gray-200" />
-          <h1 className="w-max text-center text-5xl mx-2 mb-2 text-gray-200 text-shadow">Ko-Fi</h1>
-          <hr className="grow mt-[1.6rem] opacity-50 border-gray-200" />
+        <div className="flex flex-row place-content-center mt-8">
+          <hr className="grow mt-[1.3rem] opacity-50 border-gray-200" />
+          <h1 className="w-max text-center text-3xl mx-2 mb-2 text-gray-200 text-shadow">Ko-Fi</h1>
+          <hr className="grow mt-[1.3rem] opacity-50 border-gray-200" />
         </div>
-        <p className="text-center text-gray-200 text-2xl">
+        <p className="text-center text-gray-200 text-xl">
           If you have disposable income and feel like donating it is greatly appreciated!
         </p>
 
@@ -85,23 +85,23 @@ const About = () => {
           />
         </a>
 
-        <div className="flex flex-row place-content-center mt-12">
-          <hr className="grow mt-[1.6rem] opacity-50 border-gray-200" />
-          <h1 className="w-max text-center text-5xl mx-2 mb-2 text-gray-200 text-shadow">Disclaimer</h1>
-          <hr className="grow mt-[1.6rem] opacity-50 border-gray-200" />
+        <div className="flex flex-row place-content-center mt-8">
+          <hr className="grow mt-[1.3rem] opacity-50 border-gray-200" />
+          <h1 className="w-max text-center text-3xl mx-2 mb-2 text-gray-200 text-shadow">Disclaimer</h1>
+          <hr className="grow mt-[1.3rem] opacity-50 border-gray-200" />
         </div>
-        <p className="text-center text-gray-200 text-2xl">
+        <p className="text-center text-gray-200 text-xl">
           This site is not affiliated with Creative Assembly or any mod authors. All assets are the property of Creative
           Assembly or their respective authors, and are used for informational purposes.
         </p>
 
-        <div className="flex flex-row place-content-center mt-12">
-          <hr className="grow mt-[1.6rem] opacity-50 border-gray-200" />
-          <h1 className="w-max text-center text-5xl mx-2 mb-2 text-gray-200 text-shadow">Known Issues</h1>
-          <hr className="grow mt-[1.6rem] opacity-50 border-gray-200" />
+        <div className="flex flex-row place-content-center mt-8">
+          <hr className="grow mt-[1.3rem] opacity-50 border-gray-200" />
+          <h1 className="w-max text-center text-3xl mx-2 mb-2 text-gray-200 text-shadow">Known Issues</h1>
+          <hr className="grow mt-[1.3rem] opacity-50 border-gray-200" />
         </div>
 
-        <ul className="list-disc list-inside text-gray-200 text-2xl">
+        <ul className="list-disc list-inside text-gray-200 text-xl">
           <li>
             The item browser is a very early WIP. Features like sorting and better filtering/styling are already
             planned.
@@ -120,16 +120,16 @@ const About = () => {
           <li>Nagash&apos;s tech tree seems to be implemented differently</li>
         </ul>
 
-        <div className="flex flex-row place-content-center mt-12">
-          <hr className="grow mt-[1.6rem] opacity-50 border-gray-200" />
-          <h1 className="w-max text-center text-5xl mx-2 mb-2 text-gray-200 text-shadow">Potential Additions</h1>
-          <hr className="grow mt-[1.6rem] opacity-50 border-gray-200" />
+        <div className="flex flex-row place-content-center mt-8">
+          <hr className="grow mt-[1.3rem] opacity-50 border-gray-200" />
+          <h1 className="w-max text-center text-3xl mx-2 mb-2 text-gray-200 text-shadow">Potential Additions</h1>
+          <hr className="grow mt-[1.3rem] opacity-50 border-gray-200" />
         </div>
-        <p className="text-center text-gray-200 text-2xl mb-8">
+        <p className="text-center text-gray-200 text-xl mb-8">
           Some general items I would like to add/improve in the future, nothing is set in stone and some of these would
           take a lot of time, but I&apos;ve at least thought about them.
         </p>
-        <ul className="list-disc list-inside text-gray-200 text-2xl">
+        <ul className="list-disc list-inside text-gray-200 text-xl">
           <li>Character stats mount comparison</li>
           <li>Character stats skill integration</li>
           <li>Boons of Chaos (Initiatives)</li>
