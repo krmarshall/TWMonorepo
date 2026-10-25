@@ -2,7 +2,7 @@ import { basename } from 'node:path';
 import { vanillaFolders } from './lists/vanillaLists/vanillaFolders.ts';
 import type { GlobalDataInterface, RefKey, TableRecord } from './@types/GlobalDataInterface.ts';
 import type RpfmClient from './rpfmClient.ts';
-import type { Field } from './@types/rpfm_ipc_protocol.ts';
+import type { Definition } from './@types/rpfm_ipc_protocol.ts';
 
 export const parser = async (
   folder: string,
@@ -21,7 +21,6 @@ export const parser = async (
     const tablePromises = tablePaths.map(async (subTablePath) => {
       let subTableName = basename(subTablePath);
       const { definition, table_data } = await rpfmClient.decodeDbTable(subTablePath);
-      const processedDefinition = await rpfmClient.getProcessedDefinition(definition);
 
       const parsedSubTable: Array<TableRecord> = table_data.map((row) => {
         const parsedRow: { [key: string]: string | number | boolean } = {};
@@ -31,7 +30,7 @@ export const parser = async (
           if (typeof value === 'number') {
             value = parseFloat(value.toFixed(4));
           }
-          const key = processedDefinition[index].name;
+          const key = definition.fields_processed[index].name;
           parsedRow[key] = value;
         });
         return parsedRow;
@@ -44,10 +43,9 @@ export const parser = async (
       return;
     });
 
-    const tableDefinition = await rpfmClient.getTableDefinition(dbTable);
-    const processedDefinition = await rpfmClient.getProcessedDefinition(tableDefinition);
     await Promise.all(tablePromises);
-    addSortedSubTablesToGlobalData(folder, globalData, parsedSubTables, processedDefinition, dbTable);
+    const tableDefinition = await rpfmClient.getTableDefinition(dbTable);
+    addSortedSubTablesToGlobalData(folder, globalData, parsedSubTables, tableDefinition, dbTable);
     return;
   });
 
@@ -61,7 +59,7 @@ const addSortedSubTablesToGlobalData = (
   folder: string,
   globalData: GlobalDataInterface,
   parsedSubTables: { [key: string]: Array<TableRecord> },
-  processedDefinition: Array<Field>,
+  tableDefinition: Definition,
   dbTable: RefKey,
 ) => {
   // Vanilla should only have the data__ sub tables
@@ -74,7 +72,7 @@ const addSortedSubTablesToGlobalData = (
   let mergedMap: { [key: string]: TableRecord } = {};
   // Find the primary/composite keys for the dbTable
   const tableKeys: Array<string> = [];
-  processedDefinition.forEach((field) => {
+  tableDefinition.fields_processed.forEach((field) => {
     if (field.is_key) tableKeys.push(field.name);
   });
 
@@ -109,7 +107,7 @@ const addSortedSubTablesToGlobalData = (
 const addLocsToGlobalData = async (folder: string, globalData: GlobalDataInterface, rpfmClient: RpfmClient) => {
   // Container for each parsed loc path eg. { 'ancillaries__': { 'ancillary_example_key': 'example_text', 'ancillary_example_key_another': 'example_text' } }
   const parsedLocTables: { [key: string]: Array<{ [key: string]: string }> } = {};
-  const locPaths = await rpfmClient.getLocPaths();
+  const locPaths = await rpfmClient.listFiles('text/', ['Loc']);
   const locPromises = locPaths.map(async (locPath) => {
     if (locPath === undefined) {
       return;

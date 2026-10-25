@@ -1,6 +1,6 @@
 export const vanillaPackInfo = {
   vanilla2: ['data', 'local_en', 'data'],
-  vanilla3: ['db', 'local_en', 'data', 'ui', 'ui2', 'ui2_bl', 'ui3', 'ui_3'],
+  vanilla3: ['db', 'local_en', 'data', 'ui', 'ui2', 'ui2_bl', 'ui3', 'ui_3', 'data_script'],
 };
 
 export interface ModInfoInterface {

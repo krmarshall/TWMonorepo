@@ -271,4 +271,5 @@ export interface CharacterInterface {
   backgroundSkills?: Array<SkillInterface>;
   altFactionNodeSets?: AltFactionNodeSetsInterface;
   startPosTraits?: StartPosTraitInterface;
+  defeatTrait?: SkillInterface;
 }

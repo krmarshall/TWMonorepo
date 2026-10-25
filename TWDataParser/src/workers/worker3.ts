@@ -9,6 +9,7 @@ import { modPackInfo, vanillaPackInfo } from '../lists/packInfo.ts';
 import { v3AssKitList } from '../lists/extractLists/dbLists.ts';
 import RpfmClient from '../rpfmClient.ts';
 import { parser } from '../parser.ts';
+import defeatTraits from '../defeatTraits.ts';
 import { workerItem, workerMod, workerModItem, workerModMulti } from './workerExports.ts';
 import type { RefKey } from '../@types/GlobalDataInterface.ts';
 import type { WorkerVanillaDataInterface } from '../@types/WorkerDataInterfaces.ts';
@@ -143,6 +144,7 @@ const extractor = new Extractor({
 await extractor.extractAndParseImages();
 
 akData(folder, globalData, process.env.WH3_DATA_PATH as string);
+await defeatTraits(globalData, rpfmClient);
 
 // Unpruned Mods
 workerModMulti(modData.radiousWorkerData);

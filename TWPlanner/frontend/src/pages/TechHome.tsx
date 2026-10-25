@@ -7,7 +7,7 @@ const TechHome = () => {
   const { state, dispatch } = useContext(AppContext);
   const { techData } = state;
   useEffect(() => {
-    document.title = 'Total Warhammer Planner';
+    document.title = 'Tech Trees - Total Warhammer Planner';
     document
       .querySelector('meta[name="description"]')
       ?.setAttribute('content', 'Explore Tech Trees for Total War Warhammer 2/3 and Various Mods.');

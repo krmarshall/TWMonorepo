@@ -201,7 +201,7 @@ export interface Definition {
   /** List of fields in binary order. */
   fields: Field[];
   /** Processed fields with bitwise expansion, enum conversion, and RGB colour merging applied. */
-  fields_processed_serialized: Field[];
+  fields_processed: Field[];
   /** Fields extracted to LOC files during export. */
   localised_fields: Field[];
   /** Order of key fields when constructing localisation keys. */

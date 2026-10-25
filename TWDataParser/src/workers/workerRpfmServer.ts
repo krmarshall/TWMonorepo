@@ -18,8 +18,7 @@ rpfmServer.stderr.on('data', async (data) => {
       // Create a web socket to check for schema updates
       const client = new RpfmClient();
       await client.init();
-      const schemaResponse = await client.updateSchemas();
-      console.log(schemaResponse);
+      await client.updateSchemas();
 
       // Tell main process the server is ready
       parentPort?.postMessage('ready');

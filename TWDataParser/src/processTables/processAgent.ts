@@ -9,6 +9,7 @@ import processNodeSet from './processNodeSet.ts';
 import processAncillary from './processAncillary.ts';
 import processUnitStats from './processUnitStats.ts';
 import processStartPosTraits from './processStartPosTraits.ts';
+import processDefeatTrait from './processDefeatTrait.ts';
 import type { CharacterListInterface } from '../@types/CharacterListInterface.ts';
 import type { CharacterInterface } from '../@types/CharacterInterface.ts';
 import type { GlobalDataInterface, RefKey, TableRecord } from '../@types/GlobalDataInterface.ts';
@@ -35,6 +36,16 @@ const processAgent = (
   if (folder === 'vanilla3') {
     const startPosTraits = processStartPosTraits(folder, globalData, tables, agent, subcultureKey);
     if (startPosTraits !== undefined) returnAgent.startPosTraits = startPosTraits;
+  }
+
+  const defeatTraitKey = globalData.agentDefeatTraitMap?.[agent.key as string];
+  if (defeatTraitKey !== undefined) {
+    const traitRecord = tables.character_traits?.findRecordByKey('key', defeatTraitKey);
+    if (traitRecord === undefined) {
+      throw `Invalid Defeat Trait Key: ${defeatTraitKey}`;
+    }
+    const defeatTrait = processDefeatTrait(folder, globalData, traitRecord);
+    if (defeatTrait !== undefined) returnAgent.defeatTrait = defeatTrait;
   }
 
   // LL Faction Effects WH3

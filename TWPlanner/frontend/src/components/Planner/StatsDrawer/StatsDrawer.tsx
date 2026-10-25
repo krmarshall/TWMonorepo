@@ -4,6 +4,7 @@ import useBulkMediaQueries from '../../../hooks/useBulkMediaQueries.tsx';
 import FactionVariantSelect from './FactionVariantSelect.tsx';
 import UnitStats from './UnitStats.tsx';
 import StartPosTraits from './StartPosTraits.tsx';
+import DefeatTraits from './DefeatTraits.tsx';
 
 const StatsDrawer = () => {
   const { state, dispatch } = useContext(AppContext);
@@ -29,6 +30,7 @@ const StatsDrawer = () => {
 
   return (
     <div className={isMobile ? drawerClassMobile : drawerClass}>
+      {characterData?.defeatTrait !== undefined && <DefeatTraits />}
       {characterData?.startPosTraits !== undefined && <StartPosTraits />}
       {characterData?.altFactionNodeSets !== undefined && <FactionVariantSelect />}
       <UnitStats />

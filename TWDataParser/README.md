@@ -12,6 +12,7 @@ When CA adds weird stuff that probably needs new tables (like mounts getting aut
 
 - Technology Faction Variant Selector like for Skill Trees, technology_nodes has faction_key column
 - Automate SpellLores with special_ability_groups_to_units_junctions_tables
+- Phase Images should fallback to unit ability image?
 
 ## Weird Errors
 
